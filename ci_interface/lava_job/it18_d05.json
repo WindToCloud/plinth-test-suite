@@ -1,0 +1,86 @@
+{    "actions": [
+        {
+            "command": "deploy_linaro_kernel",
+            "metadata": {
+                "boot.type": "ACPI",
+                "image.type": "kernel-ci",
+                "image.url": "http://localhost:8083/debug-plinth-ci/debug-it18-4.16.0+_+20180314",
+                "kernel.defconfig": "arm64-debug",
+                "kernel.endian": "little",
+                "kernel.tree": "plinth",
+                "kernel.version": "debug-it18-4.16.0+_+20180314",
+                "platform.fastboot": "false",
+                "test.plan": "sas roce pcie hns debug test"
+            },
+            "parameters": {
+                "bootloadertype": "ipxe",
+                "dtb": "http://localhost:8083/debug-plinth-ci/debug-it18-4.16.0+_+20180314/arm64-debug/hip07-d05.dtb",
+                "kernel": "http://localhost:8083/debug-plinth-ci/debug-it18-4.16.0+_+20180314/arm64-debug/Image",
+                "target_type": "ubuntu"
+            }
+        },
+        {
+            "command": "boot_linaro_image",
+            "parameters": {
+                "options": [
+                    "boot_cmds=boot_cmds_disc_acpi"
+                ]
+            }
+        },
+
+        {
+            "command": "lava_test_shell",
+            "parameters": {
+                "testdef_repos": [
+                    {
+                        "git-repo": "https://github.com/Luojiaxing1991/ci_autotest.git",
+			"parameters":{
+			     "Maintainer": "Luojiaxing"
+			},
+			"testdef": "pre_autotest/pre_autotest.yaml"
+                    }
+                ],
+                "timeout": 172800
+            }
+        },
+        {
+            "command": "boot_linaro_image",
+            "parameters": {
+                "options": [
+                    "boot_cmds=boot_cmds_disc_selfreboot"
+                ]
+            }
+        },
+
+        {
+            "command": "lava_test_shell",
+            "parameters": {
+                "testdef_repos": [
+                    {
+                        "git-repo": "https://github.com/Luojiaxing1991/ci_autotest.git",
+			"parameters":{
+			     "Maintainer": "Luojiaxing"
+			},
+			"testdef": "end_autotest/end_autotest.yaml"
+                    }
+                ],
+                "timeout": 172800
+            }
+        },
+
+      
+        {
+            "command": "submit_results",
+            "parameters": {
+                "server": "http://localhost:8089/RPC2/",
+                "stream": "/anonymous/plinth/"
+            }
+        }
+    ],
+    "device_type": "hip07-d05",
+    "job_name": "It18 Test",
+    "logging_level": "DEBUG",
+    "priority": "high",
+    "timeout": 172800
+}
+

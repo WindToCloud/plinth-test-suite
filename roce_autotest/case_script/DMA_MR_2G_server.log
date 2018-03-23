@@ -1,0 +1,6 @@
+start_id=18, end_id=18 
+---------test_case_018: mr2gdma start--------
+test file name: test/server_socket2_73
+test case 18 failed 
+test 0(read) res is -58 
+clean test case success!
