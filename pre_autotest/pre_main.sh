@@ -29,9 +29,6 @@ if [ $envok -eq 0 ];then
 	rm ${PRE_TOP_DIR}/ok.log
         lava_report "CI plinth Test prepare: Some test can not run in this board!" fail
 	exit 0
-else
-	echo "Test env contruction is success!"
-	lava_report "CI plinth Test prepare: Success" pass
 fi
 
 
