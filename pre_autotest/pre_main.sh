@@ -6,21 +6,47 @@ PRE_TOP_DIR=$(cd "`dirname $0`" ; pwd)
 . ${PRE_TOP_DIR}/../config/common_config
 . ${PRE_TOP_DIR}/../config/common_lib
 
-envok=1
+envok=0
+
+#**Check if board is support this test suite according to MAC address
+
+#Find the local MAC
+tmpMAC=`ifconfig eth0 | grep "HWaddr" | awk '{print $NF}'`
+for mac in $TESTBOARD_MAC_LIST
+do
+	if [ x"${tmpMAC}" = x"${mac}" ]
+	then
+		echo "Xge test can be excute in this board!"
+		envok=1
+	else
+		echo "Xge test can not be excute in this board,exit!"
+	fi
+done
+
+#if test env prepare is ok or not
+if [ $envok -eq 0 ];then
+	echo "some error happen when construct test env!"
+	rm ${PRE_TOP_DIR}/ok.log
+        lava_report "CI plinth Test prepare: Some test can not run in this board!" fail
+	exit 0
+else
+	echo "Test env contruction is success!"
+	lava_report "CI plinth Test prepare: Success" pass
+fi
+
+
 
 #****Check cmd support before running prepare actions for plinth test*****#
 
-#Check efibootmgr
-
-
-
-#****Clone the repo of kernel and build it
-#cd ${PRE_TOP_DIR}
+#********
+#****Start : Clone kernel repo and build it
+#********
 
 #cd into the repo
 tmp=`echo ${KERNEL_GITADDR} | awk -F'.' '{print $2}' | awk -F'/' '{print $NF}'`
 echo "The name of kernel repo is "$tmp
 
+#checkout if kernel repo is exit or not!
 if [ ! -d "/home/kernel/${tmp}" ];then
 	echo "The kernel dir is not exit! Begin to clone repo!"
         mkdir /home/kernel
@@ -32,6 +58,7 @@ fi
 
 cd /home/kernel/${tmp}
 
+#checkout specified branch and build keinel
 git branch | grep ${BRANCH_NAME}
 
 if [ $? -eq 0 ];then
@@ -48,6 +75,16 @@ bash build.sh d05 > ${PRE_TOP_DIR}/ok.log
 
 echo "Finish the kernel build!"
 
+#********
+#****END : Clone kernel repo and build it
+#********
+
+
+#********
+#****Start : Copy module ko to spcified document
+#********
+
+#check ko document is exit or not
 if [ ! -d "/home/kernel/output" ];then
 	echo "The output dir to save ko is not exit, mkdir!"
 	mkdir /home/kernel/output
@@ -64,15 +101,24 @@ else
         lava_report "CI plinth Test prepare: Fail to generate ko file!" fail
        	envok=0 
 fi
+#********
+#****END : Copy module ko to spcified document
+#********
 
+
+#********
+#***Start : Prepare Boot Disk For selfreboot
+#********
 #copy the Image to bootdisk to support disk reboot
 if [ ! -d "/home/kernel/a1" ];then
 	mkdir /home/kernel/a1
 fi
 
+#mount boot disc
 mount /dev/sda1 /home/kernel/a1
+
+#copy Image to boot disc
 cp -f arch/arm64/boot/Image /home/kernel/a1
-cp -rf ${PRE_TOP_DIR}/../ci_interface/install/a1/* /home/kernel/a1
 
 if [ -f "/home/kernel/a1/Image" ];then
 	echo "Finish copy the Image to output dir!"
@@ -82,6 +128,21 @@ else
         envok=0
 fi
 
+#copy grub file to boot disc
+cp -rf ${PRE_TOP_DIR}/../ci_interface/install/a1/* /home/kernel/a1
+
+if [ -f "/home/kernel/a1/grub.cfg" ];then
+	echo "Finish copy the grub.cfg to output dir!"
+else
+	echo "No found the grub file!Maybe the copy is fail!"
+        lava_report "CI plinth Test prepare: Fail to generate grub.cfg file!" fail
+        envok=0
+fi
+
+
+#******
+#***END : Prepare Boot Disk For selfreboot
+#******
 
 #if test env prepare is ok or not
 if [ $envok -eq 0 ];then
