@@ -158,6 +158,8 @@ function getIPofClientServer
     tmpClientMacAddr=${2}
     tmpUserName=${3}
 	tmpPassWord=${4}
+    
+    ping $COMMON_DEFAULT_DHCP_IP -c 5   
  
     echo ${tmpDHCPMacAddr} ${tmpClientMacAddr} ${tmpUserName} ${tmpPassWord}
 	
