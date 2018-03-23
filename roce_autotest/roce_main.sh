@@ -63,6 +63,8 @@ function main()
 insmod /home/kernel/output/hns-roce.ko
 insmod /home/kernel/output/hns-roce-hw-v1.ko
 
+LOCAL_ETHX=`cat /sys/class/infiniband/hns_0/ports/${ROCE_PORT}/gid_attrs/ndevs/0`
+
 
 #roce test is only excute in 159 dash board
 #Find the local MAC
