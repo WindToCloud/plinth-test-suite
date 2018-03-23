@@ -175,10 +175,11 @@ function getIPofClientServer
         #show client ip info in arp list in DHCP server using ssh service 
         spawn ssh $user_name@$back_ip  "arp | grep '${tmpClientMacAddr}'"
 		
-        sleep 10
-        set timeout 120
-        expect "Are you sure you want to continue connecting (yes/no)?"
+        sleep 20
+        #set timeout 120
+        #expect "Are you sure you want to continue connecting (yes/no)?"
         send "yes\r"
+        sleep 10
         expect -re ".*password:"
         #set timeout 120
         send "$pass_word\r"
@@ -199,10 +200,11 @@ function getIPofClientServer
         	#show client ip info in arp list in DHCP server using ssh service 
         	spawn ssh $user_name@$back_ip  "arp | grep '${tmpClientMacAddr}'"
 		
-        	sleep 10
-        	expect "Are you sure you want to continue connecting (yes/no)?"
-        	set timeout 60
+        	sleep 20
+        	#expect "Are you sure you want to continue connecting (yes/no)?"
+        	#set timeout 60
         	send "yes\r"
+                sleep 10
         	expect -re ".*password:"
         	set timeout 60
         	send "$pass_word\r"
