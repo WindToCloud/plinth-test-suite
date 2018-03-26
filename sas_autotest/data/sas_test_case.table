@@ -140,10 +140,10 @@ PV-1606	R.SAS.F008.A	ST.FUNC.143	Support SAS Narrow and Wide Ports	SATA盘，expan
 PV-1598	R.SAS.F014.A	ST.FUNC.144	Support hotplug	SATA盘，expander，IO读写，单块磁盘enable	support_hotplug.sh	fio_single_enable	off
 PV-1598	R.SAS.F014.A	ST.FUNC.145	Support hotplug	SATA盘，expander，IO读写，多块磁盘enable	support_hotplug.sh	fio_single_enable	off
 PV-1607	R.SAS.F012.A	ST.FUNC.191	Support SATA NCQ	SATA盘，expander，NCQ查询	support_sata_ncq.sh	ncq_query	off
-PV-1608	R.SAS.F015.A	ST.FUNC.195	Support SMART	SATA，直连，SMART	support_smart.sh	smart_disk_check	off
-PV-1608	R.SAS.F015.A	ST.FUNC.196	Support SMART	SAS，直连，SMART	support_smart.sh	smart_disk_check	off
-PV-1608	R.SAS.F015.A	ST.FUNC.198	Support SMART	SATA盘，expander，SMART	support_smart.sh	smart_disk_check	off
-PV-1608	R.SAS.F015.A	ST.FUNC.199	Support SMART	SAS盘，expander，SMART	support_smart.sh	smart_disk_check	off
+PV-1608	R.SAS.F015.A	ST.FUNC.195	Support SMART	SATA，直连，SMART	support_smart.sh	smart_disk_check	on
+PV-1608	R.SAS.F015.A	ST.FUNC.196	Support SMART	SAS，直连，SMART	support_smart.sh	smart_disk_check	on
+PV-1608	R.SAS.F015.A	ST.FUNC.198	Support SMART	SATA盘，expander，SMART	support_smart.sh	smart_disk_check	on
+PV-1608	R.SAS.F015.A	ST.FUNC.199	Support SMART	SAS盘，expander，SMART	support_smart.sh	smart_disk_check	on
 #N/A	N/A	ST.FUNC.200	N/A	expander，加载、卸载ko模块	support_module_load.sh	module_load_uninstall	off
 #N/A	N/A	ST.FUNC.201	N/A	直连背板，加载、卸载ko模块	support_module_load.sh	module_load_uninstall	off
 PV-1946	R.SAS.F018.A	ST.FUNC.202	Support ACPI for probe and reset	支持ACPI方式启动	support_acpi.sh	check_acpi_start	off

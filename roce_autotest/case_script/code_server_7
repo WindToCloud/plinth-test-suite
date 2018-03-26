@@ -8,5 +8,5 @@ port=18515,servername:(null)!
  [main : 20901] ibv_open_device ok! Link type is Ethernet
  Mtu : 256
 
- addr = 0xffff801c5010,lkey = rkey = 0x500
- addr = 0xffff802c5010,lkey = rkey = 0x600######### total: 40  , pass: 0  , failed :1   ############
+ addr = 0xffff7f65a010,lkey = rkey = 0x500
+ addr = 0xffff7f75a010,lkey = rkey = 0x600######### total: 40  , pass: 0  , failed :1   ############

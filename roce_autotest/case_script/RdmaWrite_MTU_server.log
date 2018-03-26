@@ -2,5 +2,48 @@ start_id=8, end_id=8
 ---------test_case_008: rdma_write1 start--------
 test file name: test/server_socket2_55
 test case 8 failed 
-test 0(write) res is -58 
-clean test case success!
+test 0(connect) res is 0 
+//--test case success!--//
+test 1(send) res is 0 
+//--test case success!--//
+test 2(send) res is 0 
+//--test case success!--//
+test 3(send) res is 0 
+//--test case success!--//
+test 4(read) res is 0 
+//--test case success!--//
+test 5(read) res is 0 
+//--test case success!--//
+test 6(read) res is 0 
+//--test case success!--//
+test 7(write) res is 0 
+//--test case success!--//
+test 8(write) res is 0 
+//--test case success!--//
+test 9(write) res is 0 
+//--test case success!--//
+test 10(connect) res is 0 
+//--test case success!--//
+test 11(connect) res is 0 
+//--test case success!--//
+test 12(cq1) res is 0 
+//--test case success!--//
+test 13(read) res is 0 
+//--test case success!--//
+test 14(read) res is 0 
+//--test case success!--//
+test 15(write) res is 0 
+//--test case success!--//
+test 16(read) res is 0 
+//--test case success!--//
+test 17(test_notify) res is 0 
+//--test case success!--//
+test 18(connect) res is -58 
+test 19(send) res is -58 
+test 20(send) res is -58 
+test 21(send) res is -58 
+test 22(read) res is -58 
+test 23(read) res is -58 
+test 24(read) res is -58 
+test 25(write) res is -58 
+clean test case failed!

@@ -25,8 +25,8 @@ PV-439	R.HNS.F006.A	ST_XGE_RESET_03		GE电口关闭自协商后重新自协商功能正常	auto_n
 PV-439	R.HNS.F006.A	ST_XGE_RESET_01		XGE光口重新自协商成功	auto_negotiation_support.sh	xge_restarts_auto_negotiation	off	
 PV-439	R.HNS.F006.A	ST_XGE_RESET_02		XGE光口大流量反复重新自协商成功	auto_negotiation_support.sh	xge_iperf_auto_negotiation	off	
 PV-442	R.HNS.F009.A	ST_GE_PHY_IOCTL_01	通过MiiTools读写ge phy寄存器	GE电口正确读取Phy寄存器	support_of_mdio.sh	ge_read_phy_register	off	
-PV-442	R.HNS.F009.A	ST_GE_PHY_IOCTL_02		GE电口正确写Phy寄存器	support_of_mdio.sh	ge_iperf_read_phy_register	off	
-PV-442	R.HNS.F009.A	ST_XGE_PHY_IOCTL_01		XGE光口读phy寄存器失败	support_of_mdio.sh	xge_read_phy_register	off	
+PV-442	R.HNS.F009.A	ST_GE_PHY_IOCTL_02		GE电口正确写Phy寄存器	support_of_mdio.sh	ge_iperf_read_phy_register	on	
+PV-442	R.HNS.F009.A	ST_XGE_PHY_IOCTL_01		XGE光口读phy寄存器失败	support_of_mdio.sh	xge_read_phy_register	on	
 PV-443	R.HNS.F010.A	ST_GE_MAC_ERROR_01	GE网口MAC地址设置	GE网口Mac地址设置容错测试	support_to_change_mac_address.sh	ge_mac_address_fault_tolerant	on	
 PV-443	R.HNS.F010.A	SET_GE_SET_MAC_01		GE标准mac地址设置成功	support_to_change_mac_address.sh	ge_set_standard_mac_address	off	
 PV-443	R.HNS.F010.A	SET_GE_SET_MAC_02		GE线性mac地址设置	support_to_change_mac_address.sh	ge_set_linear_mac_address	off	

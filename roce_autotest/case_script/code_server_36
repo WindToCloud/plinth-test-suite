@@ -12,7 +12,7 @@ port=18515,servername:(null)!
  set mtu ok.
  [PV660_ROCE_4qp_write_imd_se : 18707] create comp channle ok!
  alloc pd ok.
- addr = 0xffffba640010,lkey = rkey = 0x500
- addr = 0xffffba740010,lkey = rkey = 0x600
+ addr = 0xffffb4f49010,lkey = rkey = 0x500
+ addr = 0xffffb5049010,lkey = rkey = 0x600
  create recv cq ok.
  create send cq ok.######### total: 40  , pass: 0  , failed :1   ############
