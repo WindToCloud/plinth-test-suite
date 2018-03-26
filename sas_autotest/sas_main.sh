@@ -58,6 +58,13 @@ writeLogHeader
 # Get all disk partition information
 get_all_disk_part
 
+#Open smart funtion for all disk
+for tmpdisk in $ALL_DISK_PART_NAME
+do
+        echo "Enable smart function for disk: "${tmpdisk}
+	${SAS_TOP_DIR}/../common_tool/smartctl -s on ${tmpdisk}
+done
+
 main
 
 # clean exit so lava-test can trust the results
