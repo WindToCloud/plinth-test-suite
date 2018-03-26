@@ -52,6 +52,39 @@
                 ]
             }
         },
+ {
+            "command": "lava_test_shell",
+            "parameters": {
+                "testdef_repos": [
+                    {
+                        "git-repo": "https://github.com/Luojiaxing1991/plinth-test-suite.git",
+                        "parameters": {
+                            "Maintainer": "Luojiaxing"
+                        },
+                        "testdef": "sas_autotest/sas_autotest.yaml"
+                    }
+                ],
+                "timeout": 172800
+            }
+        },
+ {
+            "command": "lava_test_shell",
+            "parameters": {
+                "testdef_repos": [
+                    {
+                        "git-repo": "https://github.com/Luojiaxing1991/plinth-test-suite.git",
+                        "parameters": {
+                            "Maintainer": "Luojiaxing"
+                        },
+                        "testdef": "xge_autotest/xge_autotest.yaml"
+                    }
+                ],
+                "timeout": 172800
+            }
+        },
+
+
+
         {
             "command": "lava_test_shell",
             "parameters": {
