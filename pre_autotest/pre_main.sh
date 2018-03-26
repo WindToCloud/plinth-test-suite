@@ -76,7 +76,6 @@ echo "Finish the kernel build!"
 #****END : Clone kernel repo and build it
 #********
 
-
 #********
 #****Start : Copy module ko to spcified document
 #********
@@ -106,6 +105,10 @@ fi
 #********
 #***Start : Prepare Boot Disk For selfreboot
 #********
+
+#mkfs the boot disk:sda1
+mkfs.vfat ${BOOT_DISK}
+
 #copy the Image to bootdisk to support disk reboot
 if [ ! -d "/home/kernel/a1" ];then
 	mkdir /home/kernel/a1
@@ -140,6 +143,58 @@ fi
 #******
 #***END : Prepare Boot Disk For selfreboot
 #******
+
+#********
+#****Start : Clone roce user driver repo and build it
+#********
+
+#cd into the repo
+tmp=`echo ${ROCE_USERDRV_GITADDR} | awk -F'.' '{print $2}' | awk -F'/' '{print $NF}'`
+echo "The name of kernel repo is "$tmp
+
+#checkout if kernel repo is exit or not!
+if [ ! -d "/home/luojiaxing/${tmp}" ];then
+	echo "The roce user driver repo is not exit! Begin to clone repo!"
+        cd /home/luojiaxing
+        git clone ${KERNEL_GITADDR}
+else
+	echo "The kernel repo have been found!"
+fi
+
+cd /home/luojiaxing/${tmp}
+
+#checkout specified branch and build keinel
+git branch | grep ${ROCE_USERDRV_BRANCH}
+
+if [ $? -eq 0 ];then
+	#The same name of branch is exit
+	git checkout -b tmp_luo origin/${ROCE_USERDRV_BRANCH}
+	git branch -D ${ROCE_USERDRV_BRANCH}
+fi
+
+git checkout -b ${ROCE_USERDRV_BRANCH} origin/${ROCE_USERDRV_BRANCH}
+git branch -D tmp_luo
+
+echo "Begin to build the roce user driver!"
+bash build.sh 
+
+echo "Finish the roce user driver build!"
+
+#copy the so to /lib document
+cd build/lib/
+mkdir luo
+cp -a libhns-rdmav* luo/
+cp -a libibverbs.so* luo/
+cp -a libibumad.so* luo/
+cp -a librdmacm.so* luo/
+
+cp -a luo/* /lib/
+
+echo "Finish copy the roce user driver to /lib/"
+
+#********
+#****END : Clone roce user driver repo and build it
+#********
 
 #if test env prepare is ok or not
 if [ $envok -eq 0 ];then

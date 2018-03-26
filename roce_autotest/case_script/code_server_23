@@ -9,4 +9,23 @@ port=18515,servername:(null)!
  Mtu : 1024
 
  lkey = rkey = 0x500
- lkey = rkey = 0x600######### total: 40  , pass: 0  , failed :1   ############
+ lkey = rkey = 0x600hr_qp->port_num= 0x1
+config->gid_index = 0
+
+ [prtest_set_up_connection_n : 298] my_dest->vaddr = 0xffff7fc3a010
+ [prtest_set_up_connection_n : 299] my_dest->rkey  = 0x500
+ [prtest_set_up_connection_n : 300] my_dest->psn   = 0xc89cd4
+dest lid      out_reads qpn        psn         rkey     vaddr
+my : 0        16        609      0xc89cd4    0x500      0xffff7fc3a010
+rem: 0        16        646      0x36c177    0x500      0xffffa5573010
+ my_GID:254:128:00:00:00:00:00:00:248:134:87:255:254:190:116:23
+rem_GID:254:128:00:00:00:00:00:00:194:168:02:255:254:240:00:00
+
+ data_len= 0xb4567, test_rad[0] = 0x0
+ [prtest_run_send_cmp-4272]ne = 0x1 ,wc_status = 0x0, wc.opcode = 0x0
+ data_len= 0xb23c6, test_rad[1] = 0x1
+ [prtest_run_send_imd_cmp-4398]ne = 0x1 ,wc_status = 0x0, wc.opcode = 0x80
+ [prtest_run_send_imd_cmp-4445]ne = 0x1 ,wc_status = 0x0, wc.opcode = 0x0
+ data_len= 0xc9869, test_rad[2] = 0x2
+ data_len= 0x34873, test_rad[3] = 0x3
+ data_len= 0xdc51, test_rad[4] = 0x4######### total: 40  , pass: 1  , failed :0   ############
