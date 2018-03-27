@@ -57,7 +57,7 @@ function main()
             fi
         fi
         echo -e "${line}${MESSAGE}" >> ${HNS_TOP_DIR}/${OUTPUT_TEST_DB_FILE}
-        MESSAGE=""
+        #MESSAGE=""
     done
     echo "Finish to run XGE test!"
 }

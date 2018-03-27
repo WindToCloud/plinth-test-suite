@@ -1,0 +1,75 @@
+Single port one-way enahisic2i1 1thread:
+[  3]  0.0-20.0 sec  2.16 GBytes   930 Mbits/sec
+
+
+Single port one-way enahisic2i1 5thread:
+[SUM]  0.0-20.0 sec  2.17 GBytes   929 Mbits/sec
+
+
+Single port one-way enahisic2i1 10thread:
+[SUM]  0.0-20.0 sec  2.17 GBytes   931 Mbits/sec
+
+
+Single port one-way enahisic2i2 1thread:
+[  3]  0.0-20.0 sec  19.6 GBytes  8.44 Gbits/sec
+
+
+Single port one-way enahisic2i2 5thread:
+[SUM]  0.0-20.0 sec  21.6 GBytes  9.29 Gbits/sec
+
+
+Single port one-way enahisic2i2 10thread:
+[ 11]  0.0-20.0 sec  2.29 GBytes   982 Mbits/sec
+
+
+Single port two-way 1thread:
+[  3]  0.0-20.0 sec  2.16 GBytes   930 Mbits/sec
+[  3]  0.0-20.0 sec  17.9 GBytes  7.70 Gbits/sec
+
+
+Single port two-way 5thread:
+[SUM]  0.0-20.0 sec  2.16 GBytes   928 Mbits/sec
+[  6]  0.0-20.0 sec  5.17 GBytes  2.22 Gbits/sec
+
+
+Single port two-way 10thread:
+[SUM]  0.0-20.0 sec  2.17 GBytes   930 Mbits/sec
+------------------------------------------------------------
+
+
+Dual port one-way enahisic2i1 1thread:
+[  3]  0.0-20.0 sec  2.05 GBytes   882 Mbits/sec
+
+
+Dual port one-way enahisic2i1 5thread:
+[SUM]  0.0-20.0 sec  2.12 GBytes   910 Mbits/sec
+
+
+Dual port one-way enahisic2i1 10thread:
+[SUM]  0.0-20.1 sec  2.13 GBytes   912 Mbits/sec
+
+
+Single port one-way enahisic2i1 1thread:
+[  3]  0.0-20.0 sec  2.16 GBytes   930 Mbits/sec
+
+
+Single port one-way enahisic2i1 5thread:
+[SUM]  0.0-20.0 sec  2.17 GBytes   930 Mbits/sec
+
+
+Single port one-way enahisic2i1 10thread:
+[SUM]  0.0-20.1 sec  2.17 GBytes   931 Mbits/sec
+
+
+Single port one-way enahisic2i2 1thread:
+[  3]  0.0-20.0 sec  21.6 GBytes  9.28 Gbits/sec
+
+
+Single port one-way enahisic2i2 5thread:
+[SUM]  0.0-20.0 sec  21.6 GBytes  9.29 Gbits/sec
+
+
+Single port one-way enahisic2i2 10thread:
+[  8]  0.0-20.5 sec   701 MBytes   288 Mbits/sec
+
+
