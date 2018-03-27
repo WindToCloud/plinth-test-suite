@@ -36,7 +36,7 @@ function ge_mac_address_fault_tolerant()
     for i in $gemacvalue
     do
         NewMacAddress="c$i:a8:01:83:00:04"
-        ifconfig ${local_tp1} hw ether $NewMacAddress | grep "SIOCSIFHWADDR: Cannot assign requested address"
+        ifconfig ${local_tp1} hw ether $NewMacAddress 2>/dev/null | grep "SIOCSIFHWADDR: Cannot assign requested address"
         if [ $? -eq 1 ];then
             MESSAGE="FAIL\t The wrong MAC address has been configured  "
         fi
@@ -44,15 +44,14 @@ function ge_mac_address_fault_tolerant()
     
     for x in "00:00:00:00:00:00" "ff:ff:ff:ff:ff:ff" "c1:a8:01:83:00:0418"
     do
-        ifconfig ${local_tp1} hw ether $x | grep "SIOCSIFHWADDR: Cannot assign requested address"
+        ifconfig ${local_tp1} hw ether $x 2>/dev/null | grep "SIOCSIFHWADDR: Cannot assign requested address"
         if [ $? -eq 1 ];then
             MESSAGE="FAIL\t The wrong MAC address has been configured  "
         fi
     done
     MESSAGE="PASS"
 
-    ifconfig ${local_tp1} hw ether ${OrgMacAddress1} | grep "SIOCSIFHWADDR: Cannot assign requested address"
-
+    ifconfig ${local_tp1} hw ether ${OrgMacAddress1}
     OrgMacAddress1=$(ifconfig ${local_tp1} | grep "HWaddr" | awk '{print $NF}')
     echo "Recover mac as "${OrgMacAddress1}
     
@@ -129,7 +128,7 @@ function xge_mac_address_fault_tolerant()
     for i in $xgemacvalue
     do
         NewMacAddress="c$i:a8:01:83:00:04"
-        ifconfig ${local_fibre1} hw ether $NewMacAddress | grep "SIOCSIFHWADDR: Cannot assign requested address"
+        ifconfig ${local_fibre1} hw ether $NewMacAddress 2>/dev/null | grep "SIOCSIFHWADDR: Cannot assign requested address"
         if [ $? -eq 1 ];then
             MESSAGE="FAIL\t The wrong MAC address has been configured  "
         fi
@@ -137,7 +136,7 @@ function xge_mac_address_fault_tolerant()
     
     for x in "00:00:00:00:00:00" "ff:ff:ff:ff:ff:ff" "c1:a8:01:83:00:0418"
     do
-        ifconfig ${local_fibre1} hw ether $x | grep "SIOCSIFHWADDR: Cannot assign requested address"
+        ifconfig ${local_fibre1} hw ether $x 2>/dev/null | grep "SIOCSIFHWADDR: Cannot assign requested address"
         if [ $? -eq 1 ];then
             MESSAGE="FAIL\t The wrong MAC address has been configured  "
         fi
