@@ -614,7 +614,7 @@ function Vlan_iperf_single()
     
     vconfig rem $NETPORT1.401
     vconfig rem $NETPORT2.400
-    ssh root@BACK_IP "vconfig rem $NETPORT1.401;vconfig rem $NETPORT2.401"
+    ssh root@${BACK_IP} "vconfig rem $NETPORT1.401;vconfig rem $NETPORT2.401"
 }
 
 function Vlan_iperf_dual()
@@ -708,7 +708,7 @@ function Vlan_iperf_dual()
     
     vconfig rem $NETPORT1.401
     vconfig rem $NETPORT2.400
-    ssh root@BACK_IP "vconfig rem $NETPORT1.401;vconfig rem $NETPORT2.401"
+    ssh root@${BACK_IP} "vconfig rem $NETPORT1.401;vconfig rem $NETPORT2.401"
 }
 
 
