@@ -1,0 +1,28 @@
+------------------------------------------------------------
+Client connecting to fe80::c2a8:2ff:fef0:5%enahisic2i1, TCP port 5001
+TCP window size: 85.0 KByte (default)
+------------------------------------------------------------
+[  6] local fe80::5ca7:b9ff:fe2e:61b9 port 34998 connected with fe80::c2a8:2ff:fef0:5 port 5001
+[  3] local fe80::5ca7:b9ff:fe2e:61b9 port 34990 connected with fe80::c2a8:2ff:fef0:5 port 5001
+[  5] local fe80::5ca7:b9ff:fe2e:61b9 port 34992 connected with fe80::c2a8:2ff:fef0:5 port 5001
+[  4] local fe80::5ca7:b9ff:fe2e:61b9 port 34994 connected with fe80::c2a8:2ff:fef0:5 port 5001
+[  7] local fe80::5ca7:b9ff:fe2e:61b9 port 34996 connected with fe80::c2a8:2ff:fef0:5 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  5]  0.0- 2.0 sec  44.8 MBytes   188 Mbits/sec
+[  6]  0.0- 2.0 sec  44.8 MBytes   188 Mbits/sec
+[  4]  0.0- 2.0 sec  44.8 MBytes   188 Mbits/sec
+[  7]  0.0- 2.0 sec  44.8 MBytes   188 Mbits/sec
+[  3]  0.0- 2.0 sec  44.9 MBytes   188 Mbits/sec
+[SUM]  0.0- 2.0 sec   224 MBytes   939 Mbits/sec
+[  6]  2.0- 4.0 sec  44.2 MBytes   186 Mbits/sec
+[  5]  2.0- 4.0 sec  44.2 MBytes   186 Mbits/sec
+[  4]  2.0- 4.0 sec  44.4 MBytes   186 Mbits/sec
+[  7]  2.0- 4.0 sec  44.4 MBytes   186 Mbits/sec
+[  3]  2.0- 4.0 sec  44.4 MBytes   186 Mbits/sec
+[SUM]  2.0- 4.0 sec   222 MBytes   930 Mbits/sec
+[  6]  0.0- 4.8 sec   106 MBytes   187 Mbits/sec
+[  3]  0.0- 4.8 sec   106 MBytes   187 Mbits/sec
+[  5]  0.0- 4.8 sec   106 MBytes   187 Mbits/sec
+[  4]  0.0- 4.8 sec   106 MBytes   187 Mbits/sec
+[  7]  0.0- 4.8 sec   106 MBytes   187 Mbits/sec
+[SUM]  0.0- 4.8 sec   532 MBytes   933 Mbits/sec

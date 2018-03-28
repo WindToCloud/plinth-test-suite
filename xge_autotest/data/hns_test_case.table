@@ -61,35 +61,35 @@ PV-438	R.HNS.F005.A	ST_GE_VLAN_PERF_04		GE双网口 vlan iperf 测试-单板作为客户端	
 PV-438	R.HNS.F005.A	ST_GE_VLAN_PERF_05		GE双网口 vlan iperf 测试-单板作为服务器端	performance.sh	iperf_dual5	off
 PV-438	R.HNS.F005.A	ST_GE_VLAN_PERF_06		GE双网口 vlan iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_dual6	off
 PV-438	R.HNS.F005.A	ST_XGE_VLAN_PERF_01	XGE Vlan包网口带宽测试	XGE单网口 vlan iperf 测试-单板作为客户端	performance.sh	iperf_single1	off
-PV-438	R.HNS.F005.A	ST_XGE_VLAN_PERF_02		XGE单网口 vlan iperf 测试-单板作为服务器端	performance.sh	iperf_single2	off
-PV-438	R.HNS.F005.A	ST_XGE_VLAN_PERF_03		XGE单网口 vlan iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_single3	off
-PV-438	R.HNS.F005.A	ST_XGE_VLAN_PERF_04		XGE双网口 vlan iperf 测试-单板作为客户端	performance.sh	iperf_dual4	off
+PV-438	R.HNS.F005.A	ST_XGE_VLAN_PERF_02		XGE单网口 vlan iperf 测试-单板作为服务器端	performance.sh	iperf_single2	offn
+PV-438	R.HNS.F005.A	ST_XGE_VLAN_PERF_03		XGE单网口 vlan iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_single3	ff
+PV-438	R.HNS.F005.A	ST_XGE_VLAN_PERF_04		XGE双网口 vlan iperf 测试-单板作为客户端	performance.sh	iperf_dual4	ff
 PV-438	R.HNS.F005.A	ST_XGE_VLAN_PERF_05		XGE双网口 vlan iperf 测试-单板作为服务器端	performance.sh	iperf_dual5	off
 PV-438	R.HNS.F005.A	ST_XGE_VLAN_PERF_06		XGE双网口 vlan iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_dual6	off
-PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_01	GE IPv6网口带宽测试	GE单网口 IPv6 iperf 测试-单板作为客户端	performance.sh	iperf_single1	off
-PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_02		GE单网口 IPv6 iperf 测试-单板作为服务器端	performance.sh	iperf_single2	off
-PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_03		GE单网口 IPv6 iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_single3	off
-PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_04		GE双网口 IPv6 iperf 测试-单板作为客户端	performance.sh	iperf_dual4	off
-PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_05		GE双网口 IPv6 iperf 测试-单板作为服务器端	performance.sh	iperf_dual5	off
-PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_06		GE双网口 IPv6 iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_dual6	off
-PV-446	R.HNS.F013.A	ST_XGE_IPV6_PERF_01	XGE IPv6网口带宽测试	XGE单网口 IPv6 iperf 测试-单板作为客户端	performance.sh	iperf_single1	off
-PV-446	R.HNS.F013.A	ST_XGE_IPV6_PERF_02		XGE单网口 IPv6 iperf 测试-单板作为服务器端	performance.sh	iperf_single2	off
-PV-446	R.HNS.F013.A	ST_XGE_IPV6_PERF_03		XGE单网口 IPv6 iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_single3	off
-PV-446	R.HNS.F013.A	ST_XGE_IPV6_PERF_04		XGE双网口 IPv6 iperf 测试-单板作为客户端	performance.sh	iperf_dual4	off
-PV-446	R.HNS.F013.A	ST_XGE_IPV6_PERF_05		XGE双网口 IPv6 iperf 测试-单板作为服务器端	performance.sh	iperf_dual5	off
-PV-446	R.HNS.F013.A	ST_XGE_IPV6_PERF_06		XGE双网口 IPv6 iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_dual6	off
+PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_01	GE IPv6网口带宽测试	GE单网口 IPv6 iperf 测试-单板作为客户端	performance.sh	iperf_single1	on
+PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_02		GE单网口 IPv6 iperf 测试-单板作为服务器端	performance.sh	iperf_single2	on
+PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_03		GE单网口 IPv6 iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_single3	on
+PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_04		GE双网口 IPv6 iperf 测试-单板作为客户端	performance.sh	iperf_dual4	on
+PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_05		GE双网口 IPv6 iperf 测试-单板作为服务器端	performance.sh	iperf_dual5	on
+PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_06		GE双网口 IPv6 iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_dual6	on
+PV-446	R.HNS.F013.A	ST_XGE_IPV6_PERF_01	XGE IPv6网口带宽测试	XGE单网口 IPv6 iperf 测试-单板作为客户端	performance.sh	iperf_single1	on
+PV-446	R.HNS.F013.A	ST_XGE_IPV6_PERF_02		XGE单网口 IPv6 iperf 测试-单板作为服务器端	performance.sh	iperf_single2	on
+PV-446	R.HNS.F013.A	ST_XGE_IPV6_PERF_03		XGE单网口 IPv6 iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_single3	on
+PV-446	R.HNS.F013.A	ST_XGE_IPV6_PERF_04		XGE双网口 IPv6 iperf 测试-单板作为客户端	performance.sh	iperf_dual4	on
+PV-446	R.HNS.F013.A	ST_XGE_IPV6_PERF_05		XGE双网口 IPv6 iperf 测试-单板作为服务器端	performance.sh	iperf_dual5	on
+PV-446	R.HNS.F013.A	ST_XGE_IPV6_PERF_06		XGE双网口 IPv6 iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_dual6	on
 PV-1516	R.HNS.P001.B	ST_GE_IPV4_PERF_01	GE IPv4网口带宽测试	GE单网口 IPv4 iperf 测试-单板作为客户端	performance.sh	iperf_single1	on
 PV-1516	R.HNS.P001.B	ST_GE_IPV4_PERF_02		GE单网口 IPv4 iperf 测试-单板作为服务器端	performance.sh	iperf_single2	on
 PV-1516	R.HNS.P001.B	ST_GE_IPV4_PERF_03		GE单网口 IPv4 iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_single3	on
 PV-1516	R.HNS.P001.B	ST_GE_IPV4_PERF_04		GE双网口 IPv4 iperf 测试-单板作为客户端	performance.sh	iperf_dual4	on
 PV-1516	R.HNS.P001.B	ST_GE_IPV4_PERF_05		GE双网口 IPv4 iperf 测试-单板作为服务器端	performance.sh	iperf_dual5	on
 PV-1516	R.HNS.P001.B	ST_GE_IPV4_PERF_06		GE双网口 IPv4 iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_dual6	on
-PV-1516	R.HNS.P001.B	ST_XGE_IPV4_PERF_01	XGE IPv4网口带宽测试	XGE单网口 IPv4 iperf 测试-单板作为客户端	performance.sh	iperf_single1	off
-PV-1516	R.HNS.P001.B	ST_XGE_IPV4_PERF_02		XGE单网口 IPv4 iperf 测试-单板作为服务器端	performance.sh	iperf_single2	off
-PV-1516	R.HNS.P001.B	ST_XGE_IPV4_PERF_03		XGE单网口 IPv4 iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_single3	off
-PV-1516	R.HNS.P001.B	ST_XGE_IPV4_PERF_04		XGE双网口 IPv4 iperf 测试-单板作为客户端	performance.sh	iperf_dual4	off
-PV-1516	R.HNS.P001.B	ST_XGE_IPV4_PERF_05		XGE双网口 IPv4 iperf 测试-单板作为服务器端	performance.sh	iperf_dual5	off
-PV-1516	R.HNS.P001.B	ST_XGE_IPV4_PERF_06		XGE双网口 IPv4 iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_dual6	off
+PV-1516	R.HNS.P001.B	ST_XGE_IPV4_PERF_01	XGE IPv4网口带宽测试	XGE单网口 IPv4 iperf 测试-单板作为客户端	performance.sh	iperf_single1	on
+PV-1516	R.HNS.P001.B	ST_XGE_IPV4_PERF_02		XGE单网口 IPv4 iperf 测试-单板作为服务器端	performance.sh	iperf_single2	on
+PV-1516	R.HNS.P001.B	ST_XGE_IPV4_PERF_03		XGE单网口 IPv4 iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_single3	on
+PV-1516	R.HNS.P001.B	ST_XGE_IPV4_PERF_04		XGE双网口 IPv4 iperf 测试-单板作为客户端	performance.sh	iperf_dual4	on
+PV-1516	R.HNS.P001.B	ST_XGE_IPV4_PERF_05		XGE双网口 IPv4 iperf 测试-单板作为服务器端	performance.sh	iperf_dual5	on
+PV-1516	R.HNS.P001.B	ST_XGE_IPV4_PERF_06		XGE双网口 IPv4 iperf 测试-单板同时作为服务器端和客户端	performance.sh	iperf_dual6	on
 PV-1517	R.HNS.P003.B	ST_GE_NETPERF_000	网口netperf测试	GE网口netperf TCP_STREAM测试	performance.sh	netperf_single	off
 PV-1517	R.HNS.P003.B	ST_GE_NETPERF_005		GE网口netperf TCP_RR测试	performance.sh	netperf_single	off
 PV-1517	R.HNS.P003.B	ST_GE_NETPERF_010		GE网口netperf TCP_CRR测试	performance.sh	netperf_single	off
