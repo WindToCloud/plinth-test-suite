@@ -29,6 +29,12 @@ RR_TYPE="TCP_RR TCP_CRR UDP_RR"
 TCP_MSS="32 64 128 256 512 1024 1500"
 UDP_MSS="32 64 128 256 521 1024 4096 16376 32753 65507"
 
+#netport type : XGE,GE
+PORT_TYPE=""
+
+#protocol type : VLAN,IPV6,IPV4
+PROTOCOL_TYPE=""
+
 function remote_iperf_s()
 {
   ssh root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
@@ -913,8 +919,475 @@ function qperf_test()
     return 0 
 }
 
+function Vlan_iperf_single()
+{
+    if [ $VlanSingle -eq 1 ];then
+        MESSAGE="PASS"
+        return 0
+    fi
+    MESSAGE="PASS"
+
+    ip link add link $LOCALPORT1 name $LOCALPORT1.401 type vlan id 401
+    ip link add link $LOCALPORT2 name $LOCALPORT2.400 type vlan id 400
+    ifconfig $LOCALPORT1.401 ${vlan_local1_ip};ifconfig $LOCALPORT2.400 ${vlan_local2_ip}
+    sleep 5
+    
+    ssh root@$BACK_IP "
+    ip link add link $NETPORT1 name $NETPORT1.401 type vlan id 401;\
+    ip link add link $NETPORT2 name $NETPORT2.400 type vlan id 400;\
+    ifconfig $NETPORT1.401 ${vlan_remote1_ip};ifconfig $NETPORT2.400 ${vlan_remote2_ip};\
+    sleep 5"
+    
+    process="iperf"
+    #ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+    #killall iperf
+    #iperf -s >/dev/null 2>&1 &
+    iperf_killer
+   # ssh root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
+   # sleep 5
+    echo "#############################"
+    echo "Run iperf Single port One-way..."
+    echo "#############################"    
+    SendPyte="SingleOne"
+
+    for netport in $NETPORTLIST
+    do
+        if [ ${netport} == ${NETPORT1} ];then
+            for owNum in $THREAD
+            do
+                ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+                sleep 5
+   
+                echo "Run single port $netport ${owNum}thread......"
+                echo "$LOG_DIR/$IPERFDIR/Vlan_single_one-way_${netport}_${owNum}thread.log"
+                iperf -c ${vlan_remote1_ip} -t $IPERFDURATION -i 2 -P $owNum > $LOG_DIR/$IPERFDIR/Vlan_single_one-way_${netport}_${owNum}thread.log &
+                cat $LOG_DIR/$IPERFDIR/Vlan_single_one-way_${netport}_${owNum}thread.log 
+                sleep 25
+                check_single_process
+                iperf_killer
+                sleep 5
+            done
+            sleep 5
+        else
+            for owNum in $THREAD
+            do
+                ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+                sleep 5
+   
+
+                ssh root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
+                sleep 5
+                echo "Run single port $netport ${owNum}thread......"
+                iperf -c ${vlan_remote2_ip} -t $IPERFDURATION -i 1 -P $owNum > $LOG_DIR/$IPERFDIR/Vlan_single_one-way_${netport}_${owNum}thread.log &
+                sleep 25
+                check_single_process
+                iperf_killer
+                sleep 10
+            done
+            sleep 5
+        fi
+    done
+    sleep 5
+
+    #two-way perfornamce
+    iperf_killer
+    #ssh root@$BACK_IP "killall iperf;iperf -s -V >/dev/null 2>&1 &"
+    echo "#############################"
+    echo "Run iperf Single port two-way..."
+    echo "#############################"
+    SendPyte="SingleTwo"
+    for twNum in $THREAD
+    do
+        ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+        sleep 5
+   
+
+        echo "Run single port two-way ${twNum}thread......"
+        iperf -c ${vlan_remote1_ip} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Vlan_Single_two-way_${NETPORT1}_${twNum}thread.log &
+        iperf -c ${vlan_remote2_ip} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Vlan_Single_two-way_${NETPORT2}_${twNum}thread.log &
+        sleep 25
+        check_single_process
+        iperf_killer
+    done
+   
+   # VlanSingle=1
+    
+    vconfig rem $NETPORT1.401
+    vconfig rem $NETPORT2.400
+    ssh root@${BACK_IP} "vconfig rem $NETPORT1.401;vconfig rem $NETPORT2.400"
+
+    VlanSingle=1
+
+}
+
+local_ip_1=""
+local_ip_2=""
+remote_ip_1=""
+remote_ip_2=""
+
+local_net_1=""
+local_net_2=""
+remote_net_1=""
+remote_net_2=""
+
+#*******
+#***func: prepare IP and network env for iperf test
+#***input:
+#         $1 : net port type (XGE,GE)
+#         $2 : protocol type (VLAN,IPV6,IPV4)   
+function iperf_env_prepare()
+{
+   
+   case $2 in
+			patten VLAN)
+				if [ x"$1" = x"GE" ];then
+						local_ip_1="${vlan_local1_ip}"
+						local_ip_2="${vlan_local2_ip}"
+						remote_ip_1="${vlan_remote1_ip}"
+						remote_ip_2="${vlan_remote2_ip}"
+						
+						local_net_1="$local_tp1.401"
+						local_net_2="$local_fibre1.400"
+						remote_net_1="$remote_tp1.401"
+						remote_net_2="$remote_fibre1.400"
+						
+						ip link add link $local_tp1 name $local_net_1 type vlan id 401
+						ip link add link $local_fibre1 name $local_net_2 type vlan id 400
+                        ifconfig $local_net_1 ${local_ip_1};ifconfig $local_net_2 ${local_ip_2}
+						sleep 5
+    
+						ssh root@$BACK_IP "
+						ip link add link $remote_tp1 name $remote_net_1 type vlan id 401;\
+						ip link add link $remote_fibre1 name $remote_net_2 type vlan id 400;\
+						ifconfig $remote_net_1 ${remote_ip_1};ifconfig $remote_net_2 ${remote_ip_2};\
+						sleep 5"
+				else
+						local_ip_1="${vlan_local2_ip}"
+						local_ip_2="${vlan_local1_ip}"
+						remote_ip_1="${vlan_remote2_ip}"
+						remote_ip_2="${vlan_remote1_ip}"
+						
+						local_net_1="$local_fibre1.400"
+						local_net_2="$local_tp1.401"
+						remote_net_1="$remote_fibre1.400"
+						remote_net_2="$remote_tp1.401"
+						
+						ip link add link $local_fibre1 name $local_net_1 type vlan id 400
+						ip link add link $local_tp1 name $local_net_2 type vlan id 401
+                        ifconfig $local_net_1 ${local_ip_1};ifconfig $local_net_2 ${local_ip_2}
+						sleep 5
+    
+						ssh root@$BACK_IP "
+						ip link add link $remote_fibre1 name $remote_net_1 type vlan id 400;\
+						ip link add link $remote_tp1 name $remote_net_2 type vlan id 401;\
+						ifconfig $remote_net_1 ${remote_ip_1};ifconfig $remote_net_2 ${remote_ip_2};\
+						sleep 5"
+				fi
+			;;
+			patten IPV6)
+				if [ x"$1" = x"GE" ];then
+						local_net_1="$local_tp1"
+						local_net_2="$local_fibre1"
+						remote_net_1="$remote_tp1"
+						remote_net_2="$remote_fibre1"
+						
+						local_ip_1=$(ifconfig ${local_net_1} | grep 'inet6 addr:' | awk '{print $3}' | awk -F'/' '{print $1}' | head -n 1)
+						local_ip_1="${local_ip_1}%${remote_net_1}"
+						local_ip_2=$(ifconfig ${local_net_2} | grep 'inet6 addr:' | awk '{print $3}' | awk -F'/' '{print $1}' | head -n 1)
+						local_ip_2="${local_ip_2}%${remote_net_2}"
+						remote_ip_1=$(ssh root@$BACK_IP "ifconfig ${remote_net_1} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
+						remote_ip_1="${remote_ip_1}%${local_net_1}"
+						remote_ip_2=$(ssh root@$BACK_IP "ifconfig ${remote_net_2} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
+						rempte_ip_2="${remote_ip_2}%${local_net_2}"
+
+				else
+						local_net_1="$local_fibre1"
+						local_net_2="$local_tp1"
+						remote_net_1="$remote_fibre1"
+						remote_net_2="$remote_tp1"
+						
+						local_ip_1=$(ifconfig ${local_net_1} | grep 'inet6 addr:' | awk '{print $3}' | awk -F'/' '{print $1}' | head -n 1)
+						local_ip_1="${local_ip_1}%${remote_net_1}"
+						local_ip_2=$(ifconfig ${local_net_2} | grep 'inet6 addr:' | awk '{print $3}' | awk -F'/' '{print $1}' | head -n 1)
+						local_ip_2="${local_ip_2}%${remote_net_2}"
+						remote_ip_1=$(ssh root@$BACK_IP "ifconfig ${remote_net_1} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
+						remote_ip_1="${remote_ip_1}%${local_net_1}"
+						remote_ip_2=$(ssh root@$BACK_IP "ifconfig ${remote_net_2} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
+						rempte_ip_2="${remote_ip_2}%${local_net_2}"
+
+				fi
+			;;
+			patten IPV4)
+				if [ x"$1" = x"GE" ];then
+						local_ip_1="${local_tp1_ip}"
+						local_ip_2="${local_fibre1_ip}"
+						remote_ip_1="${remote_tp1_ip}"
+						remote_ip_2="${remote_fibre1_ip}"
+						
+						local_net_1="$local_tp1"
+						local_net_2="$local_fibre1"
+						remote_net_1="$remote_tp1"
+						remote_net_2="$remote_fibre1"
+				else
+						local_ip_1="${local_fibre1_ip}"
+						local_ip_2="${local_tp1_ip}"
+						remote_ip_1="${remote_fibre1_ip}"
+						remote_ip_2="${remote_tp1_ip}"
+						
+						local_net_1="$local_fibre1"
+						local_net_2="$local_tp1"
+						remote_net_1="$remote_fibre1"
+						remote_net_2="$remote_tp1"
+				fi			
+			;;
+			*)
+			;;
+	esac
+	
+	
+}
+
+#*******
+#***func: prepare IP and network env for iperf test
+#***input:
+#         $1 : net port type (XGE,GE)
+#         $2 : protocol type (VLAN,IPV6,IPV4)   
+function iperf_env_terminate()
+{
+	case $2 in
+		patten VLAN)
+			    vconfig rem $local_net_1
+				vconfig rem $local_net_2
+				ssh root@${BACK_IP} "vconfig rem $remote_net_1;vconfig rem $remote_net_2"
+		;;
+		*)
+		;;
+	esac
+}
+
+#**function: iperf ,Board as custom , single port
+function iperf_single1()
+{
+    MESSAGE="PASS"
+	
+    iperf_env_prepare ${PORT_TYPE} ${PROTOCOL_TYPE}
+    
+    process="iperf"
+
+    iperf_killer
+
+    echo "#############################"
+    echo "Run iperf Single port One-way..."
+    echo "#############################"    
+    SendPyte="SingleOne"
+
+    for owNum in $THREAD
+	do
+                ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+                sleep 5
+   
+                echo "Run single port $netport ${owNum}thread......"
+                echo "$LOG_DIR/$IPERFDIR/Vlan_single_one-way_${netport}_${owNum}thread.log"
+                iperf -c ${remote_ip_1} -t $IPERFDURATION -i 2 -P $owNum > $LOG_DIR/$IPERFDIR/Vlan_single_one-way_${netport}_${owNum}thread.log &
+                cat $LOG_DIR/$IPERFDIR/Vlan_single_one-way_${netport}_${owNum}thread.log 
+                sleep 25
+                check_single_process
+                iperf_killer
+                sleep 5
+	done
+    sleep 5
+
+    iperf_killer
+    
+	iperf_env_terminate ${PORT_TYPE} ${PROTOCOL_TYPE}	
+
+}
+
+#**function: iperf ,Board as server , single port
+function iperf_single2()
+{
+
+    MESSAGE="PASS"
+
+    iperf_env_prepare ${PORT_TYPE} ${PROTOCOL_TYPE}
+    
+    process="iperf"
+
+    iperf_killer
+
+    echo "#############################"
+    echo "Run iperf Single port One-way..."
+    echo "#############################"    
+    SendPyte="SingleOne"
+
+	for owNum in $THREAD
+	do
+                
+				iperf -s >/dev/null 2>&1 &
+                echo "Run single port $NETIP1 ${owNum}thread......"
+                
+                ssh root@${BACK_IP} "mkdir -p $LOG_DIR/$IPERFDIR;iperf -c ${local_ip_1} -t $IPERFDURATION -i 2 -P $owNum > /$LOG_DIR/$IPERFDIR/Vlan_single_one-way_${netport}_${owNum}thread.log &"
+                
+                sleep 25
+                check_single_process
+                iperf_killer
+                sleep 5
+	done
+
+    iperf_killer
+    
+    iperf_env_terminate ${PORT_TYPE} ${PROTOCOL_TYPE}
+
+
+}
+
+#**function: iperf ,Board as custom and server same time , single port
+function iperf_single3()
+{
+
+    MESSAGE="PASS"
+
+    iperf_env_prepare ${PORT_TYPE} ${PROTOCOL_TYPE}
+    
+    process="iperf"
+
+    sleep 5
+
+    #two-way perfornamce
+    iperf_killer
+    #ssh root@$BACK_IP "killall iperf;iperf -s -V >/dev/null 2>&1 &"
+    echo "#############################"
+    echo "Run iperf Single port two-way..."
+    echo "#############################"
+    SendPyte="SingleTwo"
+    for twNum in $THREAD
+    do
+		iperf -s >/dev/null 2>&1 &
+        ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+        sleep 5
+   
+        echo "Run single port two-way ${twNum}thread......"
+        iperf -c ${remote_ip_1} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Vlan_Single_two-way_${NETPORT1}_${twNum}thread.log &
+		ssh root@${BACK_IP} "mkdir -p $LOG_DIR/$IPERFDIR;iperf -c ${local_ip_1} -t $IPERFDURATION -i 2 -P $owNum > /$LOG_DIR/$IPERFDIR/Vlan_single_one-way_${netport}_${owNum}thread.log &"
+        sleep 25
+        check_single_process
+        iperf_killer
+    done
+    
+    iperf_env_terminate ${PORT_TYPE} ${PROTOCOL_TYPE}
+}
+
+#**function: iperf ,Board as custom  , two port
+function iperf_dual4()
+{
+    MESSAGE="PASS"
+
+	iperf_env_prepare ${PORT_TYPE} ${PROTOCOL_TYPE}
+    
+    process="iperf"
+
+    #two-way perfornamce
+    iperf_killer
+    
+    echo "#############################"
+    echo "Run iperf Single port two-way..."
+    echo "#############################"
+    SendPyte="SingleTwo"
+    for twNum in $THREAD
+    do
+        ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+        sleep 5
+
+        echo "Run single port two-way ${twNum}thread......"
+        iperf -c ${remote_ip_1} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Vlan_Single_two-way_${NETPORT1}_${twNum}thread.log &
+        iperf -c ${remote_ip_2} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Vlan_Single_two-way_${NETPORT2}_${twNum}thread.log &
+        sleep 25
+        check_dual_process
+        iperf_killer
+    done
+    
+    iperf_env_terminate ${PORT_TYPE} ${PROTOCOL_TYPE}
+
+}
+
+#**function: iperf ,Board as server  , two port
+function iperf_dual5()
+{
+    MESSAGE="PASS"
+
+    iperf_env_prepare ${PORT_TYPE} ${PROTOCOL_TYPE}
+    
+    process="iperf"
+
+    #two-way perfornamce
+    iperf_killer
+    
+    echo "#############################"
+    echo "Run iperf Single port two-way..."
+    echo "#############################"
+    SendPyte="SingleTwo"
+    for twNum in $THREAD
+    do
+        iperf -s >/dev/null 2>&1 &
+        sleep 5
+
+        echo "Run single port two-way ${twNum}thread......"
+        ssh root@$BACK_IP "iperf -c ${local_ip_1} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Vlan_Single_two-way_${NETPORT1}_${twNum}thread.log &"
+        ssh root@$BACK_IP "iperf -c ${local_ip_2} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Vlan_Single_two-way_${NETPORT2}_${twNum}thread.log &"
+        sleep 25
+        check_dual_process
+        iperf_killer
+    done
+    
+    iperf_env_terminate ${PORT_TYPE} ${PROTOCOL_TYPE}
+
+}
+
+#**function: iperf ,Board as server and custom , two port
+function ge_valn_iperf_dual6()
+{
+    MESSAGE="PASS"
+
+    iperf_env_prepare ${PORT_TYPE} ${PROTOCOL_TYPE}
+    
+    process="iperf"
+
+    #two-way perfornamce
+    iperf_killer
+
+    echo "#############################"
+    echo "Run iperf Single port two-way..."
+    echo "#############################"
+    SendPyte="SingleTwo"
+    for twNum in $THREAD
+    do
+        iperf -s >/dev/null 2>&1 &
+		ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+        sleep 5
+
+        echo "Run single port two-way ${twNum}thread......"
+        ssh root@$BACK_IP "iperf -c ${local_ip_1} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Vlan_Single_two-way_${NETPORT1}_${twNum}thread.log &"
+        ssh root@$BACK_IP "iperf -c ${local_ip_2} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Vlan_Single_two-way_${NETPORT2}_${twNum}thread.log &"
+		iperf -c ${remote_ip_1} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Vlan_Single_two-way_${NETPORT1}_${twNum}thread.log &
+        iperf -c ${remote_ip_2} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Vlan_Single_two-way_${NETPORT2}_${twNum}thread.log &
+
+        sleep 25
+        check_dual_process
+        iperf_killer
+    done
+    
+    iperf_env_terminate ${PORT_TYPE} ${PROTOCOL_TYPE}
+
+}
+
 function main()
 {
+    PORT_TYPE=`echo ${TEST_CASE_NUM} | awk -F'_' '{print $2}'`
+	echo "The net port type is "${PORT_TYPE}
+
+	PROTOCOL_TYPE=`echo ${TEST_CASE_NUM} | awk -F'_' '{print $3}'`
+	echo "The protocol of net is "${PROTOCOL_TYPE}
+	
     test_case_switch
 }
 
