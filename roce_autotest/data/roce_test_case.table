@@ -50,24 +50,24 @@ PV-337	R.ROCE.F005.A	ST-ROCE-55		Ö§³ÖÏòSQÌá½»²Ù×÷ÀàÐÍÎªRDMA WRITEµÄWR£¬²¢ÄÜÕýÈ·½
 PV-342	R.ROCE.F014.A	ST-ROCE-56	Support of PD.	´´½¨1¸öPD£¬´´½¨³É¹¦£¬´´½¨µÄPDÄÜÊÍ·Å	SupportPD.sh	One_PD	on	
 PV-342	R.ROCE.F014.A	ST-ROCE-57		´´½¨32767(0x7FFF)¸öPD£¬Ã¿¸ö¶¼ÄÜ´´½¨³É¹¦£¬´´½¨µÄPDÆäPDID»¥²»ÏàÍ¬£¬´´½¨µÄPD¶¼ÄÜÊÍ·Å	SupportPD.sh	Max_PD_32k	off	
 PV-344	R.ROCE.F016.A	ST-ROCE-59	Support of RC QP	Ö§³ÖÍ¬Ê±´´½¨262,144 (0x3FFFF)¸öQP£¬ÇÒÃ¿¸öQP¶¼ÄÜÕý³£¹¤×÷	SupportQP.sh	Up_to_256k_QP	off	
-PV-344	R.ROCE.F016.A	ST-ROCE-61		Ö§³Ö´´½¨µÄQPÆäWQEÉî¶È×î´óÎª16383£¬QPÄÜÕý³£¹¤×÷£¬ÄÜÏòQPÌá½»×î¶à16383¸öWQE¡£	SupportQP.sh	Max_QP_WQE_Depth	off	
-PV-344	R.ROCE.F016.A	ST-ROCE-63		Ö§³Ö´´½¨µÄQPÆäWQEÉî¶È×î´óÎª1Ê±£¬QPÄÜÕý³£¹¤×÷	SupportQP.sh	QP_WQE_One_Depth	off	
+PV-344	R.ROCE.F016.A	ST-ROCE-61		Ö§³Ö´´½¨µÄQPÆäWQEÉî¶È×î´óÎª16383£¬QPÄÜÕý³£¹¤×÷£¬ÄÜÏòQPÌá½»×î¶à16383¸öWQE¡£	SupportQP.sh	Max_QP_WQE_Depth	on	
+PV-344	R.ROCE.F016.A	ST-ROCE-63		Ö§³Ö´´½¨µÄQPÆäWQEÉî¶È×î´óÎª1Ê±£¬QPÄÜÕý³£¹¤×÷	SupportQP.sh	QP_WQE_One_Depth	on	
 PV-351	R.ROCE.F023.A	ST-ROCE-64	Support of CQ	Ö§³Ö´´½¨1¸öCQ£¬´´½¨µÄCQÄÜÍ¬Ê±ºÍ1¸öQPµÄSQ¡¢RQ¹ØÁª	SupportCQ.sh	One_CQ_One_QP	on	
 PV-351	R.ROCE.F023.A	ST-ROCE-65		Ö§³Ö´´½¨1¸öCQ£¬´´½¨µÄCQÄÜÍ¬Ê±ºÍ¶à¸öQPµÄSQ¡¢RQ¹ØÁª	SupportCQ.sh	One_CQ_Mul_QP	on	
-PV-351	R.ROCE.F023.A	ST-ROCE-66		Ö§³ÖÍ¬Ê±´´½¨65536 (0x10000)¸öCQ	SupportCQ.sh	Max_CQ_64k	off	
+PV-351	R.ROCE.F023.A	ST-ROCE-66		Ö§³ÖÍ¬Ê±´´½¨65536 (0x10000)¸öCQ	SupportCQ.sh	Max_CQ_64k	on	
 PV-353	R.ROCE.F025.A	ST-ROCE-67	Support of MR	ÉêÇë2G´óÐ¡mr£¬Ñ¡ÔñÀàÐÍdma	SupportMR.sh	DMA_MR_2G	on	
 PV-353	R.ROCE.F025.A	ST-ROCE-68		ÉêÇë2G´óÐ¡ mr£¬Ñ¡ÔñÀàÐÍusr	SupportMR.sh	USR_MR_2G	on	
-PV-353	R.ROCE.F025.A	ST-ROCE-71		ÉêÇë512K¸ömr£¬Ñ¡ÔñÀàÐÍusr£¬±¾µØ¶ÁÐ´È¨ÏÞ	SupportMR.sh	Max_USR_MR_512k	off	
-PV-353	R.ROCE.F025.A	ST-ROCE-72		ÉêÇë512K¸ömr£¬Ñ¡ÔñÀàÐÍdma£¬±¾µØ¶ÁÐ´È¨ÏÞ	SupportMR.sh	Max_DMA_MR_512k	off	
+PV-353	R.ROCE.F025.A	ST-ROCE-71		ÉêÇë512K¸ömr£¬Ñ¡ÔñÀàÐÍusr£¬±¾µØ¶ÁÐ´È¨ÏÞ	SupportMR.sh	Max_USR_MR_512k	on
+PV-353	R.ROCE.F025.A	ST-ROCE-72		ÉêÇë512K¸ömr£¬Ñ¡ÔñÀàÐÍdma£¬±¾µØ¶ÁÐ´È¨ÏÞ	SupportMR.sh	Max_DMA_MR_512k	on	
 PV-353	R.ROCE.F025.A	ST-ROCE-73		Ö§³Ö×¢²á¾ßÓÐÔ¶³ÌÐ´È¨ÏÞµÄMR	SupportMR.sh	MR_Remote_Write	on	
 PV-353	R.ROCE.F025.A	ST-ROCE-74		Ö§³Ö×¢²á¾ßÓÐÔ¶³Ì¶ÁºÍ±¾µØÐ´È¨ÏÞµÄMR	SupportMR.sh	MR_Remote_Read_Local_Write	on	
 PV-286	R.ROCE.F009.A	ST-ROCE-77	Verify basic RoCE function	Configure  GID according to IP	gid-ip.sh	gid-ip	on	
 PV-287	R.ROCE.F010.A	ST-ROCE-78	Verify basic RoCE function	Configure GID according to MAC address	gid-mac.sh	gid-mac	on	
-PV-340	R.ROCE.F011.A	ST-ROCE-79	Verify basic RoCE feature	Get device attribute	codecase.sh	codecase99	off	
-PV-341	R.ROCE.F012.A	ST-ROCE-80	Verify basic RoCE feature	Get port information	codecase.sh	codecase99	off	
-PV-963	R.ROCE.F013.A	ST-ROCE-81	Verify basic RoCE feature	Get GID information	codecase.sh	codecase99	off	
+PV-340	R.ROCE.F011.A	ST-ROCE-79	Verify basic RoCE feature	Get device attribute	codecase.sh	codecase99	on	
+PV-341	R.ROCE.F012.A	ST-ROCE-80	Verify basic RoCE feature	Get port information	codecase.sh	codecase99	on	
+PV-963	R.ROCE.F013.A	ST-ROCE-81	Verify basic RoCE feature	Get GID information	codecase.sh	codecase99	on	
 PV-352	R.ROCE.F024.A	ST-ROCE-82	Verify Completion Event	 Request completion notification on a CQ and get CQ completion event.	Completion_Event.sh	Completion_Event	on	
-PV-1827	R.ROCE.N004.B	ST-ROCE-84	Support RoCEv1 in hi161x	Verify RoCEv1 in hi161x	codecase.sh	codecase	off	
+PV-1827	R.ROCE.N004.B	ST-ROCE-84	Support RoCEv1 in hi161x	Verify RoCEv1 in hi161x	codecase.sh	codecase	on	
 PV-366	R.ROCE.N006.B	ST-ROCE-85	Verify rocee is Linux platform device	Check platform device	platformdev.sh	platformdev	on	
 #N/A		ST-ROCE-87	Verify load/remove the RoCE kernel driver	Load the RoCE kernel driver	Load_Unload_kernel_driver.sh	 Load_kernel_driver	off	
 #N/A		ST-ROCE-88		Unload the RoCE kernel driver	Load_Unload_kernel_driver.sh	Unload_kernel_driver	off	

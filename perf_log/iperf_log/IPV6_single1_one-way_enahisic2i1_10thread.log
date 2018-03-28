@@ -1,0 +1,115 @@
+------------------------------------------------------------
+Client connecting to fe80::c2a8:2ff:fef0:5%enahisic2i1, TCP port 5001
+TCP window size: 16.0 KByte (default)
+------------------------------------------------------------
+[ 12] local 0.0.0.0 port 0 connected with :: port 5001
+[  3] local 0.0.0.0 port 0 connected with :: port 5001
+[  4] local 0.0.0.0 port 0 connected with :: port 5001
+[  5] local 0.0.0.0 port 0 connected with :: port 5001
+[  6] local 0.0.0.0 port 0 connected with :: port 5001
+[  7] local 0.0.0.0 port 0 connected with :: port 5001
+[  8] local 0.0.0.0 port 0 connected with :: port 5001
+[ 10] local 0.0.0.0 port 0 connected with :: port 5001
+[  9] local 0.0.0.0 port 0 connected with :: port 5001
+[ 11] local 0.0.0.0 port 0 connected with :: port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  9]  0.0- 2.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  7]  0.0- 2.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  5]  0.0- 2.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  3]  0.0- 2.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  4]  0.0- 2.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 10]  0.0- 2.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  8]  0.0- 2.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 11]  0.0- 2.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 12]  0.0- 2.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  6]  0.0- 2.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[SUM]  0.0- 2.0 sec  0.00 (null)s  73786976294837624832 Bytes/sec
+[ 12]  2.0- 4.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[  6]  2.0- 4.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[  9]  2.0- 4.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  7]  2.0- 4.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  5]  2.0- 4.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  3]  2.0- 4.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  4]  2.0- 4.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 10]  2.0- 4.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  8]  2.0- 4.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 11]  2.0- 4.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[SUM]  2.0- 4.0 sec  0.00 (null)s  73786976294837657600 Bytes/sec
+[ 11]  4.0- 6.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[ 12]  4.0- 6.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  6]  4.0- 6.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  9]  4.0- 6.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  7]  4.0- 6.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  5]  4.0- 6.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  3]  4.0- 6.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  4]  4.0- 6.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 10]  4.0- 6.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  8]  4.0- 6.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[SUM]  4.0- 6.0 sec  0.00 (null)s  73786976294837649408 Bytes/sec
+[  3]  6.0- 8.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[  4]  6.0- 8.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[ 10]  6.0- 8.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[  8]  6.0- 8.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[ 11]  6.0- 8.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[ 12]  6.0- 8.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[  6]  6.0- 8.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[  9]  6.0- 8.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[  7]  6.0- 8.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[  5]  6.0- 8.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[SUM]  6.0- 8.0 sec  0.00 (null)s  73786976294837714944 Bytes/sec
+[  7]  8.0-10.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[  5]  8.0-10.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[  3]  8.0-10.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  4]  8.0-10.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 10]  8.0-10.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  8]  8.0-10.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 11]  8.0-10.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 12]  8.0-10.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  6]  8.0-10.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  9]  8.0-10.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[SUM]  8.0-10.0 sec  0.00 (null)s  73786976294837657600 Bytes/sec
+[  6] 10.0-12.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[  9] 10.0-12.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[  7] 10.0-12.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  5] 10.0-12.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  3] 10.0-12.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  4] 10.0-12.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 10] 10.0-12.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  8] 10.0-12.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 11] 10.0-12.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 12] 10.0-12.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[SUM] 10.0-12.0 sec  0.00 (null)s  73786976294837657600 Bytes/sec
+[ 12] 12.0-14.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[  6] 12.0-14.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  9] 12.0-14.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  7] 12.0-14.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  5] 12.0-14.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  3] 12.0-14.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  4] 12.0-14.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 10] 12.0-14.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  8] 12.0-14.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 11] 12.0-14.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[SUM] 12.0-14.0 sec  0.00 (null)s  73786976294837649408 Bytes/sec
+[  8] 14.0-16.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[ 11] 14.0-16.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[ 12] 14.0-16.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  6] 14.0-16.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  9] 14.0-16.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  7] 14.0-16.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  5] 14.0-16.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  3] 14.0-16.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  4] 14.0-16.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 10] 14.0-16.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[SUM] 14.0-16.0 sec  0.00 (null)s  73786976294837657600 Bytes/sec
+[  4] 16.0-18.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[ 10] 16.0-18.0 sec  0.00 (null)s  73786976294838157312 Bytes/sec
+[  8] 16.0-18.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 11] 16.0-18.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[ 12] 16.0-18.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  6] 16.0-18.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  9] 16.0-18.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  7] 16.0-18.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  5] 16.0-18.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[  3] 16.0-18.0 sec  0.00 (null)s  73786976294838149120 Bytes/sec
+[SUM] 16.0-18.0 sec  0.00 (null)s  73786976294837657600 Bytes/sec
+[  5]  0.0-20.0 sec  0.00 (null)s  7379211222584857600 Bytes/sec
