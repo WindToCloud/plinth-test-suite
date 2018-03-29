@@ -8,15 +8,15 @@ port=18515,servername:(null)!
  [main : 20901] ibv_open_device ok! Link type is Ethernet
  Mtu : 1024
 
- addr = 0xffff86c8f010,lkey = rkey = 0x500
- addr = 0xffff86d8f010,lkey = rkey = 0x600hr_qp->port_num= 0x1
+ addr = 0xffff84e61010,lkey = rkey = 0x500
+ addr = 0xffff84f61010,lkey = rkey = 0x600hr_qp->port_num= 0x1
 
- [prtest_set_up_connection : 332] my_dest->vaddr = 0x86d8f010
+ [prtest_set_up_connection : 332] my_dest->vaddr = 0x84f61010
  [prtest_set_up_connection : 333] my_dest->rkey  = 0x600
- [prtest_set_up_connection : 334] my_dest->psn   = 0x3ff104
+ [prtest_set_up_connection : 334] my_dest->psn   = 0x3775b8
 dest lid      out_reads qpn        psn         rkey     vaddr
-my : 0        16        55       0x3ff104    0x600      0xffff86d8f010
-rem: 0        16        55       0x24a04e    0x600      0xffff83654010
+my : 0        16        52291    0x3775b8    0x600      0xffff84f61010
+rem: 0        16        52288    0x3db0f3    0x800      0xffff7fd2b010
  my_GID:254:128:00:00:00:00:00:00:248:134:87:255:254:190:116:23
 rem_GID:254:128:00:00:00:00:00:00:194:168:02:255:254:240:00:00
 ######### total: 40  , pass: 1  , failed :0   ############

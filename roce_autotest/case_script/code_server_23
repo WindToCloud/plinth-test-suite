@@ -12,12 +12,12 @@ port=18515,servername:(null)!
  lkey = rkey = 0x600hr_qp->port_num= 0x1
 config->gid_index = 0
 
- [prtest_set_up_connection_n : 298] my_dest->vaddr = 0xffff8c61a010
+ [prtest_set_up_connection_n : 298] my_dest->vaddr = 0xffff80d17010
  [prtest_set_up_connection_n : 299] my_dest->rkey  = 0x500
- [prtest_set_up_connection_n : 300] my_dest->psn   = 0x2df322
+ [prtest_set_up_connection_n : 300] my_dest->psn   = 0x717f4
 dest lid      out_reads qpn        psn         rkey     vaddr
-my : 0        16        54       0x2df322    0x500      0xffff8c61a010
-rem: 0        16        54       0xa7e82f    0x500      0xffff98a35010
+my : 0        16        52290    0x717f4     0x500      0xffff80d17010
+rem: 0        16        52287    0x1bd242    0x700      0xffff99792010
  my_GID:254:128:00:00:00:00:00:00:248:134:87:255:254:190:116:23
 rem_GID:254:128:00:00:00:00:00:00:194:168:02:255:254:240:00:00
 

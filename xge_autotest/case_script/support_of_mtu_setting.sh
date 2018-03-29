@@ -50,7 +50,7 @@ function ge_iperf_set_mtu_value()
     Test_Case_Title="ge_iperf_set_mtu_value"
     echo ${Test_Case_Title}
     #MESSAGE="PASS"
-
+    iperf_killer
     ifconfig ${local_tp1} up; ifconfig ${local_tp1} ${local_tp1_ip}
     #??iperf????
     determine_iperf_exists
@@ -63,14 +63,16 @@ function ge_iperf_set_mtu_value()
     ssh root@${BACK_IP} "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5;iperf -s >/dev/null 2>&1 &"
     iperf -c ${remote_tp1_ip} -t 3600 -i 2 -P 3 > ${HNS_TOP_DIR}/data/log/iperf_set_mtu_value.txt &
     valuelist="68 1500 9706"
-    for ((i=1;i<=100;i++));
+    for ((i=1;i<=20;i++));
     do
+        echo $i
         for value in $valuelist
         do
             ifconfig ${local_tp1} mtu $value;sleep 5
             NewMtuValue=$(ifconfig ${local_tp1} | grep "MTU" | awk '{print $(NF-1)}' | awk -F':' '{print $NF}')
             bandwidth=$(cat ${HNS_TOP_DIR}/data/log/iperf_set_mtu_value.txt | tail -1 | awk '{print $(NF-1)}')
-            if [ $value -ne $NewMtuValue ] || [ $bandwidth -le 0 ];then
+            tmp=`awk -v a=$bandwidth -v b=0 'BEGIN{print(a>b)?"0":"1"}'`
+            if [ $value -ne $NewMtuValue ] || [ $tmp -ne 0 ];then
                 killall iperf
                 ssh root@${BACK_IP} "killall iperf"
                 MESSAGE="FAIL\t MTU value set fail "
@@ -78,8 +80,9 @@ function ge_iperf_set_mtu_value()
             fi
         done
     done
-    killall iperf
-    ssh root@${BACK_IP} "killall iperf"
+    #killall iperf
+    iperf_killer
+    #ssh root@${BACK_IP} "killall iperf"
     #MESSAGE="PASS"
     echo ${MESSAGE}
 }
@@ -129,7 +132,7 @@ function xge_iperf_set_mtu_value()
     Test_Case_Title="xge_iperf_set_mtu_value"
     ifconfig ${local_fibre1} up; ifconfig ${local_fibre1} ${local_fibre1_ip}
     MESSAGE="PASS"
-
+    iperf_killer
     #??iperf????
     determine_iperf_exists
     if [ $? -eq 1 ];then
@@ -139,8 +142,9 @@ function xge_iperf_set_mtu_value()
     ssh root@${BACK_IP} "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5;iperf -s >/dev/null 2>&1 &"
     iperf -c ${remote_fibre1_ip} -t 3600 -i 2 -P 3 > ${HNS_TOP_DIR}/data/log/iperf_set_mtu_value.txt &
     valuelist="68 1500 9706"
-    for ((i=1;i<=100;i++));
+    for ((i=1;i<=20;i++));
     do
+	echo $i
         for value in $valuelist
         do
             echo $i
@@ -148,15 +152,18 @@ function xge_iperf_set_mtu_value()
             ifconfig ${local_fibre1} mtu $value;sleep 5
             NewMtuValue=$(ifconfig ${local_fibre1} | grep "MTU" | awk '{print $(NF-1)}' | awk -F':' '{print $NF}')
             bandwidth=$(cat ${HNS_TOP_DIR}/data/log/iperf_set_mtu_value.txt | tail -1 | awk '{print $(NF-1)}')
-            if [ $value -ne $NewMtuValue ] || [ $bandwidth -le 0 ];then
+            tmp=`awk -v a=$bandwidth -v b=0 'BEGIN{print(a>b)?"0":"1"}'`
+
+            if [ $value -ne $NewMtuValue ] || [ $tmp -ne 0 ];then
                 killall iperf
                 ssh root@${BACK_IP} "killall iperf"
                 MESSAGE="FAIL\t MTU value set fail "
             fi
         done
     done
-    killall iperf
-    ssh root@${BACK_IP} "killall iperf"
+   # killall iperf
+    iperf_killer
+    #ssh root@${BACK_IP} "killall iperf"
     #MESSAGE="PASS"
 }
 
