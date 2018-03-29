@@ -36,7 +36,7 @@ PV-289	R.ROCE.F001.A	ST-ROCE-1	RDMA operations in user space	RDMA²Ù×÷ÀàĞÍ»ìºÏËæ»
 #N/A		ST-ROCE-36		clientÉèÖÃ·´Ñ¹£¬server¶Ë·¢ËÍ2¸ömsg£¬µÚÈı¸ömsg²úÉúsq_sge£¨key£©´íÎó£¬¼ì²éserver¶Ë²úÉúµÄcqe.	codecase.sh	codecase35	on	
 #N/A		ST-ROCE-37		server¶Ë·¢ËÍ1¸ömsg£¬3¸öwr£¬2¸öwrÕı³££¬µÚ3¸öwr²úÉúsq_sge£¨key£©´íÎó£¬¼ì²éserver¶Ë²úÉúµÄcqe.	codecase.sh	codecase36	on	
 #N/A		ST-ROCE-38		S/C¶Ë·Ö±ğ´´½¨2¸öQP£¬S¶Ë´«µİrecv_wr£¬C¶ËÎª´«µİsend_wr£¬Á½´Î´«µİµÄÊı¾İ°ü³¤²»Í¬	codecase.sh	codecase37	on	
-PV-288	R.ROCE.F008.A	ST-ROCE-43	Verify establish connection through RDMA CM	Ê¹ÓÃRDMA CM·½Ê½½¨Á¢Á¬½Ó	CM_connect.sh	CM_connect	on	
+PV-288	R.ROCE.F008.A	ST-ROCE-43	Verify establish connection through RDMA CM	Ê¹ÓÃRDMA CM·½Ê½½¨Á¢Á¬½Ó	CM_connect.sh	CM_connect	off	
 #N/A		ST-ROCE-44		Ê¹ÓÃsocket·½Ê½½¨Á¢Á¬½Ó	SupportCQ.sh	One_CQ_One_QP	on	
 PV-335	R.ROCE.F003.A	ST-ROCE-47	Support of Send operation	Ö§³ÖÏòSQÌá½»²Ù×÷ÀàĞÍÎªsendµÄWR£¬WRÌá½»Ó²¼ş·¢ËÍµÄÊı¾İ³¤¶È=MTU£¨×¢£º²âÊÔsend only±¨ÎÄ£©	RoceSend.sh	RoceSend_MTU	on	
 PV-335	R.ROCE.F003.A	ST-ROCE-48		Ö§³ÖÏòSQÌá½»²Ù×÷ÀàĞÍÎªsendµÄWR£¬WRÌá½»Ó²¼ş·¢ËÍµÄÊı¾İ³¤¶È´óÓÚMTUĞ¡ÓÚ2MTU£¨×¢£º²âÊÔsend first+last±¨ÎÄ£©	RoceSend.sh	RoceSend_Gt_MTU	on	
@@ -48,17 +48,17 @@ PV-337	R.ROCE.F005.A	ST-ROCE-53	Support of RDMA Write operation	Ö§³ÖÏòSQÌá½»²Ù×÷
 PV-337	R.ROCE.F005.A	ST-ROCE-54		Ö§³ÖÏòSQÌá½»²Ù×÷ÀàĞÍÎªRDMA WRITEµÄWR£¬²¢ÄÜÕıÈ·½«Êı¾İĞ´µ½½ÓÊÕ·½ÄÚ´æ,WRÌá½»Ó²¼ş·¢ËÍµÄÊı¾İ³¤¶È´óÓÚMTUĞ¡ÓÚ2MTU£¨×¢£º²âÊÔRDMA Write first+last±¨ÎÄ£©	RdmaWrite.sh	RdmaWrite_Gt_MTU	on	
 PV-337	R.ROCE.F005.A	ST-ROCE-55		Ö§³ÖÏòSQÌá½»²Ù×÷ÀàĞÍÎªRDMA WRITEµÄWR£¬²¢ÄÜÕıÈ·½«Êı¾İĞ´µ½½ÓÊÕ·½ÄÚ´æ,WRÌá½»Ó²¼ş·¢ËÍµÄÊı¾İ³¤¶È´óÓÚ2MTUĞ¡ÓÚ3MTU£¨×¢£º²âÊÔRDMA WRITE first+mid+last±¨ÎÄ£©	RdmaWrite.sh	RdmaWrite_Gt_2MTU	on	
 PV-342	R.ROCE.F014.A	ST-ROCE-56	Support of PD.	´´½¨1¸öPD£¬´´½¨³É¹¦£¬´´½¨µÄPDÄÜÊÍ·Å	SupportPD.sh	One_PD	on	
-PV-342	R.ROCE.F014.A	ST-ROCE-57		´´½¨32767(0x7FFF)¸öPD£¬Ã¿¸ö¶¼ÄÜ´´½¨³É¹¦£¬´´½¨µÄPDÆäPDID»¥²»ÏàÍ¬£¬´´½¨µÄPD¶¼ÄÜÊÍ·Å	SupportPD.sh	Max_PD_32k	on	
-PV-344	R.ROCE.F016.A	ST-ROCE-59	Support of RC QP	Ö§³ÖÍ¬Ê±´´½¨262,144 (0x3FFFF)¸öQP£¬ÇÒÃ¿¸öQP¶¼ÄÜÕı³£¹¤×÷	SupportQP.sh	Up_to_256k_QP	on	
-PV-344	R.ROCE.F016.A	ST-ROCE-61		Ö§³Ö´´½¨µÄQPÆäWQEÉî¶È×î´óÎª16383£¬QPÄÜÕı³£¹¤×÷£¬ÄÜÏòQPÌá½»×î¶à16383¸öWQE¡£	SupportQP.sh	Max_QP_WQE_Depth	on	
+PV-342	R.ROCE.F014.A	ST-ROCE-57		´´½¨32767(0x7FFF)¸öPD£¬Ã¿¸ö¶¼ÄÜ´´½¨³É¹¦£¬´´½¨µÄPDÆäPDID»¥²»ÏàÍ¬£¬´´½¨µÄPD¶¼ÄÜÊÍ·Å	SupportPD.sh	Max_PD_32k	off	
+PV-344	R.ROCE.F016.A	ST-ROCE-59	Support of RC QP	Ö§³ÖÍ¬Ê±´´½¨262,144 (0x3FFFF)¸öQP£¬ÇÒÃ¿¸öQP¶¼ÄÜÕı³£¹¤×÷	SupportQP.sh	Up_to_256k_QP	off	
+PV-344	R.ROCE.F016.A	ST-ROCE-61		Ö§³Ö´´½¨µÄQPÆäWQEÉî¶È×î´óÎª16383£¬QPÄÜÕı³£¹¤×÷£¬ÄÜÏòQPÌá½»×î¶à16383¸öWQE¡£	SupportQP.sh	Max_QP_WQE_Depth	off	
 PV-344	R.ROCE.F016.A	ST-ROCE-63		Ö§³Ö´´½¨µÄQPÆäWQEÉî¶È×î´óÎª1Ê±£¬QPÄÜÕı³£¹¤×÷	SupportQP.sh	QP_WQE_One_Depth	on	
 PV-351	R.ROCE.F023.A	ST-ROCE-64	Support of CQ	Ö§³Ö´´½¨1¸öCQ£¬´´½¨µÄCQÄÜÍ¬Ê±ºÍ1¸öQPµÄSQ¡¢RQ¹ØÁª	SupportCQ.sh	One_CQ_One_QP	on	
 PV-351	R.ROCE.F023.A	ST-ROCE-65		Ö§³Ö´´½¨1¸öCQ£¬´´½¨µÄCQÄÜÍ¬Ê±ºÍ¶à¸öQPµÄSQ¡¢RQ¹ØÁª	SupportCQ.sh	One_CQ_Mul_QP	on	
-PV-351	R.ROCE.F023.A	ST-ROCE-66		Ö§³ÖÍ¬Ê±´´½¨65536 (0x10000)¸öCQ	SupportCQ.sh	Max_CQ_64k	on	
+PV-351	R.ROCE.F023.A	ST-ROCE-66		Ö§³ÖÍ¬Ê±´´½¨65536 (0x10000)¸öCQ	SupportCQ.sh	Max_CQ_64k	off	
 PV-353	R.ROCE.F025.A	ST-ROCE-67	Support of MR	ÉêÇë2G´óĞ¡mr£¬Ñ¡ÔñÀàĞÍdma	SupportMR.sh	DMA_MR_2G	on	
 PV-353	R.ROCE.F025.A	ST-ROCE-68		ÉêÇë2G´óĞ¡ mr£¬Ñ¡ÔñÀàĞÍusr	SupportMR.sh	USR_MR_2G	on	
-PV-353	R.ROCE.F025.A	ST-ROCE-71		ÉêÇë512K¸ömr£¬Ñ¡ÔñÀàĞÍusr£¬±¾µØ¶ÁĞ´È¨ÏŞ	SupportMR.sh	Max_USR_MR_512k	on	
-PV-353	R.ROCE.F025.A	ST-ROCE-72		ÉêÇë512K¸ömr£¬Ñ¡ÔñÀàĞÍdma£¬±¾µØ¶ÁĞ´È¨ÏŞ	SupportMR.sh	Max_DMA_MR_512k	on	
+PV-353	R.ROCE.F025.A	ST-ROCE-71		ÉêÇë512K¸ömr£¬Ñ¡ÔñÀàĞÍusr£¬±¾µØ¶ÁĞ´È¨ÏŞ	SupportMR.sh	Max_USR_MR_512k	off	
+PV-353	R.ROCE.F025.A	ST-ROCE-72		ÉêÇë512K¸ömr£¬Ñ¡ÔñÀàĞÍdma£¬±¾µØ¶ÁĞ´È¨ÏŞ	SupportMR.sh	Max_DMA_MR_512k	off	
 PV-353	R.ROCE.F025.A	ST-ROCE-73		Ö§³Ö×¢²á¾ßÓĞÔ¶³ÌĞ´È¨ÏŞµÄMR	SupportMR.sh	MR_Remote_Write	on	
 PV-353	R.ROCE.F025.A	ST-ROCE-74		Ö§³Ö×¢²á¾ßÓĞÔ¶³Ì¶ÁºÍ±¾µØĞ´È¨ÏŞµÄMR	SupportMR.sh	MR_Remote_Read_Local_Write	on	
 PV-286	R.ROCE.F009.A	ST-ROCE-77	Verify basic RoCE function	Configure  GID according to IP	gid-ip.sh	gid-ip	on	

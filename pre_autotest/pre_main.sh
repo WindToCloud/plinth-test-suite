@@ -55,17 +55,32 @@ fi
 
 cd /home/kernel/${tmp}
 
+#generate the patch of pmu v2 to make perf support in D05
+git stash
+git checkout -b svm-4.15 remotes/origin/wrapdrive-svm-4.15-rc1
+tmp_patch=`git format-patch -1 b4e84aac21e48fcccc964216be5c7f8530db7b32`
+
+cp ${tmp_patch}  /home/kernel/output/
+
 #checkout specified branch and build keinel
 git branch | grep ${BRANCH_NAME}
 
 if [ $? -eq 0 ];then
 	#The same name of branch is exit
+	git stash
 	git checkout -b tmp_luo origin/${BRANCH_NAME}
 	git branch -D ${BRANCH_NAME}
 fi
 
 git checkout -b ${BRANCH_NAME} origin/${BRANCH_NAME}
 git branch -D tmp_luo
+
+#before any change,patch the PMU patch to support D05
+git am /home/kernel/output/${tmp_patch}
+git branch -D svm-4.15
+
+#patch for enable perf test support
+#git am ${PRE_TOP_DIR}/../ci_interface/patch/perf/0001-sparkles-add-perf-test-support-code-for-l3c-and-mn.patch
 
 #before building,change some build cfg
 

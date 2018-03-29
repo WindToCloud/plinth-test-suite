@@ -6,28 +6,28 @@ port=18515,servername:(null)!
  [main : 20873] pr_socket : name (null), port 18515, machine 0, sockfd 4
  [main : 20884] prtest_find_prdev ok!
  [main : 20901] ibv_open_device ok!
- [ROCEE_set_pkt_drp : 7631] mmap ok, mappedAddr = 0xffff86e35000
- [set_drop_pkt : 7499] DmaeAddr = 0xffff86e35010
- [set_drop_pkt : 7503] DmaeBypaMod = 0x0
- [set_drop_pkt : 7508] DmaeBypaMod = 0x0, reg val = 0x0
- [set_drop_pkt : 7513] DmaeBypaMod = 0x30000, reg val = 0x30000
- [set_drop_pkt : 7499] DmaeAddr = 0xffff86e35010
+ [ROCEE_set_pkt_drp : 7631] mmap ok, mappedAddr = 0xffff94bbd000
+ [set_drop_pkt : 7499] DmaeAddr = 0xffff94bbd010
  [set_drop_pkt : 7503] DmaeBypaMod = 0x30000
  [set_drop_pkt : 7508] DmaeBypaMod = 0x0, reg val = 0x0
  [set_drop_pkt : 7513] DmaeBypaMod = 0x30000, reg val = 0x30000
- [set_drop_pkt : 7499] DmaeAddr = 0xffff86e35010
+ [set_drop_pkt : 7499] DmaeAddr = 0xffff94bbd010
  [set_drop_pkt : 7503] DmaeBypaMod = 0x30000
  [set_drop_pkt : 7508] DmaeBypaMod = 0x0, reg val = 0x0
  [set_drop_pkt : 7513] DmaeBypaMod = 0x30000, reg val = 0x30000
- [set_drop_pkt : 7499] DmaeAddr = 0xffff86e35010
+ [set_drop_pkt : 7499] DmaeAddr = 0xffff94bbd010
  [set_drop_pkt : 7503] DmaeBypaMod = 0x30000
  [set_drop_pkt : 7508] DmaeBypaMod = 0x0, reg val = 0x0
  [set_drop_pkt : 7513] DmaeBypaMod = 0x30000, reg val = 0x30000
- [set_drop_pkt : 7499] DmaeAddr = 0xffff86e35010
+ [set_drop_pkt : 7499] DmaeAddr = 0xffff94bbd010
  [set_drop_pkt : 7503] DmaeBypaMod = 0x30000
  [set_drop_pkt : 7508] DmaeBypaMod = 0x0, reg val = 0x0
  [set_drop_pkt : 7513] DmaeBypaMod = 0x30000, reg val = 0x30000
- [set_drop_pkt : 7499] DmaeAddr = 0xffff86e35010
+ [set_drop_pkt : 7499] DmaeAddr = 0xffff94bbd010
+ [set_drop_pkt : 7503] DmaeBypaMod = 0x30000
+ [set_drop_pkt : 7508] DmaeBypaMod = 0x0, reg val = 0x0
+ [set_drop_pkt : 7513] DmaeBypaMod = 0x30000, reg val = 0x30000
+ [set_drop_pkt : 7499] DmaeAddr = 0xffff94bbd010
  [set_drop_pkt : 7503] DmaeBypaMod = 0x30000
  [set_drop_pkt : 7508] DmaeBypaMod = 0x0, reg val = 0x0
  [set_drop_pkt : 7513] DmaeBypaMod = 0x30000, reg val = 0x30000######### total: 40  , pass: 1  , failed :0   ############
