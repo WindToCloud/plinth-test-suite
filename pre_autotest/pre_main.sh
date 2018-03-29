@@ -57,7 +57,7 @@ cd /home/kernel/${tmp}
 
 #generate the patch of pmu v2 to make perf support in D05
 git stash
-git checkout -b svm-4.15 remotes/origin/wrapdrive-svm-4.15-rc1
+git checkout -b svm-4.15 remotes/origin/release-plinth-4.15.0
 tmp_patch=`git format-patch -1 b4e84aac21e48fcccc964216be5c7f8530db7b32`
 
 cp ${tmp_patch}  /home/kernel/output/
@@ -81,6 +81,7 @@ git branch -D svm-4.15
 
 #patch for enable perf test support
 #git am ${PRE_TOP_DIR}/../ci_interface/patch/perf/0001-sparkles-add-perf-test-support-code-for-l3c-and-mn.patch
+git am ${PRE_TOP_DIR}/../ci_interface/patch/perf_test_support_l3c_mn.patch
 
 #before building,change some build cfg
 

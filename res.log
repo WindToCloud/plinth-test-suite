@@ -1,0 +1,6 @@
+spawn ssh luojiaxing@192.168.3.100 arp | grep c0:a8:02:f0:00:04
+The authenticity of host '192.168.3.100 (192.168.3.100)' can't be established.
+ECDSA key fingerprint is SHA256:EUxgk28XXlZR8qY8HflOH2pKVgLQJcm4IsQACC6hxTY.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '192.168.3.100' (ECDSA) to the list of known hosts.
+luojiaxing@192.168.3.100's password: 
