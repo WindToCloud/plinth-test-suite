@@ -1,17 +1,17 @@
 ------------------------------------------------------------
-Client connecting to 192.168.12.20, TCP port 5001
-TCP window size: 85.0 KByte (default)
+Client connecting to 192.168.13.20, TCP port 5001
+TCP window size:  332 KByte (default)
 ------------------------------------------------------------
-[  3] local 192.168.12.10 port 44606 connected with 192.168.12.20 port 5001
+[  3] local 192.168.13.10 port 44458 connected with 192.168.13.20 port 5001
 [ ID] Interval       Transfer     Bandwidth
-[  3]  0.0- 2.0 sec  1.06 GBytes  4.57 Gbits/sec
-[  3]  2.0- 4.0 sec   686 MBytes  2.88 Gbits/sec
-[  3]  4.0- 6.0 sec   243 MBytes  1.02 Gbits/sec
-[  3]  6.0- 8.0 sec   254 MBytes  1.07 Gbits/sec
-[  3]  8.0-10.0 sec   253 MBytes  1.06 Gbits/sec
-[  3] 10.0-12.0 sec   328 MBytes  1.38 Gbits/sec
-[  3] 12.0-14.0 sec   464 MBytes  1.94 Gbits/sec
-[  3] 14.0-16.0 sec   174 MBytes   732 Mbits/sec
-[  3] 16.0-18.0 sec   164 MBytes   687 Mbits/sec
-[  3] 18.0-20.0 sec   426 MBytes  1.79 Gbits/sec
-[  3]  0.0-20.0 sec  3.99 GBytes  1.71 Gbits/sec
+[  3]  0.0- 2.0 sec   221 MBytes   928 Mbits/sec
+[  3]  2.0- 4.0 sec   222 MBytes   931 Mbits/sec
+[  3]  4.0- 6.0 sec   221 MBytes   926 Mbits/sec
+[  3]  6.0- 8.0 sec  1.20 GBytes  5.14 Gbits/sec
+[  3]  8.0-10.0 sec   222 MBytes   933 Mbits/sec
+[  3] 10.0-12.0 sec   221 MBytes   927 Mbits/sec
+[  3] 12.0-14.0 sec   193 MBytes   811 Mbits/sec
+[  3] 14.0-16.0 sec   221 MBytes   927 Mbits/sec
+[  3] 16.0-18.0 sec   219 MBytes   920 Mbits/sec
+[  3] 18.0-20.0 sec   221 MBytes   926 Mbits/sec
+[  3]  0.0-20.0 sec  2.13 GBytes   915 Mbits/sec

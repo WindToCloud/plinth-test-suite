@@ -2,11 +2,10 @@
 Client connecting to 192.168.11.210, TCP port 5001
 TCP window size: 85.0 KByte (default)
 ------------------------------------------------------------
-[  3] local 192.168.11.110 port 48108 connected with 192.168.11.210 port[ ID] [ ID] Interval       Transfer     Bandwidth
-[  3]  0.0- 2.0 sec  1.98 GBytes  8.49 Gbit[  3] [  3]  2.0- 4.0 sec  1.73 GBytes  7.43 Gbit[  3] [  3]  4.0- 6.0 sec  1.73 GBytes  7.42 Gbit[  3] [  3]  6.0- 8.0 sec  1.72 GBytes  7.40 Gbit[  3]  8.0-10.0 sec   224 MBytes   941 Mbits/sec
-[  3] 10.0-12.0 sec   225 MBytes   943 Mbits/sec
-[  3] 12.0-14.0 sec   225 MBytes   944 Mbits/sec
-[  3] 14.0-16.0 sec   224 MBytes   941 Mbits/sec
-[  3] 16.0-18.0 sec   225 MBytes   944 Mbits/sec
-[  3] 18.0-20.0 sec   224 MBytes   941 Mbits/sec
-[  3]  0.0-20.0 sec  2.20 GBytes   943 Mbits/sec
+[  3] local 192.168.11.110 port 59526 connected with 192.168.11.210 port[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 2.0 sec   217 MBytes   911 Mbits/sec
+[  3]  2.0- 4.0 sec   220 MBytes   923 Mbits/sec
+[  3]  4.0- 6.0 sec   220 MBytes   924 Mbits/sec
+[  3] [  3]  6.0- 8.0 sec  1.59 GBytes  6.82 Gbit[  3] [  3]  8.0-10.0 sec  1.61 GBytes  6.89 Gbit[  3] [  3] 10.0-12.0 sec  1.30 GBytes  5.59 Gbit[  3] 12.0-14.0 sec   220 MBytes   925 Mbits/sec
+[  3] [  3] 14.0-16.0 sec  1.56 GBytes  6.70 Gbit[  3] [  3] 16.0-18.0 sec  1.56 GBytes  6.69 Gbit[  3] [  3] 18.0-20.0 sec  1.57 GBytes  6.73 Gbits/sec
+[  3]  0.0-20.0 sec  16.2 GBytes  6.96 Gbits/sec

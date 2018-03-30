@@ -77,11 +77,14 @@ git branch -D tmp_luo
 
 #before any change,patch the PMU patch to support D05
 git am /home/kernel/output/${tmp_patch}
+sleep 20
 git branch -D svm-4.15
 
 #patch for enable perf test support
 #git am ${PRE_TOP_DIR}/../ci_interface/patch/perf/0001-sparkles-add-perf-test-support-code-for-l3c-and-mn.patch
+git am --abort
 git am ${PRE_TOP_DIR}/../ci_interface/patch/perf_test_support_l3c_mn.patch
+sleep 20
 
 #before building,change some build cfg
 

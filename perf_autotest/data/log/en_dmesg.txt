@@ -1,150 +1,150 @@
-[   12.954518]  dump_stack+0x8c/0xac
-[   12.954520]  check_preemption_disabled+0xf8/0x100
-[   12.954523]  debug_smp_processor_id+0x1c/0x28
-[   12.954526]  hisi_pmu_l3c_dev_probe+0x128/0x2f0
-[   12.954528]  hisi_djtag_device_probe+0x2c/0x90
-[   12.954531]  driver_probe_device+0x224/0x318
-[   12.954534]  __driver_attach+0xac/0xb0
-[   12.954537]  bus_for_each_dev+0x68/0xc8
-[   12.954540]  driver_attach+0x20/0x28
-[   12.954543]  bus_add_driver+0x1c8/0x230
-[   12.954545]  driver_register+0x60/0xf8
-[   12.954548]  hisi_djtag_register_driver+0x24/0x60
-[   12.954551]  hisi_pmu_l3c_init+0x1c/0x48
-[   12.954554]  do_one_initcall+0x50/0x160
-[   12.954557]  kernel_init_freeable+0x19c/0x254
-[   12.954559]  kernel_init+0x10/0x100
-[   12.954562]  ret_from_fork+0x10/0x18
-[   12.954614] BUG: using smp_processor_id() in preemptible [00000000] code: swapper/0/1
-[   12.954617] caller is debug_smp_processor_id+0x1c/0x28
-[   12.954620] CPU: 32 PID: 1 Comm: swapper/0 Not tainted 4.16.0-rc1-g05c5226-dirty #4
-[   12.954622] Hardware name: Huawei Taishan 2280 /D05, BIOS Hisilicon D05 IT17 Nemo 2.0 RC0 11/29/2017
-[   12.954624] Call trace:
-[   12.954627]  dump_backtrace+0x0/0x188
-[   12.954630]  show_stack+0x14/0x20
-[   12.954633]  dump_stack+0x8c/0xac
-[   12.954635]  check_preemption_disabled+0xf8/0x100
-[   12.954638]  debug_smp_processor_id+0x1c/0x28
-[   12.954641]  hisi_pmu_l3c_dev_probe+0x128/0x2f0
-[   12.954643]  hisi_djtag_device_probe+0x2c/0x90
-[   12.954646]  driver_probe_device+0x224/0x318
-[   12.954649]  __driver_attach+0xac/0xb0
-[   12.954652]  bus_for_each_dev+0x68/0xc8
-[   12.954655]  driver_attach+0x20/0x28
-[   12.954658]  bus_add_driver+0x1c8/0x230
-[   12.954661]  driver_register+0x60/0xf8
-[   12.954663]  hisi_djtag_register_driver+0x24/0x60
-[   12.954666]  hisi_pmu_l3c_init+0x1c/0x48
-[   12.954669]  do_one_initcall+0x50/0x160
-[   12.954672]  kernel_init_freeable+0x19c/0x254
-[   12.954674]  kernel_init+0x10/0x100
-[   12.954677]  ret_from_fork+0x10/0x18
-[   12.954730] BUG: using smp_processor_id() in preemptible [00000000] code: swapper/0/1
-[   12.954733] caller is debug_smp_processor_id+0x1c/0x28
-[   12.954736] CPU: 32 PID: 1 Comm: swapper/0 Not tainted 4.16.0-rc1-g05c5226-dirty #4
-[   12.954739] Hardware name: Huawei Taishan 2280 /D05, BIOS Hisilicon D05 IT17 Nemo 2.0 RC0 11/29/2017
-[   12.954741] Call trace:
-[   12.954744]  dump_backtrace+0x0/0x188
-[   12.954747]  show_stack+0x14/0x20
-[   12.954750]  dump_stack+0x8c/0xac
-[   12.954752]  check_preemption_disabled+0xf8/0x100
-[   12.954755]  debug_smp_processor_id+0x1c/0x28
-[   12.954758]  hisi_pmu_l3c_dev_probe+0x128/0x2f0
-[   12.954761]  hisi_djtag_device_probe+0x2c/0x90
-[   12.954764]  driver_probe_device+0x224/0x318
-[   12.954767]  __driver_attach+0xac/0xb0
-[   12.954769]  bus_for_each_dev+0x68/0xc8
-[   12.954772]  driver_attach+0x20/0x28
-[   12.954775]  bus_add_driver+0x1c8/0x230
-[   12.954778]  driver_register+0x60/0xf8
-[   12.954781]  hisi_djtag_register_driver+0x24/0x60
-[   12.954784]  hisi_pmu_l3c_init+0x1c/0x48
-[   12.954786]  do_one_initcall+0x50/0x160
-[   12.954789]  kernel_init_freeable+0x19c/0x254
-[   12.954792]  kernel_init+0x10/0x100
-[   12.954795]  ret_from_fork+0x10/0x18
-[   12.957437] NET: Registered protocol family 10
-[   12.958330] Segment Routing with IPv6
-[   12.958358] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
-[   12.958523] NET: Registered protocol family 17
-[   12.958544] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
-[   12.958900] RPC: Registered rdma transport module.
-[   12.958903] RPC: Registered rdma backchannel transport module.
-[   12.958907] 8021q: 802.1Q VLAN Support v1.8
-[   12.958933] 9pnet: Installing 9P2000 support
-[   12.958968] Key type dns_resolver registered
-[   12.959259] registered taskstats version 1
-[   12.959262] Loading compiled-in X.509 certificates
-[   12.959723] ARMH0011:00: ttyAMA0 at MMIO 0x602b0000 (irq = 654, base_baud = 0) is a SBSA
-[   13.158061] usb 1-1: new high-speed USB device number 2 using ehci-platform
-[   13.160796] console [ttyAMA0] enabled
-[   13.322698] hub 1-1:1.0: USB hub found
-[   13.393687] rtc-efi rtc-efi: setting system clock to 2018-03-29 06:57:47 UTC (1522306667)
-[   13.399670] hub 1-1:1.0: 4 ports detected
-[   13.514358] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
-[   13.646058] usb 1-2: new high-speed USB device number 3 using ehci-platform
-[   16.666247] hns-nic HISI00C2:00 eth0: link up
-[   16.694063] Sending DHCP requests .
-[   16.697927] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
-[   16.822567] hub 1-2:1.0: USB hub found
-[   19.482055] .
-[   19.482422] hub 1-2:1.0: 4 ports detected
-[   21.134056] usb 1-2.1: new full-speed USB device number 4 using ehci-platform
-[   21.250626] input: Keyboard/Mouse KVM 1.1.0 as /devices/platform/PNP0D20:00/usb1/1-2/1-2.1/1-2.1:1.0/0003:12D1:0003.0001/input/input1
-[   21.322238] hid-generic 0003:12D1:0003.0001: input: USB HID v1.10 Keyboard [Keyboard/Mouse KVM 1.1.0] on usb-PNP0D20:00-2.1/input0
-[   21.335022] input: Keyboard/Mouse KVM 1.1.0 as /devices/platform/PNP0D20:00/usb1/1-2/1-2.1/1-2.1:1.1/0003:12D1:0003.0002/input/input2
-[   21.347058] hid-generic 0003:12D1:0003.0002: input: USB HID v1.10 Mouse [Keyboard/Mouse KVM 1.1.0] on usb-PNP0D20:00-2.1/input1
-[   24.354054] ., OK
-[   26.372016] IP-Config: Got DHCP answer from 192.168.3.100, my address is 192.168.3.169
-[   26.379930] IP-Config: Complete:
-[   26.383156]      device=eth0, hwaddr=8a:4c:38:e0:4d:c4, ipaddr=192.168.3.169, mask=255.255.255.0, gw=192.168.3.2
-[   26.393327]      host=192.168.3.169, domain=, nis-domain=(none)
-[   26.399238]      bootserver=192.168.3.100, rootserver=192.168.3.100, rootpath=     nameserver0=192.168.3.1, nameserver1=8.8.4.4, nameserver2=8.8.8.8
-[   26.412607] ALSA device list:
-[   26.415572]   No soundcards found.
-[   26.419145] md: Waiting for all devices to be available before autodetect
-[   26.425932] md: If you don't use raid, use raid=noautodetect
-[   26.431902] md: Autodetecting RAID arrays.
-[   26.435996] md: autorun ...
-[   26.438789] md: ... autorun DONE.
-[   27.303235] EXT4-fs (sda2): 3 orphan inodes deleted
-[   27.308113] EXT4-fs (sda2): recovery complete
-[   27.393009] EXT4-fs (sda2): mounted filesystem with ordered data mode. Opts: (null)
-[   27.400689] VFS: Mounted root (ext4 filesystem) on device 8:2.
-[   27.439220] devtmpfs: mounted
-[   27.442990] Freeing unused kernel memory: 1216K
-[   27.904794] systemd[1]: systemd 229 running in system mode. (+PAM +AUDIT +SELINUX +IMA +APPARMOR +SMACK +SYSVINIT +UTMP +LIBCRYPTSETUP +GCRYPT +GNUTLS +ACL +XZ -LZ4 +SECCOMP +BLKID +ELFUTILS +KMOD -IDN)
-[   27.923280] systemd[1]: Detected architecture arm64.
-[   27.955785] systemd[1]: Set hostname to <ubuntu>.
-[   28.640980] random: crng init done
-[   29.002391] systemd[1]: Created slice System Slice.
-[   29.018183] systemd[1]: Listening on Syslog Socket.
-[   29.034619] systemd[1]: Created slice User and Session Slice.
-[   29.054092] systemd[1]: Reached target Slices.
-[   29.070133] systemd[1]: Listening on udev Control Socket.
-[   29.090146] systemd[1]: Started Trigger resolvconf update for networkd DNS.
-[   29.110131] systemd[1]: Listening on Journal Socket.
-[   29.864247] systemd-journald[4330]: Received request to flush runtime journal from PID 1
-[   30.609377] hns-nic HISI00C2:02 enahisic2i2: renamed from eth2
-[   30.660203] hns-nic HISI00C2:03 enahisic2i3: renamed from eth3
-[   30.695811] hns-nic HISI00C2:01 enahisic2i1: renamed from eth1
-[   30.747536] ixgbe 0002:f9:00.0 enP2p249s0f0: renamed from eth8
-[   30.796115] igb 000d:31:00.2 enP13p49s0f2: renamed from eth6
-[   30.846324] ixgbe 0002:f9:00.1 enP2p249s0f1: renamed from eth9
-[   30.903096] igb 000d:31:00.0 enP13p49s0f0: renamed from eth4
-[   30.934246] igb 000d:31:00.3 enP13p49s0f3: renamed from eth7
-[   30.974250] igb 000d:31:00.1 enP13p49s0f1: renamed from eth5
-[   31.006287] mlx5_core 000a:11:00.0 enP10p17s0f0: renamed from eth10
-[   31.058421] mlx5_core 000a:11:00.1 enP10p17s0f1: renamed from eth11
-[   32.243445] new mount options do not match the existing superblock, will be ignored
-[   32.370383] new mount options do not match the existing superblock, will be ignored
-[   33.271068] new mount options do not match the existing superblock, will be ignored
-[   33.562826] new mount options do not match the existing superblock, will be ignored
-[   33.802791] new mount options do not match the existing superblock, will be ignored
-[   34.166916] new mount options do not match the existing superblock, will be ignored
-[   34.213820] hns-nic HISI00C2:00 eth0: hns_nic_set_features: called tso leg!
-[   41.286135] virbr0: port 1(virbr0-nic) entered blocking state
-[   41.286139] virbr0: port 1(virbr0-nic) entered disabled state
-[   41.286212] device virbr0-nic entered promiscuous mode
-[   48.102254] device virbr0-nic left promiscuous mode
-[   48.102259] virbr0: port 1(virbr0-nic) entered disabled state
+[  733.731771] hisi_pmu_v2: hisi_hrtimer_start PERF_IRQ_TEST irq
+[  733.731883] CPU: 34 PID: 0 Comm: swapper/34 Not tainted 4.16.0-rc1-g5448770-dirty #16
+[  733.731884] Hardware name: Huawei Taishan 2280 /D05, BIOS Hisilicon D05 IT17 Nemo 2.0 RC0 11/29/2017
+[  733.731885] Call trace:
+[  733.731888]  dump_backtrace+0x0/0x188
+[  733.731890]  show_stack+0x14/0x20
+[  733.731892]  dump_stack+0x8c/0xac
+[  733.731894]  hisi_mn_start_counters+0xa4/0xb0
+[  733.731896]  hisi_uncore_pmu_enable_v2+0x18/0x20
+[  733.731898]  perf_pmu_enable+0x40/0x50
+[  733.731900]  ctx_resched+0x6c/0xb0
+[  733.731902]  __perf_install_in_context+0xf0/0x170
+[  733.731904]  remote_function+0x5c/0x70
+[  733.731906]  flush_smp_call_function_queue+0x9c/0x158
+[  733.731908]  generic_smp_call_function_single_interrupt+0x10/0x18
+[  733.731911]  handle_IPI+0x188/0x1a8
+[  733.731912]  gic_handle_irq+0x80/0x180
+[  733.731914]  el1_irq+0xb0/0x128
+[  733.731916]  arch_cpu_idle+0x14/0x20
+[  733.731919]  do_idle+0x11c/0x1e8
+[  733.731921]  cpu_startup_entry+0x24/0x28
+[  733.731923]  secondary_start_kernel+0x180/0x1c0
+[  733.932069] MN_PERF_WRITE_TEST REG: 30
+[  733.932071] MN_PERF_WRITE_TEST: 8000002f
+[  734.132247] MN_PERF_WRITE_TEST REG: 30
+[  734.132249] MN_PERF_WRITE_TEST: 80000035
+[  734.332369] MN_PERF_WRITE_TEST REG: 30
+[  734.332370] MN_PERF_WRITE_TEST: 80000035
+[  734.532492] MN_PERF_WRITE_TEST REG: 30
+[  734.532493] MN_PERF_WRITE_TEST: 80000035
+[  734.732610] MN_PERF_WRITE_TEST REG: 30
+[  734.732612] MN_PERF_WRITE_TEST: 8000003c
+[  734.932732] MN_PERF_WRITE_TEST REG: 30
+[  734.932734] MN_PERF_WRITE_TEST: 8000003c
+[  735.132851] MN_PERF_WRITE_TEST REG: 30
+[  735.132852] MN_PERF_WRITE_TEST: 8000003c
+[  735.332970] MN_PERF_WRITE_TEST REG: 30
+[  735.332972] MN_PERF_WRITE_TEST: 8000003c
+[  735.533092] MN_PERF_WRITE_TEST REG: 30
+[  735.533093] MN_PERF_WRITE_TEST: 8000003c
+[  735.733217] MN_PERF_WRITE_TEST REG: 30
+[  735.733219] MN_PERF_WRITE_TEST: 8000003c
+[  735.933337] MN_PERF_WRITE_TEST REG: 30
+[  735.933339] MN_PERF_WRITE_TEST: 8000003c
+[  736.133457] MN_PERF_WRITE_TEST REG: 30
+[  736.133458] MN_PERF_WRITE_TEST: 8000003c
+[  736.333578] MN_PERF_WRITE_TEST REG: 30
+[  736.333579] MN_PERF_WRITE_TEST: 8000003c
+[  736.533700] MN_PERF_WRITE_TEST REG: 30
+[  736.533701] MN_PERF_WRITE_TEST: 8000003c
+[  736.733822] MN_PERF_WRITE_TEST REG: 30
+[  736.733823] MN_PERF_WRITE_TEST: 8000003c
+[  736.933964] MN_PERF_WRITE_TEST REG: 30
+[  736.933966] MN_PERF_WRITE_TEST: 8000003c
+[  737.134084] MN_PERF_WRITE_TEST REG: 30
+[  737.134086] MN_PERF_WRITE_TEST: 8000003c
+[  737.334203] MN_PERF_WRITE_TEST REG: 30
+[  737.334205] MN_PERF_WRITE_TEST: 8000003c
+[  737.534328] MN_PERF_WRITE_TEST REG: 30
+[  737.534330] MN_PERF_WRITE_TEST: 8000003c
+[  737.734453] MN_PERF_WRITE_TEST REG: 30
+[  737.734454] MN_PERF_WRITE_TEST: 8000003c
+[  737.934576] MN_PERF_WRITE_TEST REG: 30
+[  737.934577] MN_PERF_WRITE_TEST: 8000003c
+[  738.134695] MN_PERF_WRITE_TEST REG: 30
+[  738.134697] MN_PERF_WRITE_TEST: 8000003c
+[  738.334815] MN_PERF_WRITE_TEST REG: 30
+[  738.334817] MN_PERF_WRITE_TEST: 8000003c
+[  738.534940] MN_PERF_WRITE_TEST REG: 30
+[  738.534942] MN_PERF_WRITE_TEST: 8000003c
+[  738.735056] MN_PERF_WRITE_TEST REG: 30
+[  738.735058] MN_PERF_WRITE_TEST: 8000003c
+[  738.935181] MN_PERF_WRITE_TEST REG: 30
+[  738.935182] MN_PERF_WRITE_TEST: 8000003c
+[  739.135303] MN_PERF_WRITE_TEST REG: 30
+[  739.135305] MN_PERF_WRITE_TEST: 8000003c
+[  739.335424] MN_PERF_WRITE_TEST REG: 30
+[  739.335425] MN_PERF_WRITE_TEST: 8000003c
+[  739.535544] MN_PERF_WRITE_TEST REG: 30
+[  739.535546] MN_PERF_WRITE_TEST: 8000003c
+[  739.735664] MN_PERF_WRITE_TEST REG: 30
+[  739.735665] MN_PERF_WRITE_TEST: 8000003c
+[  739.935787] MN_PERF_WRITE_TEST REG: 30
+[  739.935789] MN_PERF_WRITE_TEST: 8000003c
+[  740.135911] MN_PERF_WRITE_TEST REG: 30
+[  740.135913] MN_PERF_WRITE_TEST: 8000003c
+[  740.336035] MN_PERF_WRITE_TEST REG: 30
+[  740.336036] MN_PERF_WRITE_TEST: 8000003c
+[  740.536158] MN_PERF_WRITE_TEST REG: 30
+[  740.536160] MN_PERF_WRITE_TEST: 8000003c
+[  740.736284] MN_PERF_WRITE_TEST REG: 30
+[  740.736286] MN_PERF_WRITE_TEST: 8000003c
+[  740.936408] MN_PERF_WRITE_TEST REG: 30
+[  740.936409] MN_PERF_WRITE_TEST: 8000003c
+[  741.136529] MN_PERF_WRITE_TEST REG: 30
+[  741.136531] MN_PERF_WRITE_TEST: 8000003c
+[  741.336653] MN_PERF_WRITE_TEST REG: 30
+[  741.336655] MN_PERF_WRITE_TEST: 8000003c
+[  741.536777] MN_PERF_WRITE_TEST REG: 30
+[  741.536779] MN_PERF_WRITE_TEST: 8000003c
+[  741.731399] MN_PERF_WRITE_TEST REG: 30
+[  741.731401] MN_PERF_WRITE_TEST: 8000003c
+[  741.736901] MN_PERF_WRITE_TEST REG: 30
+[  741.736903] MN_PERF_WRITE_TEST: 8000003c
+[  741.937026] MN_PERF_WRITE_TEST REG: 30
+[  741.937027] MN_PERF_WRITE_TEST: 8000003c
+[  742.137145] MN_PERF_WRITE_TEST REG: 30
+[  742.137146] MN_PERF_WRITE_TEST: 8000003c
+[  742.337264] MN_PERF_WRITE_TEST REG: 30
+[  742.337266] MN_PERF_WRITE_TEST: 8000003c
+[  742.537388] MN_PERF_WRITE_TEST REG: 30
+[  742.537390] MN_PERF_WRITE_TEST: 8000003c
+[  742.737504] MN_PERF_WRITE_TEST REG: 30
+[  742.737506] MN_PERF_WRITE_TEST: 8000003c
+[  742.937627] MN_PERF_WRITE_TEST REG: 30
+[  742.937629] MN_PERF_WRITE_TEST: 8000003c
+[  743.137747] MN_PERF_WRITE_TEST REG: 30
+[  743.137749] MN_PERF_WRITE_TEST: 8000003c
+[  743.337868] MN_PERF_WRITE_TEST REG: 30
+[  743.337870] MN_PERF_WRITE_TEST: 8000003c
+[  743.537986] MN_PERF_WRITE_TEST REG: 30
+[  743.537987] MN_PERF_WRITE_TEST: 8000003c
+[  743.732685] MN_PERF_WRITE_TEST REG: 30
+[  743.732686] MN_PERF_WRITE_TEST: 80000049
+[  743.732766] MN_PERF_WRITE_TEST REG: 30
+[  743.732767] MN_PERF_WRITE_TEST: 8000004a
+[  743.732833] CPU: 34 PID: 0 Comm: swapper/34 Not tainted 4.16.0-rc1-g5448770-dirty #16
+[  743.732835] Hardware name: Huawei Taishan 2280 /D05, BIOS Hisilicon D05 IT17 Nemo 2.0 RC0 11/29/2017
+[  743.732837] Call trace:
+[  743.732841]  dump_backtrace+0x0/0x188
+[  743.732843]  show_stack+0x14/0x20
+[  743.732845]  dump_stack+0x8c/0xac
+[  743.732847]  hisi_mn_stop_counters+0x70/0x98
+[  743.732849]  hisi_uncore_pmu_disable_v2+0x18/0x20
+[  743.732852]  perf_pmu_disable+0x40/0x50
+[  743.732854]  event_sched_out.isra.50+0x4c/0x158
+[  743.732856]  __perf_remove_from_context+0x40/0x110
+[  743.732858]  event_function+0x94/0xe8
+[  743.732860]  remote_function+0x5c/0x70
+[  743.732862]  flush_smp_call_function_queue+0x9c/0x158
+[  743.732865]  generic_smp_call_function_single_interrupt+0x10/0x18
+[  743.732867]  handle_IPI+0x188/0x1a8
+[  743.732869]  gic_handle_irq+0x80/0x180
+[  743.732871]  el1_irq+0xb0/0x128
+[  743.732873]  tick_nohz_idle_exit+0x108/0x170
+[  743.732875]  do_idle+0xa8/0x1e8
+[  743.732878]  cpu_startup_entry+0x24/0x28
+[  743.732880]  secondary_start_kernel+0x180/0x1c0
+[  743.732967] MN_PERF_WRITE_TEST REG: 30
+[  743.732969] MN_PERF_WRITE_TEST: 8000004a

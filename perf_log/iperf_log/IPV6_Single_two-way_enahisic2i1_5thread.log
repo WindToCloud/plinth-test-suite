@@ -1,0 +1,41 @@
+------------------------------------------------------------
+Client connecting to fe80::c2a8:2ff:fef0:5%enahisic2i1, TCP port 5001
+TCP window size: 85.0 KByte (default)
+------------------------------------------------------------
+[  7] local fe80::5ca7:b9ff:fe2e:61b9 port 34572 connected with fe80::c2a8:2ff:fef0:5 port 5001
+[  3] local fe80::5ca7:b9ff:fe2e:61b9 port 34564 connected with fe80::c2a8:2ff:fef0:5 port 5001
+[  4] local fe80::5ca7:b9ff:fe2e:61b9 port 34566 connected with fe80::c2a8:2ff:fef0:5 port 5001
+[  5] local fe80::5ca7:b9ff:fe2e:61b9 port 34568 connected with fe80::c2a8:2ff:fef0:5 port 5001
+[  6] local fe80::5ca7:b9ff:fe2e:61b9 port 34570 connected with fe80::c2a8:2ff:fef0:5 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  7]  0.0- 2.0 sec  44.4 MBytes   186 Mbits/sec
+[  3]  0.0- 2.0 sec  45.1 MBytes   189 Mbits/sec
+[  4]  0.0- 2.0 sec  45.1 MBytes   189 Mbits/sec
+[  5]  0.0- 2.0 sec  45.0 MBytes   189 Mbits/sec
+[  6]  0.0- 2.0 sec  44.2 MBytes   186 Mbits/sec
+[SUM]  0.0- 2.0 sec   224 MBytes   939 Mbits/sec
+[  7]  2.0- 4.0 sec  44.2 MBytes   186 Mbits/sec
+[  4]  2.0- 4.0 sec  44.2 MBytes   186 Mbits/sec
+[  3]  2.0- 4.0 sec  44.4 MBytes   186 Mbits/sec
+[  6]  2.0- 4.0 sec  44.4 MBytes   186 Mbits/sec
+[  5]  2.0- 4.0 sec  44.5 MBytes   187 Mbits/sec
+[SUM]  2.0- 4.0 sec   222 MBytes   930 Mbits/sec
+[  3]  4.0- 6.0 sec  44.2 MBytes   186 Mbits/sec
+[  3]  6.0- 8.0 sec  44.4 MBytes   186 Mbits/sec
+[  4]  4.0- 6.0 sec  44.4 MBytes   186 Mbits/sec
+[  4]  6.0- 8.0 sec  44.2 MBytes   186 Mbits/sec
+[  5]  4.0- 6.0 sec  44.1 MBytes   185 Mbits/sec
+[  5]  6.0- 8.0 sec  44.5 MBytes   187 Mbits/sec
+[  6]  4.0- 6.0 sec  44.4 MBytes   186 Mbits/sec
+[  6]  6.0- 8.0 sec  44.1 MBytes   185 Mbits/sec
+[  7]  4.0- 6.0 sec  44.4 MBytes   186 Mbits/sec
+[SUM]  4.0- 6.0 sec   222 MBytes   929 Mbits/sec
+[  7]  6.0- 8.0 sec  44.2 MBytes   186 Mbits/sec
+[SUM]  6.0- 8.0 sec   222 MBytes   929 Mbits/sec
+[  4]  8.0-10.0 sec  43.0 MBytes   180 Mbits/sec
+[  4] 10.0-12.0 sec  0.00 Bytes  0.00 bits/sec
+[  4] 12.0-14.0 sec   222 MBytes   931 Mbits/sec
+[  4] 14.0-16.0 sec   222 MBytes   929 Mbits/sec
+[  4] 16.0-18.0 sec   221 MBytes   928 Mbits/sec
+[  4] 18.0-20.0 sec   221 MBytes   929 Mbits/sec
+[  4]  0.0-20.0 sec  1.08 GBytes   464 Mbits/sec
