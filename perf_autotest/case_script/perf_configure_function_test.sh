@@ -40,7 +40,7 @@ function fun_perf_list()
       fun_configure_test 384
     ;;
     "hisi_mn")
-      fun_configure_test 38
+      fun_configure_test 30
     ;;
     esac
   fi
