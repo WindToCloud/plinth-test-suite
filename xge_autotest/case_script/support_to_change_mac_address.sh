@@ -27,6 +27,8 @@ function ge_mac_address_random_generation()
 
 function ge_mac_address_fault_tolerant()
 {
+    MESSAGE="PASS"
+
     Test_Case_Title="ge_mac_address_fault_tolerant"
     ifconfig ${local_tp1} up; ifconfig ${local_tp1} ${local_tp1_ip}
     ssh root@${BACK_IP} "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5;"
@@ -51,7 +53,7 @@ function ge_mac_address_fault_tolerant()
             MESSAGE="FAIL\t The wrong MAC address has been configured  "
         fi
     done
-    MESSAGE="PASS"
+    #MESSAGE="PASS"
 
     ifconfig ${local_tp1} hw ether ${OrgMacAddress1}
     OrgMacAddress1=$(ifconfig ${local_tp1} | grep "HWaddr" | awk '{print $NF}')
@@ -74,11 +76,17 @@ function ge_set_standard_mac_address()
     fi
     #newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"00"/g)
     ifconfig ${local_tp1} hw ether ${newMacAddress}
-    newMacAddress1=$(ssh root@${BACK_IP} "ping ${local_tp1_ip} -c 10;sleep 5;arp | grep ${remote_tp1_ip} | awk '{print $4}'")
+    sleep 2
+    ssh root@${BACK_IP} "ping ${local_tp1_ip} -c 10;sleep 5;"
+    newMacAddress1=$(ssh root@${BACK_IP} "arp -a | grep -w ${local_tp1_ip} | awk -F'at' '{print \$NF}' | awk '{print \$1}'")
+    echo $newMacAddress1
+    echo $newMacAddress
     if [ "$newMacAddress" != "$newMacAddress1" ];then
-        ifconfig ${local_tp1} hw ether ${oldMacAddress}
+        #ifconfig ${local_tp1} hw ether ${oldMacAddress}
         MESSAGE="FAIL\t The wrong MAC address set fail "
     fi
+    ifconfig ${local_tp1} hw ether ${oldMacAddress}
+
 }
 
 function ge_set_linear_mac_address()
@@ -92,7 +100,9 @@ function ge_set_linear_mac_address()
     for linearMacAddress in "22:22:22:22:22:22" "aa:aa:aa:aa:aa:aa"
     do
         ifconfig ${local_tp1} hw ether ${linearMacAddress}
-        linearMacAddress1=$(ssh root@${BACK_IP} "ping ${local_tp1_ip} -c 10;sleep 5;arp | grep ${remote_tp1_ip} | awk '{print $4}'")
+        sleep 2
+        ssh root@${BACK_IP} "ping ${local_tp1_ip} -c 10;sleep 5"
+        newMacAddress1=$(ssh root@${BACK_IP} "arp -a | grep -w ${local_tp1_ip} | awk -F'at' '{print \$NF}' | awk '{print \$1}'")
         if [ "$linearMacAddress" != "$linearMacAddress1" ];then
             ifconfig ${local_tp1} hw ether ${oldMacAddress}
             MESSAGE="FAIL\t set linear mac address fail "
@@ -163,7 +173,10 @@ function xge_set_standard_mac_address()
     fi
     #newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"00"/g)
     ifconfig ${local_fibre1} hw ether ${newMacAddress}
-    newMacAddress1=$(ssh root@${BACK_IP} "ping ${local_fibre1_ip} -c 10;sleep 5;arp | grep ${remote_fibre1_ip} | awk '{print $4}'")
+    sleep 2
+    ssh root@${BACK_IP} "ping ${local_fibre1_ip} -c 10;sleep 5"
+    newMacAddress1=$(ssh root@${BACK_IP} "arp -a | grep -w ${local_fibre1_ip} | awk -F'at' '{print \$NF}' | awk '{print \$1}'")
+
     if [ "$newMacAddress" != "$newMacAddress1" ];then
         ifconfig ${local_fibre1} hw ether ${oldMacAddress}
         MESSAGE="FAIL\t The wrong MAC address set fail "
@@ -181,7 +194,10 @@ function xge_set_linear_mac_address()
     for linearMacAddress in "22:22:22:22:22:22" "aa:aa:aa:aa:aa:aa"
     do
         ifconfig ${local_fibre1} hw ether ${linearMacAddress}
-        linearMacAddress1=$(ssh root@${BACK_IP} "ping ${local_fibre1_ip} -c 10;sleep 5;arp | grep ${remote_fibre1_ip} | awk '{print $4}'")
+        sleep 2
+        ssh root@${BACK_IP} "ping ${local_fibre1_ip} -c 10;sleep 5"
+        newMacAddress1=$(ssh root@${BACK_IP} "arp -a | grep -w ${local_fibre1_ip} | awk -F'at' '{print \$NF}' | awk '{print \$1}'")
+
         if [ "$linearMacAddress" != "$linearMacAddress1" ];then
             ifconfig ${local_fibre1} hw ether ${oldMacAddress}
             MESSAGE="FAIL\t set linear mac address fail "

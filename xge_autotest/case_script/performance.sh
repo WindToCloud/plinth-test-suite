@@ -1130,7 +1130,7 @@ function iperf_env_prepare()
 				remote_ip_1=$(ssh root@$BACK_IP "ifconfig ${remote_net_1} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
 				remote_ip_1="${remote_ip_1}%${local_net_1}"
 				remote_ip_2=$(ssh root@$BACK_IP "ifconfig ${remote_net_2} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
-				rempte_ip_2="${remote_ip_2}%${local_net_2}"
+				remote_ip_2="${remote_ip_2}%${local_net_2}"
 
 			else
 				local_net_1="$local_fibre1"
@@ -1145,7 +1145,7 @@ function iperf_env_prepare()
 				remote_ip_1=$(ssh root@$BACK_IP "ifconfig ${remote_net_1} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
 				remote_ip_1="${remote_ip_1}%${local_net_1}"
 				remote_ip_2=$(ssh root@$BACK_IP "ifconfig ${remote_net_2} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
-				rempte_ip_2="${remote_ip_2}%${local_net_2}"
+				remote_ip_2="${remote_ip_2}%${local_net_2}"
 
 			fi
 			IPV6_MASK="-V"
@@ -1334,7 +1334,9 @@ function iperf_dual4()
 
         echo "Run ${PROTOCOL_TYPE} as customer  dual port ${local_net_1} two-way ${twNum}thread......"
         iperf -c ${remote_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &
-        iperf -c ${remote_ip_2} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &
+        sleep 1
+	echo ${remote_ip_2}
+	iperf -c ${remote_ip_2} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &
         sleep 25
         check_single_process
         iperf_killer
