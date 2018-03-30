@@ -8,7 +8,7 @@ function fun_configure_test()
   echo $mevent
   perf stat -a -e $mevent -I 200 sleep 10s
   dmesg | tail -153 | grep -i "PERF_WRITE_TEST REG:" > ${PERF_TOP_DIR}/data/log/configure_dmesg.txt
-  cat ${PERF_TOP_DIR}/data/log/configure_dmesg.txt | awk -F '[ \t]+'  '{print $7}' > ${PERF_TOP_DIR}/data/log/configure_data.txt
+  cat ${PERF_TOP_DIR}/data/log/configure_dmesg.txt | awk -F '[ \t]+'  '{print $NF}' > ${PERF_TOP_DIR}/data/log/configure_data.txt
   # cat ${PERF_TOP_DIR}/data/log/configure_data.txt | sed "s/,//g" |sed '/^[ \t]*$/d' > ${PERF_TOP_DIR}/data/log/configure_data.txt
   if [ `cat ${PERF_TOP_DIR}/data/log/configure_dmesg.txt | grep -i "PERF_WRITE_TEST REG:" | wc -l` -lt 1 ];then 
     MESSAGE="Fail\t $1 Event Configure Function Test Fail!"
