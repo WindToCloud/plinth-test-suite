@@ -1,0 +1,100 @@
+MIGRATED UDP STREAM TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.11.210 () port 0 AF_INET : demo
+Socket  Message  Elapsed      Messages                
+Size    Size     Time         Okay Errors   Throughput
+bytes   bytes    secs            #      #   10^6bits/sec
+
+229376      32   5.00      1525102      0      78.08
+229376           5.00      1525076             78.07
+
+
+
+MIGRATED UDP STREAM TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.11.210 () port 0 AF_INET : demo
+Socket  Message  Elapsed      Messages                
+Size    Size     Time         Okay Errors   Throughput
+bytes   bytes    secs            #      #   10^6bits/sec
+
+229376      64   5.00      1459435      0     149.43
+229376           5.00      1457566            149.23
+
+
+
+MIGRATED UDP STREAM TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.11.210 () port 0 AF_INET : demo
+Socket  Message  Elapsed      Messages                
+Size    Size     Time         Okay Errors   Throughput
+bytes   bytes    secs            #      #   10^6bits/sec
+
+229376     128   5.00      1619866      0     331.74
+229376           5.00      1619866            331.74
+
+
+
+MIGRATED UDP STREAM TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.11.210 () port 0 AF_INET : demo
+Socket  Message  Elapsed      Messages                
+Size    Size     Time         Okay Errors   Throughput
+bytes   bytes    secs            #      #   10^6bits/sec
+
+229376     256   5.00      1087360      0     445.37
+229376           5.00      1087337            445.36
+
+
+
+MIGRATED UDP STREAM TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.11.210 () port 0 AF_INET : demo
+Socket  Message  Elapsed      Messages                
+Size    Size     Time         Okay Errors   Throughput
+bytes   bytes    secs            #      #   10^6bits/sec
+
+229376     521   5.00      1099247      0     916.31
+229376           5.00      1099191            916.26
+
+
+
+MIGRATED UDP STREAM TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.11.210 () port 0 AF_INET : demo
+Socket  Message  Elapsed      Messages                
+Size    Size     Time         Okay Errors   Throughput
+bytes   bytes    secs            #      #   10^6bits/sec
+
+229376    1024   5.00      1508497      0    2471.20
+229376           5.00      1508345           2470.95
+
+
+
+MIGRATED UDP STREAM TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.11.210 () port 0 AF_INET : demo
+Socket  Message  Elapsed      Messages                
+Size    Size     Time         Okay Errors   Throughput
+bytes   bytes    secs            #      #   10^6bits/sec
+
+229376    4096   5.00       352324      0    2308.93
+229376           5.00       352324           2308.93
+
+
+
+MIGRATED UDP STREAM TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.11.210 () port 0 AF_INET : demo
+Socket  Message  Elapsed      Messages                
+Size    Size     Time         Okay Errors   Throughput
+bytes   bytes    secs            #      #   10^6bits/sec
+
+229376   16376   5.00       107332      0    2812.19
+229376           5.00       107332           2812.19
+
+
+
+MIGRATED UDP STREAM TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.11.210 () port 0 AF_INET : demo
+Socket  Message  Elapsed      Messages                
+Size    Size     Time         Okay Errors   Throughput
+bytes   bytes    secs            #      #   10^6bits/sec
+
+229376   32753   5.00        87745      0    4597.29
+229376           5.00        85177           4462.75
+
+
+
+MIGRATED UDP STREAM TEST from 0.0.0.0 (0.0.0.0) port 0 AF_INET to 192.168.11.210 () port 0 AF_INET : demo
+Socket  Message  Elapsed      Messages                
+Size    Size     Time         Okay Errors   Throughput
+bytes   bytes    secs            #      #   10^6bits/sec
+
+229376   65507   5.00        45371      0    4755.23
+229376           5.00        42620           4466.90
+
+
+

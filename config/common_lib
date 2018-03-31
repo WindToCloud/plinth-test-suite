@@ -161,10 +161,9 @@ function getIPofClientServer
     ping $COMMON_DEFAULT_CLIENT_IP -c 5
 
     if [ $? -eq 0 ];then
-    {
 	COMMON_CLIENT_IP=$COMMON_DEFAULT_CLIENT_IP
 	return 0
-    }   	
+    fi	
 
     ping $COMMON_DEFAULT_DHCP_IP -c 5   
  
