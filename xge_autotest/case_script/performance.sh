@@ -780,21 +780,22 @@ function netperf_single()
     ssh root@$BACK_IP "killall netserver;netserver >/dev/null 2>&1 &"
     for netport in ${NETPORTLIST}
     do
-        if [ ${netport} == ${NETPORT1} ];then
+       if [ ${netport} == ${NETPORT1} ];then
+	# if [ 1 -eq 0 ];then
             for tcpnum in ${TCP_MSS}
             do
                 echo "Run Single port $netport TCP_STREAM $tcpnum Message Size(bytes)..."
-                netperf -H ${NETIP1} -l ${NETPERFDURATION} -t TCP_STREAM -- -m ${tcpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_STREAM.log
+                netperf -H ${NETIP1} -l ${NETPERFDURATION} -t TCP_STREAM -- -m ${tcpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_STREAM.log &
                 check_single_process
                 echo -e "\n" >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_STREAM.log
                 
                 echo "Run Single port $netport TCP_RR $tcpnum Message Size(bytes)..."
-                netperf -H ${NETIP1} -l ${NETPERFDURATION} -t TCP_RR -- -r ${tcpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_RR.log
+                netperf -H ${NETIP1} -l ${NETPERFDURATION} -t TCP_RR -- -r ${tcpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_RR.log &
                 check_single_process
                 echo -e "\n" >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_RR.log
                 
                 echo "Run Single port $netport TCP_CRR $tcpnum Message Size(bytes)..."
-                netperf -H ${NETIP1} -l ${NETPERFDURATION} -t TCP_CRR -- -r ${tcpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_CRR.log
+                netperf -H ${NETIP1} -l ${NETPERFDURATION} -t TCP_CRR -- -r ${tcpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_CRR.log &
                 check_single_process
                 echo -e "\n" >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_CRR.log
             done
@@ -802,12 +803,12 @@ function netperf_single()
             for udpnum in ${UDP_MSS}
             do
                 echo "Run Single port $netport UDP_STREAM $udpnum Message Size(bytes)..."
-                netperf -H ${NETIP1} -l ${NETPERFDURATION} -t UDP_STREAM -- -m ${udpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_UDP_STREAM.log
+                netperf -H ${NETIP1} -l ${NETPERFDURATION} -t UDP_STREAM -- -m ${udpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_UDP_STREAM.log &
                 check_single_process
                 echo -e "\n" >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_UDP_STREAM.log
                 
                 echo "Run Single port $netport UDP_RR $udpnum Message Size(bytes)..."
-                netperf -H ${NETIP1} -l ${NETPERFDURATION} -t UDP_RR -- -r ${udpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_UDP_RR.log
+                netperf -H ${NETIP1} -l ${NETPERFDURATION} -t UDP_RR -- -r ${udpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_UDP_RR.log &
                 check_single_process
                 echo -e "\n" >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_UDP_RR.log
             done
@@ -815,17 +816,17 @@ function netperf_single()
             for tcpnum in ${TCP_MSS}
             do
                 echo "Run Single port $netport TCP_STREAM $tcpnum Message Size(bytes)..."
-                netperf -H ${NETIP2} -l ${NETPERFDURATION} -t TCP_STREAM -- -m ${tcpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_STREAM.log
+                netperf -H ${NETIP2} -l ${NETPERFDURATION} -t TCP_STREAM -- -m ${tcpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_STREAM.log  &
                 check_single_process
                 echo -e "\n" >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_STREAM.log
                 
                 echo "Run Single port $netport TCP_RR $tcpnum Message Size(bytes)..."
-                netperf -H ${NETIP2} -l ${NETPERFDURATION} -t TCP_RR -- -r ${tcpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_RR.log
+                netperf -H ${NETIP2} -l ${NETPERFDURATION} -t TCP_RR -- -r ${tcpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_RR.log &
                 check_single_process
                 echo -e "\n" >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_RR.log
                 
                 echo "Run Single port $netport TCP_CRR $tcpnum Message Size(bytes)..."
-                netperf -H ${NETIP2} -l ${NETPERFDURATION} -t TCP_CRR -- -r ${tcpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_CRR.log
+                netperf -H ${NETIP2} -l ${NETPERFDURATION} -t TCP_CRR -- -r ${tcpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_CRR.log &
                 check_single_process
                 echo -e "\n" >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_TCP_CRR.log
             done
@@ -833,12 +834,12 @@ function netperf_single()
             for udpnum in ${UDP_MSS}
             do
                 echo "Run Single port $netport UDP_STREAM $udpnum Message Size(bytes)..."
-                netperf -H ${NETIP2} -l ${NETPERFDURATION} -t UDP_STREAM -- -m ${udpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_UDP_STREAM.log
+                netperf -H ${NETIP2} -l ${NETPERFDURATION} -t UDP_STREAM -- -m ${udpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_UDP_STREAM.log  &
                 check_single_process
                 echo -e "\n" >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_UDP_STREAM.log
                 
                 echo "Run Single port $netport UDP_RR $udpnum Message Size(bytes)..."
-                netperf -H ${NETIP2} -l ${NETPERFDURATION} -t UDP_RR -- -r ${udpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_UDP_RR.log
+                netperf -H ${NETIP2} -l ${NETPERFDURATION} -t UDP_RR -- -r ${udpnum} >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_UDP_RR.log &
                 check_single_process
                 echo -e "\n" >> $LOG_DIR/$NETPERFDIR/Single_port_${netport}_UDP_RR.log
             done
@@ -1418,13 +1419,13 @@ function iperf_dual6()
 
 function main()
 {
-    PORT_TYPE=`echo ${TEST_CASE_NUM} | awk -F'_' '{print $2}'`
+	PORT_TYPE=`echo ${TEST_CASE_NUM} | awk -F'_' '{print $2}'`
 	echo "The net port type is "${PORT_TYPE}
 
 	PROTOCOL_TYPE=`echo ${TEST_CASE_NUM} | awk -F'_' '{print $3}'`
 	echo "The protocol of net is "${PROTOCOL_TYPE}
 	
-    test_case_switch
+	test_case_switch
 }
 
 

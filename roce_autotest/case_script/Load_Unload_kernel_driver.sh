@@ -7,7 +7,7 @@ function Load_kernel_driver()
 {
 	if [ -d /sys/class/infiniband/hns_0 ]
 	then
-		MESSAGE="PASS\tThe kernel driver already exists"
+		MESSAGE="PASS"
 		return 0
 	fi
 
@@ -34,13 +34,13 @@ function Unload_kernel_driver()
 	grep -w "hns_roce_hw_v1" ${FUNCNAME}.log
 	[ $? != 0 ] && MESSAGE="BLOCK\tModule hns_roce_hw_v1 is not currently loaded" && return 1
 
-	rmmod /home/kernel/output/hns-roce-hw-v1.ko >> ${FUNCNAME}.log
+	rmmod hns-roce-hw-v1.ko >> ${FUNCNAME}.log
 	[ $? != 0 ] && MESSAGE="FAIL\trmmod hns-roce-hw-v1.ko failed, please check log" && return 1
 
 	grep -w "hns_roce" ${FUNCNAME}.log
 	[ $? != 0 ] && MESSAGE="BLOCK\tModule hns_roce is not currently loaded" && return 1
 
-	rmmod /home/kernel/output/hns-roce.ko >> ${FUNCNAME}.log
+	rmmod hns-roce.ko >> ${FUNCNAME}.log
 	[ $? != 0 ] && MESSAGE="FAIL\trmmod hns-roce.ko failed, please check log" && return 1
 
 	if [ ! -d /sys/class/infiniband/hns_0 ]

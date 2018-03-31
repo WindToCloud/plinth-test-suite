@@ -40,7 +40,7 @@ PV-288	R.ROCE.F008.A	ST-ROCE-43	Verify establish connection through RDMA CM	使用
 #N/A		ST-ROCE-44		使用socket方式建立连接	SupportCQ.sh	One_CQ_One_QP	off	
 PV-335	R.ROCE.F003.A	ST-ROCE-47	Support of Send operation	支持向SQ提交操作类型为send的WR，WR提交硬件发送的数据长度=MTU（注：测试send only报文）	RoceSend.sh	RoceSend_MTU	off	
 PV-335	R.ROCE.F003.A	ST-ROCE-48		支持向SQ提交操作类型为send的WR，WR提交硬件发送的数据长度大于MTU小于2MTU（注：测试send first+last报文）	RoceSend.sh	RoceSend_Gt_MTU	off	
-PV-335	R.ROCE.F003.A	ST-ROCE-49		支持向SQ提交操作类型为send的WR，WR提交硬件发送的数据长度大于2MTU小于3MTU（注：测试send first+mid+last报文）	RoceSend.sh	RoceSend_Gt_2MTU	on	
+PV-335	R.ROCE.F003.A	ST-ROCE-49		支持向SQ提交操作类型为send的WR，WR提交硬件发送的数据长度大于2MTU小于3MTU（注：测试send first+mid+last报文）	RoceSend.sh	RoceSend_Gt_2MTU	off	
 PV-336	R.ROCE.F004.A	ST-ROCE-50	Support of RDMA Read operation.	支持向SQ提交操作类型为RDMA READ的WR，并能正确从对端读取数据,WR提交硬件发送的数据长度=MTU（注：测试RDMA Read req +RDMA resp only报文）	RdmaRead.sh	RdmaRead_MTU	off	
 PV-336	R.ROCE.F004.A	ST-ROCE-51		支持向SQ提交操作类型为RDMA READ的WR，并能正确从对端读取数据,WR提交硬件发送的数据长度大于MTU小于2MTU（注：测试RDMA Read req +RDMA READresp first + RDMA READ resp last报文）	RdmaRead.sh	RdmaRead_Gt_MTU	off	
 PV-336	R.ROCE.F004.A	ST-ROCE-52		支持向SQ提交操作类型为RDMA READ的WR，并能正确从对端读取数据,WR提交硬件发送的数据长度大于2MTU小于3MTU（注：测试RDMA Read req +RDMA READresp first + RDMA READ resp middle + RDMA READ resp last报文）	RdmaRead.sh	RdmaRead_Gt_2MTU	off	
@@ -68,10 +68,10 @@ PV-341	R.ROCE.F012.A	ST-ROCE-80	Verify basic RoCE feature	Get port information	c
 PV-963	R.ROCE.F013.A	ST-ROCE-81	Verify basic RoCE feature	Get GID information	codecase.sh	codecase99	off	
 PV-352	R.ROCE.F024.A	ST-ROCE-82	Verify Completion Event	 Request completion notification on a CQ and get CQ completion event.	Completion_Event.sh	Completion_Event	off	
 PV-1827	R.ROCE.N004.B	ST-ROCE-84	Support RoCEv1 in hi161x	Verify RoCEv1 in hi161x	codecase.sh	codecase	off	
-PV-366	R.ROCE.N006.B	ST-ROCE-85	Verify rocee is Linux platform device	Check platform device	platformdev.sh	platformdev	off	
+PV-366	R.ROCE.N006.B	ST-ROCE-85	Verify rocee is Linux platform device	Check platform device	platformdev.sh	platformdev	on	
 #N/A		ST-ROCE-87	Verify load/remove the RoCE kernel driver	Load the RoCE kernel driver	Load_Unload_kernel_driver.sh	 Load_kernel_driver	on	
-#N/A		ST-ROCE-88		Unload the RoCE kernel driver	Load_Unload_kernel_driver.sh	Unload_kernel_driver	on	
-PV-1482	R.ROCE.F030.A	ST-ROCE-89	Verify RoCEE's basic function on XGE port	send on XGE port	SupportXGE.sh	Send_On_XGE	on	
-PV-1482	R.ROCE.F030.A	ST-ROCE-90		RDMA read on XGE port	SupportXGE.sh	Read_On_XGE	on	
-PV-1482	R.ROCE.F030.A	ST-ROCE-91		RDMA write on XGE port	SupportXGE.sh	Write_On_XGE	on	
+#N/A		ST-ROCE-88		Unload the RoCE kernel driver	Load_Unload_kernel_driver.sh	Unload_kernel_driver	off	
+PV-1482	R.ROCE.F030.A	ST-ROCE-89	Verify RoCEE's basic function on XGE port	send on XGE port	SupportXGE.sh	Send_On_XGE	off	
+PV-1482	R.ROCE.F030.A	ST-ROCE-90		RDMA read on XGE port	SupportXGE.sh	Read_On_XGE	off	
+PV-1482	R.ROCE.F030.A	ST-ROCE-91		RDMA write on XGE port	SupportXGE.sh	Write_On_XGE	off	
 ort	SupportXGE.sh	Write_On_XGE	off	

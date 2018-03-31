@@ -69,9 +69,9 @@ PV-438	R.HNS.F005.A	ST_XGE_VLAN_PERF_06		XGEË«Íø¿Ú vlan iperf ²âÊÔ-µ¥°åÍ¬Ê±×÷Îª·
 PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_01	GE IPv6Íø¿Ú´ø¿í²âÊÔ	GEµ¥Íø¿Ú IPv6 iperf ²âÊÔ-µ¥°å×÷Îª¿Í»§¶Ë	performance.sh	iperf_single1	off
 PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_02		GEµ¥Íø¿Ú IPv6 iperf ²âÊÔ-µ¥°å×÷Îª·şÎñÆ÷¶Ë	performance.sh	iperf_single2	off
 PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_03		GEµ¥Íø¿Ú IPv6 iperf ²âÊÔ-µ¥°åÍ¬Ê±×÷Îª·şÎñÆ÷¶ËºÍ¿Í»§¶Ë	performance.sh	iperf_single3	off
-PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_04		GEË«Íø¿Ú IPv6 iperf ²âÊÔ-µ¥°å×÷Îª¿Í»§¶Ë	performance.sh	iperf_dual4	on
-PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_05		GEË«Íø¿Ú IPv6 iperf ²âÊÔ-µ¥°å×÷Îª·şÎñÆ÷¶Ë	performance.sh	iperf_dual5	on
-PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_06		GEË«Íø¿Ú IPv6 iperf ²âÊÔ-µ¥°åÍ¬Ê±×÷Îª·şÎñÆ÷¶ËºÍ¿Í»§¶Ë	performance.sh	iperf_dual6	on
+PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_04		GEË«Íø¿Ú IPv6 iperf ²âÊÔ-µ¥°å×÷Îª¿Í»§¶Ë	performance.sh	iperf_dual4	off
+PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_05		GEË«Íø¿Ú IPv6 iperf ²âÊÔ-µ¥°å×÷Îª·şÎñÆ÷¶Ë	performance.sh	iperf_dual5	off
+PV-446	R.HNS.F013.A	ST_GE_IPV6_PERF_06		GEË«Íø¿Ú IPv6 iperf ²âÊÔ-µ¥°åÍ¬Ê±×÷Îª·şÎñÆ÷¶ËºÍ¿Í»§¶Ë	performance.sh	iperf_dual6	off
 PV-446	R.HNS.F013.A	ST_XGE_IPV6_PERF_01	XGE IPv6Íø¿Ú´ø¿í²âÊÔ	XGEµ¥Íø¿Ú IPv6 iperf ²âÊÔ-µ¥°å×÷Îª¿Í»§¶Ë	performance.sh	iperf_single1	off
 PV-446	R.HNS.F013.A	ST_XGE_IPV6_PERF_02		XGEµ¥Íø¿Ú IPv6 iperf ²âÊÔ-µ¥°å×÷Îª·şÎñÆ÷¶Ë	performance.sh	iperf_single2	off
 PV-446	R.HNS.F013.A	ST_XGE_IPV6_PERF_03		XGEµ¥Íø¿Ú IPv6 iperf ²âÊÔ-µ¥°åÍ¬Ê±×÷Îª·şÎñÆ÷¶ËºÍ¿Í»§¶Ë	performance.sh	iperf_single3	off
@@ -99,7 +99,7 @@ PV-1517	R.HNS.P003.B	ST_XGE_NETPERF_01		XGEÍø¿Únetperf TCP_STREAM²âÊÔ	performanc
 PV-1517	R.HNS.P003.B	ST_XGE_NETPERF_02		XGEÍø¿Únetperf TCP_RR²âÊÔ	performance.sh	netperf_single	off
 PV-1517	R.HNS.P003.B	ST_XGE_NETPERF_03		XGEÍø¿Únetperf TCP_CRR²âÊÔ	performance.sh	netperf_single	off
 PV-1517	R.HNS.P003.B	ST_XGE_NETPERF_04		XGEÍø¿Únetperf UDP_STREAM²âÊÔ	performance.sh	netperf_single	off
-PV-1517	R.HNS.P003.B	ST_XGE_NETPERF_05		XGEÍø¿Únetperf UDP_RR²âÊÔ	performance.sh	netperf_single	off
+PV-1517	R.HNS.P003.B	ST_XGE_NETPERF_05		XGEÍø¿Únetperf UDP_RR²âÊÔ	performance.sh	netperf_single	on
 PV-1517	R.HNS.P003.B	ST_GE_QPERF_01	Íø¿ÚÊ±ÑÓ²âÊÔ	GEÍø¿ÚtcpÊ±ÑÓ²âÊÔ	performance.sh	qperf_test	off
 PV-1517	R.HNS.P003.B	ST_GE_QPERF_02		GEÍø¿ÚudpÊ±ÑÓ²âÊÔ	performance.sh	qperf_test	off
 PV-1517	R.HNS.P003.B	ST_XGE_QPERF_01		XGEÍø¿ÚtcpÊ±ÑÓ²âÊÔ	performance.sh	qperf_test	off

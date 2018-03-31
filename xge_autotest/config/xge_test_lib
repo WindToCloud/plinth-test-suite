@@ -126,7 +126,7 @@ function init_net_export()
     for i in ${!eth_map_r[*]}
     do
          tmp=`ssh root@${BACK_IP} 'dmesg | grep -i "renamed from '${i}'" -w'`
-	 if [ x"${tmp}" == x"" ]
+	 if [ x"${tmp}" = x"" ]
 	 then
 		 echo "The name of remote "${i}" is not renamed,Stay as "${eth_map_r[${i}]} 
 	 else
@@ -148,16 +148,12 @@ function init_net_export()
     remote_tp0=${remote_tp_list[1]}
     remote_tp1=${remote_tp_list[0]}
     echo "The remote Tp port is as blow: "
-    echo ${remote_tp0}
-    echo ${remote_tp1}
-    if [ x"BACK_IP" = x"192.168.4.229" ]
-    then
-    	remote_fibre1=${remote_fibre_list[0]}
-    	remote_fibre2=${remote_fibre_list[1]}
-    else
-        remote_fibre1=${remote_fibre_list[1]}
-    	remote_fibre2=${remote_fibre_list[0]}
-    fi
+    echo "The remote netport 0 is "${remote_tp0}
+    echo "The remote netport 1 is "${remote_tp1}
+    
+    remote_fibre1=${remote_fibre_list[1]}
+    remote_fibre2=${remote_fibre_list[0]}
+ 
     echo "The rempte FIBRE port is as blow:"
     echo ${remote_fibre1}
     echo ${remote_fibre2}
