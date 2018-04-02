@@ -102,12 +102,14 @@ function ge_set_linear_mac_address()
         ifconfig ${local_tp1} hw ether ${linearMacAddress}
         sleep 2
         ssh root@${BACK_IP} "ping ${local_tp1_ip} -c 10;sleep 5"
-        newMacAddress1=$(ssh root@${BACK_IP} "arp -a | grep -w ${local_tp1_ip} | awk -F'at' '{print \$NF}' | awk '{print \$1}'")
+        linearMacAddress1=$(ssh root@${BACK_IP} "arp -a | grep -w ${local_tp1_ip} | awk -F'at' '{print \$NF}' | awk '{print \$1}'")
         if [ "$linearMacAddress" != "$linearMacAddress1" ];then
-            ifconfig ${local_tp1} hw ether ${oldMacAddress}
+            #ifconfig ${local_tp1} hw ether ${oldMacAddress}
             MESSAGE="FAIL\t set linear mac address fail "
         fi
     done
+    ifconfig ${local_tp1} hw ether ${oldMacAddress}
+
 }
 
 
