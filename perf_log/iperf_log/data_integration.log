@@ -1,0 +1,31 @@
+Single port one-way enahisic2i1 1thread:
+[  3] local 192.168.1.10 port 38204 connected with 192.168.1.20 port 5001
+
+
+Single port one-way enahisic2i1 5thread:
+
+
+Single port one-way enahisic2i1 10thread:
+------------------------------------------------------------
+
+
+Single port one-way enahisic2i2 1thread:
+[  3] local 192.168.11.110 port 49160 connected with 192.168.11.210 port 5001
+
+
+Single port one-way enahisic2i2 5thread:
+------------------------------------------------------------
+
+
+Single port one-way enahisic2i2 10thread:
+
+
+Single port two-way 1thread:
+
+
+Single port two-way 5thread:
+
+
+Single port two-way 10thread:
+
+

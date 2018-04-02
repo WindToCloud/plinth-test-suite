@@ -38,6 +38,12 @@ function ge_query_link_state()
     ifconfig ${local_tp1} up
     for ((i=1;i<=10;i++));
     do
+
+	#if the test before is fail ,this cycle is no need to be excuet
+	if [ x"${MESSAGE}" != x"PASS" ];then
+		break
+	fi
+
 	echo $i
         enableok=0
         disableok=0
@@ -114,6 +120,12 @@ function xge_query_link_state()
     ifconfig ${local_fibre1} up
     for ((i=1;i<=10;i++));
     do
+        #if the test before is fail ,this cycle is no need to be excuet
+	if [ x"${MESSAGE}" != x"PASS" ];then
+		break
+	fi
+
+
         enableok=0
         disableok=0
         ssh root@${BACK_IP} "ifconfig ${remote_fibre1} down"
