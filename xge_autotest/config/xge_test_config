@@ -34,6 +34,10 @@ initial_ip=(
 #Number of threads
 thread=(1 5 10)
 
+#****Timeout Setting*****
+#sleep timer used for waiting arp mac addr update frame
+ARP_MAC_UPDATE_TIME=40
+
 #iperf run time
 time=20
 

@@ -76,7 +76,7 @@ function ge_set_standard_mac_address()
     fi
     #newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"00"/g)
     ifconfig ${local_tp1} hw ether ${newMacAddress}
-    sleep 10
+    sleep $ARP_MAC_UPDATE_TIME
     ssh root@${BACK_IP} "ping ${local_tp1_ip} -c 10;sleep 5;"
     newMacAddress1=$(ssh root@${BACK_IP} "arp -a | grep -w ${local_tp1_ip} | awk -F'at' '{print \$NF}' | awk '{print \$1}'")
     echo $newMacAddress1
@@ -100,7 +100,7 @@ function ge_set_linear_mac_address()
     for linearMacAddress in "22:22:22:22:22:22" "aa:aa:aa:aa:aa:aa"
     do
         ifconfig ${local_tp1} hw ether ${linearMacAddress}
-        sleep 10
+        sleep $ARP_MAC_UPDATE_TIME
         ssh root@${BACK_IP} "ping ${local_tp1_ip} -c 10;sleep 5"
         linearMacAddress1=$(ssh root@${BACK_IP} "arp -a | grep -w ${local_tp1_ip} | awk -F'at' '{print \$NF}' | awk '{print \$1}'")
         if [ "$linearMacAddress" != "$linearMacAddress1" ];then
@@ -175,7 +175,7 @@ function xge_set_standard_mac_address()
     fi
     #newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"00"/g)
     ifconfig ${local_fibre1} hw ether ${newMacAddress}
-    sleep 10
+    sleep $ARP_MAC_UPDATE_TIME
     ssh root@${BACK_IP} "ping ${local_fibre1_ip} -c 10;sleep 5"
     newMacAddress1=$(ssh root@${BACK_IP} "arp -a | grep -w ${local_fibre1_ip} | awk -F'at' '{print \$NF}' | awk '{print \$1}'")
 
@@ -196,7 +196,7 @@ function xge_set_linear_mac_address()
     for linearMacAddress in "22:22:22:22:22:22" "aa:aa:aa:aa:aa:aa"
     do
         ifconfig ${local_fibre1} hw ether ${linearMacAddress}
-        sleep 10
+        sleep $ARP_MAC_UPDATE_TIME
         ssh root@${BACK_IP} "ping ${local_fibre1_ip} -c 10;sleep 5"
         linearMacAddress1=$(ssh root@${BACK_IP} "arp -a | grep -w ${local_fibre1_ip} | awk -F'at' '{print \$NF}' | awk '{print \$1}'")
 

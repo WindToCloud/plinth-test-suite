@@ -306,6 +306,70 @@ function remoteLogin()
 }
 
 
+#*****Function Descript
+#This function kill all perf progress in server and customer base on $1
+#input
+#	$1: perf type of target: iperf,netperf
+function perf_killer()
+{
+    typePerf=$1
+    cnt1=1
+    cnt2=1
+# First kill the local iperf
+    killall ${typePerf}
+    tmpres=`pidof ${typePerf}`
+    while [ x"${tmpres}" != x"" ]
+    do
+      ((cnt1++))
+      killall ${typePerf}
+      sleep 5
+      tmpres=`pidof ${typePerf}`
+      show=`ps -ef | grep ${typePerf}`
+      echo ${show}
+  
+      if [ $cnt1 -gt 6 ]
+      then
+        cnt1=0
+	echo "Can not kill the ${typePerf},fail!"
+        break
+      fi
+    done
+
+# Then kill the customer iperf
+    ssh root@$BACK_IP "killall ${typePerf}"
+    sleep 10
+    tmpres=`ssh root@$BACK_IP "pidof ${typePerf}"`
+    while [ x"${tmpres}" != x"" ]
+    do
+      ((cnt2++))
+      ssh root@$BACK_IP "killall ${typePerf}" 
+      sleep 5
+      tmpres=`ssh root@$BACK_IP "pidof ${typePerf}"`
+      show=`ssh root@$BACK_IP "ps -ef | grep ${typePerf}"`
+      echo ${show}
+
+      if [ $cnt2 -gt 6 ]
+      then
+        cnt2=0
+	echo "Can not kill the ${typePerf},fail!"
+        break
+      fi
+
+    done
+
+    if [ $cnt1 -eq 0 ] || [ $cnt2 -eq 0 ]
+    then
+	echo "${typePerf} kill fail!"
+    else
+	echo "${typePerf} killer got his first blood!"
+    fi
+} 
+####
+#End of luojiaxing edit
+####
+
+
+
 #Function Descript
 #This function kill all iperf progress in server and customer
 function iperf_killer()

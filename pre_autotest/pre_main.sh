@@ -89,7 +89,7 @@ sleep 20
 #before building,change some build cfg
 
 #HNS VLAN build option
-sed -i 's/CONFIG_VLAN_8021Q=m/CONFIG_VLAN_8021Q=y/g' arch/arm64/configs/defconfig
+#sed -i 's/CONFIG_VLAN_8021Q=m/CONFIG_VLAN_8021Q=y/g' arch/arm64/configs/defconfig
 
 echo "Begin to build the kernel!"
 bash build.sh d05 > ${PRE_TOP_DIR}/ok.log
