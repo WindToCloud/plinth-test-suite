@@ -112,6 +112,9 @@ Set_Test_Ip
 
 copy_tool_so
 
+#scp cm-client to root/roct-test
+scp ${ROCE_TOP_DIR}/case_script/cm-client root@${BACK_IP}:/root/roce-test
+
 #
 #scp /home/kernel/output/hns-roce.ko root@${BACK_IP}:/home/tmp/
 #scp /home/kernel/output/hns-roce-hw-v1.ko root@${BACK_IP}:/home/tmp/

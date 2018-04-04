@@ -2,14 +2,16 @@
 Client connecting to 192.168.1.20, TCP port 5001
 TCP window size: 85.0 KByte (default)
 ------------------------------------------------------------
-[  3] local 192.168.1.10 port 36064 connected with 192.168.1.20 port 5001
+[  3] local 192.168.1.10 port 53566 connected with 192.168.1.20 port 5001
 [ ID] Interval       Transfer     Bandwidth
-[  3]  0.0- 2.0 sec   221 MBytes   928 Mbits/sec
-[  3]  2.0- 4.0 sec   220 MBytes   923 Mbits/sec
-[  3] [  3]  4.0- 6.0 sec  2.13 GBytes  9.14 Gbit[  3]  6.0- 8.0 sec   221 MBytes   926 Mbits/sec
-[  3] [  3]  8.0-10.0 sec  2.19 GBytes  9.40 Gbit[  3] 10.0-12.0 sec   220 MBytes   923 Mbits/sec
-[  3] 12.0-14.0 sec   220 MBytes   923 Mbits/sec
-[  3] [  3] 14.0-16.0 sec  2.19 GBytes  9.39 Gbit[  3] 16.0-18.0 sec   221 MBytes   927 Mbits/sec
-[  3] 18.0-20.0 sec   220 MBytes   922 Mbits/sec
-[  3]  0.0-20.0 sec  2.15 GBytes   924 Mbits/sec
-s/sec
+[  3]  0.0- 2.0 sec   220 MBytes   922 Mbits/sec
+[  3]  2.0- 4.0 sec   224 MBytes   942 Mbits/sec
+[  3]  4.0- 6.0 sec   224 MBytes   941 Mbits/sec
+[  3]  6.0- 8.0 sec   225 MBytes   943 Mbits/sec
+[  3]  8.0-10.0 sec   225 MBytes   944 Mbits/sec
+[  3] 10.0-12.0 sec   224 MBytes   942 Mbits/sec
+[  3] 12.0-14.0 sec   224 MBytes   942 Mbits/sec
+[  3] 14.0-16.0 sec   225 MBytes   943 Mbits/sec
+[  3] 16.0-18.0 sec   224 MBytes   941 Mbits/sec
+[  3] [  3]  0.0-20.0 sec  19.5 GBytes  8.35 Gbits/sec
+ 0.0-20.0 sec  2.19 GBytes   940 Mbits/sec

@@ -2,75 +2,73 @@
 Client connecting to 192.168.1.20, TCP port 5001
 TCP window size: 85.0 KByte (default)
 ------------------------------------------------------------
-[  6] local 192.168.1.10 port 35064 connected with 192.168.1.20 port 5001
-[  3] local 192.168.1.10 port 35058 connected with 192.168.1.20 port 5001
-[  4] local 192.168.1.10 port 35060 connected with 192.168.1.20 port 5001
-[  5] local 192.168.1.10 port 35062 connected with 192.168.1.20 port 5001
-[  7] local 192.168.1.10 port 35066 connected with 192.168.1.20 port 5001
+[  7] local 192.168.1.10 port 52904 connected with 192.168.1.20 port 5001
+[  4] local 192.168.1.10 port 52896 connected with 192.168.1.20 port 5001
+[  3] local 192.168.1.10 port 52898 connected with 192.168.1.20 port 5001
+[  6] local 192.168.1.10 port 52900 connected with 192.168.1.20 port 5001
+[  5] local 192.168.1.10 port 52902 connected with 192.168.1.20 port 5001
 [ ID] Interval       Transfer     Bandwidth
-[  6]  0.0- 2.0 sec   120 MBytes   503 Mbits/sec
-[  4]  0.0- 2.0 sec  29.9 MBytes   125 Mbits/sec
-[  7]  0.0- 2.0 sec  30.8 MBytes   129 Mbits/sec
-[  3]  0.0- 2.0 sec  30.8 MBytes   129 Mbits/sec
-[  5]  0.0- 2.0 sec  15.9 MBytes  66.6 Mbits/sec
-[SUM]  0.0- 2.0 sec   227 MBytes   953 Mbits/sec
-[  6]  2.0- 4.0 sec   119 MBytes   498 Mbits/sec
-[  7]  2.0- 4.0 sec  30.2 MBytes   127 Mbits/sec
-[  3]  2.0- 4.0 sec  30.2 MBytes   127 Mbits/sec
-[  4]  2.0- 4.0 sec  30.4 MBytes   127 Mbits/sec
-[  5]  2.0- 4.0 sec  15.1 MBytes  63.4 Mbits/sec
-[SUM]  2.0- 4.0 sec   225 MBytes   943 Mbits/sec
-[  6]  4.0- 6.0 sec   118 MBytes   497 Mbits/sec
-[  3]  4.0- 6.0 sec  30.2 MBytes   127 Mbits/sec
-[  7]  4.0- 6.0 sec  30.4 MBytes   127 Mbits/sec
-[  4]  4.0- 6.0 sec  30.4 MBytes   127 Mbits/sec
-[  5]  4.0- 6.0 sec  15.1 MBytes  63.4 Mbits/sec
-[SUM]  4.0- 6.0 sec   224 MBytes   942 Mbits/sec
-[  6]  6.0- 8.0 sec   119 MBytes   498 Mbits/sec
-[  4]  6.0- 8.0 sec  30.1 MBytes   126 Mbits/sec
-[  7]  6.0- 8.0 sec  30.2 MBytes   127 Mbits/sec
-[  3]  6.0- 8.0 sec  30.2 MBytes   127 Mbits/sec
-[  5]  6.0- 8.0 sec  15.1 MBytes  63.4 Mbits/sec
-[SUM]  6.0- 8.0 sec   224 MBytes   942 Mbits/sec
-[  4]  8.0-10.0 sec  30.2 MBytes   127 Mbits/sec
-[  6]  8.0-10.0 sec   119 MBytes   498 Mbits/sec
-[  3]  8.0-10.0 sec  30.5 MBytes   128 Mbits/sec
-[  7]  8.0-10.0 sec  30.5 MBytes   128 Mbits/sec
-[  5]  8.0-10.0 sec  15.2 MBytes  64.0 Mbits/sec
-[SUM]  8.0-10.0 sec   225 MBytes   944 Mbits/sec
-[  6] 10.0-12.0 sec   119 MBytes   498 Mbits/sec
-[  7] 10.0-12.0 sec  30.1 MBytes   126 Mbits/sec
-[  3] 10.0-12.0 sec  30.2 MBytes   127 Mbits/sec
-[  4] 10.0-12.0 sec  30.5 MBytes   128 Mbits/sec
-[  5] 10.0-12.0 sec  15.0 MBytes  62.9 Mbits/sec
-[SUM] 10.0-12.0 sec   224 MBytes   942 Mbits/sec
-[  6] 12.0-14.0 sec   119 MBytes   498 Mbits/sec
-[  4] 12.0-14.0 sec  30.1 MBytes   126 Mbits/sec
-[  7] 12.0-14.0 sec  30.2 MBytes   127 Mbits/sec
-[  3] 12.0-14.0 sec  30.2 MBytes   127 Mbits/sec
-[  5] 12.0-14.0 sec  15.2 MBytes  64.0 Mbits/sec
-[SUM] 12.0-14.0 sec   225 MBytes   942 Mbits/sec
-[  6] 14.0-16.0 sec   119 MBytes   498 Mbits/sec
-[  4] 14.0-16.0 sec  30.2 MBytes   127 Mbits/sec
-[  7] 14.0-16.0 sec  30.2 MBytes   127 Mbits/sec
-[  3] 14.0-16.0 sec  30.2 MBytes   127 Mbits/sec
-[  5] 14.0-16.0 sec  15.1 MBytes  63.4 Mbits/sec
-[SUM] 14.0-16.0 sec   224 MBytes   942 Mbits/sec
-[  6] 16.0-18.0 sec   119 MBytes   498 Mbits/sec
-[  3] 16.0-18.0 sec  30.4 MBytes   127 Mbits/sec
-[  5] 16.0-18.0 sec  15.1 MBytes  63.4 Mbits/sec
-[  7] 16.0-18.0 sec  30.4 MBytes   127 Mbits/sec
-[  4] 16.0-18.0 sec  30.5 MBytes   128 Mbits/sec
-[SUM] 16.0-18.0 sec   225 MBytes   944 Mbits/sec
-[  6] 18.0-20.0 sec   119 MBytes   498 Mbits/sec
-[  6]  0.0-20.0 sec  1.16 GBytes   498 Mbits/sec
-[  3] 18.0-20.0 sec  30.1 MBytes   126 Mbits/sec
-[  3]  0.0-20.0 sec   303 MBytes   127 Mbits/sec
-[  7] 18.0-20.0 sec  30.2 MBytes   127 Mbits/sec
-[  7]  0.0-20.0 sec   304 MBytes   127 Mbits/sec
-[  4] 18.0-20.0 sec  30.2 MBytes   127 Mbits/sec
-[  4]  0.0-20.0 sec   303 MBytes   127 Mbits/sec
-[  5] 18.0-20.0 sec  15.1 MBytes  63.4 Mbits/sec
-[SUM] 18.0-20.0 sec   224 MBytes   941 Mbits/sec
-[  5]  0.0-20.0 sec   152 MBytes  63.8 Mbits/sec
-[SUM]  0.0-20.0 sec  2.20 GBytes   942 Mbits/sec
+[  7]  0.0- 2.0 sec  44.0 MBytes   185 Mbits/sec
+[  3]  0.0- 2.0 sec  44.1 MBytes   185 Mbits/sec
+[  6]  0.0- 2.0 sec  44.2 MBytes   186 Mbits/sec
+[  5]  0.0- 2.0 sec  44.0 MBytes   185 Mbits/sec
+[  4]  0.0- 2.0 sec  44.1 MBytes   185 Mbits/sec
+[SUM]  0.0- 2.0 sec   220 MBytes   925 Mbits/sec
+[  4]  2.0- 4.0 sec  44.9 MBytes   188 Mbits/sec
+[  3]  2.0- 4.0 sec  45.0 MBytes   189 Mbits/sec
+[  6]  2.0- 4.0 sec  45.0 MBytes   189 Mbits/sec
+[  5]  2.0- 4.0 sec  45.0 MBytes   189 Mbits/sec
+[  7]  2.0- 4.0 sec  45.1 MBytes   189 Mbits/sec
+[SUM]  2.0- 4.0 sec   225 MBytes   944 Mbits/sec
+[  4]  4.0- 6.0 sec  44.9 MBytes   188 Mbits/sec
+[  3]  4.0- 6.0 sec  44.9 MBytes   188 Mbits/sec
+[  6]  4.0- 6.0 sec  44.8 MBytes   188 Mbits/sec
+[  7]  4.0- 6.0 sec  44.9 MBytes   188 Mbits/sec
+[  5]  4.0- 6.0 sec  44.9 MBytes   188 Mbits/sec
+[SUM]  4.0- 6.0 sec   224 MBytes   941 Mbits/sec
+[  4]  6.0- 8.0 sec  45.0 MBytes   189 Mbits/sec
+[  6]  6.0- 8.0 sec  44.9 MBytes   188 Mbits/sec
+[  5]  6.0- 8.0 sec  44.9 MBytes   188 Mbits/sec
+[  7]  6.0- 8.0 sec  45.0 MBytes   189 Mbits/sec
+[  3]  6.0- 8.0 sec  45.0 MBytes   189 Mbits/sec
+[SUM]  6.0- 8.0 sec   225 MBytes   943 Mbits/sec
+[  6]  8.0-10.0 sec  45.6 MBytes   191 Mbits/sec
+[  7]  8.0-10.0 sec  43.9 MBytes   184 Mbits/sec
+[  3]  8.0-10.0 sec  44.4 MBytes   186 Mbits/sec
+[  4]  8.0-10.0 sec  47.6 MBytes   200 Mbits/sec
+[  5]  8.0-10.0 sec  46.8 MBytes   196 Mbits/sec
+[SUM]  8.0-10.0 sec   228 MBytes   957 Mbits/sec
+[  7] 10.0-12.0 sec  45.1 MBytes   189 Mbits/sec
+[  3] 10.0-12.0 sec  45.0 MBytes   189 Mbits/sec
+[  6] 10.0-12.0 sec  45.1 MBytes   189 Mbits/sec
+[  5] 10.0-12.0 sec  44.6 MBytes   187 Mbits/sec
+[  4] 10.0-12.0 sec  45.0 MBytes   189 Mbits/sec
+[SUM] 10.0-12.0 sec   225 MBytes   943 Mbits/sec
+[  3] 12.0-14.0 sec  45.0 MBytes   189 Mbits/sec
+[  5] 12.0-14.0 sec  45.1 MBytes   189 Mbits/sec
+[  7] 12.0-14.0 sec  45.0 MBytes   189 Mbits/sec
+[  6] 12.0-14.0 sec  45.1 MBytes   189 Mbits/sec
+[  4] 12.0-14.0 sec  45.0 MBytes   189 Mbits/sec
+[SUM] 12.0-14.0 sec   225 MBytes   945 Mbits/sec
+[  7] 14.0-16.0 sec  44.6 MBytes   187 Mbits/sec
+[  3] 14.0-16.0 sec  44.8 MBytes   188 Mbits/sec
+[  6] 14.0-16.0 sec  44.6 MBytes   187 Mbits/sec
+[  5] 14.0-16.0 sec  45.1 MBytes   189 Mbits/sec
+[  4] 14.0-16.0 sec  45.0 MBytes   189 Mbits/sec
+[SUM] 14.0-16.0 sec   224 MBytes   940 Mbits/sec
+[  7] 16.0-18.0 sec  45.0 MBytes   189 Mbits/sec
+[  4] 16.0-18.0 sec  44.1 MBytes   185 Mbits/sec
+[  5] 16.0-18.0 sec  44.6 MBytes   187 Mbits/sec
+[  3] 16.0-18.0 sec  45.1 MBytes   189 Mbits/sec
+[  6] 16.0-18.0 sec  45.1 MBytes   189 Mbits/sec
+[SUM] 16.0-18.0 sec   224 MBytes   940 Mbits/sec
+[  3]  0.0-20.0 sec   448 MBytes   188 Mbits/sec
+[  4] 18.0-20.0 sec  45.1 MBytes   189 Mbits/sec
+[  4]  0.0-20.0 sec   451 MBytes   189 Mbits/sec
+[  6] 18.0-20.0 sec  44.6 MBytes   187 Mbits/sec
+[  6]  0.0-20.0 sec   449 MBytes   188 Mbits/sec
+[  7] 18.0-20.0 sec  45.1 MBytes   189 Mbits/sec
+[  7]  0.0-20.0 sec   448 MBytes   188 Mbits/sec
+[  5] 18.0-20.0 sec  45.1 MBytes   189 Mbits/sec
+[  5]  0.0-20.0 sec   450 MBytes   189 Mbits/sec
+[SUM]  0.0-20.0 sec  2.19 GBytes   941 Mbits/sec

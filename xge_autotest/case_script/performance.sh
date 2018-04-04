@@ -1259,10 +1259,17 @@ function iperf_single2()
 	do
                 
 		iperf -s ${IPV6_MASK} >/dev/null 2>&1 &
+		sleep 2
+		iperf_proc=`ps -ef | grep "iperf -s"`
+		echo "The process is "$iperf_proc
                 echo "Run ${PROTOCOL_TYPE} as server single port $local_net_1 ${owNum}thread......"
                 
-                ssh root@${BACK_IP} "mkdir -p $LOG_DIR/$IPERFDIR;iperf -c ${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $owNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_single2_one-way_${local_net_1}_${owNum}thread.log &"
+                ssh root@${BACK_IP} "mkdir -p /$LOG_DIR/$IPERFDIR;iperf -c ${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $owNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_single2_one-way_${local_net_1}_${owNum}thread.log &"
                 
+		sleep 10
+		iperf_proc=`ssh root@${BACK_IP} "ps -ef | grep 'iperf -c'"`
+		echo "The process is "$iperf_proc
+
                 sleep 25
                 check_remote_single_process
                 iperf_killer
@@ -1303,7 +1310,7 @@ function iperf_single3()
    
         echo "Run ${PROTOCOL_TYPE} as server and custom single port ${local_net_1} two-way ${twNum}thread......"
         iperf -c ${remote_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &
-	ssh root@${BACK_IP} "mkdir -p $LOG_DIR/$IPERFDIR;iperf -c ${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $owNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_single_one-way_${local_net_1}_${owNum}thread.log &"
+	ssh root@${BACK_IP} "mkdir -p /$LOG_DIR/$IPERFDIR;iperf -c ${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $owNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_single_one-way_${local_net_1}_${owNum}thread.log &"
         sleep 25
         check_dual_process
         iperf_killer
@@ -1369,8 +1376,8 @@ function iperf_dual5()
         sleep 5
 
         echo "Run ${PROTOCOL_TYPE} as server  dual port two-way ${twNum}thread......"
-        ssh root@$BACK_IP "iperf -c ${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
-        ssh root@$BACK_IP "iperf -c ${local_ip_2} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
+        ssh root@$BACK_IP "iperf -c /${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
+        ssh root@$BACK_IP "iperf -c /${local_ip_2} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
         sleep 25
         check_remote_single_process
         iperf_killer
@@ -1403,8 +1410,8 @@ function iperf_dual6()
         sleep 5
 
         echo "Run ${PROTOCOL_TYPE} as server and customer dual port two-way ${twNum}thread......"
-        ssh root@$BACK_IP "iperf -c ${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
-        ssh root@$BACK_IP "iperf -c ${local_ip_2} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
+        ssh root@$BACK_IP "iperf -c /${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
+        ssh root@$BACK_IP "iperf -c /${local_ip_2} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
 	iperf -c ${remote_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &
         iperf -c ${remote_ip_2} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &
 

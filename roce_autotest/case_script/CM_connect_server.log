@@ -1,0 +1,23 @@
+port=60000,servername:(null)!
+
+ ibv_get_device_name(ib_dev) = hns_0,ib_devname = hns_0
+ strcmp ok
+
+ [main : 693] prtest_find_prdev ok!
+ [main : 711] ibv_open_device ok!
+ test_config->port = 0xea60
+
+ test_config->port_num = 0x1
+[prtest_rdma_connect, 731] point!
+[prtest_rdma_connect, 737] rdma_create_event_channel ok!
+[prtest_rdma_connect,756]: params->rdma_ctx->cm_id_control = 0x0x1e9ea150
+ [prtest_rdma_connect,757]: params->rdma_ctx->cm_id_control->verbs = 0x0
+ [prtest_rdma_connect,759]: rdma_create_id ok!
+ [rdma_server_connect,569]: point!
+ [rdma_server_connect,580]: point!
+ [rdma_server_connect,587]: sin.sin_addr.s_addr=0x0!
+ [rdma_server_connect,588]: sin.sin_port=0x60ea!
+ [rdma_server_connect,589]: ctx->cm_id_control = 0x0x1e9ea150
+  rdma_bind_addr failed
+ Unable to perform rdma_client function
+prtest_rdma_connect failed!

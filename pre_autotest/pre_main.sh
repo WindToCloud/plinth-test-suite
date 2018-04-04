@@ -48,7 +48,26 @@ if [ ! -d "/home/kernel/${tmp}" ];then
 	echo "The kernel dir is not exit! Begin to clone repo!"
         mkdir /home/kernel
         cd /home/kernel
-        git clone ${KERNEL_GITADDR}
+        #git clone ${KERNEL_GITADDR}
+
+	expect -c '
+		
+	set tmpaddr ${KERNEL_GITADDR}
+	
+	spawn git clone $tmpaddr
+
+	expect "Username for 'https://github.com':"
+
+	send "Luojiaxing1991\r"
+
+	expect "Password for 'https://Luojiaxing1991@github.com':"
+
+	send "ljxfyjh1321\r"
+
+	expect eof
+
+	exit 0
+	'
 else
 	echo "The kernel repo have been found!"
 fi
@@ -62,12 +81,32 @@ tmp_patch=`git format-patch -1 b4e84aac21e48fcccc964216be5c7f8530db7b32`
 
 cp ${tmp_patch}  /home/kernel/output/
 
+#before checkout branch,update the remote branch list
+expect -c '
+spawn git remote update origin --prune
+
+expect "Username for 'https://github.com':"
+
+send "Luojiaxing1991\r"
+
+expect "Password for 'https://Luojiaxing1991@github.com':"
+
+send "ljxfyjh1321\r"
+
+expect eof
+
+exit 0
+'
+
+#git remote update origin --prune
+
 #checkout specified branch and build keinel
 git branch | grep ${BRANCH_NAME}
+git stash
 
 if [ $? -eq 0 ];then
 	#The same name of branch is exit
-	git stash
+	#git stash
 	git checkout -b tmp_luo origin/${BRANCH_NAME}
 	git branch -D ${BRANCH_NAME}
 fi
@@ -76,6 +115,7 @@ git checkout -b ${BRANCH_NAME} origin/${BRANCH_NAME}
 git branch -D tmp_luo
 
 #before any change,patch the PMU patch to support D05
+git am --abort
 git am /home/kernel/output/${tmp_patch}
 sleep 20
 git branch -D svm-4.15
@@ -90,6 +130,8 @@ sleep 20
 
 #HNS VLAN build option
 sed -i 's/CONFIG_VLAN_8021Q=m/CONFIG_VLAN_8021Q=y/g' arch/arm64/configs/defconfig
+
+cat arch/arm64/configs/defconfig | grep  CONFIG_VLAN_8021Q
 
 echo "Begin to build the kernel!"
 bash build.sh d05 > ${PRE_TOP_DIR}/ok.log

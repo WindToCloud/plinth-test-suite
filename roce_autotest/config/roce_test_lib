@@ -122,7 +122,6 @@ function copy_tool_so()
 	scp * root@${BACK_IP}:${CASEPATH}/
 	popd
 
-
 	pushd perftest
 	scp * root@${BACK_IP}:${CASEPATH}/
 	popd
