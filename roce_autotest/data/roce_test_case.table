@@ -48,7 +48,7 @@ PV-337	R.ROCE.F005.A	ST-ROCE-53	Support of RDMA Write operation	支持向SQ提交操作
 PV-337	R.ROCE.F005.A	ST-ROCE-54		支持向SQ提交操作类型为RDMA WRITE的WR，并能正确将数据写到接收方内存,WR提交硬件发送的数据长度大于MTU小于2MTU（注：测试RDMA Write first+last报文）	RdmaWrite.sh	RdmaWrite_Gt_MTU	on	
 PV-337	R.ROCE.F005.A	ST-ROCE-55		支持向SQ提交操作类型为RDMA WRITE的WR，并能正确将数据写到接收方内存,WR提交硬件发送的数据长度大于2MTU小于3MTU（注：测试RDMA WRITE first+mid+last报文）	RdmaWrite.sh	RdmaWrite_Gt_2MTU	on	
 PV-342	R.ROCE.F014.A	ST-ROCE-56	Support of PD.	创建1个PD，创建成功，创建的PD能释放	SupportPD.sh	One_PD	on	
-PV-342	R.ROCE.F014.A	ST-ROCE-57		创建32767(0x7FFF)个PD，每个都能创建成功，创建的PD其PDID互不相同，创建的PD都能释放	SupportPD.sh	Max_PD_32k	on	
+PV-342	R.ROCE.F014.A	ST-ROCE-57		创建32767(0x7FFF)个PD，每个都能创建成功，创建的PD其PDID互不相同，创建的PD都能释放	SupportPD.sh	Max_PD_32k	off	
 PV-344	R.ROCE.F016.A	ST-ROCE-59	Support of RC QP	支持同时创建262,144 (0x3FFFF)个QP，且每个QP都能正常工作	SupportQP.sh	Up_to_256k_QP	on	
 PV-344	R.ROCE.F016.A	ST-ROCE-61		支持创建的QP其WQE深度最大为16383，QP能正常工作，能向QP提交最多16383个WQE。	SupportQP.sh	Max_QP_WQE_Depth	on	
 PV-344	R.ROCE.F016.A	ST-ROCE-63		支持创建的QP其WQE深度最大为1时，QP能正常工作	SupportQP.sh	QP_WQE_One_Depth	on	
