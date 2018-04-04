@@ -1440,8 +1440,8 @@ function main()
 prepare_log_dir
 
 #ifconfig IP
-ifconfig $NETPORT1 ${LOCALIP1}
-ifconfig $NETPORT2 ${LOCALIP2}
+ifconfig $LOCALPORT1 ${LOCALIP1}
+ifconfig $LOCALPORT2 ${LOCALIP2}
 ssh root@$BACK_IP "ifconfig $NETPORT1 ${NETIP1};ifconfig $NETPORT2 ${NETIP2};"
 
 main

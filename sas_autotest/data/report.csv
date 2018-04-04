@@ -47,3 +47,27 @@ PV-1330	R.SAS.F025.A	ST.FUNC.049	RAS support	单bit ECC：SAS_HGC_IOMB_DQE_RAM2	su
 PV-1330	R.SAS.F025.A	ST.FUNC.050	RAS support	单bit ECC：SAS_HGC_IOMB_DQE_RAM3	support_ras.sh	1bit_ecc_inject0_en_8	off	BLOCK	no automated use cases were implemented.
 PV-1330	R.SAS.F025.A	ST.FUNC.051	RAS support	单bit ECC：SAS_HGC_IOMB_CQE_RAM	support_ras.sh	1bit_ecc_inject0_en_10	on	FAIL	0xa2000200 register address setting , no error message is reported.
 PV-1330	R.SAS.F025.A	ST.FUNC.052	RAS support	单bit ECC：SAS_HGC_IOMB_IOST_RAM0	support_ras.sh	1bit_ecc_inject0_en_20	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.053	RAS support	单bit ECC：SAS_HGC_IOMB_IOST_RAM1	support_ras.sh	1bit_ecc_inject0_en_40	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.054	RAS support	单bit ECC：SAS_HGC_IOMB_IOST_RAM2	support_ras.sh	1bit_ecc_inject0_en_80	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.055	RAS support	单bit ECC：SAS_HGC_IOMB_IOST_RAM3	support_ras.sh	1bit_ecc_inject0_en_100	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.056	RAS support	单bit ECC：SAS_HGC_IOMB_ITCT_RAM0	support_ras.sh	1bit_ecc_inject0_en_200	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.057	RAS support	单bit ECC：SAS_HGC_IOMB_ITCT_RAM1	support_ras.sh	1bit_ecc_inject0_en_400	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.058	RAS support	单bit ECC：SAS_HGC_IOMB_ITCT_RAM2	support_ras.sh	1bit_ecc_inject0_en_800	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.059	RAS support	单bit ECC：SAS_HGC_IOMB_ITCT_RAM3	support_ras.sh	1bit_ecc_inject0_en_1000	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.060	RAS support	单bit ECC：RXM mem0	support_ras.sh	1bit_ecc_inject0_en_2000	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.061	RAS support	单bit ECC：RXM mem1	support_ras.sh	1bit_ecc_inject0_en_4000	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.062	RAS support	单bit ECC：RXM mem2	support_ras.sh	1bit_ecc_inject0_en_8000	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.063	RAS support	单bit ECC：RXM mem3	support_ras.sh	1bit_ecc_inject0_en_10000	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.064	RAS support	单bit ECC：LM ITCT表mem0	support_ras.sh	1bit_ecc_inject0_en_20000	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.065	RAS support	单bit ECC：LM ITCT表mem1	support_ras.sh	1bit_ecc_inject0_en_40000	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.066	RAS support	单bit ECC：LM ITCT表mem2	support_ras.sh	1bit_ecc_inject0_en_80000	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.067	RAS support	单bit ECC：LM ITCT表mem3	support_ras.sh	1bit_ecc_inject0_en_100000	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.068	RAS support	单bit ECC：LM IOST表mem0	support_ras.sh	1bit_ecc_inject0_en_200000	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.069	RAS support	单bit ECC：LM IOST表mem1	support_ras.sh	1bit_ecc_inject0_en_400000	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.070	RAS support	单bit ECC：LM IOST表mem2	support_ras.sh	1bit_ecc_inject0_en_800000	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.071	RAS support	单bit ECC：LM IOST表mem3	support_ras.sh	1bit_ecc_inject0_en_1000000	on	FAIL	0xa2000200 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.072	RAS support	单bit ECC：SAS_DMAC_TX_RAM 通道0	support_ras.sh	1bit_ecc_inject1_en_1	on	FAIL	0xa2000204 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.073	RAS support	单bit ECC：SAS_DMAC_TX_RAM 通道1	support_ras.sh	1bit_ecc_inject1_en_4	on	FAIL	0xa2000204 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.074	RAS support	单bit ECC：SAS_DMAC_TX_RAM 通道2	support_ras.sh	1bit_ecc_inject1_en_10	on	FAIL	0xa2000204 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.075	RAS support	单bit ECC：SAS_DMAC_TX_RAM 通道3	support_ras.sh	1bit_ecc_inject1_en_40	on	FAIL	0xa2000204 register address setting , no error message is reported.
+PV-1330	R.SAS.F025.A	ST.FUNC.076	RAS support	单bit ECC：SAS_DMAC_TX_RAM 通道4	support_ras.sh	1bit_ecc_inject1_en_100	on	FAIL	0xa2000204 register address setting , no error message is reported.
