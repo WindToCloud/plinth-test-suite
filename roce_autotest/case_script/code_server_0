@@ -2,4 +2,68 @@ port=18515,servername:(null)!
 
  [prtest_init_connection : 341] !
  [prtest_init_connection : 350] SERVER connection start!
- [prtest_init_connection : 356] Unable to open file descriptor for socket connection!0.Unable to init the socket connection!
+ [main : 20865] prtest_init_connection ok!
+ [main : 20873] pr_socket : name (null), port 18515, machine 0, sockfd 4
+ [main : 20884] prtest_find_prdev ok!
+ [main : 20901] ibv_open_device ok! Link type is Ethernet
+ Mtu : 1024
+
+ lkey = rkey = 0x500
+ lkey = rkey = 0x600
+ lkey = rkey = 0x700
+ lkey = rkey = 0x800
+ hr_qp->port_num= 0x1
+config->gid_index = 0
+
+ [prtest_set_up_connection_n : 298] my_dest->vaddr = 0xffff9580b010
+ [prtest_set_up_connection_n : 299] my_dest->rkey  = 0x600
+ [prtest_set_up_connection_n : 300] my_dest->psn   = 0x5560a6
+dest lid      out_reads qpn        psn         rkey     vaddr
+my : 0        16        32       0x5560a6    0x600      0xffff9580b010
+rem: 0        16        32       0x808766    0x600      0xffff8828b010
+ my_GID:254:128:00:00:00:00:00:00:248:134:87:255:254:190:116:23
+rem_GID:254:128:00:00:00:00:00:00:194:168:02:255:254:240:00:00
+
+ modify qp rtr
+ modify qp rts
+ hand shake
+ data_len[0]= 0x80000, mr[0] = 0xffff9570b010, mr[1] = 0xffff9580b010, buf[0]=0xffff9570b010, buf[0]+size/2 = 0xffff9580b010
+ memset opcode data ok.
+0x  0xffff9580b010: 03000000 C6230B00 02000000 73480300  .....#......sH..
+0x  0xffff9580b020: 03000000 FF5C0900 01000000 EC580500  .....\.......X..
+0x  0xffff9580b030: 04000000 CD7C0800 02000000 ABD70E00  .....|..........
+0x  0xffff9580b040: 00000000 FB1E0700 03000000 46E10500  ............F...
+0x  0xffff9580b050: 00000000 C2620000 02000000 F8270100  .....b.......'..
+0x  0xffff9580b060: 01000000 E8E90600 02000000 8D430F00  .............C..
+0x  0xffff9580b070: 02000000 5A250200 02000000 63720D00  ....Z%......cr..
+0x  0xffff9580b080: 02000000 9FD70F00 04000000 9A070800  ................
+
+ PS(va,key,len) = (0xffff9580b010,0x600,0x80000)
+ post send ok.
+ ******************send opcode data ok**************config->gid_index = 0
+
+ [prtest_set_up_connection_n : 298] my_dest->vaddr = 0xffff9550a010
+ [prtest_set_up_connection_n : 299] my_dest->rkey  = 0x700
+ [prtest_set_up_connection_n : 300] my_dest->psn   = 0xfeb498
+dest lid      out_reads qpn        psn         rkey     vaddr
+my : 0        16        32       0xfeb498    0x700      0xffff9550a010
+rem: 0        16        32       0x2eb458    0x700      0xffff87f8a010
+ my_GID:254:128:00:00:00:00:00:00:248:134:87:255:254:190:116:23
+rem_GID:254:128:00:00:00:00:00:00:194:168:02:255:254:240:00:00
+
+ first send data addr:0xffff9580b010
+ data_len= 0xb23c6, test_rad[0] = 0x3
+ [prtest_run_write-2134]send_flags = 0x0
+ [prtest_run_write-2139]send_flags = 0x0
+ first send data addr:0xffff9580b018
+ data_len= 0x62c2, test_rad[1] = 0x2
+ [prtest_run_read-2047]send_flags = 0x0
+ [prtest_run_read-2058]send_flags = 0x0
+ first send data addr:0xffff9580b020
+ data_len= 0x45d32, test_rad[2] = 0x3
+ [prtest_run_write-2134]send_flags = 0x0
+ [prtest_run_write-2139]send_flags = 0x0
+ first send data addr:0xffff9580b028
+ data_len= 0x38cb2, test_rad[3] = 0x1
+ first send data addr:0xffff9580b030
+ data_len= 0x6dde9, test_rad[4] = 0x4######### total: 40  , pass: 1  , failed :0   ############

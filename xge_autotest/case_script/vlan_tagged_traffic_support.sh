@@ -186,11 +186,11 @@ function xge_vlan_up_down
 function main()
 {
     ConfigVlan=`zcat /proc/config.gz | grep -w "CONFIG_VLAN_8021Q" | awk -F"=" '{print $2}'`
-    if [ x"$ConfigVlan" != x"m" ];then
-        MESSAGE="FAIL\t Please build VLAN into kernel"
-    else
+    #if [ x"$ConfigVlan" != x"m" ];then
+        #MESSAGE="FAIL\t Please build VLAN into kernel"
+    #else
     	test_case_switch
-    fi
+    #fi
     
 }
 

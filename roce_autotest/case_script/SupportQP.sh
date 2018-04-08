@@ -78,6 +78,15 @@ function QP_WQE_One_Depth()
 function main()
 {
     # call the implementation of the automation use cases
+	pushd ${ROCE_CASE_DIR}
+	./roce-test -m 2 -c 0xff -r
+		
+	ulimit -l 1024000
+
+	popd
+
+	ssh root@${BACK_IP} "./roce-test/roce-test -m 2 -c 0xff -r; ulimit -l 1024000"
+
 	test_case_function_run
 }
 main

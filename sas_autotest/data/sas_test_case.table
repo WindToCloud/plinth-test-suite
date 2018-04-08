@@ -1,7 +1,7 @@
 PV-1587	R.SAS.F001.A	ST.FUNC.001	The driver must support SSP	SAS盘，直连，混合命令测试	driver_must_support.sh	driver_supports	off	
 PV-1588	R.SAS.F002.A	ST.FUNC.002	The driver must support SMP	SAS盘，expander，混合命令测试	driver_must_support.sh	driver_supports	off	
 PV-1589	R.SAS.F003.A	ST.FUNC.003	The driver must support STP	SATA盘，expander，混合命令测试	driver_must_support.sh	driver_supports	off	
-PV-1945	R.SAS.F004.A	ST.FUNC.004	Support Max Devices	SAS盘，SATA盘，expander，满载符合测试	support_max_devices.sh	support_max_devices	off	
+PV-1945	R.SAS.F004.A	ST.FUNC.004	Support Max Devices	SAS盘，SATA盘，expander，满载符合测试	support_max_devices.sh	support_max_devices	on	
 PV-1604	R.SAS.F007.A	ST.FUNC.005	Support 12Gbit/s physical data rate	SAS盘，直连，速率协商测试(1.5Gbit/s, 3Gbit/s, 6Gbit/s, 12Gbits)	physical_data_rate.sh	disk_negotiated_link_rate_query	off	
 PV-1597	R.SAS.F006.A	ST.FUNC.006	6Gbit/s physical data rate	SATA盘，直连，速率协商测试(1.5Gbit/s, 3Gbit/s, 6Gbit/s)	physical_data_rate.sh	disk_negotiated_link_rate_query	off	
 PV-1603	R.SAS.F017.A	ST.FUNC.007	PHY control through sysfs	SAS盘，直连，支持速率设置	phy_control_through_sysfs.sh	rate_set_up	off	
@@ -40,10 +40,10 @@ PV-1725	R.SAS.N004.A	ST.FUNC.043	SAS 3.0	压力测试 4M~4k随机大小io（只写）	suppor
 PV-1725	R.SAS.N004.A	ST.FUNC.044	SAS 3.0	压力测试随机大小io（4k/30:8k/40:16k/30）	support_available_sas_cores.sh	FIO_IO_RAIO_read_write	off	
 PV-1596	R.SAS.F022.A	ST.FUNC.045	Controller reset for ECC error	expander，2bit ECC错误注入	controller_ecc_error_reset.sh	controller_2bit_ecc_reset	off	
 PV-1596	R.SAS.F022.A	ST.FUNC.046	Controller reset for ECC error	expander，1bit ECC错误注入	controller_ecc_error_reset.sh	controller_1bit_ecc_reset	off	
-PV-1330	R.SAS.F025.A	ST.FUNC.047	RAS support	单bit ECC：SAS_HGC_IOMB_DQE_RAM0	support_ras.sh	1bit_ecc_inject0_en_1	off	
-PV-1330	R.SAS.F025.A	ST.FUNC.048	RAS support	单bit ECC：SAS_HGC_IOMB_DQE_RAM1	support_ras.sh	1bit_ecc_inject0_en_2	off	
-PV-1330	R.SAS.F025.A	ST.FUNC.049	RAS support	单bit ECC：SAS_HGC_IOMB_DQE_RAM2	support_ras.sh	1bit_ecc_inject0_en_4	off	
-PV-1330	R.SAS.F025.A	ST.FUNC.050	RAS support	单bit ECC：SAS_HGC_IOMB_DQE_RAM3	support_ras.sh	1bit_ecc_inject0_en_8	off	
+PV-1330	R.SAS.F025.A	ST.FUNC.047	RAS support	单bit ECC：SAS_HGC_IOMB_DQE_RAM0	support_ras.sh	1bit_ecc_inject0_en_1	on	
+PV-1330	R.SAS.F025.A	ST.FUNC.048	RAS support	单bit ECC：SAS_HGC_IOMB_DQE_RAM1	support_ras.sh	1bit_ecc_inject0_en_2	on	
+PV-1330	R.SAS.F025.A	ST.FUNC.049	RAS support	单bit ECC：SAS_HGC_IOMB_DQE_RAM2	support_ras.sh	1bit_ecc_inject0_en_4	on	
+PV-1330	R.SAS.F025.A	ST.FUNC.050	RAS support	单bit ECC：SAS_HGC_IOMB_DQE_RAM3	support_ras.sh	1bit_ecc_inject0_en_8	on	
 PV-1330	R.SAS.F025.A	ST.FUNC.051	RAS support	单bit ECC：SAS_HGC_IOMB_CQE_RAM	support_ras.sh	1bit_ecc_inject0_en_10	on	
 PV-1330	R.SAS.F025.A	ST.FUNC.052	RAS support	单bit ECC：SAS_HGC_IOMB_IOST_RAM0	support_ras.sh	1bit_ecc_inject0_en_20	on	
 PV-1330	R.SAS.F025.A	ST.FUNC.053	RAS support	单bit ECC：SAS_HGC_IOMB_IOST_RAM1	support_ras.sh	1bit_ecc_inject0_en_40	on	

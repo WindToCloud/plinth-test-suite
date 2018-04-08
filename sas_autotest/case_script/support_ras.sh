@@ -33,6 +33,7 @@ function ecc_injection_process()
     ${SAS_TOP_DIR}/../${COMMON_TOOL_PATH}/fio fio.conf &
     sleep 10
     ${DEVMEM} ${INJECT_REG_ADDR_VALUE} w 0x0
+    sleep 2
     mid_bit_count=`dmesg | grep ${ECC_INFO_KEY_QUERIES} | wc -l`
 
     if [ x"${BOARD_TYPE}" == x"D06" ]
@@ -168,7 +169,67 @@ function main()
     echo "The using function name is "${TEST_CASE_FUNCTION_NAME}
     TEST_CASE_FUNCTION_NAME="${TEST_CASE_FUNCTION_NAME} 0x${info}"
 
-    # call the implementation of the automation use cases
+    inject=`echo ${TEST_CASE_FUNCTION_NAME} | awk -F '_' '{print $(NF-1)}'`
+    bit=`echo ${TEST_CASE_FUNCTION_NAME} | awk -F '_' '{print $1}'`
+
+
+  if [ x"$bit" = x"1bit" ];then
+	if [ x"$inject" = x"inject0" ];then
+    echo "check if dmesg grep info is correct or not"
+    case $info in
+	"10")
+		ECC_INFO_KEY_QUERIES="hgc_cqe_acc1b_intr"
+		;;
+	"20" | "40" | "80"| "100")
+		ECC_INFO_KEY_QUERIES="hgc_iost_acc1b_intr"
+		;;
+	"200" | "400" | "800" | "1000")
+		ECC_INFO_KEY_QUERIES="hgc_itct_acc1b_intr"
+		;;
+	"2000")
+		ECC_INFO_KEY_QUERIES="rxm_mem0_acc1b_intr"
+		;;
+	"4000")
+		ECC_INFO_KEY_QUERIES="rxm_mem1_acc1b_intr"
+		;;
+	"8000")
+		ECC_INFO_KEY_QUERIES="rxm_mem2_acc1b_intr"
+		;;
+	"10000")
+		ECC_INFO_KEY_QUERIES="rxm_mem3_acc1b_intr"
+		;;
+	"20000" | "40000" | "80000" | "100000")
+		ECC_INFO_KEY_QUERIES="hgc_itctl_acc1b_intr"
+		;;
+	"200000" | "400000" | "800000" | "1000000")
+		ECC_INFO_KEY_QUERIES="hgc_iostl_acc1b_intr"
+		;;
+    esac
+	else
+		echo "1bit inject1 ecc"
+		case $info in
+		"1" | "4" | "10" | "40" | "100" | "400" | "1000" | "4000" | "10000")
+			ECC_INFO_KEY_QUERIES="dmac_tx_ecc_bad_err"
+			;;
+		"2" | "8" | "20" | "80")
+			ECC_INFO_KEY_QUERIES="dmac_rx_ecc_bad_err"
+			;;
+		esac
+	fi
+
+  else
+	echo "2bit ecc"
+	case $info in	
+		"2" | "8" | "20" | "80" | "200" | "800" | "2000" | "8000" | "20000")
+			ECC_INFO_KEY_QUERIES="dmac_rx_ecc_bad_err"
+			;;
+	esac
+
+  fi
+
+    echo "dmesg info is "${ECC_INFO_KEY_QUERIES}
+
+    # call the implementation of the automation :use cases
     test_case_function_run
 }
 
