@@ -155,7 +155,7 @@ STATUS_SMART_KEYWORD="PASSED|OK"
 
 ## 12 - support Max devices
 # The number of disks.
-MAX_DEV_NUM=2
+MAX_DEV_NUM=14
 
 ## 13 - RAS support
 # 1bit error injection, injection CFG_ECCERR_INJECT0_EN register value.
