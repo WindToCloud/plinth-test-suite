@@ -108,6 +108,10 @@ function get_all_disk_part()
             if [ x"${tmp}" = x"0" ]
 	    then
             	ALL_DISK_PART_NAME[${#ALL_DISK_PART_NAME[*]}]=$name
+		
+		#enable samrt function for smart test
+		smartctl -s on $name
+
             	echo "Select disk: "${name}
 	    else
 		echo "Skip the disk: "${name}
