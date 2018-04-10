@@ -31,6 +31,19 @@ function test_case_function_run()
     fi
 }
 
+# Get disk type (sas,sata)
+# IN : $1 disk name
+# OUT: 0: SATA  1: sas
+function get_disk_type
+{
+	disk_type=`lsscsi -d | grep $1 | awk '{print $3}'`
+	if [ x"$disk_type" = x"ATA" ];then
+		return 0
+	else
+		return 1
+	fi
+}
+
 # Output log file header
 # IN : N/A
 # OUT: N/A
@@ -105,7 +118,7 @@ function get_all_disk_part()
             #compare the size of disk between fio config
             tmp=`awk -v a=1000 -v b=$result 'BEGIN{print(a>b)?"1":"0"}'`
             echo $tmp 
-            if [ x"${tmp}" = x"0" ]
+            if [ x"${tmp}" = x"0" ] && [ x"${name}" != x"/dev/sda1" ]
 	    then
             	ALL_DISK_PART_NAME[${#ALL_DISK_PART_NAME[*]}]=$name
 		
