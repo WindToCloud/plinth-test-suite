@@ -1,7 +1,7 @@
 PV-289	R.ROCE.F001.A	ST-ROCE-1	RDMA operations in user space	RDMA操作类型混合随机，双向收发数据，相同操作数据包长不同	codecase.sh	codecase0	on	
 #N/A		ST-ROCE-2		RDMA操作混合随机，双向互发数据，发送数据包长随机	codecase.sh	codecase1	on	
 #N/A		ST-ROCE-3		RDMA send混合包长，双向发送数据	codecase.sh	codecase2	on	
-#N/A		ST-ROCE-4		带立即数的RDMA send操作，双向发送数据	codecase.sh	codecase3	on	
+#N/A	2201实验室/海思图灵解决方案	ST-ROCE-4		带立即数的RDMA send操作，双向发送数据	codecase.sh	codecase3	on	
 #N/A		ST-ROCE-5		RDMA read操作，双向发送数据	codecase.sh	codecase4	on	
 #N/A		ST-ROCE-6		RDMA write操作，双向发送数据	codecase.sh	codecase5	on	
 #N/A		ST-ROCE-7		带立即数的RDMA write操作测试，双向发送数据	codecase.sh	codecase6	on	
@@ -74,4 +74,3 @@ PV-366	R.ROCE.N006.B	ST-ROCE-85	Verify rocee is Linux platform device	Check plat
 PV-1482	R.ROCE.F030.A	ST-ROCE-89	Verify RoCEE's basic function on XGE port	send on XGE port	SupportXGE.sh	Send_On_XGE	on	
 PV-1482	R.ROCE.F030.A	ST-ROCE-90		RDMA read on XGE port	SupportXGE.sh	Read_On_XGE	on	
 PV-1482	R.ROCE.F030.A	ST-ROCE-91		RDMA write on XGE port	SupportXGE.sh	Write_On_XGE	on	
-ort	SupportXGE.sh	Write_On_XGE	on	
