@@ -99,13 +99,13 @@ function xge_query_link_state()
         enableok=0
         disableok=0
         ssh root@${BACK_IP} "ifconfig ${remote_fibre1} down"
-        LinkState=$(ethtool ${local_fibre1} | grep "Link detected:" | awk -F":" '{print $NF}' tr -d ' ')
+        LinkState=$(ethtool ${local_fibre1} | grep "Link detected:" | awk -F":" '{print $NF}' | tr -d ' ')
         if [ "$LinkState" = "no" ];then
             enableok=1
         fi
         
         ssh root@${BACK_IP} "ifconfig ${remote_fibre1} up"
-        LinkState=$(ethtool ${local_fibre1} | grep "Link detected:" | awk -F":" '{print $NF}' tr -d ' ')
+        LinkState=$(ethtool ${local_fibre1} | grep "Link detected:" | awk -F":" '{print $NF}' |  tr -d ' ')
         if [ "$LinkState" = "no" ];then
             disableok=1
         fi
