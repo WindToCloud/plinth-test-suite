@@ -15,55 +15,55 @@ port=18515,servername:(null)!
  hr_qp->port_num= 0x1
 config->gid_index = 0
 
- [prtest_set_up_connection_n : 298] my_dest->vaddr = 0xffff9580b010
+ [prtest_set_up_connection_n : 298] my_dest->vaddr = 0xffff93f22010
  [prtest_set_up_connection_n : 299] my_dest->rkey  = 0x600
- [prtest_set_up_connection_n : 300] my_dest->psn   = 0x5560a6
+ [prtest_set_up_connection_n : 300] my_dest->psn   = 0xb2e9b0
 dest lid      out_reads qpn        psn         rkey     vaddr
-my : 0        16        32       0x5560a6    0x600      0xffff9580b010
-rem: 0        16        32       0x808766    0x600      0xffff8828b010
+my : 0        16        32       0xb2e9b0    0x600      0xffff93f22010
+rem: 0        16        252      0x69906a    0x600      0xffffb8860010
  my_GID:254:128:00:00:00:00:00:00:248:134:87:255:254:190:116:23
 rem_GID:254:128:00:00:00:00:00:00:194:168:02:255:254:240:00:00
 
  modify qp rtr
  modify qp rts
  hand shake
- data_len[0]= 0x80000, mr[0] = 0xffff9570b010, mr[1] = 0xffff9580b010, buf[0]=0xffff9570b010, buf[0]+size/2 = 0xffff9580b010
+ data_len[0]= 0x80000, mr[0] = 0xffff93e22010, mr[1] = 0xffff93f22010, buf[0]=0xffff93e22010, buf[0]+size/2 = 0xffff93f22010
  memset opcode data ok.
-0x  0xffff9580b010: 03000000 C6230B00 02000000 73480300  .....#......sH..
-0x  0xffff9580b020: 03000000 FF5C0900 01000000 EC580500  .....\.......X..
-0x  0xffff9580b030: 04000000 CD7C0800 02000000 ABD70E00  .....|..........
-0x  0xffff9580b040: 00000000 FB1E0700 03000000 46E10500  ............F...
-0x  0xffff9580b050: 00000000 C2620000 02000000 F8270100  .....b.......'..
-0x  0xffff9580b060: 01000000 E8E90600 02000000 8D430F00  .............C..
-0x  0xffff9580b070: 02000000 5A250200 02000000 63720D00  ....Z%......cr..
-0x  0xffff9580b080: 02000000 9FD70F00 04000000 9A070800  ................
+0x  0xffff93f22010: 03000000 C6230B00 02000000 73480300  .....#......sH..
+0x  0xffff93f22020: 03000000 FF5C0900 01000000 EC580500  .....\.......X..
+0x  0xffff93f22030: 04000000 CD7C0800 02000000 ABD70E00  .....|..........
+0x  0xffff93f22040: 00000000 FB1E0700 03000000 46E10500  ............F...
+0x  0xffff93f22050: 00000000 C2620000 02000000 F8270100  .....b.......'..
+0x  0xffff93f22060: 01000000 E8E90600 02000000 8D430F00  .............C..
+0x  0xffff93f22070: 02000000 5A250200 02000000 63720D00  ....Z%......cr..
+0x  0xffff93f22080: 02000000 9FD70F00 04000000 9A070800  ................
 
- PS(va,key,len) = (0xffff9580b010,0x600,0x80000)
+ PS(va,key,len) = (0xffff93f22010,0x600,0x80000)
  post send ok.
  ******************send opcode data ok**************config->gid_index = 0
 
- [prtest_set_up_connection_n : 298] my_dest->vaddr = 0xffff9550a010
+ [prtest_set_up_connection_n : 298] my_dest->vaddr = 0xffff93c21010
  [prtest_set_up_connection_n : 299] my_dest->rkey  = 0x700
- [prtest_set_up_connection_n : 300] my_dest->psn   = 0xfeb498
+ [prtest_set_up_connection_n : 300] my_dest->psn   = 0x2909da
 dest lid      out_reads qpn        psn         rkey     vaddr
-my : 0        16        32       0xfeb498    0x700      0xffff9550a010
-rem: 0        16        32       0x2eb458    0x700      0xffff87f8a010
+my : 0        16        32       0x2909da    0x700      0xffff93c21010
+rem: 0        16        252      0x31230c    0x700      0xffffb855f010
  my_GID:254:128:00:00:00:00:00:00:248:134:87:255:254:190:116:23
 rem_GID:254:128:00:00:00:00:00:00:194:168:02:255:254:240:00:00
 
- first send data addr:0xffff9580b010
+ first send data addr:0xffff93f22010
  data_len= 0xb23c6, test_rad[0] = 0x3
  [prtest_run_write-2134]send_flags = 0x0
  [prtest_run_write-2139]send_flags = 0x0
- first send data addr:0xffff9580b018
+ first send data addr:0xffff93f22018
  data_len= 0x62c2, test_rad[1] = 0x2
  [prtest_run_read-2047]send_flags = 0x0
  [prtest_run_read-2058]send_flags = 0x0
- first send data addr:0xffff9580b020
+ first send data addr:0xffff93f22020
  data_len= 0x45d32, test_rad[2] = 0x3
  [prtest_run_write-2134]send_flags = 0x0
  [prtest_run_write-2139]send_flags = 0x0
- first send data addr:0xffff9580b028
+ first send data addr:0xffff93f22028
  data_len= 0x38cb2, test_rad[3] = 0x1
- first send data addr:0xffff9580b030
+ first send data addr:0xffff93f22030
  data_len= 0x6dde9, test_rad[4] = 0x4######### total: 40  , pass: 1  , failed :0   ############

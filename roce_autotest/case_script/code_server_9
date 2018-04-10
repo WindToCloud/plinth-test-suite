@@ -8,36 +8,36 @@ port=18515,servername:(null)!
  [main : 20901] ibv_open_device ok! Link type is Ethernet
  Mtu : 256
 
- addr = 0xffff8da3a010,lkey = rkey = 0x500
- addr = 0xffff8db3a010,lkey = rkey = 0x600hr_qp->port_num= 0x1
+ addr = 0xffffba832010,lkey = rkey = 0x500
+ addr = 0xffffba932010,lkey = rkey = 0x600hr_qp->port_num= 0x1
 config->gid_index = 0
 
- [prtest_set_up_connection_n : 298] my_dest->vaddr = 0xffff8da3a010
+ [prtest_set_up_connection_n : 298] my_dest->vaddr = 0xffffba832010
  [prtest_set_up_connection_n : 299] my_dest->rkey  = 0x500
- [prtest_set_up_connection_n : 300] my_dest->psn   = 0x68d7d
+ [prtest_set_up_connection_n : 300] my_dest->psn   = 0x178307
 dest lid      out_reads qpn        psn         rkey     vaddr
-my : 0        16        41       0x68d7d     0x500      0xffff8da3a010
-rem: 0        16        41       0xe7d1c2    0x500      0xffff95d57010
+my : 0        16        41       0x178307    0x500      0xffffba832010
+rem: 0        16        261      0xbc4055    0x500      0xffff8253b010
  my_GID:254:128:00:00:00:00:00:00:248:134:87:255:254:190:116:23
 rem_GID:254:128:00:00:00:00:00:00:194:168:02:255:254:240:00:00
 
- PS(va,key,len) = (0xffff8da3a010,0x500,0xb23c6)
- PS(rva,rkey)   = (0xffff95e57010,0x600)
+ PS(va,key,len) = (0xffffba832010,0x500,0xb23c6)
+ PS(rva,rkey)   = (0xffff8263b010,0x600)
  [prtest_run_write-2134]send_flags = 0x0
  [prtest_run_write-2139]send_flags = 0x0
- PS(va,key,len) = (0xffff8da3a010,0x500,0xc9869)
- PS(rva,rkey)   = (0xffff95e57010,0x600)
+ PS(va,key,len) = (0xffffba832010,0x500,0xc9869)
+ PS(rva,rkey)   = (0xffff8263b010,0x600)
  [prtest_run_write-2134]send_flags = 0x0
  [prtest_run_write-2139]send_flags = 0x0
- PS(va,key,len) = (0xffff8da3a010,0x500,0x34873)
- PS(rva,rkey)   = (0xffff95e57010,0x600)
+ PS(va,key,len) = (0xffffba832010,0x500,0x34873)
+ PS(rva,rkey)   = (0xffff8263b010,0x600)
  [prtest_run_write-2134]send_flags = 0x0
  [prtest_run_write-2139]send_flags = 0x0
- PS(va,key,len) = (0xffff8da3a010,0x500,0xdc51)
- PS(rva,rkey)   = (0xffff95e57010,0x600)
+ PS(va,key,len) = (0xffffba832010,0x500,0xdc51)
+ PS(rva,rkey)   = (0xffff8263b010,0x600)
  [prtest_run_write-2134]send_flags = 0x0
  [prtest_run_write-2139]send_flags = 0x0
- PS(va,key,len) = (0xffff8da3a010,0x500,0x95cff)
- PS(rva,rkey)   = (0xffff95e57010,0x600)
+ PS(va,key,len) = (0xffffba832010,0x500,0x95cff)
+ PS(rva,rkey)   = (0xffff8263b010,0x600)
  [prtest_run_write-2134]send_flags = 0x0
  [prtest_run_write-2139]send_flags = 0x0######### total: 40  , pass: 1  , failed :0   ############

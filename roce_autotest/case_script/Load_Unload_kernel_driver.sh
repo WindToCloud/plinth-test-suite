@@ -50,6 +50,10 @@ function Unload_kernel_driver()
 		MESSAGE="FAIL\tUnload RoCE's kernel driver failed, please check ${FUNCNAME}.log"
 	fi
 
+	insmod /home/kernel/output/hns-roce.ko
+	insmod /home/kernel/output/hns-roce-hw-v1.ko
+
+
 }
 
 function main()
