@@ -132,7 +132,7 @@ sleep 20
 sed -i 's/CONFIG_VLAN_8021Q=m/CONFIG_VLAN_8021Q=y/g' arch/arm64/configs/defconfig
 
 #
-sed -i '$a\CONFIG_IXGBE_DCB=y' arch/arm64/configs/plinth-config
+#sed -i '$a\CONFIG_IXGBE_DCB=y' arch/arm64/configs/plinth-config
 
 cat arch/arm64/configs/defconfig | grep  CONFIG_VLAN_8021Q
 
