@@ -129,7 +129,7 @@ COMMON_DEFAULT_CLIENT_IP="192.168.3.197"
 
 #The repo address of kernel
 KERNEL_GITADDR="https://github.com/hisilicon/kernel-dev.git"
-BRANCH_NAME="release-plinth-4.16.1-it20"
+BRANCH_NAME="release-plinth-4.16.1"
 
 #boot disk
 BOOT_DISK="/dev/sda1"

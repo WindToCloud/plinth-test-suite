@@ -5,18 +5,18 @@
             "metadata": {
                 "boot.type": "ACPI",
                 "image.type": "kernel-ci",
-                "image.url": "http://localhost:8083/plinth/release-plinth-4.16.1+_+091a72e6f276815dea552f219940cdaccf2f25bc/arm64-defconfig+plinth-config/",
+                "image.url": "http://localhost:8083/plinth/release-plinth-4.16.2+_+14491cb14e19b3c953362383f572d8195f7edc41/arm64-defconfig+plinth-config/",
                 "kernel.defconfig": "arm64-defconfig+plinth-config",
                 "kernel.endian": "little",
                 "kernel.tree": "plinth",
-                "kernel.version": "release-plinth-4.16.1+_+091a72e6f276815dea552f219940cdaccf2f25bc",
+                "kernel.version": "release-plinth-4.16.2+_+14491cb14e19b3c953362383f572d8195f7edc41",
                 "platform.fastboot": "false",
                 "test.plan": "luojiaxing-weekly-test"
             },
             "parameters": {
                 "bootloadertype": "ipxe",
-                "dtb": "http://localhost:8083/plinth/release-plinth-4.16.1+_+091a72e6f276815dea552f219940cdaccf2f25bc/arm64-defconfig+plinth-config/dtbs/hisilicon/hip07-d05.dtb",
-                "kernel": "http://localhost:8083/plinth/release-plinth-4.16.1+_+091a72e6f276815dea552f219940cdaccf2f25bc/arm64-defconfig+plinth-config/Image",
+                "dtb": "http://localhost:8083/plinth/release-plinth-4.16.2+_+14491cb14e19b3c953362383f572d8195f7edc41/arm64-defconfig+plinth-config/dtbs/hisilicon/hip07-d05.dtb",
+                "kernel": "http://localhost:8083/plinth/release-plinth-4.16.2+_+14491cb14e19b3c953362383f572d8195f7edc41/arm64-defconfig+plinth-config/Image",
                 "target_type": "ubuntu"
             }
         },
@@ -64,8 +64,7 @@
             }
         },
 
-
-        {
+ {
             "command": "lava_test_shell",
             "parameters": {
                 "testdef_repos": [
@@ -80,7 +79,7 @@
                 "timeout": 172800
             }
         },
-      
+        
         {
             "command": "lava_test_shell",
             "parameters": {
