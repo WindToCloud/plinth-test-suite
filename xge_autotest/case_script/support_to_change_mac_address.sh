@@ -65,7 +65,7 @@ function ge_set_standard_mac_address()
 {
     Test_Case_Title="ge_set_standard_mac_address"
     ifconfig ${local_tp1} up; ifconfig ${local_tp1} ${local_tp1_ip}
-    ssh root@${BACK_IP} "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; ping ${local_tp1_ip} -c 5; sleep 5"
+    ssh root@${BACK_IP} "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5"
     MESSAGE="PASS"
 
     oldMacAddress=$(ifconfig ${local_tp1} | grep "HWaddr" | awk '{print $NF}')
@@ -77,7 +77,7 @@ function ge_set_standard_mac_address()
     #newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"00"/g)
     ifconfig ${local_tp1} hw ether ${newMacAddress}
     sleep $ARP_MAC_UPDATE_TIME
-    ssh root@${BACK_IP} "ping ${local_tp1_ip} -c 10;sleep 5;"
+    ssh root@${BACK_IP} "ping ${local_tp1_ip} -c 10 &> /dev/null;sleep 5;"
     newMacAddress1=$(ssh root@${BACK_IP} "arp -a | grep -w ${local_tp1_ip} | awk -F'at' '{print \$NF}' | awk '{print \$1}'")
     echo $newMacAddress1
     echo $newMacAddress

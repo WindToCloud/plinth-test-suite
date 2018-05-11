@@ -1,9 +1,1 @@
 Module Name,JIRA ID,Designed Requirement ID,Test Case ID,Test Item,Test Case Title,Test Result,Remark
-PV-434	R.HNS.F001.A	ST_GE_PORT_CTRL_000	GE网口的打开和关闭接口	GE初始化后打开和关闭网口	enable_and_disable_interface.sh	ge_enable_and_disable_interface	off
-PV-434	R.HNS.F001.A	ST_XGE_PORT_CTRL_000	XGE/LGE网口的打开和关闭接口	XGE初始化后打开和关闭网口	enable_and_disable_interface.sh	xge_enable_and_disable_interface	off
-unimplemented automated test cases.
-unimplemented automated test cases.
-PV-435	R.HNS.F002.A	ST_GE_TX_RX_01	GE基本收发报文功能	GE网口与对端ping操作	rx_tx_functionality.sh	ge_two_ends_receiving_and_sending	offunimplemented automated test cases.
-PV-435	R.HNS.F002.A	ST_XGE_TX_RX_01	XGE基本收发报文功能	XGE网口与对端ping操作	rx_tx_functionality.sh	xge_two_ends_receiving_and_sending	offunimplemented automated test cases.
-unimplemented automated test cases.
-unimplemented automated test cases.
