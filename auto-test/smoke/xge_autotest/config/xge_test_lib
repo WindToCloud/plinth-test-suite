@@ -85,9 +85,9 @@ function init_net_export()
          fi
     done
 
-    local_tp0=${local_tp_list[1]}
+    local_tp1=${local_tp_list[1]}
     echo "The First TP port is "${local_tp0}
-    local_tp1=${local_tp_list[0]}
+    local_tp0=${local_tp_list[0]}
     echo "The second TP port is "${local_tp1}
 
     local_fibre1=${local_fibre_list[1]}
@@ -138,8 +138,8 @@ function init_net_export()
          fi
     done
 
-    remote_tp0=${remote_tp_list[1]}
-    remote_tp1=${remote_tp_list[0]}
+    remote_tp1=${remote_tp_list[1]}
+    remote_tp0=${remote_tp_list[0]}
     echo "The remote Tp port is as blow: "
     echo "The remote netport 0 is "${remote_tp0}
     echo "The remote netport 1 is "${remote_tp1}

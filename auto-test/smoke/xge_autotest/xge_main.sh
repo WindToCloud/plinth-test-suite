@@ -71,16 +71,16 @@ writeLogHeader
 
 #ifconfig IP
 #initLocalIP
-LOCAL_IP="192.168.1.19"
+LOCAL_IP="192.168.50.58"
 echo ${LOCAL_IP}
 
 #init_client_ip
 
-BACK_IP="192.168.1.130"
+BACK_IP="192.168.50.66"
 echo "The client ip is "${BACK_IP}
 
 #set passwd
-#setTrustRelation
+setTrustRelation
 
 #ifconfig net export
 init_net_export
