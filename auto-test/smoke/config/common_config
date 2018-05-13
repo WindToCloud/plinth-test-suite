@@ -1,0 +1,140 @@
+#!/bin/bash
+
+# Automated script execution environment, 1 - Laboratory environment, 0 - board environment, Default is 1
+RUNING_ENV_TYPE=1
+
+# Module test run switch, 1 - open test case, 0 - close test case, Default is 0.
+RUN_SAS=0
+RUN_XGE=0
+RUN_PCIE=0
+RUN_ROCE=0
+
+# IMAGE Configuration item.
+IMAGE_FILE=common_tool/Image
+IMAGE_DIR_PATH=~/tftp
+
+## Common Configuration item.
+SERVER_IP=
+SERVER_USER=
+SERVER_PASSWD=
+# Single board environment username and password.
+SYSTEM_USER=root
+SYSTEM_PASSWD=root
+
+
+REPORT_FILE=data/report.csv
+AUTOTEST_ZIP_FILE=autotest.tar.gz
+# Setting up a single board default startup system.
+BOARD_GRUB_DEFAULT=
+# The SAS module does not need to be configured.
+BACK_BOARD_GRUB_DEFAULT=
+
+# SAS Module Configuration item.
+SAS_MAIN=sas_autotest/sas_main.sh
+SAS_REPORT_FILE=sas_report.csv
+# Start single board number.
+SAS_BORADNO=
+
+# HNS Module configuration file.
+XGE_MODULE_CFG_FILE="./xge_autotest/config/xge_test_config"
+# HNS Module Configuration item.
+XGE_MAIN=xge_autotest/xge_main.sh
+XGE_REPORT_FILE=xge_report.csv
+# Start single board number.
+XGE_BORADNO=
+BACK_XGE_BORADNO=
+
+# PCIE Module configuration file.
+PCIE_MODULE_CFG_FILE="./pcie_autotest/config/pcie_test_config"
+# PCIE Module Configuration item.
+PCIE_MAIN=pcie_autotest/pcie_main.sh
+PCIE_REPORT_FILE=pcie_report.csv
+# Start single board number.
+PCIE_BORADNO=
+BACK_PCIE_BORADNO=
+
+# RoCE Module configuration file.
+ROCE_MODULE_CFG_FILE="./roce_autotest/config/roce_test_config"
+# RoCE Module Configuration item.
+ROCE_MAIN=roce_autotest/roce_main.sh
+ROCE_REPORT_FILE=roce_report.csv
+# Start single board number.
+ROCE_BORADNO=
+BACK_ROCE_BORADNO=
+
+####################################################################################
+#add by hezhongyan
+##################
+#init
+export g_IFS0=${IFS}
+export g__t=$'\t'
+export g__n=$'\n'
+export g__r=$'\r'
+
+export g_argFindMaxDepth="-maxdepth 5"
+
+export g_defVariablesOneTime=
+
+export g_drTmp=~/tmp
+mkdir -p ${g_drTmp}
+
+#####################
+export g_sSplit=$'\t'
+export g_statusPass=[Pass]
+export g_nPass=0
+export g_statusFail=[Fail]
+export g_nFail=1
+export g_statusBlock=[Block]
+export g_nBlock=2
+export g_statusNone=[None]
+export g_nNone=10
+export g_statusClose=[Close]
+export g_statusUndef=[Undef]
+
+###########
+#删除状态表, 重新生成;
+export g_bTCsReset=true
+
+export g_sLevelRun="
+    on
+"
+
+####################################################################################
+#add by luojiaxing
+##################
+#add lava-test-case into bin path
+
+#get the script path of this file.like lava-d03/tests/0_98feter/config
+#the target file is lacate in  lava-d03/tests/0_98feter/ci_interface/if/AddPath.py
+CONFIG_LIB_TMP=$(cd "`dirname $0`" ; pwd)
+echo ${CONFIG_LIB_TMP}
+python ${CONFIG_LIB_TMP}/../ci_interface/if/AddPath.py
+
+#MAC of DHCP server
+DHCP_SERVER_MAC_ADDR="e8:4d:d0:c0:d4:66"
+CLIENT_SERVER_MAC_ADDR="c0:a8:02:f0:00:04"
+BOARD_159_MAC_ADDR="ee:44:ed:2a:9a:e2"
+
+#User info of DHCP
+DHCP_SERVER_USER="luojiaxing"
+DHCP_SERVER_PASS="ljx12\#\$" 
+
+COMMON_LOCAL_IP="0.0.0.0"
+COMMON_CLIENT_IP="0.0.0.0"
+
+#Default DHCP server ip. 
+#prepare for DHCP ip no found
+COMMON_DEFAULT_DHCP_IP="192.168.3.100"
+COMMON_DEFAULT_CLIENT_IP="192.168.3.197"
+
+#The repo address of kernel
+KERNEL_GITADDR="https://github.com/hisilicon/kernel-dev.git"
+BRANCH_NAME="release-plinth-4.16.1_it20"
+
+#boot disk
+BOOT_DISK="/dev/sda1"
+
+#The MACaddr list of Board which support this test suite
+TESTBOARD_MAC_LIST="$BOARD_159_MAC_ADDR"
+####################################################################################
+
