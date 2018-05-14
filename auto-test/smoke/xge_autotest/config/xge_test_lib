@@ -76,6 +76,18 @@ function init_net_export()
 	         echo "The name of "${i}" is renamed as "${eth_map[${i}]}
 	 fi
 
+    a=$[RANDOM%201]
+    main_eth="eth3"
+    # if [ x"${eth_map[${main_eth}]}" = x"${eth_map[${i}]}" ]
+    if [ x"${main_eth}" = x"${eth_map[${i}]}" ]
+    then
+        echo "this eth is not change!"
+    else
+        ifconfig ${eth_map[${i}]} "192.168.${a}.209"
+        # ifconfig enp125s0f0 "192.168.${a}.209"
+        echo 'y'
+    fi
+
 	 #we update the TP/FIBRE info intolocal_tp/fibre_list
          ethtool ${eth_map[${i}]} | grep "TP"
          if [ $? = 0 ];then
@@ -128,6 +140,14 @@ function init_net_export()
 	         eth_map_r[${i}]=${tmp}
 	         echo "The name of remote "${i}" is renamed as "${eth_map_r[${i}]}
 	 fi
+
+    if [ x"${eth_map_r[${main_eth}]}" = x"${eth_map_r[${i}]}" ]
+    then
+        echo "this eth is not change!"
+    else
+        ssh root@${BACK_IP} "ifconfig ${eth_map_r[${i}]} '192.168.${a}.219'"
+        echo 'N'
+    fi
 
 	 #we update the TP/FIBRE info intolocal_tp/fibre_list
          tmp=`ssh root@${BACK_IP} 'ethtool '${eth_map_r[${i}]}' | grep "TP"'`

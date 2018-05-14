@@ -69,10 +69,10 @@ function ge_set_standard_mac_address()
     MESSAGE="PASS"
 
     oldMacAddress=$(ifconfig ${local_tp1} | grep "HWaddr" | awk '{print $NF}')
-    if [ ${oldMacAddress:15:2} = "00" ];then
+    if [ ${oldMacAddress:15:2} = "44" ];then
         newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"22"/g)
     else
-        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"00"/g)
+        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"44"/g)
     fi
     #newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"00"/g)
     ifconfig ${local_tp1} hw ether ${newMacAddress}
@@ -171,10 +171,10 @@ function xge_set_standard_mac_address()
     MESSAGE="PASS"
 
     oldMacAddress=$(ifconfig ${local_fibre2} | grep "HWaddr" | awk '{print $NF}')
-    if [ ${oldMacAddress:15:2} = "00" ];then
+    if [ ${oldMacAddress:15:2} = "44" ];then
         newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"22"/g)
     else
-        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"00"/g)
+        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"44"/g)
     fi
     #newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"00"/g)
     ifconfig ${local_fibre2} hw ether ${newMacAddress}
