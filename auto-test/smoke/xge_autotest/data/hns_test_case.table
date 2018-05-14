@@ -1,18 +1,19 @@
-PV-434	R.HNS.F001.A	ST_GE_PORT_CTRL_000	GEÍø¿ÚµÄ´ò¿ªºÍ¹Ø±Õ½Ó¿Ú	GE³õÊ¼»¯ºó´ò¿ªºÍ¹Ø±ÕÍø¿Ú	enable_and_disable_interface.sh	ge_enable_and_disable_interface	on
-PV-434	R.HNS.F001.A	ST_XGE_PORT_CTRL_000	XGE/LGEÍø¿ÚµÄ´ò¿ªºÍ¹Ø±Õ½Ó¿Ú	XGE³õÊ¼»¯ºó´ò¿ªºÍ¹Ø±ÕÍø¿Ú	enable_and_disable_interface.sh	xge_enable_and_disable_interface	on
+PV-434	R.HNS.F001.A	ST_GE_PORT_CTRL_000	GEç½‘å£çš„æ‰“å¼€å’Œå…³é—­æ¥å£	GEåˆå§‹åŒ–åæ‰“å¼€å’Œå…³é—­ç½‘å£	enable_and_disable_interface.sh	ge_enable_and_disable_interface	on
+PV-434	R.HNS.F001.A	ST_XGE_PORT_CTRL_000	XGE/LGEç½‘å£çš„æ‰“å¼€å’Œå…³é—­æ¥å£	XGEåˆå§‹åŒ–åæ‰“å¼€å’Œå…³é—­ç½‘å£	enable_and_disable_interface.sh	xge_enable_and_disable_interface	on
 
 
-PV-435	R.HNS.F002.A	ST_GE_TX_RX_01	GE»ù±¾ÊÕ·¢±¨ÎÄ¹¦ÄÜ	GEÍø¿ÚÓë¶Ô¶Ëping²Ù×÷	rx_tx_functionality.sh	ge_two_ends_receiving_and_sending	on
-PV-435	R.HNS.F002.A	ST_XGE_TX_RX_01	XGE»ù±¾ÊÕ·¢±¨ÎÄ¹¦ÄÜ	XGEÍø¿ÚÓë¶Ô¶Ëping²Ù×÷	rx_tx_functionality.sh	xge_two_ends_receiving_and_sending	on
+PV-435	R.HNS.F002.A	ST_GE_TX_RX_01	GEåŸºæœ¬æ”¶å‘æŠ¥æ–‡åŠŸèƒ½	GEç½‘å£ä¸å¯¹ç«¯pingæ“ä½œ	rx_tx_functionality.sh	ge_two_ends_receiving_and_sending	on
+PV-435	R.HNS.F002.A	ST_XGE_TX_RX_01	XGEåŸºæœ¬æ”¶å‘æŠ¥æ–‡åŠŸèƒ½	XGEç½‘å£ä¸å¯¹ç«¯pingæ“ä½œ	rx_tx_functionality.sh	xge_two_ends_receiving_and_sending	on
 
 
-PV-438	R.HNS.F005.A	ST_GE_VLAN_01	GEÍø¿ÚVlan»ù±¾¹¦ÄÜ	GE Vlan ping°ü¹¦ÄÜÕı³£	vlan_tagged_traffic_support.sh	ge_set_vlan	on
-PV-438	R.HNS.F005.A	ST_XGE_VLAN_01	XGE/LGEÍø¿ÚVlan»ù±¾¹¦ÄÜ	XGE Vlan ping°ü¹¦ÄÜÕı³£	vlan_tagged_traffic_support.sh	xge_set_vlan	on
+
+PV-438	R.HNS.F005.A	ST_GE_VLAN_01	GEç½‘å£VlanåŸºæœ¬åŠŸèƒ½	GE Vlan pingåŒ…åŠŸèƒ½æ­£å¸¸	vlan_tagged_traffic_support.sh	ge_set_vlan	on
+PV-438	R.HNS.F005.A	ST_XGE_VLAN_01	XGE/LGEç½‘å£VlanåŸºæœ¬åŠŸèƒ½	XGE Vlan pingåŒ…åŠŸèƒ½æ­£å¸¸	vlan_tagged_traffic_support.sh	xge_set_vlan	on
 
 
-PV-443	R.HNS.F010.A	SET_GE_SET_MAC_01		GE±ê×¼macµØÖ·ÉèÖÃ³É¹¦	support_to_change_mac_address.sh	ge_set_standard_mac_address	on
-PV-443	R.HNS.F010.A	SET_XGE_SET_MAC_01		XGE±ê×¼macµØÖ·ÉèÖÃ³É¹¦	support_to_change_mac_address.sh	xge_set_standard_mac_address	on
+PV-443	R.HNS.F010.A	SET_GE_SET_MAC_01		GEæ ‡å‡†macåœ°å€è®¾ç½®æˆåŠŸ	support_to_change_mac_address.sh	ge_set_standard_mac_address	on
+PV-443	R.HNS.F010.A	SET_XGE_SET_MAC_01		XGEæ ‡å‡†macåœ°å€è®¾ç½®æˆåŠŸ	support_to_change_mac_address.sh	xge_set_standard_mac_address	on
 
 
-PV-446	R.HNS.F013.A	ST_GE_IPV6_01	GEÍø¿ÚIPv6»ù±¾¹¦ÄÜ	GE IPv6 ping°ü¹¦ÄÜÕı³£	support_to_ipv6.sh	ge_ipv6_ping_pack	on
-PV-446	R.HNS.F013.A	ST_XGE_IPV6_01	XGEÍø¿ÚIPv6»ù±¾¹¦ÄÜ	XGE IPv6 ping°ü¹¦ÄÜÕı³£	support_to_ipv6.sh	xge_ipv6_ping_pack	on
+PV-446	R.HNS.F013.A	ST_GE_IPV6_01	GEç½‘å£IPv6åŸºæœ¬åŠŸèƒ½	GE IPv6 pingåŒ…åŠŸèƒ½æ­£å¸¸	support_to_ipv6.sh	ge_ipv6_ping_pack	on
+PV-446	R.HNS.F013.A	ST_XGE_IPV6_01	XGEç½‘å£IPv6åŸºæœ¬åŠŸèƒ½	XGE IPv6 pingåŒ…åŠŸèƒ½æ­£å¸¸	support_to_ipv6.sh	xge_ipv6_ping_pack	on
