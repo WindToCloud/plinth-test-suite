@@ -48,6 +48,7 @@ COMMON_TOOL_PATH="common_tool"
 TEST_CASE_PATH="xge_autotest/case_script"
 
 #ifconfig net export IP
+main_eth="eth3"   #do not change this eth ip
 local_tp1_ip="192.168.101.10"
 local_fibre1_ip="192.168.111.110"
 local_fibre2_ip="192.168.121.210"
