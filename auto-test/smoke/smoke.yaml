@@ -1,0 +1,27 @@
+metadata:
+    format: Lava-Test Test Definition 1.0
+    name: smoke-tests-basic
+    description: "Run basic smoke tests."
+    maintainer:
+        - 1191097880@qq.com
+        - luojiaxing@huawei.com
+    os:
+        - ubuntu
+    scope:
+        - functional
+    devices:
+        - d06
+
+params:
+    SKIP_INSTALL: "False"
+
+run:
+    steps:
+        - cd ./auto-test/smoke/
+        - bash ./xge_autotest/xge_main.sh
+        - cd -
+parse:
+    pattern: "^(?!.+ED)(?P<test_case_id>\\w+)\\s+(?P<result>\\w+)\\s+\\d$"
+    fixupdict:
+        FAIL: fail
+        PASS: pass
