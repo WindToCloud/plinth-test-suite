@@ -17,3 +17,22 @@ unimplemented automated test cases.
 unimplemented automated test cases.
 PV-446	R.HNS.F013.A	ST_GE_IPV6_01	GE����IPv6��������	GE IPv6 ping����������	support_to_ipv6.sh	ge_ipv6_ping_pack	onPASS
 PV-446	R.HNS.F013.A	ST_XGE_IPV6_01	XGE����IPv6��������	XGE IPv6 ping����������	support_to_ipv6.sh	xge_ipv6_ping_pack	onPASS
+PV-434	R.HNS.F001.A	ST_GE_PORT_CTRL_000	GE网口的打开和关闭接口	GE初始化后打开和关闭网口	enable_and_disable_interface.sh	ge_enable_and_disable_interface	onFAIL	Net export up/down , Ping packet failure
+PV-434	R.HNS.F001.A	ST_XGE_PORT_CTRL_000	XGE/LGE网口的打开和关闭接口	XGE初始化后打开和关闭网口	enable_and_disable_interface.sh	xge_enable_and_disable_interface	onFAIL	Net export up/down , Ping packet failure
+PV-435	R.HNS.F002.A	ST_GE_TX_RX_01	GE基本收发报文功能	GE网口与对端ping操作	rx_tx_functionality.sh	ge_two_ends_receiving_and_sending	onFAIL	 Ping packet failure
+PV-435	R.HNS.F002.A	ST_XGE_TX_RX_01	XGE基本收发报文功能	XGE网口与对端ping操作	rx_tx_functionality.sh	xge_two_ends_receiving_and_sending	onFAIL	 Ping packet failure
+PV-438	R.HNS.F005.A	ST_GE_VLAN_01	GE网口Vlan基本功能	GE Vlan ping包功能正常	vlan_tagged_traffic_support.sh	ge_set_vlan	onFAIL	 vlan Ping packet failure
+PV-434	R.HNS.F001.A	ST_GE_PORT_CTRL_000	GE网口的打开和关闭接口	GE初始化后打开和关闭网口	enable_and_disable_interface.sh	ge_enable_and_disable_interface	onFAIL	Net export up/down , Ping packet failure
+PV-443	R.HNS.F010.A	SET_GE_SET_MAC_01		GE标准mac地址设置成功	support_to_change_mac_address.sh	ge_set_standard_mac_address	onPASS
+PV-443	R.HNS.F010.A	SET_XGE_SET_MAC_01		XGE标准mac地址设置成功	support_to_change_mac_address.sh	xge_set_standard_mac_address	onPASS
+Punimplemented automated test cases.
+PV-434	R.HNS.F001.A	ST_GE_PORT_CTRL_000	GE网口的打开和关闭接口	GE初始化后打开和关闭网口	enable_and_disable_interface.sh	ge_enable_and_disable_interface	onFAIL	Net export up/down , Ping packet failure
+PV-434	R.HNS.F001.A	ST_XGE_PORT_CTRL_000	XGE/LGE网口的打开和关闭接口	XGE初始化后打开和关闭网口	enable_and_disable_interface.sh	xge_enable_and_disable_interface	onFAIL	Net export up/down , Ping packet failure
+PV-435	R.HNS.F002.A	ST_GE_TX_RX_01	GE基本收发报文功能	GE网口与对端ping操作	rx_tx_functionality.sh	ge_two_ends_receiving_and_sending	onFAIL	 Ping packet failure
+PV-435	R.HNS.F002.A	ST_XGE_TX_RX_01	XGE基本收发报文功能	XGE网口与对端ping操作	rx_tx_functionality.sh	xge_two_ends_receiving_and_sending	onPASS
+PV-438	R.HNS.F005.A	ST_GE_VLAN_01	GE网口Vlan基本功能	GE Vlan ping包功能正常	vlan_tagged_traffic_support.sh	ge_set_vlan	onFAIL	 vlan Ping packet failure
+PV-438	R.HNS.F005.A	ST_XGE_VLAN_01	XGE/LGE网口Vlan基本功能	XGE Vlan ping包功能正常	vlan_tagged_traffic_support.sh	xge_set_vlan	onFAIL	 vlan Ping packet failure
+PV-443	R.HNS.F010.A	SET_GE_SET_MAC_01		GE标准mac地址设置成功	support_to_change_mac_address.sh	ge_set_standard_mac_address	offFAIL	 vlan Ping packet failure
+PV-443	R.HNS.F010.A	SET_XGE_SET_MAC_01		XGE标准mac地址设置成功	support_to_change_mac_address.sh	xge_set_standard_mac_address	offFAIL	 vlan Ping packet failure
+PV-446	R.HNS.F013.A	ST_GE_IPV6_01	GE网口IPv6基本功能	GE IPv6 ping包功能正常	support_to_ipv6.sh	ge_ipv6_ping_pack	onPASS
+PV-446	R.HNS.F013.A	ST_XGE_IPV6_01	XGE网口IPv6基本功能	XGE IPv6 ping包功能正常	support_to_ipv6.sh	xge_ipv6_ping_pack	onPASS

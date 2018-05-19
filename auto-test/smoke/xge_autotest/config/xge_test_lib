@@ -54,9 +54,9 @@ function init_net_export()
 
     declare -A eth_map
     eth_map=(
-    ["eth0"]="eth0"
-    ["eth1"]="eth1"
-    ["eth2"]="eth2"
+    ["eth0"]="enp125s0f0"
+    ["eth1"]="enp125s0f1"
+    ["eth2"]="enp125s0f2"
     ["eth3"]="eth3"
     )
 
@@ -119,9 +119,9 @@ function init_net_export()
     #done
     declare -A eth_map_r
     eth_map_r=(
-    ["eth0"]="eth0"
-    ["eth1"]="eth1"
-    ["eth2"]="eth2"
+    ["eth0"]="enp125s0f0"
+    ["eth1"]="enp125s0f1"
+    ["eth2"]="enp125s0f2"
     ["eth3"]="eth3"
     )
 
