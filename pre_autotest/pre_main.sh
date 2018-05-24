@@ -17,7 +17,7 @@ do
 	if [ x"${tmpMAC}" = x"${mac}" ]
 	then
 		echo "Xge test can be excute in this board!"
-		envok=1
+		#envok=1
 	else
 		echo "Xge test can not be excute in this board,exit!"
 	fi

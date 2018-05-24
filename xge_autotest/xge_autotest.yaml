@@ -20,5 +20,4 @@ install:
   - python-pexpect
 run:
   steps:
-  - bash ./xge_autotest/xge_main.sh
-  - python ./ci_interface/ 
+  - echo "No run the xge test"
