@@ -15,6 +15,27 @@ HNS_TOP_DIR=$(cd "`dirname $0`" ; pwd)
 # IN : N/A
 # OUT: N/A
 
+## ---------start for chenjing
+function check_environment() {
+    Title="Check the HNS"
+    echo ${eth_map[*]}
+    echo "--------------------------------------------"
+    for i in ${!eth_map[*]}
+    do
+        remote_mac=$( ssh root@${BACK_IP} "ifconfig ${eth_map_r[${i}]} | grep "HWaddr"")
+        remote_mac=$( echo ${remote_mac} | awk '{print $NF}' )
+        echo "remote mac is " ${remote_mac}
+        local_mac=$( ifconfig ${eth_map[${i}]} | grep "HWaddr" | awk '{print $NF}' )
+        echo "local mac is " ${local_mac}
+        if x"${remote_mac}" == x"${local_mac}"
+        then
+            lava_report "check envir" "check the mac is fail"
+            exit 1
+        fi
+    done
+}
+## ---------end-------------
+
 function main()
 {
     echo "Begin to Run XGE Test"
@@ -84,6 +105,9 @@ setTrustRelation
 
 #ifconfig net export
 init_net_export
+
+#check mac
+check_environment
 
 #performance init
 perf_init

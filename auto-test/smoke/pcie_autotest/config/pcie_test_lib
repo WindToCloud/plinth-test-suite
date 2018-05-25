@@ -1,0 +1,72 @@
+#!/bin/bash
+#
+
+
+#  call the implementation of the automation use cases
+#  IN : N/A
+#  OUT: N/A
+function test_case_function_run()
+{
+	if [ x"${TEST_CASE_FUNCTION_SWITCH}" == x"on" ]
+	then
+		${TEST_CASE_FUNCTION_NAME}
+		if [ x"${MESSAGE}" == x"PASS"  ];then
+          		lava_report "${TEST_CASE_TITLE}" pass
+		else
+			lava_report "${TEST_CASE_TITLE}" fail
+		fi
+	else
+		MESSAGE="BLOCK\tno automated use cases were implemented."
+	fi
+	#writePass "ROCE" "${TEST_CASE_TITLE"
+}
+
+# Output log file header
+# IN : N/A
+# OUT: N/A
+function writeLogHeader
+{
+    echo -e "Designed Requirement ID\tTest Case ID\tTest Item\tTest Case\tResult\tReason" > ${PCIE_TOP_DIR}/${OUTPUT_TEST_DB_FILE}
+    return 0
+}
+
+#  Get system disk partition information.
+#  IN : N/A
+#  OUT: N/A
+function get_all_disk_list()
+{
+    local assert=""
+
+    mout_info=$(ssh root@${BACK_IP} "fdisk -l")
+    mout_info=$(echo ${mout_info} | grep "/dev/[a-z]d[a-z][0-9]" | awk -F ' ' '{print $1}')
+    dev_info=$(ssh root@${BACK_IP} "fdisk -l")
+    dev_info=$(echo ${dev_info} | grep -o "/dev/[a-z]d[a-z]")
+
+    for name in ${dev_info}
+    do
+        assert=`echo ${mout_info} | grep ${name}`
+        if [ x"${assert}" == x"" ]
+        then
+            ALL_DISK_PART_NAME[${#ALL_DISK_PART_NAME[*]}]=$name
+        fi
+        assert=""
+    done
+}
+
+
+# Configure the FIO tool configuration file.
+# IN : N/A
+# OUT: N/A
+function fio_config()
+{
+    local count=1
+    echo "$FIO_PARAMETER_LIST" > ${FIO_CONFG}
+    for dev in "${ALL_DISK_PART_NAME[@]}"
+    do
+        echo "[job${count}]" >> ${FIO_CONFG}
+        echo "filename=$dev" >> ${FIO_CONFG}
+        let count+=1
+    done
+}
+
+

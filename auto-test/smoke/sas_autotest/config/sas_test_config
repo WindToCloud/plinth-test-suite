@@ -1,0 +1,113 @@
+#!/bin/bash
+#
+#
+
+
+#Get the current board type.
+BOARD_TYPE=`dmidecode | grep "Product Name:" | sed -n "1p" | awk -F ' ' '{print $NF}'`
+
+#Automated data files exported in test cases.
+TEST_CASE_DB_FILE="data/sas_test_case.table"
+#Test case execution result save file.
+OUTPUT_TEST_DB_FILE="data/report.csv"
+#700k performance data sheet file
+FIO_IOPS_DB_FILE="data/iops700k.csv"
+#Test case execution switch.
+TEST_CASE_FUNCTION_SWITCH=""
+#Test case execution function name.
+TEST_CASE_FUNCTION_NAME=""
+#Test case execution result.
+MESSAGE=""
+
+# Expander backplane support phy number
+EFFECTIVE_PHY_NUM=11
+
+#
+SYS_TYPE=`cat /etc/hostname`
+if [ x"${SYS_TYPE}" = x"estuary" ]
+then
+    DEVMEM="devmem"
+else
+    DEVMEM="devmem2"
+fi
+
+ERROR_INFO="error_info.log"
+
+#  fio tools configuration file
+FIO_CONFG="fio.conf"
+
+#  Common tools directory path
+COMMON_TOOL_PATH="common_tool"
+
+#  Test case code directory path
+TEST_CASE_PATH="sas_autotest/case_script"
+
+#  phy path
+PHY_FILE_PATH="/sys/class/sas_phy"
+
+#  Save all disk partition names
+declare -a ALL_DISK_PART_NAME
+
+# FIO tools IO size
+FIO_BS=("4M" "512K" "4K" "512B")
+
+# FIO tools IO Read and write mode
+FIO_RW=("read" "write" "randrw" "randread" "randwrite" "rw" "readwrite" "randrw")
+# FIO_RW=("read" "write")
+
+#iodepth=128
+#runtime=300
+# FIO tool parameter list
+FIO_PARAMETER_LIST="
+[global]
+rw=read
+direct=1
+ramp_time=1
+ioengine=psync
+iodepth=128
+numjobs=1
+bs=4k-4M
+;zero_buffers=1
+group_reporting=1
+;ioscheduler=noop
+;gtod_reduce=1
+;iodepth_batch=2
+;iodepth_batch_complete=2
+runtime=300
+;thread
+loops=10
+"
+
+#phy address
+PHY_ADDR_VALUE=(
+"0xa2002000" "0xa2002400"
+"0xa2002800" "0xa2002c00"
+"0xa2003000" "0xa2003400"
+"0xa2003800" "0xa2003c00"
+)
+
+#Judge the current environment, directly connected environment or expander environment register address.
+CURR_ENV_REG_ADDR="0xa2000028"
+
+###1 - Test case parameter configuration.
+## 2 - physical_data_rate
+#  negotiated link rate value, Multiple please use the symbol "|" split, Default Value is '1.5|3.0|6.0|12.0', Unit: Gbit.
+DISK_NEGOTIATED_LINKRATE_VALUE='1.5|3.0|6.0|12.0'
+
+## 2 - phy_control_through_sysfs
+#  Maximum disk phy, Default Value is "12.0 Gbit".
+MAXIMUM_LINK_VALUE="6.0 Gbit"
+#  Minimum disk phy, Default Value is "1.5 Gbit".
+MINIMUM_LINK_VALUE="3.0 Gbit"
+#
+SATA_PHY_VALUE_LIST=("6.0 Gbit" "3.0 Gbit" "1.5 Gbit")
+#
+SAS_PHY_VALUE_LIST=("12.0 Gbit" "6.0 Gbit" "3.0 Gbit")
+
+## 3 - support full sas function on all available phys
+#  cycle the number of all proximal phy switches, Default value is 100.
+LOOP_PHY_COUNT=1
+#  cycle reset distal phy number, Default value is 1000.
+RESET_PHY_COUNT=1
+#  fio tool business run time.
+LOOP_PHY_TIME=20
