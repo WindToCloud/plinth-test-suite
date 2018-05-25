@@ -1,6 +1,6 @@
 metadata:
     format: Lava-Test Test Definition 1.0
-    name: HNS-smoke-test
+    name: SAS-smoke-test
     description: "Run basic smoke tests."
     maintainer:
         - 1191097880@qq.com
@@ -18,8 +18,8 @@ params:
 run:
     steps:
         - cd ./auto-test/smoke/
-        - bash -x ./xge_autotest/xge_main.sh
-          # - bash -x ./sas_autotest/sas_main.sh
+          #- bash -x ./xge_autotest/xge_main.sh
+        - bash -x ./sas_autotest/sas_main.sh
           # - bash -x ./roce_autotest/roce_main.sh
        # - bash -x ./pcie_autotest/pcie_main.sh
         - cd -
