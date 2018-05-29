@@ -27,7 +27,7 @@ function check_environment() {
         echo "remote mac is " ${remote_mac}
         local_mac=$( ifconfig ${eth_map[${i}]} | grep "HWaddr" | awk '{print $NF}' )
         echo "local mac is " ${local_mac}
-        if x"${remote_mac}" == x"${local_mac}"
+        if ["${remote_mac}" -eq "${local_mac}"]
         then
             lava_report "check envir" "check the mac is fail"
             exit 1
@@ -99,6 +99,9 @@ echo ${LOCAL_IP}
 
 BACK_IP="192.168.50.66"
 echo "The client ip is "${BACK_IP}
+
+#check expect exist
+check_expect_exists
 
 #set passwd
 setTrustRelation

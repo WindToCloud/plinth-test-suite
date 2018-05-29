@@ -46,6 +46,7 @@ function cycle_hard_reset_phy()
     Test_Case_Title="cycle_hard_reset_phy"
 
     beg_count=`fdisk -l | grep /dev/sd | wc -l`
+    echo 0 > /sys/class/sas_phy/phy-1\:0\:1/enable
     for i in `seq ${RESET_PHY_COUNT}`
     do
         change_sas_phy_file 1 "hard_reset"
@@ -68,6 +69,7 @@ function cycle_link_reset_phy()
     Test_Case_Title="cycle_link_reset_phy"
 
     beg_count=`fdisk -l | grep /dev/sd | wc -l`
+    echo 0 > /sys/class/sas_phy/phy-1\:0\:1/enable
     for i in `seq ${RESET_PHY_COUNT}`
     do
         change_sas_phy_file 1 "link_reset"
@@ -90,6 +92,7 @@ function cycle_enable_phy()
     Test_Case_Title="cycle_link_reset_phy"
 
     beg_count=`fdisk -l | grep /dev/sd | wc -l`
+    echo 0 > /sys/class/sas_phy/phy-1\:0\:1/enable
     for i in `seq ${RESET_PHY_COUNT}`
     do
         change_sas_phy_file 0 "enable"
@@ -105,9 +108,6 @@ function cycle_enable_phy()
     fi
     MESSAGE="PASS"
 }
-
-cycle_enable_phy
-exit 0
 
 function main()
 {

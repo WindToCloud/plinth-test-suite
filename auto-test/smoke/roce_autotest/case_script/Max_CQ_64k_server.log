@@ -1,0 +1,8 @@
+start_id=16, end_id=16 
+---------test_case_016: cq64k start--------
+test file name: test/server_socket2_cq64k
+hr_qp->port_num= 0x1
+hr_qp->port_num= 0x1
+test case 16 failed 
+test 0(64k_cq) res is -58 
+clean test case success!

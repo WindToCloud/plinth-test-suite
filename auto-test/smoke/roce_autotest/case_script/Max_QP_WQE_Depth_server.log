@@ -1,0 +1,7 @@
+start_id=14, end_id=14 
+---------test_case_014: qp_depth start--------
+test file name: test/server_socket2_qp_depth
+hr_qp->port_num= 0x1
+test case 14 failed 
+test 0(qp_depth) res is -108 
+clean test case success!

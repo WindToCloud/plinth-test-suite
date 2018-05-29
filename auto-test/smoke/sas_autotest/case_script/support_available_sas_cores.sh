@@ -15,7 +15,7 @@ function FIO_IO_read_write()
     fio_config
     echo "Begin to run FIO_IO_RW"
     IO_read_write
-    [ $? -eq 1 ] && MESSAGE="FAIL\tFIO tool read and write disk failure." || echo "PASS"
+    [ $? -eq 1 ] && MESSAGE="FAIL\tFIO tool read and write disk failure." || MESSAGE="PASS"
 }
 
 function main()
