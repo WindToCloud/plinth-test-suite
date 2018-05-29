@@ -2,9 +2,7 @@ metadata:
     format: Lava-Test Test Definition 1.0
     name: PCIE-smoke-test
     description: "Run basic smoke tests."
-    maintainer:
-        - 1191097880@qq.com
-        - luojiaxing@huawei.com
+    maintainer: "fangjian"
     os:
         - ubuntu
     scope:
