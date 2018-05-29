@@ -1,6 +1,6 @@
 metadata:
     format: Lava-Test Test Definition 1.0
-    name: "HNS-smoke-test Lin yunsheng"
+    name: HNS-smoke-test_Linyunsheng
     description: "Run basic smoke tests."
     maintainer: "linyunsheng"
     os:
