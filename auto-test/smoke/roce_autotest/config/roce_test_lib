@@ -1,6 +1,8 @@
 #!/bin/bash
 #
-
+ROCE_LIB_TOP_DIR=$( cd "`dirname $0`" ; pwd )
+#ROCE_CASE_DIR=${ROCE_TOP_DIR}/case_script
+. ${ROCE_LIB_TOP_DIR}/config/roce_test_config
 
 # ----start------->chenjing
 #######################
@@ -26,20 +28,54 @@ function clear_send_read_write_envir() {
 }
 
 function check_roce_drv() {
+    #check if roce driver is exist or not
+    if [ -d "/sys/class/infiniband" ];then
+        if [ "`ls -A "/sys/class/infiniband"`" = "" ]; then 
+            echo "The roce drivers is not exist!return !"
+            return 1
+        else
+            echo "Found the roce drivers!"
+        fi
+    else
+        echo "The roce driver is not exist! return!"
+        return 1
+    fi
+
     tmp=`echo ${ROCE_USERDRV_GITADDR} | awk -F'.' '{print $2}' | awk -F'/' '{print $NF}'`
     echo "The name of kernel repo is "$tmp
     #checkout if roce user driver repo is exit or not!
-    if [ ! -d "/root/chenjing/${tmp}" ];then
-        echo "The roce user driver repo is not exit! Begin to clone repo!"
-        build_roce_drv
-    else
-        echo "The kernel repo have been found!"
-    fi
+    #if [ ! -d "/root/chenjing/${tmp}" ];then
+    build_roce_drv
+
+    return 0
+    #else
+    #    echo "The kernel repo have been found!"
+    #fi
 }
 
 function build_roce_drv() {
-    mkdir /root/chenjing; cd /root/chenjing
-    git clone ${ROCE_USERDRV_GITADDR}
+    mkdir -p /root/chenjing; cd /root/chenjing
+    if [ ! -d "/root/chenjing/${tmp}" ];then
+        expect -c '
+		    set timeout -1
+		    set gitaddr "https://github.com/hisilicon/plinth-roce.git"
+            spawn git clone ${gitaddr}
+		    expect {
+			    "Username" { send "Luojiaxing1991\r";exp_continue }
+			    "Password" { send "ljxfyjh1321\r";exp_continue}
+			       }
+		'
+    fi
+    #get the git repo name
+  #  name=echo ${ROCE_USERDRV_GITADDR##*/}
+  #  echo $name
+  #  name=`echo $name | awk -F'.' '{print $1}'`
+  #  echo $name
+  #  pushd $name
+  #  tmp_url=`cat .git/config | grep 'github.com/'`
+  #  if [ x"${tmp_url}" == x"${ROCE_USERDRV_GITADDR}" ];then
+  #      sed -i 's/github.com/Luojiaxing1991:ljxfyjh1321@github.com/g' .git/config
+  #  fi
     cd /root/chenjing/${tmp}
     # cd /root/chenjing
     # tar -zxvf plinth-roce.tar.gz
@@ -55,6 +91,8 @@ function build_roce_drv() {
        Error="The branch is not found"
        exit 1
     fi
+
+    git pull
 
     echo "Begin to build the roce user driver!"
     command_list=("build-essential" "cmake" "gcc" "libnl-3-dev" "libnl-route-3-dev" "ninja-build" "pkg-config" "valgrind" "perftest")

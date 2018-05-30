@@ -66,6 +66,12 @@ function main()
 
 # #checkout if roce user driver repo is exit or not!
 check_roce_drv
+if [ $? == 0 ];then
+    echo "Finish the test env set for ROCE test!"
+else
+    echo "Something wrong when prepare the test evv!"
+    exit 1
+fi
 
 ##kill roce process running before
 /${ROCE_TOP_DIR}/case_script/roce-test -m 2 -c 0xff -r
