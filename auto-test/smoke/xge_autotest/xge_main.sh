@@ -83,7 +83,7 @@ function main()
     done
     echo "Finish to run XGE test!"
 }
-
+global_prepare_env
 #Output log file header
 writeLogHeader
 

@@ -1,4 +1,12 @@
+function global_prepare_env()
+{
+    which expect
 
+    if [ $? != 0 ];then
+	apt-get update
+	apt-get -y install expect
+    fi
+}
 
 
 #############################################################################################################

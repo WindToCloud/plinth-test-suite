@@ -55,7 +55,7 @@ function main()
     done
 }
 
-
+global_prepare_env
 # Output log file header
 writeLogHeader
 

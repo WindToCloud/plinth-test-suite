@@ -58,7 +58,7 @@ function main()
 	done
     echo "Finish to Run ROCE Test"
 }
-
+global_prepare_env
 #insmod /home/kernel/output/hns-roce.ko
 #insmod /home/kernel/output/hns-roce-hw-v1.ko
 

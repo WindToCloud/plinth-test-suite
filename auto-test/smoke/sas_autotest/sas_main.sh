@@ -49,7 +49,7 @@ function main()
     done
     echo "Finish to Run SAS Test"
 }
-
+global_prepare_env
 # close /dev/sda
 echo 0 > /sys/class/sas_phy/phy-1\:0\:1/enable
 
