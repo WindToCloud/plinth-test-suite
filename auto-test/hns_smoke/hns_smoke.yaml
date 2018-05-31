@@ -15,6 +15,7 @@ params:
 
 run:
     steps:
+        - cp ./auto-test/hns_smoke/hns_test_case.table ./auto-test/smoke/xge_autotest/data/hns_test_case.table
         - cd ./auto-test/smoke/
         - bash -x ./xge_autotest/xge_main.sh
           # - bash -x ./sas_autotest/sas_main.sh
