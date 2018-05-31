@@ -1,8 +1,8 @@
 metadata:
     format: Lava-Test Test Definition 1.0
-    name: Pre-test
-    description: "Run basic smoke tests."
-    maintainer: "linyunsheng"
+    name: Begin-test
+    description: "Run basic tests."
+    maintainer: "luojiaxing"
     os:
         - ubuntu
     scope:
