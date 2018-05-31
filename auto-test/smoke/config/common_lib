@@ -16,7 +16,7 @@ function global_prepare_env()
 #############################################################################################################
 
 #  Output success test case log information
-#  IN : 
+#  IN :
 #       $1:    The title of testcase
 #       $2:    The result of current testcase
 #       $3:    The matainer of test suite
@@ -102,7 +102,7 @@ function setTrustRelation
 #add by luojiaxing
 ####
 # Set trust relationship for two boards
-# IN : 
+# IN :
 #     $1 : Ip of target server
       $2 : username to login  target server
       $3 : password used for username before
@@ -110,11 +110,11 @@ function setTrustRelation
 function setTrustRelationUsePara
 {
     rm -f ~/.ssh/*
-    
+
     tmpIP=$1
     tmpUsername=$2
-    tmpPassword=$3 
- 
+    tmpPassword=$3
+
     expect -c '
         set timeout -1
         set back_ip '${tmpIP}'
@@ -156,7 +156,7 @@ function initLocalIP()
 
 # Get client server ip
 # IN :
-      $1 : MAC address of DHCP server 
+      $1 : MAC address of DHCP server
       $2 : MAC address of client server
 	  $3 : username of DHCP server
 	  $4 : password of DHCP server
@@ -172,26 +172,26 @@ function getIPofClientServer
     if [ $? -eq 0 ];then
 	COMMON_CLIENT_IP=$COMMON_DEFAULT_CLIENT_IP
 	return 0
-    fi	
+    fi
 
-    ping $COMMON_DEFAULT_DHCP_IP -c 5   
- 
+    ping $COMMON_DEFAULT_DHCP_IP -c 5
+
     echo ${tmpDHCPMacAddr} ${tmpClientMacAddr} ${tmpUserName} ${tmpPassWord}
-	
-	#First we need to get the ip of DHCP server 
+
+	#First we need to get the ip of DHCP server
 	tmpDHCPIp=`arp | grep ${tmpDHCPMacAddr} | awk '{print $1}'`
-	echo "Get DHCP server IP :"${tmpDHCPIp} 
-	
+	echo "Get DHCP server IP :"${tmpDHCPIp}
+
     #then,we get client ip from DHCP server using ssh service
     expect -c '
         set timeout -1
         set back_ip '${tmpDHCPIp}'
         set user_name '${tmpUserName}'
         set pass_word '${tmpPassWord}'
-		
-        #show client ip info in arp list in DHCP server using ssh service 
+
+        #show client ip info in arp list in DHCP server using ssh service
         spawn ssh $user_name@$back_ip  "arp | grep '${tmpClientMacAddr}'"
-		
+
         sleep 20
         #set timeout 120
         #expect "Are you sure you want to continue connecting (yes/no)?"
@@ -205,7 +205,7 @@ function getIPofClientServer
     ' | tee res.log
 
         tmpTargetIpList=`cat res.log | grep 'ether' | awk '{print $1}'`
-        
+
         if [ x"$tmpTargetIpList" = x"" ]
         then
             expect -c '
@@ -213,10 +213,10 @@ function getIPofClientServer
         	set back_ip '${tmpDHCPIp}'
         	set user_name '${tmpUserName}'
        	 	set pass_word '${tmpPassWord}'
-		
-        	#show client ip info in arp list in DHCP server using ssh service 
+
+        	#show client ip info in arp list in DHCP server using ssh service
         	spawn ssh $user_name@$back_ip  "arp | grep '${tmpClientMacAddr}'"
-		
+
         	sleep 20
         	#expect "Are you sure you want to continue connecting (yes/no)?"
         	#set timeout 60
@@ -270,7 +270,7 @@ function modifyBootOrder()
   efibootmgr -o $tmp,$First_ID
 
  # efibootmgr
-  
+
 }
 
 function recoverBootOrder()
@@ -299,7 +299,7 @@ function remoteLogin()
    expect -c '
         	set timeout -1
         	spawn ssh root@192.168.3.197  "reboot"
-		
+
         	sleep 120
         	expect "login:"
         	set timeout 120
@@ -309,7 +309,7 @@ function remoteLogin()
         	send "root\r"
         	expect eof
         	exit 0
-    		' 
+    		'
    ssh root@192.168.3.197 "pwd"
    echo "Success login in the system"
 }
@@ -335,7 +335,7 @@ function perf_killer()
       tmpres=`pidof ${typePerf}`
       show=`ps -ef | grep ${typePerf}`
       echo ${show}
-  
+
       if [ $cnt1 -gt 6 ]
       then
         cnt1=0
@@ -351,7 +351,7 @@ function perf_killer()
     while [ x"${tmpres}" != x"" ]
     do
       ((cnt2++))
-      ssh root@$BACK_IP "killall ${typePerf}" 
+      ssh root@$BACK_IP "killall ${typePerf}"
       sleep 5
       tmpres=`ssh root@$BACK_IP "pidof ${typePerf}"`
       show=`ssh root@$BACK_IP "ps -ef | grep ${typePerf}"`
@@ -372,7 +372,7 @@ function perf_killer()
     else
 	echo "${typePerf} killer got his first blood!"
     fi
-} 
+}
 ####
 #End of luojiaxing edit
 ####
@@ -396,7 +396,7 @@ function iperf_killer()
       tmpres=`pidof iperf`
       show=`ps -ef | grep iperf`
       echo ${show}
-  
+
       if [ $cnt1 -gt 6 ]
       then
         cnt1=0
@@ -412,7 +412,7 @@ function iperf_killer()
     while [ x"${tmpres}" != x"" ]
     do
       ((cnt2++))
-      ssh root@$BACK_IP "killall iperf" 
+      ssh root@$BACK_IP "killall iperf"
       sleep 5
       tmpres=`ssh root@$BACK_IP "pidof iperf"`
       show=`ssh root@$BACK_IP "ps -ef | grep iperf "`
@@ -433,7 +433,7 @@ function iperf_killer()
     else
 	echo "Iperf killer got his first blood!"
     fi
-} 
+}
 ####
 #End of luojiaxing edit
 ####
@@ -569,7 +569,7 @@ RunTable()
         sTTitle2=$(sed 's#\([]/*[]\)#\\\1#g' <<< "${sTTitle1}")
         sScript1=$(awk -F'\t' '{print $6}' <<< "${sR1}" |sed "s/^[ \t]\+//;s/[ \t]+\$//")
         sFuncNa=$(awk -F'\t' '{print $7}' <<< "${sR1}" |sed "s/^[ \t]\+//;s/[ \t]+\$//")
-        
+
 	#get the description of testcase
 	sTESTCASE=$(awk -F'\t' '{print $4}' <<< "${sR1}" |sed "s/^[ \t]\+//;s/[ \t]+\$//")
         echo "TestInfo: "${sTTitle1}" "${sScript1}" "${sFuncNa}
@@ -700,7 +700,7 @@ GenReport()
     local sModule=${3}
     local flLog=${4:-/dev/null}
 
-    local sPass sFail sStatus1 sSearch1 sSearch2 sMessage 
+    local sPass sFail sStatus1 sSearch1 sSearch2 sMessage
     sPass=$(echo "${g_statusPass}" |sed 's#\([]/*[]\)#\\\1#g')
     sFail=$(echo "${g_statusFail}" |sed 's#\([]/*[]\)#\\\1#g')
 
@@ -754,7 +754,7 @@ GenTable()
     local sModule=${4}
     local flLog=${5:-/dev/null}
 
-    local sPass sFail sStatus1 sSearch1 sSearch2 sMessage 
+    local sPass sFail sStatus1 sSearch1 sSearch2 sMessage
     sPass=$(echo "${g_statusPass}" |sed 's#\([]/*[]\)#\\\1#g')
     sFail=$(echo "${g_statusFail}" |sed 's#\([]/*[]\)#\\\1#g')
 
