@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 PV-434	R.HNS.F001.A	ST_GE_PORT_CTRL_000	GEÍø¿ÚµÄ´ò¿ªºÍ¹Ø±Õ½Ó¿Ú	GE³õÊ¼»¯ºó´ò¿ªºÍ¹Ø±ÕÍø¿Ú	enable_and_disable_interface.sh	ge_enable_and_disable_interface	off
 PV-434	R.HNS.F001.A	ST_GE_PORT_CTRL_005		GE³õÊ¼»¯ºó¶à´Î´ò¿ªºÍ¹Ø±ÕÍø¿Ú	enable_and_disable_interface.sh	ge_continued_enable_and_disable_interface	off
 PV-434	R.HNS.F001.A	ST_GE_PORT_CTRL_010		GEÊÕ·¢°ü¹ý³ÌÖÐ´ò¿ªºÍ¹Ø±ÕÍø¿Ú	enable_and_disable_interface.sh	ge_flow_enable_and_disable_interface	off
@@ -9,14 +10,23 @@ PV-434	R.HNS.F001.A	ST_XGE_PORT_CTRL_015		XGEÊÕ·¢°ü¹ý³ÌÖÐ¶à´Î´ò¿ªºÍ¹Ø±ÕÍø¿Ú	enab
 PV-435	R.HNS.F002.A	ST_GE_TX_RX_01	GE»ù±¾ÊÕ·¢±¨ÎÄ¹¦ÄÜ	GEÍø¿ÚÓë¶Ô¶Ëping²Ù×÷	rx_tx_functionality.sh	ge_two_ends_receiving_and_sending	off
 PV-435	R.HNS.F002.A	ST_XGE_TX_RX_01	XGE»ù±¾ÊÕ·¢±¨ÎÄ¹¦ÄÜ	XGEÍø¿ÚÓë¶Ô¶Ëping²Ù×÷	rx_tx_functionality.sh	xge_two_ends_receiving_and_sending	off
 PV-438	R.HNS.F005.A	ST_GE_VLAN_01	GEÍø¿ÚVlan»ù±¾¹¦ÄÜ	GE Vlan ping°ü¹¦ÄÜÕý³£	vlan_tagged_traffic_support.sh	ge_set_vlan	off
+=======
+PV-434	R.HNS.F001.A	ST_GE_PORT_CTRL_000	GEç½‘å£çš„æ‰“å¼€å’Œå…³é—­æŽ¥å£	GEåˆå§‹åŒ–åŽæ‰“å¼€å’Œå…³é—­ç½‘å£	enable_and_disable_interface.sh	ge_enable_and_disable_interface	off
+PV-434	R.HNS.F001.A	ST_XGE_PORT_CTRL_000	XGE/LGEç½‘å£çš„æ‰“å¼€å’Œå…³é—­æŽ¥å£	XGEåˆå§‹åŒ–åŽæ‰“å¼€å’Œå…³é—­ç½‘å£	enable_and_disable_interface.sh	xge_enable_and_disable_interface	off
+>>>>>>> luojiaxing/master
 
 PV-438	R.HNS.F005.A	ST_GE_VLAN_03		¶à¶Ë¿ÚVlan ping°ü¹¦ÄÜÕý³£	vlan_tagged_traffic_support.sh	ge_vlan_multi_port	off
 
+<<<<<<< HEAD
 PV-438	R.HNS.F005.A	ST_GE_VLAN_04		VlanÅäÖÃÈÝ´í¹¦ÄÜ²âÊÔ	vlan_tagged_traffic_support.sh	vlan_fault_tolerant	off
 #N/A	R.HNS.F005A	ST_GE_VLAN_05		HNS´´½¨GE Vlanºó£¬Ö±½Ó½«Íø¿Ú¹Ø±Õ	vlan_tagged_traffic_support.sh	ge_vlan_up_down	off
 PV-438	R.HNS.F005.A	ST_XGE_VLAN_01	XGE/LGEÍø¿ÚVlan»ù±¾¹¦ÄÜ	XGE Vlan ping°ü¹¦ÄÜÕý³£	vlan_tagged_traffic_support.sh	xge_set_vlan	off
 PV-438	R.HNS.F005.A	ST_XGE_VLAN_02		¶à¶Ë¿ÚVlan ping°ü¹¦ÄÜÕý³£	vlan_tagged_traffic_support.sh	xge_vlan_multi_port	off
 #N/A	R.HNS.F005A	ST_XGE_VLAN_04		HNS´´½¨XGE Vlanºó£¬Ö±½Ó½«Íø¿Ú¹Ø±Õ	vlan_tagged_traffic_support.sh	xge_vlan_up_down	off
+=======
+PV-435	R.HNS.F002.A	ST_GE_TX_RX_01	GEåŸºæœ¬æ”¶å‘æŠ¥æ–‡åŠŸèƒ½	GEç½‘å£ä¸Žå¯¹ç«¯pingæ“ä½œ	rx_tx_functionality.sh	ge_two_ends_receiving_and_sending	off
+PV-435	R.HNS.F002.A	ST_XGE_TX_RX_01	XGEåŸºæœ¬æ”¶å‘æŠ¥æ–‡åŠŸèƒ½	XGEç½‘å£ä¸Žå¯¹ç«¯pingæ“ä½œ	rx_tx_functionality.sh	xge_two_ends_receiving_and_sending	off
+>>>>>>> luojiaxing/master
 
 PV-439	R.HNS.F006.A	ST_GE_RESET_01	GEÖØÐÂ×ÔÐ­ÉÌ	GEµç¿ÚÖØÐÂ×ÔÐ­ÉÌ³É¹¦	auto_negotiation_support.sh	ge_restarts_auto_negotiation	off
 PV-439	R.HNS.F006.A	ST_GE_RESET_02		GEµç¿Ú´óÁ÷Á¿·´¸´ÖØÐÂ×ÔÐ­ÉÌ³É¹¦	auto_negotiation_support.sh	ge_iperf_auto_negotiation	off
@@ -26,6 +36,7 @@ PV-442	R.HNS.F009.A	ST_GE_PHY_IOCTL_01	Í¨¹ýMiiTools¶ÁÐ´ge phy¼Ä´æÆ÷	GEµç¿ÚÕýÈ·¶Á
 PV-442	R.HNS.F009.A	ST_GE_PHY_IOCTL_02		GEµç¿ÚÕýÈ·Ð´Phy¼Ä´æÆ÷	support_of_mdio.sh	ge_iperf_read_phy_register	off
 PV-442	R.HNS.F009.A	ST_XGE_PHY_IOCTL_01		XGE¹â¿Ú¶Áphy¼Ä´æÆ÷Ê§°Ü	support_of_mdio.sh	xge_read_phy_register	off
 
+<<<<<<< HEAD
 PV-443	R.HNS.F010.A	ST_GE_MAC_ERROR_01	GEÍø¿ÚMACµØÖ·ÉèÖÃ	GEÍø¿ÚMacµØÖ·ÉèÖÃÈÝ´í²âÊÔ	support_to_change_mac_address.sh	ge_mac_address_fault_tolerant	off
 PV-443	R.HNS.F010.A	SET_GE_SET_MAC_01		GE±ê×¼macµØÖ·ÉèÖÃ³É¹¦	support_to_change_mac_address.sh	ge_set_standard_mac_address	off
 PV-443	R.HNS.F010.A	SET_GE_SET_MAC_02		GEÏßÐÔmacµØÖ·ÉèÖÃ	support_to_change_mac_address.sh	ge_set_linear_mac_address	off
@@ -103,3 +114,16 @@ PV-1517	R.HNS.P003.B	ST_GE_QPERF_01	Íø¿ÚÊ±ÑÓ²âÊÔ	GEÍø¿ÚtcpÊ±ÑÓ²âÊÔ	performance.s
 PV-1517	R.HNS.P003.B	ST_GE_QPERF_02		GEÍø¿ÚudpÊ±ÑÓ²âÊÔ	performance.sh	qperf_test	off
 PV-1517	R.HNS.P003.B	ST_XGE_QPERF_01		XGEÍø¿ÚtcpÊ±ÑÓ²âÊÔ	performance.sh	qperf_test	off
 PV-1517	R.HNS.P003.B	ST_XGE_QPERF_02		XGEÍø¿ÚudpÊ±ÑÓ²âÊÔ	performance.sh	qperf_test	off
+=======
+
+PV-438	R.HNS.F005.A	ST_GE_VLAN_01	GEç½‘å£VlanåŸºæœ¬åŠŸèƒ½	GE Vlan pingåŒ…åŠŸèƒ½æ­£å¸¸	vlan_tagged_traffic_support.sh	ge_set_vlan	off
+PV-438	R.HNS.F005.A	ST_XGE_VLAN_01	XGE/LGEç½‘å£VlanåŸºæœ¬åŠŸèƒ½	XGE Vlan pingåŒ…åŠŸèƒ½æ­£å¸¸	vlan_tagged_traffic_support.sh	xge_set_vlan	off
+
+
+PV-443	R.HNS.F010.A	SET_GE_SET_MAC_01		GEæ ‡å‡†macåœ°å€è®¾ç½®æˆåŠŸ	support_to_change_mac_address.sh	ge_set_standard_mac_address	off
+PV-443	R.HNS.F010.A	SET_XGE_SET_MAC_01		XGEæ ‡å‡†macåœ°å€è®¾ç½®æˆåŠŸ	support_to_change_mac_address.sh	xge_set_standard_mac_address	off
+
+
+PV-446	R.HNS.F013.A	ST_GE_IPV6_01	GEç½‘å£IPv6åŸºæœ¬åŠŸèƒ½	GE IPv6 pingåŒ…åŠŸèƒ½æ­£å¸¸	support_to_ipv6.sh	ge_ipv6_ping_pack	on
+PV-446	R.HNS.F013.A	ST_XGE_IPV6_01	XGEç½‘å£IPv6åŸºæœ¬åŠŸèƒ½	XGE IPv6 pingåŒ…åŠŸèƒ½æ­£å¸¸	support_to_ipv6.sh	xge_ipv6_ping_pack	on
+>>>>>>> luojiaxing/master
