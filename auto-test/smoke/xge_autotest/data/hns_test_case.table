@@ -1,18 +1,18 @@
-PV-443	R.HNS.F010.A	ST_GE_MAC_ERROR_01	GE网口MAC地址设置	GE网口Mac地址设置容错测试	support_to_change_mac_address.sh	ge_mac_address_fault_tolerant	off
-pv-443	r.hns.f010.a	set_ge_set_mac_01		ge标准mac地址设置成功	support_to_change_mac_address.sh	ge_set_standard_mac_address	off
-pv-443	r.hns.f010.a	set_ge_set_mac_02		ge线性mac地址设置	support_to_change_mac_address.sh	ge_set_linear_mac_address	off
-pv-443	r.hns.f010.a	set_ge_set_mac_03		ge电口初始化后mac地址随机生成	support_to_change_mac_address.sh	ge_mac_address_random_generation	off
-pv-443	r.hns.f010.a	st_xge_mac_error_01	xge网口mac地址设置	xge网口mac地址设置容错测试	support_to_change_mac_address.sh	xge_mac_address_fault_tolerant	off
-pv-443	r.hns.f010.a	set_xge_set_mac_01		xge标准mac地址设置成功	support_to_change_mac_address.sh	xge_set_standard_mac_address	off
-pv-443	r.hns.f010.a	set_xge_set_mac_02		xge线性mac地址设置	support_to_change_mac_address.sh	xge_set_linear_mac_address	off
-pv-443	r.hns.f010.a	set_xge_set_mac_03		xge电口初始化后mac地址随机生成	support_to_change_mac_address.sh	xge_mac_address_random_generation	off
-pv-444	r.hns.f011.a	st_ge_set_mtu_01	ge设置mtu	ge mtu修改后功能正常	support_of_mtu_setting.sh	ge_set_mtu_value	off
-pv-444	r.hns.f011.a	st_ge_set_mtu_04		ge mtu传入错误导致配置失败	support_of_mtu_setting.sh	ge_set_fail_mtu_value	off
+PV-443	R.HNS.F010.A	ST_GE_MAC_ERROR_01	GE网口MAC地址设置	GE网口Mac地址设置容错测试	support_to_change_mac_address.sh	ge_mac_address_fault_tolerant	on
+pv-443	r.hns.f010.a	set_ge_set_mac_01		ge标准mac地址设置成功	support_to_change_mac_address.sh	ge_set_standard_mac_address	on
+pv-443	r.hns.f010.a	set_ge_set_mac_02		ge线性mac地址设置	support_to_change_mac_address.sh	ge_set_linear_mac_address	on
+pv-443	r.hns.f010.a	set_ge_set_mac_03		ge电口初始化后mac地址随机生成	support_to_change_mac_address.sh	ge_mac_address_random_generation	on
+pv-443	r.hns.f010.a	st_xge_mac_error_01	xge网口mac地址设置	xge网口mac地址设置容错测试	support_to_change_mac_address.sh	xge_mac_address_fault_tolerant	on
+pv-443	r.hns.f010.a	set_xge_set_mac_01		xge标准mac地址设置成功	support_to_change_mac_address.sh	xge_set_standard_mac_address	on
+pv-443	r.hns.f010.a	set_xge_set_mac_02		xge线性mac地址设置	support_to_change_mac_address.sh	xge_set_linear_mac_address	on
+pv-443	r.hns.f010.a	set_xge_set_mac_03		xge电口初始化后mac地址随机生成	support_to_change_mac_address.sh	xge_mac_address_random_generation	on
+pv-444	r.hns.f011.a	st_ge_set_mtu_01	ge设置mtu	ge mtu修改后功能正常	support_of_mtu_setting.sh	ge_set_mtu_value	on
+pv-444	r.hns.f011.a	st_ge_set_mtu_04		ge mtu传入错误导致配置失败	support_of_mtu_setting.sh	ge_set_fail_mtu_value	on
 pv-444	r.hns.f011.a	st_ge_set_mtu_05		ge大流量收发包时mtu修改后功能正常	support_of_mtu_setting.sh	ge_iperf_set_mtu_value	on
-pv-444	r.hns.f011.a	st_xge_set_mtu_01	xge设置mtu	xge mtu修改后功能正常	support_of_mtu_setting.sh	xge_set_mtu_value	off
-pv-444	r.hns.f011.a	st_xge_set_mtu_04		xge mtu传入错误导致配置失败	support_of_mtu_setting.sh	xge_set_fail_mtu_value	off
-pv-444	r.hns.f011.a	st_xge_set_mtu_05		xge大流量收发包时mtu修改后功能正常	support_of_mtu_setting.sh	xge_iperf_set_mtu_value	off
-pv-446	r.hns.f013.a	st_ge_ipv6_01	ge网口ipv6基本功能	ge ipv6 ping包功能正常	support_to_ipv6.sh	ge_ipv6_ping_pack	off
-pv-446	r.hns.f013.a	st_ge_ipv6_02		设置ipv6 地址	support_to_ipv6.sh	ge_set_ipv6_address	off
-pv-446	r.hns.f013.a	st_xge_ipv6_01	xge网口ipv6基本功能	xge ipv6 ping包功能正常	support_to_ipv6.sh	xge_ipv6_ping_pack	off
-pv-446	r.hns.f013.a	st_xge_ipv6_02		xge设置ipv6 地址	support_to_ipv6.sh	xge_set_ipv6_address	off
+pv-444	r.hns.f011.a	st_xge_set_mtu_01	xge设置mtu	xge mtu修改后功能正常	support_of_mtu_setting.sh	xge_set_mtu_value	on
+pv-444	r.hns.f011.a	st_xge_set_mtu_04		xge mtu传入错误导致配置失败	support_of_mtu_setting.sh	xge_set_fail_mtu_value	on
+pv-444	r.hns.f011.a	st_xge_set_mtu_05		xge大流量收发包时mtu修改后功能正常	support_of_mtu_setting.sh	xge_iperf_set_mtu_value	on
+pv-446	r.hns.f013.a	st_ge_ipv6_01	ge网口ipv6基本功能	ge ipv6 ping包功能正常	support_to_ipv6.sh	ge_ipv6_ping_pack	on
+pv-446	r.hns.f013.a	st_ge_ipv6_02		设置ipv6 地址	support_to_ipv6.sh	ge_set_ipv6_address	on
+pv-446	r.hns.f013.a	st_xge_ipv6_01	xge网口ipv6基本功能	xge ipv6 ping包功能正常	support_to_ipv6.sh	xge_ipv6_ping_pack	on
+pv-446	r.hns.f013.a	st_xge_ipv6_02		xge设置ipv6 地址	support_to_ipv6.sh	xge_set_ipv6_address	on
