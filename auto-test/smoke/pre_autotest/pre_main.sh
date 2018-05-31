@@ -13,7 +13,7 @@ commit_id=`cat /proc/version | awk -F' ' '{print $3}'`
 
 echo "kernel commit ID is $commit_id"
 
-lava_report "Prepare_cmd" "pass" ${commit_id} 
+#lava_report "Prepare_cmd" "pass" ${commit_id} 
 
 lava_report "Prepare_test" "pass" ${commit_id} 
 
