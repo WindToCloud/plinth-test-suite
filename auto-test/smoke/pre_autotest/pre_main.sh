@@ -17,7 +17,15 @@ echo "kernel commit ID is $commit_id"
 
 lava_report "Prepare_test" "pass" ${commit_id}
 
-ps -e | grep apt
+aptlist=`ps -e | grep apt | awk -F' ' '{print $1}'`
+
+for a in ${aptlist[@]}
+do
+	echo $a
+	id=`echo $a | awk -F '{print $1}'`
+	echo $id
+	kill $id
+done
 
 # update filesystem
 apt-get update
