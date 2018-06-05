@@ -17,6 +17,16 @@ echo "kernel commit ID is $commit_id"
 
 lava_report "Prepare_test" "pass" ${commit_id}
 
+aptlist=`ps -e | grep apt | awk -F' ' '{print $1}'`
+
+for a in ${aptlist[@]}
+do
+	echo $a
+	#id=`echo $a | awk -F '{print $1}'`
+	#echo $id
+	kill $a
+done
+
 # update filesystem
 apt-get update
 [ $? -ne 0 ]  && echo "apt-get is fail, try rm /var/lib/dpkg/lock, dpkg --configure -a  To fix it"

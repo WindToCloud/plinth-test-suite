@@ -1,6 +1,6 @@
 metadata:
     format: Lava-Test Test Definition 1.0
-    name: HNS-smoke-test
+    name: HNS-fullfunc-test
     description: "Run basic smoke tests."
     maintainer: "linyunsheng"
     os:

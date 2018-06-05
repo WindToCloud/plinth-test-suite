@@ -1,8 +1,8 @@
 metadata:
     format: Lava-Test Test Definition 1.0
-    name: SAS-smoke-test
+    name: ROCE-smoke-test
     description: "Run basic smoke tests."
-    maintainer: "chenxiang"
+    maintainer: "Liuyixian"
     os:
         - ubuntu
     scope:
@@ -15,9 +15,10 @@ params:
 
 run:
     steps:
+        - cp ./auto-test/roce_smoke/roce_test_case.table ./auto-test/smoke/roce_autotest/data/roce_test_case.table
         - cd ./auto-test/smoke/
-          # - bash -x ./xge_autotest/xge_main.sh
-        - bash -x ./sas_autotest/sas_main.sh
+        - bash -x ./roce_autotest/roce_main.sh
+          # - bash -x ./sas_autotest/sas_main.sh
           # - bash -x ./roce_autotest/roce_main.sh
        # - bash -x ./pcie_autotest/pcie_main.sh
         - cd -
