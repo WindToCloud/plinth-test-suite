@@ -35,7 +35,8 @@ apt-get update
 which expect
 [ $? != 0 ] && apt-get -y install expect
 
-export ENV_OK="TRUE"
+echo "export ENV_OK="TRUE"" > ~/.bashrc
+source ~/.bashrc
 
 echo 0 > /sys/class/sas_phy/phy-1\:0\:5/enable
 
