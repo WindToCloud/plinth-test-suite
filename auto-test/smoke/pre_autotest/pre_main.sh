@@ -13,6 +13,15 @@ commit_id=`cat /proc/version | awk -F' ' '{print $3}'`
 
 echo "kernel commit ID is $commit_id"
 
+aptlist=`ps -e | grep apt | awk -F' ' '{print $1}'`
+for a in ${aptlist[@]}
+do
+	echo $a
+	#id=`echo $a | awk -F '{print $1}'`
+	#echo $id
+	kill $a
+done
+
 # update filesystem
 apt-get update
 [ $? -ne 0 ]  && echo "apt-get is fail, try rm /var/lib/dpkg/lock, dpkg --configure -a  To fix it"
@@ -28,12 +37,4 @@ export ENV_OK="TRUE"
 #lava_report "Prepare_cmd" "pass" ${commit_id}
 lava_report "Prepare_test" "pass" ${commit_id}
 
-aptlist=`ps -e | grep apt | awk -F' ' '{print $1}'`
-for a in ${aptlist[@]}
-do
-	echo $a
-	#id=`echo $a | awk -F '{print $1}'`
-	#echo $id
-	kill $a
-done
 # clean exit so lava-test can trust the results
