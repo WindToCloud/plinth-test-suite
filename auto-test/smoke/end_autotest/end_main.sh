@@ -63,8 +63,13 @@ expect -c '
 	set tmpdir '${lava_id}'
 	set ip '${TFTP_SERVER_IP}'
 	spawn scp -r ${tmpdir} root@${ip}:/root/estuary/fileserver_data/plinth
-	expect "password"
-	send "root\r"
+	expect {
+           "Are you sure" {send "yes\r"; exp_continue}
+	    "password" {send "root\r"}
+        }
+
+	expect eof
+	exit 0
 '
 #scp -r ${lava_id} ${TFTP_SERVER_IP}
 
