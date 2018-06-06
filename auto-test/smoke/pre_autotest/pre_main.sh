@@ -13,13 +13,11 @@ commit_id=`cat /proc/version | awk -F' ' '{print $3}'`
 
 echo "kernel commit ID is $commit_id"
 
-#lava_report "Prepare_cmd" "pass" ${commit_id}
-
-lava_report "Prepare_test" "pass" ${commit_id}
-
 # update filesystem
 apt-get update
 [ $? -ne 0 ]  && echo "apt-get is fail, try rm /var/lib/dpkg/lock, dpkg --configure -a  To fix it"
+
+echo 0 > /sys/class/sas_phy/phy-1\:0\:5/enable
 
 # install expect
 which expect
@@ -27,6 +25,7 @@ which expect
 
 export ENV_OK="TRUE"
 
-echo 0 > /sys/class/sas_phy/phy-1\:0\:5/enable
+#lava_report "Prepare_cmd" "pass" ${commit_id}
 
+lava_report "Prepare_test" "pass" ${commit_id}
 # clean exit so lava-test can trust the results
