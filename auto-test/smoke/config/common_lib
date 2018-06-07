@@ -26,7 +26,8 @@ function lava_report()
         fi
 
         if [ -f /home/plinth/result.txt ];then
-	    echo -e "$1#$4" >> /home/plinth/result.txt
+            info=$(echo $4 | sed -i  's/\t/ /g')
+	    echo -e "$1#$info" >> /home/plinth/result.txt
 	    cat /home/plinth/result.txt
         fi
      fi
