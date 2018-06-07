@@ -19,12 +19,19 @@ function lava_report()
      #echo "The result of test "$1" is "$2
      #This cmd used to report pass result to lava server0
      lava-test-case "$1" --result $2 --measurement "10"  --units $3
-     #if [ x"$2" == x"fail" ];then
-        if [ -f /home/plinth/result.txt ];then
-	    echo -e "$1#$4" >> /home/plinth/result.txt
-	    cat /home/plinth/result.txt
+     if [ x"$2" == x"fail" ];then
+        if [ ! -f /home/plinth/result.txt ];then
+		mkdir -p /home/plinth
+		touch /home/plinth/result.txt
         fi
-     #fi
+
+        if [ -f /home/plinth/result.txt ];then
+           # info=$(echo $4 | sed -i  's/\t/ /g')
+	    echo -e "$1#$4" >> /home/plinth/result.txt
+	    sed -i 's/\t/ /g' /home/plinth/result.txt
+            cat /home/plinth/result.txt
+        fi
+     fi
      return 0
  }
 
