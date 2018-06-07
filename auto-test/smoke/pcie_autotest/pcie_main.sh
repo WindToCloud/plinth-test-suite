@@ -57,7 +57,7 @@ function main()
 check_ENV_OK_exists
 if [ $? -eq 1 ]
 then
-    . ${SAS_TOP_DIR}/../pre_autotest/pre_main.sh
+    . ${PCIE_TOP_DIR}/../pre_autotest/pre_main.sh
 fi
 
 #global_prepare_env
