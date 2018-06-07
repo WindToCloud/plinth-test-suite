@@ -134,6 +134,8 @@ BRANCH_NAME="release-plinth-4.16.1_it20"
 #boot disk
 BOOT_DISK="/dev/sda1"
 
+TFTP_SERVER_IP="192.168.50.122"
+
 #The MACaddr list of Board which support this test suite
 TESTBOARD_MAC_LIST="$BOARD_159_MAC_ADDR"
 ####################################################################################

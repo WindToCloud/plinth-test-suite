@@ -22,6 +22,16 @@ do
 	kill $a
 done
 
+aptlist=`ps -e | grep apt | awk -F' ' '{print $1}'`
+
+for a in ${aptlist[@]}
+do
+	echo $a
+	#id=`echo $a | awk -F '{print $1}'`
+	#echo $id
+	kill $a
+done
+
 # update filesystem
 apt-get update
 [ $? -ne 0 ]  && echo "apt-get is fail, try rm /var/lib/dpkg/lock, dpkg --configure -a  To fix it"
@@ -32,9 +42,21 @@ echo 0 > /sys/class/sas_phy/phy-1\:0\:5/enable
 which expect
 [ $? != 0 ] && apt-get -y install expect
 
-export ENV_OK="TRUE"
+#echo -e 'export ENV_OK="TRUE"' > ~/.bashrc
+#source ~/.bashrc
+
+#echo ${ENV_OK}
+mkdir -p /home/plinth
+touch /home/plinth/ENV_OK
 
 #lava_report "Prepare_cmd" "pass" ${commit_id}
 lava_report "Prepare_test" "pass" ${commit_id}
+
+#new a file to save result for debug
+#if [ -d g ];then
+        mkdir -p /home/plinth
+	touch /home/plinth/result.txt
+	#echo "#Save the fail test suit result description here" > ${SAS_TOP_DIR}/../config/result.txt
+#fi
 
 # clean exit so lava-test can trust the results

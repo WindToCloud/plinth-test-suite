@@ -11,9 +11,9 @@ function test_case_function_run()
 	then
 		${TEST_CASE_FUNCTION_NAME}
 		if [ x"${MESSAGE}" == x"PASS"  ];then
-          		lava_report "${TEST_CASE_TITLE}" pass "Fangjian"
+          		lava_report "${TEST_CASE_TITLE}" pass "Fangjian" "${MESSAGE}"
 		else
-			lava_report "${TEST_CASE_TITLE}" fail "Fangjian"
+			lava_report "${TEST_CASE_TITLE}" fail "Fangjian" "${MESSAGE}"
 		fi
 	else
 		MESSAGE="BLOCK\tno automated use cases were implemented."

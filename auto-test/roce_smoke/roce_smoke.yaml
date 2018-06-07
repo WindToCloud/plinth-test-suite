@@ -15,6 +15,7 @@ params:
 
 run:
     steps:
+        - cp ./auto-test/roce_smoke/roce_test_case.table ./auto-test/smoke/roce_autotest/data/roce_test_case.table
         - cd ./auto-test/smoke/
         - bash -x ./roce_autotest/roce_main.sh
           # - bash -x ./sas_autotest/sas_main.sh

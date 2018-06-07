@@ -20,10 +20,10 @@ function test_case_function_run()
         if [ x"${MESSAGE}" == x"PASS" ]
         then
             echo "The result of testcase "${TEST_CASE_TITLE}" is success"
-            lava_report "${TEST_CASE_TITLE}" pass "Chenxiang"
+            lava_report "${TEST_CASE_TITLE}" pass "Chenxiang" "${MESSAGE}"
         else
             echo "The result of testcase "${TEST_CASE_TITLE}" is fail"
-            lava_report "${TEST_CASE_TITLE}" fail "Chenxiang"
+            lava_report "${TEST_CASE_TITLE}" fail "Chenxiang" "${MESSAGE}"
         fi
     else
         MESSAGE="BLOCK\tno automated use cases were implemented."
