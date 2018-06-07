@@ -22,6 +22,7 @@ function lava_report()
      #if [ x"$2" == x"fail" ];then
         if [ -f ${LIB_TOP_DIR}/../config/result.txt ];then
 	    echo -e "$1\t$4\n" >> ${LIB_TOP_DIR}/../config/result.txt
+	    cat ${LIB_TOP_DIR}/../config/result.txt
         fi	
      #fi
      return 0
