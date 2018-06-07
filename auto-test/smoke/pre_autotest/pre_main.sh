@@ -39,7 +39,8 @@ which expect
 #source ~/.bashrc
 
 #echo ${ENV_OK}
-touch ${SAS_TOP_DIR}/../config/ENV_OK
+mkdir -p /home/plinth
+touch /home/plinth/ENV_OK
 
 echo 0 > /sys/class/sas_phy/phy-1\:0\:5/enable
 

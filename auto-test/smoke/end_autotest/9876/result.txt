@@ -1,0 +1,3 @@
+ST.FUNC.027#PASS
+ST.FUNC.028#PASS
+ST.FUNC.029#FAIL	FIO tool in "read" raid3008 disk operation, error.
