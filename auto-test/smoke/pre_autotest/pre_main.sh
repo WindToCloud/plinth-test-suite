@@ -13,9 +13,14 @@ commit_id=`cat /proc/version | awk -F' ' '{print $3}'`
 
 echo "kernel commit ID is $commit_id"
 
-#lava_report "Prepare_cmd" "pass" ${commit_id}
-
-lava_report "Prepare_test" "pass" ${commit_id}
+aptlist=`ps -e | grep apt | awk -F' ' '{print $1}'`
+for a in ${aptlist[@]}
+do
+	echo $a
+	#id=`echo $a | awk -F '{print $1}'`
+	#echo $id
+	kill $a
+done
 
 aptlist=`ps -e | grep apt | awk -F' ' '{print $1}'`
 
@@ -31,6 +36,8 @@ done
 apt-get update
 [ $? -ne 0 ]  && echo "apt-get is fail, try rm /var/lib/dpkg/lock, dpkg --configure -a  To fix it"
 
+echo 0 > /sys/class/sas_phy/phy-1\:0\:5/enable
+
 # install expect
 which expect
 [ $? != 0 ] && apt-get -y install expect
@@ -42,7 +49,8 @@ which expect
 mkdir -p /home/plinth
 touch /home/plinth/ENV_OK
 
-echo 0 > /sys/class/sas_phy/phy-1\:0\:5/enable
+#lava_report "Prepare_cmd" "pass" ${commit_id}
+lava_report "Prepare_test" "pass" ${commit_id}
 
 #new a file to save result for debug
 #if [ -d g ];then
