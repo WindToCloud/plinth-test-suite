@@ -20,7 +20,7 @@ function lava_report()
      #This cmd used to report pass result to lava server0
      lava-test-case "$1" --result $2 --measurement "10"  --units $3
      if [ x"$2" == x"fail" ];then
-        if [ -f ${LIB_TOP_DIR}/result.txt ];then
+        if [ -f ${LIB_TOP_DIR}/../config/result.txt ];then
 	    echo "$1 $4\n" >> ${LIB_TOP_DIR}/result.txt
         fi	
      fi
