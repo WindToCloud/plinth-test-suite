@@ -54,8 +54,13 @@ function main()
         MESSAGE=""
     done
 }
+check_ENV_OK_exists
+if [ $? -eq 1 ]
+then
+    . ${SAS_TOP_DIR}/../pre_autotest/pre_main.sh
+fi
 
-global_prepare_env
+#global_prepare_env
 # Output log file header
 writeLogHeader
 
