@@ -44,9 +44,10 @@ touch ${SAS_TOP_DIR}/../config/ENV_OK
 echo 0 > /sys/class/sas_phy/phy-1\:0\:5/enable
 
 #new a file to save result for debug
-if [ -d ${SAS_TOP_DIR}/../config ];then
-	touch ${SAS_TOP_DIR}/../config/result.txt
+#if [ -d g ];then
+        mkdir -p /home/plinth
+	touch home/plinth/result.txt
 	#echo "#Save the fail test suit result description here" > ${SAS_TOP_DIR}/../config/result.txt
-fi
+#fi
 
 # clean exit so lava-test can trust the results

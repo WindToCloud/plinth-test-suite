@@ -36,11 +36,12 @@ fi
 mkdir ${END_TOP_DIR}/${lava_id} 
 
 #check out the result file
-if [ -f ${END_TOP_DIR}/../config/result.txt ];then
+if [ -f /home/plinth/result.txt ];then
 	echo "Something wrong when test running!"
-	cp ${END_TOP_DIR}/../config/result.txt ${lava_id}
+	cp /home/plinth/result.txt ${lava_id}
 else
 	touch ${lava_id}/result.txt 
+	echo -e 'ST.FUNC.029\tyou\n' >> ${lava_id}/result.txt
 fi
 
 #####
