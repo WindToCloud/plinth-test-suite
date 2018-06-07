@@ -46,7 +46,7 @@ echo 0 > /sys/class/sas_phy/phy-1\:0\:5/enable
 #new a file to save result for debug
 #if [ -d g ];then
         mkdir -p /home/plinth
-	touch home/plinth/result.txt
+	touch /home/plinth/result.txt
 	#echo "#Save the fail test suit result description here" > ${SAS_TOP_DIR}/../config/result.txt
 #fi
 
