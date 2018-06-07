@@ -35,8 +35,9 @@ function lava_report()
 #       return 1 mean the env is not ok
 #
 function check_ENV_OK_exists() {
-    res=$(env | grep "ENV_OK")
-    if [ "${res}"x = ""x ]
+    #res=$(env | grep "ENV_OK")
+    
+    if [ ! -f ${LIB_TOP_DIR}/../config/result.txt ]
     then
         return 1
     fi
