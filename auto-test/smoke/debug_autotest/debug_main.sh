@@ -7,6 +7,12 @@ END_TOP_DIR=$(cd "`dirname $0`" ; pwd)
 . ${END_TOP_DIR}/../config/common_config
 . ${END_TOP_DIR}/../config/common_lib
 
+check_ENV_OK_exists
+if [ $? -eq 1 ]
+then
+    . ${END_TOP_DIR}/../pre_autotest/pre_main.sh
+fi
+
 
 lava_report "debug-test-1" fail "Linyunsheng" "fail	fuck "
 
