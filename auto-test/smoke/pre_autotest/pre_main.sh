@@ -22,16 +22,6 @@ do
 	kill $a
 done
 
-aptlist=`ps -e | grep apt | awk -F' ' '{print $1}'`
-
-for a in ${aptlist[@]}
-do
-	echo $a
-	#id=`echo $a | awk -F '{print $1}'`
-	#echo $id
-	kill $a
-done
-
 # update filesystem
 apt-get update
 [ $? -ne 0 ]  && echo "apt-get is fail, try rm /var/lib/dpkg/lock, dpkg --configure -a  To fix it"
@@ -54,8 +44,8 @@ lava_report "Prepare_test" "pass" ${commit_id}
 
 #new a file to save result for debug
 #if [ -d g ];then
-        mkdir -p /home/plinth
-	touch /home/plinth/result.txt
+        # mkdir -p /home/plinth
+	# touch /home/plinth/result.txt
 	#echo "#Save the fail test suit result description here" > ${SAS_TOP_DIR}/../config/result.txt
 #fi
 
