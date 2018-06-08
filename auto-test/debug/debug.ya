@@ -1,0 +1,28 @@
+metadata:
+    format: Lava-Test Test Definition 1.0
+    name: debug-test
+    description: "Run basic tests."
+    maintainer: "luojiaxing"
+    os:
+        - ubuntu
+    scope:
+        - functional
+    devices:
+        - d06
+
+params:
+    SKIP_INSTALL: "False"
+
+run:
+    steps:
+        - cd ./auto-test/smoke/
+        - bash -x ./debug_autotest/debug_main.sh
+          # - bash -x ./sas_autotest/sas_main.sh
+          # - bash -x ./roce_autotest/roce_main.sh
+       # - bash -x ./pcie_autotest/pcie_main.sh
+        - cd -
+parse:
+    pattern: "^(?!.+ED)(?P<test_case_id>\\w+)\\s+(?P<result>\\w+)\\s+\\d$"
+    fixupdict:
+        FAIL: fail
+        PASS: pass
