@@ -10,7 +10,7 @@ function ge_query_link_state()
     echo "Begin to run "${Test_Case_Title}
     ifconfig ${local_tp1} up; ifconfig ${local_tp1} ${local_tp1_ip}
     ssh root@${BACK_IP} "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5;"
-    
+
     ifconfig ${local_tp1} down
     for ((i=1;i<=10;i++));
     do
@@ -21,7 +21,7 @@ function ge_query_link_state()
         if [ "$LinkState" = "no" ];then
             enableok=1
         fi
-        
+
         ssh root@${BACK_IP} "ifconfig ${remote_tp1} up"
         LinkState=$(ethtool ${local_tp1} | grep "Link detected:" | awk -F":" '{print $NF}' | tr -d ' ')
         if [ "$LinkState" = "no" ];then
@@ -30,11 +30,20 @@ function ge_query_link_state()
         if [ $enableok -eq 1 -a $disableok -eq 1 ];then
             MESSAGE="PASS"
         else
-            MESSAGE="FAIL\t Ping packet failure"
-            break
+            if [ $enableok -eq 0 -a $disableok -eq 1 ]
+            then
+                MESSAGE="FAIL\t local down, remote down, linkstate stay yes"
+                break
+            elif [ $enableok -eq 1 -a $disableok -eq 0 ]; then
+                MESSAGE="FAIL\t local down, remote up, linkstate stay no"
+                break
+            else
+                MESSAGE="FAIL\t local down, remote up/down, linkstate stay no/yes"
+                break
+            fi
         fi
     done
-    
+
     ifconfig ${local_tp1} up
     for ((i=1;i<=10;i++));
     do
@@ -55,7 +64,7 @@ function ge_query_link_state()
         if [ "$LinkState" = "no" ];then
             enableok=1
         fi
-        
+
         ssh root@${BACK_IP} "ifconfig ${remote_tp1} up"
 	sleep 5
         LinkState=$(ethtool ${local_tp1} | grep "Link detected:" | awk -F":" '{print $NF}' | tr -d ' ')
@@ -65,8 +74,17 @@ function ge_query_link_state()
         if [ $enableok -eq 1 -a $disableok -eq 1 ];then
             MESSAGE="PASS"
         else
-            MESSAGE="FAIL\t Ping packet failure"
-            break
+            if [ $enableok -eq 0 -a $disableok -eq 1 ]
+            then
+                MESSAGE="FAIL\t local up, remote down, linkstate stay yes"
+                break
+            elif [ $enableok -eq 1 -a $disableok -eq 0 ]; then
+                MESSAGE="FAIL\t local up, remote up, linkstate stay no"
+                break
+            else
+                MESSAGE="FAIL\t local up, remote up/down, linkstate stay no/yes"
+                break
+            fi
         fi
 	echo $enableok
 	echo $disableok
@@ -84,7 +102,7 @@ function ge_link_state_fault_tolerant()
         MESSAGE="PASS"
     else
         MESSAGE="FAIL\t No print error information"
-    fi    
+    fi
 }
 
 function xge_query_link_state()
@@ -92,7 +110,7 @@ function xge_query_link_state()
     Test_Case_Title="xge_query_link_state"
     ifconfig ${local_fibre1} up; ifconfig ${local_fibre1} ${local_fibre1_ip}
     ssh root@${BACK_IP} "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5;"
-    
+
     ifconfig ${local_fibre1} down
     for ((i=1;i<=10;i++));
     do
@@ -103,7 +121,7 @@ function xge_query_link_state()
         if [ "$LinkState" = "no" ];then
             enableok=1
         fi
-        
+
         ssh root@${BACK_IP} "ifconfig ${remote_fibre1} up"
         LinkState=$(ethtool ${local_fibre1} | grep "Link detected:" | awk -F":" '{print $NF}' |  tr -d ' ')
         if [ "$LinkState" = "no" ];then
@@ -112,11 +130,20 @@ function xge_query_link_state()
         if [ $enableok -eq 1 -a $disableok -eq 1 ];then
             MESSAGE="PASS"
         else
-            MESSAGE="FAIL\t Ping packet failure"
-            break
+            if [ $enableok -eq 0 -a $disableok -eq 1 ]
+            then
+                MESSAGE="FAIL\t local down, remote down, linkstate stay yes"
+                break
+            elif [ $enableok -eq 1 -a $disableok -eq 0 ]; then
+                MESSAGE="FAIL\t local down, remote up, linkstate stay no"
+                break
+            else
+                MESSAGE="FAIL\t local down, remote up/down, linkstate stay no/yes"
+                break
+            fi
         fi
     done
-    
+
     ifconfig ${local_fibre1} up
     for ((i=1;i<=10;i++));
     do
@@ -125,25 +152,33 @@ function xge_query_link_state()
 		break
 	fi
 
-
         enableok=0
         disableok=0
         ssh root@${BACK_IP} "ifconfig ${remote_fibre1} down"
-        LinkState=$(ethtool ${local_fibre1} | grep "Link detected:" | awk -F":" '{print $NF}' tr -d ' ')
+        LinkState=$(ethtool ${local_fibre1} | grep "Link detected:" | awk -F":" '{print $NF}' | tr -d ' ')
         if [ "$LinkState" = "no" ];then
             enableok=1
         fi
-        
+
         ssh root@${BACK_IP} "ifconfig ${remote_fibre1} up"
-        LinkState=$(ethtool ${local_fibre1} | grep "Link detected:" | awk -F":" '{print $NF}' tr -d ' ')
+        LinkState=$(ethtool ${local_fibre1} | grep "Link detected:" | awk -F":" '{print $NF}' | tr -d ' ')
         if [ "$LinkState" = "yes" ];then
             disableok=1
         fi
         if [ $enableok -eq 1 -a $disableok -eq 1 ];then
             MESSAGE="PASS"
         else
-            MESSAGE="FAIL\t Ping packet failure"
-            break
+            if [ $enableok -eq 0 -a $disableok -eq 1 ]
+            then
+                MESSAGE="FAIL\t local up, remote down, linkstate stay yes"
+                break
+            elif [ $enableok -eq 1 -a $disableok -eq 0 ]; then
+                MESSAGE="FAIL\t local up, remote up, linkstate stay no"
+                break
+            else
+                MESSAGE="FAIL\t local up, remote up/down, linkstate stay no/yes"
+                break
+            fi
         fi
     done
 }
