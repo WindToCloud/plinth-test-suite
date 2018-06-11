@@ -44,8 +44,8 @@ lava_report "Prepare_test" "pass" ${commit_id}
 
 #new a file to save result for debug
 #if [ -d g ];then
-        # mkdir -p /home/plinth
-	# touch /home/plinth/result.txt
+        mkdir -p /home/plinth
+        touch /home/plinth/result.txt
 	#echo "#Save the fail test suit result description here" > ${SAS_TOP_DIR}/../config/result.txt
 #fi
 
