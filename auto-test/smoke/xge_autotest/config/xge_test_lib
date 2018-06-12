@@ -2,6 +2,7 @@
 #
 ## Utility function
 . ${HNS_TOP_DIR}/../config/common_lib
+common_tool="${HNS_TOP_DIR}/../common_tool"
 
 declare -A eth_map
 eth_map=(
@@ -36,8 +37,15 @@ function install_iperf_netperf() {
 
 }
 
+function qperf_install() {
+    which qperf
+    [ $? -eq 0 ] || echo "begin to install qperf"; cp ${common_tool}/qperf /usr/bin
+    ssh root@${BACK_IP} "which qperf"
+    [ $? -eq 0 ] || echo "begin to install remote qperf"; scp ${common_tool}/qperf root@${BACK_IP}:/usr/bin
+}
 
 #####> end with chenjing <--------------------
+
 function test_case_switch()
 {
     if [ x"${TEST_CASE_FUNCTION_SWITCH}" == x"on" ]
