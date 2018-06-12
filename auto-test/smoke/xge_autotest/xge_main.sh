@@ -123,6 +123,9 @@ check_environment
 #check iperf/qperf/netperf is ok
 install_iperf_netperf
 
+#install qperf
+qperf_install
+
 #performance init
 perf_init
 
