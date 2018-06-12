@@ -72,7 +72,7 @@ function ge_set_standard_mac_address()
     if [ ${oldMacAddress:15:2} = "44" ];then
         newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"22"/g)
     else
-        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"44"/g)
+        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"43"/g)
     fi
     #newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"00"/g)
     ifconfig ${local_tp1} hw ether ${newMacAddress}
@@ -174,7 +174,7 @@ function xge_set_standard_mac_address()
     if [ ${oldMacAddress:15:2} = "44" ];then
         newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"22"/g)
     else
-        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"44"/g)
+        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"43"/g)
     fi
     #newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"00"/g)
     ifconfig ${local_fibre2} hw ether ${newMacAddress}

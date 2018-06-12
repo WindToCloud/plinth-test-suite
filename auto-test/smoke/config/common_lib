@@ -5,6 +5,30 @@
 #############################################################################################################
 LIB_TOP_DIR=$(cd "`dirname $0`" ; pwd)
 
+#  Get default server ssh ip by mac
+#  IN : N/A
+#  OUT: 1:  no found
+#       0:  found ip of server ssh ip 
+function g_get_default_sip()
+{
+	#get all mac and check if mac in dict merge one of then 
+	#if so , use the ip as sip
+	#if not, return 0 for no found sip
+	mac=`ifconfig -a | grep HWaddr | awk -F' ' '{print $NF}'`
+	for key in $(echo ${!mac_ip[*]})
+	do
+		echo "MAC is $key ,and server ip is ${mac_ip[$key]}"
+		if [[ $mac =~ $key ]]
+		then
+			echo "Found the Server IP as ${mac_ip[$key]}"
+			g_server_ip=${mac_ip[$key]}
+			return 0
+        fi    
+	done
+	return 1
+}
+
+
 #  Output success test case log information
 #  IN :
 #       $1:    The title of testcase

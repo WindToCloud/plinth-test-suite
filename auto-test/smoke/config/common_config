@@ -138,5 +138,20 @@ TFTP_SERVER_IP="192.168.50.122"
 
 #The MACaddr list of Board which support this test suite
 TESTBOARD_MAC_LIST="$BOARD_159_MAC_ADDR"
+
+declare -A mac_ip
+mac_ip=(
+["00:18:86:03:00:14"]="192.168.50.152"
+)
+
+declare -A sip_cip
+sip_cip=(
+["192.168.50.152"]="192.168.50.153"
+)
+
+g_server_ip=''
+g_client_ip=''
+g_ctrlNIC=''
+COM=''
 ####################################################################################
 
