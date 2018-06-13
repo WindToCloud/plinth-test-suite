@@ -54,8 +54,16 @@ function main()
         exec_script=`echo "${line}" | awk -F '\t' '{print $6}'`
         TEST_CASE_FUNCTION_NAME=`echo "${line}" | awk -F '\t' '{print $7}'`
         TEST_CASE_FUNCTION_SWITCH=`echo "${line}" | awk -F '\t' '{print $8}'`
-        TEST_CASE_TITLE=`echo "${line}" | awk -F '\t' '{print $3}'`
+        TEST_CASE_TITLE=`echo "${line}" | awk -F '\t' '{print $1}'`
         TEST_CASE_NUM=`echo "${line}" | awk -F '\t' '{print $3}'`
+        Tester=`echo "${line}" | awk -F '\t' '{print $5}'`
+        DateTime=`date "+%G-%m-%d %H:%M:%S"`
+        if [ x"${DEVELOPER}" == x"" ]
+        then
+            Developer=`echo "${line}" | awk -F '\t' '{print $4}'`
+        else
+            Developer=${DEVELOPER}
+        fi
 
         echo "CaseInfo "${TEST_CASE_TITLE}" "$exec_script" "$TEST_CASE_FUNCTION_NAME" "$TEST_CASE_FUNCTION_SWITCH
 
@@ -94,6 +102,9 @@ fi
 
 #Output log file header
 writeLogHeader
+
+#Output CI log header
+LogHeader
 
 #Xge test is only excute in 159 dash board
 #Find the local MAC

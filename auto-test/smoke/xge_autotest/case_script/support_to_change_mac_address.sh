@@ -69,12 +69,27 @@ function ge_set_standard_mac_address()
     MESSAGE="PASS"
 
     oldMacAddress=$(ifconfig ${local_tp1} | grep "HWaddr" | awk '{print $NF}')
-    if [ ${oldMacAddress:15:2} = "44" ];then
-        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"22"/g)
-    else
-        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"44"/g)
+    Random_Mac=$((RANDOM%99))
+    Random_Mac1=$((RANDOM%99))
+    # if [ ${oldMacAddress:15:2} = "44" ];then
+        # newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"22"/g)
+    # else
+        # newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"44"/g)
+    # fi
+    if [ ${Random_Mac} -lt 10 ]
+    then
+        Random_Mac="0"${Random_Mac}
+        if [ ${Random_Mac1} -lt 10 ]
+        then
+            Random_Mac1="0"${Random_Mac}
+        fi
     fi
-    #newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"00"/g)
+    newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"${Random_Mac}"/g)
+    remoteMacAddress=$(ssh root@${BACK_IP} "ifconfig ${local_tp1} | grep "HWaddr" | awk '{print $NF}'")
+    if [ "${newMacAddress}"x == "${remoteMacAddress}"x ]
+    then
+        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"${Random_Mac1}"/g)
+    fi
     ifconfig ${local_tp1} hw ether ${newMacAddress}
     sleep $ARP_MAC_UPDATE_TIME
     ssh root@${BACK_IP} "ping ${local_tp1_ip} -c 10 &> /dev/null;sleep 5;"
@@ -171,12 +186,27 @@ function xge_set_standard_mac_address()
     MESSAGE="PASS"
 
     oldMacAddress=$(ifconfig ${local_fibre2} | grep "HWaddr" | awk '{print $NF}')
-    if [ ${oldMacAddress:15:2} = "44" ];then
-        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"22"/g)
-    else
-        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"44"/g)
+    # if [ ${oldMacAddress:15:2} = "44" ];then
+        # newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"22"/g)
+    # else
+        # newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"44"/g)
+    # fi
+    Random_Mac=$((RANDOM%99))
+    Random_Mac1=$((RANDOM%99))
+    if [ ${Random_Mac} -lt 10 ]
+    then
+        Random_Mac="0"${Random_Mac}
+        if [ ${Random_Mac1} -lt 10 ]
+        then
+            Random_Mac1="0"${Random_Mac}
+        fi
     fi
-    #newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"00"/g)
+    newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"${Random_Mac}"/g)
+    remoteMacAddress=$(ssh root@${BACK_IP} "ifconfig ${local_tp1} | grep "HWaddr" | awk '{print $NF}'")
+    if [ "${newMacAddress}"x == "${remoteMacAddress}"x ]
+    then
+        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"${Random_Mac1}"/g)
+    fi
     ifconfig ${local_fibre2} hw ether ${newMacAddress}
     sleep $ARP_MAC_UPDATE_TIME
     ssh root@${BACK_IP} "ping ${local_fibre2_ip} -c 10;sleep 5"

@@ -41,8 +41,8 @@ function ge_set_fail_mtu_value()
 	    echo ${MESSAGE}
         fi
     done
-    #MESSAGE="PASS" 
-    echo $MESSAGE   
+    #MESSAGE="PASS"
+    echo $MESSAGE
 }
 
 function ge_iperf_set_mtu_value()
@@ -63,7 +63,7 @@ function ge_iperf_set_mtu_value()
     ssh root@${BACK_IP} "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5;iperf -s >/dev/null 2>&1 &"
     iperf -c ${remote_tp1_ip} -t 3600 -i 1 -P 3 > ${HNS_TOP_DIR}/data/log/iperf_set_mtu_value.txt &
     valuelist="68 1500 9706"
-    for ((i=1;i<=20;i++));
+    for ((i=1;i<=2;i++));
     do
         echo $i
         for value in $valuelist
@@ -75,7 +75,7 @@ function ge_iperf_set_mtu_value()
             if [ $value -ne $NewMtuValue ] || [ $tmp -ne 0 ];then
                 killall iperf
                 ssh root@${BACK_IP} "killall iperf"
-                MESSAGE="FAIL\t MTU value set fail "
+                MESSAGE="FAIL\t ge Runing iperf, MTU value set fail "
 		echo ${MESSAGE}
             fi
         done
@@ -124,7 +124,7 @@ function xge_set_fail_mtu_value()
             MESSAGE="FAIL\t MTU Incoming error parameters set fail "
         fi
     done
-    #MESSAGE="PASS"    
+    #MESSAGE="PASS"
 }
 
 function xge_iperf_set_mtu_value()
@@ -157,7 +157,7 @@ function xge_iperf_set_mtu_value()
             if [ $value -ne $NewMtuValue ] || [ $tmp -ne 0 ];then
                 killall iperf
                 ssh root@${BACK_IP} "killall iperf"
-                MESSAGE="FAIL\t MTU value set fail "
+                MESSAGE="FAIL\t xge Runing iperf, MTU value set fail "
             fi
         done
     done

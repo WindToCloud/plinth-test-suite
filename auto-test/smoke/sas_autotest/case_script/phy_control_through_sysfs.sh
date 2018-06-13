@@ -1,55 +1,21 @@
 #!/bin/bash
 
-
-
-# Modify the value of the rate file.
-# IN : $1 Need to modify phy file directory.
-#      $2 Rate value.
-#      $3 Rate file.
-# OUT: N/A
-function modify_phy_rate()
+#recover disk linkrate file value
+#IN : $1 org  minimum linkrate
+#     $2 org  maximum linkrate
+#     $3 dir of disk config
+function recover_linkrate()
 {
-    local path=$1
-    local rate=$2
-    local name=$3
+    echo "Begin to recove the origin value of max and min rate"
 
-    linkrate=`cat ${PHY_FILE_PATH}/${path}/negotiated_linkrate | awk -F ' ' '{print $1}'`
-    mum=`echo "${rate}" | awk -F ' ' '{print $1}'`
-    bool=`echo "${mum} ${linkrate}" | awk '{if($1>$2){print 1}else{print 0}}'`
-    if [ ${bool} -eq 1 ]
-    then
-        echo "###############################################"
-        return 0
-    fi
+    echo "Para is "$1" "$2" "$3
 
-    init_num=`fdisk -l | grep /dev/sd | wc -l`
-    echo "${rate}" > ${PHY_FILE_PATH}/${path}/${name}
+    echo $1 > ${PHY_FILE_PATH}/$3/minimum_linkrate
+    echo $2 > ${PHY_FILE_PATH}/$3/maximum_linkrate
 
-    case ${name} in
-        "minimum_linkrate")
-        bool=`echo "${linkrate} ${mum}" | awk '{if($1<$2 && $1!=$2){print 1}else{print 0}}'`
-        #bool=`echo "6 3" | awk '{if($1<$2 && $1!=$2){print 1}else{print 0}}'`
-        if [ ${bool} -eq 1 ]
-        then
-            MESSAGE="FAIL\tThe negotiation rate is less than the minimum rate, linkrate: ${linkrate} < ${mum}."
-            return 1
-        fi
-        ;;
-        "maximum_linkrate")
-        bool=`echo "${linkrate} ${mum}" | awk '{if($1>$2){print 1}else{print 0}}'`
-        if [ ${bool} -eq 1 ]
-        then
-            MESSAGE="FAIL\tThe negotiation rate is less than the maximum rate, linkrate: ${linkrate} > ${mum}."
-            return 1
-        fi
-        ;;
-    esac
-    end_num=`fdisk -l | grep /dev/sd | wc -l`
-    if [ "${init_num}" -ne "${end_num}" ]
-    then
-        MESSAGE="FAIL\tDisk missing when setting ${name} rate."
-        return 1
-    fi
+    echo "The "$3" linkrate is recover as flow:"
+    cat ${PHY_FILE_PATH}/${dir}/minimum_linkrate
+    cat ${PHY_FILE_PATH}/${dir}/maximum_linkrate
 
     return 0
 }
@@ -59,61 +25,79 @@ function modify_phy_rate()
 # OUT: N/A
 function set_rate_link()
 {
-    Test_Case_Title="set_rate_link"
-
-    phy_dir_list=`ls "${PHY_FILE_PATH}" | grep -v "phy-1:0:1"`
-    for dir in ${phy_dir_list}
+    for dir in `ls ${PHY_FILE_PATH}`
     do
-	echo "Begin to check sas type in "${dir}
         type=`cat ${PHY_FILE_PATH}/${dir}/target_port_protocols`
-        if [ x"${type}" == x"none" ]
+	echo "Begin to check sas type in "${dir}
+        if [ x"$type" != x"none" ]
         then
-            continue
+            echo "Begin to set rate in "${dir0}
+
+            #this function will destroy the setting value of disk speed
+            #so may be we should save the value first,then recove it after test
+            tmp_min=`cat ${PHY_FILE_PATH}/${dir}/minimum_linkrate | awk '{printf $0}'`
+            echo "origin min rate value is "$tmp_min
+            tmp_max=`cat ${PHY_FILE_PATH}/${dir}/maximum_linkrate | awk '{printf $0}'`
+            echo "origin max rate value is"$tmp_max
+
+            echo $MINIMUM_LINK_VALUE > ${PHY_FILE_PATH}/${dir}/minimum_linkrate
+            echo $MAXIMUM_LINK_VALUE > ${PHY_FILE_PATH}/${dir}/maximum_linkrate
+            [ $? -ne 0 ] && MESSAGE="FAIL\tFailed to set the maximum rate of \"${dir}\" greater than the minimum rate." && recover_linkrate "${tmp_min}" "${tmp_max}" "${dir}" && return 1
+
+            echo $MINIMUM_LINK_VALUE > ${PHY_FILE_PATH}/${dir}/maximum_linkrate
+            [ $? -ne 0 ] && MESSAGE="FAIL\tFailed to set the \"${dir}\" maximum rate equal to the minimum rate." && recover_linkrate "${tmp_min}" "${tmp_max}" "${dir}" && return 1
+
+            echo $MAXIMUM_LINK_VALUE > ${PHY_FILE_PATH}/${dir}/minimum_linkrate
+            [ $? -eq 0 ] && MESSAGE="FAIL\tFailed to set the \"${dir}\" maximum rate less than the minimum rate." && recover_linkrate "${tmp_min}" "${tmp_max}" "${dir}" && return 1
+
+            recover_linkrate "${tmp_min}" "${tmp_max}" "${dir}"
         fi
-        case ${type} in
-            "sata")
-            for rate in "${SATA_PHY_VALUE_LIST[@]}"
-            do
-                modify_phy_rate ${dir} "${rate}" "minimum_linkrate"
-                if [ $? -eq 1 ]
-                then
-                    return 1
-                fi
-                modify_phy_rate ${dir} "${rate}" "maximum_linkrate"
-                if [ $? -eq 1 ]
-                then
-                    return 1
-                fi
-            done
-            ;;
-            "ssp")
-            for rate in "${SAS_PHY_VALUE_LIST[@]}"
-            do
-                modify_phy_rate ${dir} "${rate}" "minimum_linkrate"
-                if [ $? -eq 1 ]
-                then
-                    return 1
-                fi
-                modify_phy_rate ${dir} "${rate}" "maximum_linkrate"
-                if [ $? -eq 1 ]
-                then
-                    return 1
-                fi
-            done
-            ;;
-        esac
-        # Reset initial rate value.
-        echo "12.0 Gbit" > ${PHY_FILE_PATH}/${dir}/maximum_linkrate
-        echo "1.5 Gbit" > ${PHY_FILE_PATH}/${dir}/minimum_linkrate
         sleep 5
+    done
+    return 0
+}
+
+# Rate set up
+# IN : N/A
+# OUT: N/A
+function rate_set_up()
+{
+    Test_Case_Title="rate_set_up"
+
+    set_rate_link
+    [ $? -ne 0 ] && return 1
+
+    MESSAGE="PASS"
+}
+
+# Loop rate set up
+# IN : N/A
+# OUT: N/A
+function loop_rate_set_up()
+{
+    Test_Case_Title="loop_rate_set_up"
+    echo "Begin to run loop_rate_set_up with "$num" cycle."
+    for num in ${LOOP_RATE_SET_UP_NUMBER}
+    do
+	echo "Start the "$num" cycle to set rate!"
+        set_rate_link
+        [ $? -ne 0 ] && MESSAGE="FAIL\tThe loop setting PHY rate value failed" && return 1
+        sleep 2
     done
     MESSAGE="PASS"
 }
-# set_rate_link
-# exit 0
 
 function main()
 {
+    #Judge the current environment, directly connected environment or expander environment.
+    judgment_network_env
+    if [ $? -eq 0 ]
+    then
+        MESSAGE="BLOCK\tthe current environment expander network, do not execute test cases."
+        echo "the current environment expander network, do not execute test cases."
+        return 0
+    fi
+
     # call the implementation of the automation use cases
     test_case_function_run
 }

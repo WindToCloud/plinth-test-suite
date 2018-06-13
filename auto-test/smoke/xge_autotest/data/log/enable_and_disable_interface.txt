@@ -1,10 +1,5 @@
 PING 192.168.101.20 (192.168.101.20) 56(84) bytes of data.
-64 bytes from 192.168.101.20: icmp_seq=1 ttl=64 time=0.179 ms
-64 bytes from 192.168.101.20: icmp_seq=2 ttl=64 time=0.076 ms
-64 bytes from 192.168.101.20: icmp_seq=3 ttl=64 time=0.038 ms
-64 bytes from 192.168.101.20: icmp_seq=4 ttl=64 time=0.045 ms
-64 bytes from 192.168.101.20: icmp_seq=5 ttl=64 time=0.040 ms
 
 --- 192.168.101.20 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 4094ms
-rtt min/avg/max/mdev = 0.038/0.075/0.179/0.054 ms
+5 packets transmitted, 0 received, 100% packet loss, time 4099ms
+
