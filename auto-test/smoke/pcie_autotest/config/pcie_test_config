@@ -75,3 +75,7 @@ ES3000_WIDTH_VALUE="x4"
 ES3000_FIO_TIME=180
 #
 BACK_IP="192.168.50.153"
+# set the developer
+DEVELOPER=""
+# test module name
+Module="pcie"

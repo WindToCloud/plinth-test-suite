@@ -9,6 +9,9 @@ function driver_supports()
 {
     Test_Case_Title="driver_supports"
 
+    # Get all disk partition information
+    get_all_disk_part
+
     for disk_name in "${ALL_DISK_PART_NAME[@]}"
     do
         mount_disk ${disk_name}
@@ -19,7 +22,7 @@ function driver_supports()
             return 1
         fi
 
-        time dd if=/dev/zero of=/mnt/test.img bs=4M count=200 conv=fsync 1>/dev/null
+        time dd if=/dev/zero of=/mnt/test.img bs=4M count=200 conv=fsync
         if [ $? -ne 0 ]
         then
             umount ${disk_name}

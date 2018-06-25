@@ -1,0 +1,1 @@
+PV-1593	R.SAS.N001.A	ST.FUNC.032	The driver should support 700KIOPS per controller	SAS≈Ã£¨expander£¨700KIOPS∏ﬂ–‘ƒ‹≤‚(4KB)	support_700k_iops.sh	fio_iops_controller	on
