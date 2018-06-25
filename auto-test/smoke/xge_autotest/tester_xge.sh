@@ -36,6 +36,12 @@ EOF
 ##################################################################################
 #Get all args
 ###################################################################################
+
+if [ ! -n "$1" ];then
+	Usage
+	exit 1
+fi
+
 while test $# != 0
 do
 	case $1 in
@@ -67,7 +73,7 @@ g_server_ip=$T_SERVER_IP
 g_ctrlNIC=$T_CTRL_NIC
 g_client_ip=$T_CLIENT_IP
 COM="true"
-source ${TESTER_HNS_TOP_DIR}/xge_main.sh
+#source ${TESTER_HNS_TOP_DIR}/xge_main.sh
 
 #COM="true"
 
