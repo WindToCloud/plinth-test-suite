@@ -4,7 +4,7 @@ PV-416	R.HNS.F028.A	ST_SGE_GET_DRVINFO_000	GE网口驱动版本信息查询	GE网口驱动版本
 
 PV-438	R.HNS.F005.A	ST_GE_VLAN_03		多端口Vlan ping包功能正常	vlan_tagged_traffic_support.sh	ge_vlan_multi_port	off
 PV-444	R.HNS.F011.A	ST_GE_SET_MTU_05		GE大流量收发包时MTU修改后功能正常	support_of_mtu_setting.sh	ge_iperf_set_mtu_value	on
-PV-438	R.HNS.F005.A	ST_XGE_VLAN_02		多端口Vlan ping包功能正常	vlan_tagged_traffic_support.sh	xge_vlan_multi_port	on
+PV-438	R.HNS.F005.A	ST_XGE_VLAN_02		多端口Vlan ping包功能正常	vlan_tagged_traffic_support.sh	xge_vlan_multi_port	off
 PV-439	R.HNS.F006.A	ST_GE_RESET_01	GE重新自协商	GE电口重新自协商成功	auto_negotiation_support.sh	ge_restarts_auto_negotiation	on
 PV-439	R.HNS.F006.A	ST_GE_RESET_02		GE电口大流量反复重新自协商成功	auto_negotiation_support.sh	ge_iperf_auto_negotiation	on
 PV-439	R.HNS.F006.A	ST_XGE_RESET_01		XGE光口重新自协商成功	auto_negotiation_support.sh	xge_restarts_auto_negotiation	on
