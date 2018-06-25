@@ -22,6 +22,9 @@ function test_case_function_run()
             echo "The result of testcase "${TEST_CASE_TITLE}" is success"
             lava_report "${TEST_CASE_TITLE}" pass "Chenxiang" "${MESSAGE}"
         else
+		if [ x"${MESSAGE}" = x"" ];then
+			MESSAGE="SAS fail for unknow error!"
+		fi
             echo "The result of testcase "${TEST_CASE_TITLE}" is fail"
             lava_report "${TEST_CASE_TITLE}" fail "Chenxiang" "${MESSAGE}"
         fi
