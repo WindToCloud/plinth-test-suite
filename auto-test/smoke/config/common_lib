@@ -83,20 +83,21 @@ function test_report(){
         q=$i
         for b in `seq 1 ${dif}`
         do
-            echo $b
+            #echo $b
             q+="-"
-            echo $q
+            #echo $q
         done
         let index++
         re+=($q)
     done
     res="${re[0]} | ${re[1]} | ${re[2]} | ${re[3]} | ${re[4]} | ${re[5]}"
+    echo "Add test report as $res"
     if [ -f ${LogPath}/${Module_Name}_test_report.log ]
     then
-        echo "exsis"
+        #echo "exsis"
         echo ${res} >> ${LogPath}/${Module}_test_report.log
     else
-        echo " not esrtadf"
+        #echo " not esrtadf"
         echo ${res} >> ${LogPath}/${Module}_test_report.log
     fi
 }
