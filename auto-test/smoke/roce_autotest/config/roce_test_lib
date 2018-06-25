@@ -373,6 +373,9 @@ function test_case_function_run()
 		if [ x"${MESSAGE}" == x"PASS"  ];then
           		lava_report "${TEST_CASE_TITLE}" pass "Liuyixian" "${MESSAGE}"
 		else
+			if [ x"${MESSAGE}" = x"" ];then
+				MESSAGE="Roce fail for unknow error!"
+			fi
 			lava_report "${TEST_CASE_TITLE}" fail "Liuyixian" "${MESSAGE}"
 		fi
 	else
