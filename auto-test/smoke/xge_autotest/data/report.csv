@@ -1,2 +1,0 @@
-Module Name,JIRA ID,Designed Requirement ID,Test Case ID,Test Item,Test Case Title,Test Result,Remark
-ST_GE_PORT_CTRL_000	Ping_UpDown_GE	hns_smoke	linyunsheng	wanghaifeng	enable_and_disable_interface.sh	ge_enable_and_disable_interface	on	PASS

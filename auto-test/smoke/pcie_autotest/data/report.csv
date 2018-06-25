@@ -1,1 +1,5 @@
 Designed Requirement ID	Test Case ID	Test Item	Test Case	Result	Reason
+	R.PCIE.F006.A	ST.FUNC.027	MSI-x support (Hi162x)	support MSI-x interrupt 82599  function	pcie_backward_compatibility.sh	backward_compatibility_82599	onPASS
+	R.PCIE.F007.A	ST.FUNC.028	INT-x support (Hi162x)	support INT-x interrupt I350	pcie_backward_compatibility.sh	backward_compatibility_I350	onPASS
+	R.PCIE.F020.A	ST.FUNC.029	PCIe 3.0 backward compatibility	width and speed  Gen3 x8  raid3008	pcie_backward_compatibility.sh	backward_compatibility_raid3008	onPASS
+	R.PCIE.F070.A	ST.FUNC.030	PCIe 3.0 backward compatibility	ES3000 ´ÅÅÌ²Ù×÷	pcie_backward_compatibility.sh	backward_compatibility_es3000	off
