@@ -39,7 +39,7 @@ function ge_iperf_read_phy_register()
     
     iperf_killer
 
-    ssh root@${BACK_IP} 'ifconfig '${remote_tp1}' up; ifconfig '${remote_tp1}' '${remote_tp1_ip}'; sleep 5;iperf -s >/dev/null 2>&1 &'
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} 'ifconfig '${remote_tp1}' up; ifconfig '${remote_tp1}' '${remote_tp1_ip}'; sleep 5;iperf -s >/dev/null 2>&1 &'
     iperf -c ${remote_tp1_ip} -t 3600 -i 1 -P 3 > ${HNS_TOP_DIR}/data/log/ge_iperf_read_phy_register.txt &
     sleep 3
     mii-tool ${local_tp1} -r

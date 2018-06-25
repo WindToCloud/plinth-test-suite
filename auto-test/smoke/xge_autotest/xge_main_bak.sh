@@ -22,7 +22,7 @@ function check_environment() {
     echo "--------------------------------------------"
     for i in ${!eth_map[*]}
     do
-        remote_mac=$( ssh root@${BACK_IP} "ifconfig ${eth_map_r[${i}]} | grep "HWaddr"")
+        remote_mac=$( ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${eth_map_r[${i}]} | grep "HWaddr"")
         remote_mac=$( echo ${remote_mac} | awk '{print $NF}' )
         echo "remote mac is " ${remote_mac}
         local_mac=$( ifconfig ${eth_map[${i}]} | grep "HWaddr" | awk '{print $NF}' )

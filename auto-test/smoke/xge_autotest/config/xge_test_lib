@@ -27,11 +27,11 @@ function install_iperf_netperf() {
     for i in ${command[*]}
     do
         local_command=$(which ${i})
-        remote_command=$(ssh root@${BACK_IP} "which ${i}")
+        remote_command=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "which ${i}")
         if [ x"${local_command}" == x"" -o x"${remote_command}" == x"" ];then
             apt-get install ${i} -y
             wait
-            ssh root@${BACK_IP} "apt-get update; apt-get install ${i} -y; wait"
+            ssh -o StrictHostKeyChecking=no root@${BACK_IP} "apt-get update; apt-get install ${i} -y; wait"
         fi
     done
 
@@ -40,7 +40,7 @@ function install_iperf_netperf() {
 function qperf_install() {
     which qperf
     [ $? -eq 0 ] || echo "begin to install qperf"; cp ${common_tool}/qperf /usr/bin
-    ssh root@${BACK_IP} "which qperf"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "which qperf"
     [ $? -eq 0 ] || echo "begin to install remote qperf"; scp ${common_tool}/qperf root@${BACK_IP}:/usr/bin
 }
 
@@ -145,10 +145,10 @@ function init_net_export()
     local_fibre2=${local_fibre_list[0]}
     echo "The second FIBRE port is"${local_fibre2}
 
-    #remote_netport_list=$(ssh root@192.168.1.181 ifconfig -a | grep 'eth' | awk '{print $1}')
+    #remote_netport_list=$(ssh -o StrictHostKeyChecking=no root@192.168.1.181 ifconfig -a | grep 'eth' | awk '{print $1}')
     #for i in $remote_netport_list
     #do
-    #    ssh root@192.168.1.181 "ethtool $i | grep 'TP'"
+    #    ssh -o StrictHostKeyChecking=no root@192.168.1.181 "ethtool $i | grep 'TP'"
     #    if [ $? = 0 ];then
     #        remote_tp_list=(${remote_tp_list[*]} $i)
     #    else
@@ -161,7 +161,7 @@ function init_net_export()
     tmp_fi=0
     for i in ${!eth_map_r[*]}
     do
-         tmp=`ssh root@${BACK_IP} 'dmesg | grep -i "renamed from '${i}'" -w'`
+         tmp=`ssh -o StrictHostKeyChecking=no root@${BACK_IP} 'dmesg | grep -i "renamed from '${i}'" -w'`
 	 if [ x"${tmp}" = x"" ]
 	 then
 		 echo "The name of remote "${i}" is not renamed,Stay as "${eth_map_r[${i}]}
@@ -176,12 +176,12 @@ function init_net_export()
     then
         echo "this eth is not change!"
     else
-        ssh root@${BACK_IP} "ifconfig ${eth_map_r[${i}]} '192.168.${a}.219'"
+        ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${eth_map_r[${i}]} '192.168.${a}.219'"
         echo 'N'
     fi
 
 	 #we update the TP/FIBRE info intolocal_tp/fibre_list
-         tmp=`ssh root@${BACK_IP} 'ethtool '${eth_map_r[${i}]}' | grep "TP"'`
+         tmp=`ssh -o StrictHostKeyChecking=no root@${BACK_IP} 'ethtool '${eth_map_r[${i}]}' | grep "TP"'`
          if [ "${tmp}"x = ""x ];then
             remote_fibre_list=(${remote_fibre_list[*]} ${eth_map_r[${i}]})
          else
@@ -238,7 +238,7 @@ function setTrustRelation()
 function determine_iperf_exists()
 {
     local_iperf_tools=$(which iperf)
-    remote_iperf_tool=$(ssh root@${BACK_IP} "which iperf")
+    remote_iperf_tool=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "which iperf")
     if [ x"$local_iperf_tools" == x"" -o x"$remote_iperf_tool" == x"" ];then
         return 1
     fi
@@ -256,5 +256,5 @@ function perf_init()
     VlanSingle=0
     VlanDual=0
     killall iperf netperf qperf
-    ssh root@$BACK_IP "killall iperf netperf qperf"
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf netperf qperf"
 }

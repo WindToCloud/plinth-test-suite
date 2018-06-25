@@ -12,7 +12,7 @@ function ge_restarts_auto_negotiation()
     echo "Begin to up the local "${local_tp1}
     ifconfig ${local_tp1} up; ifconfig ${local_tp1} ${local_tp1_ip}
     echo "Begin to ssh remote "${remote_tp1}
-    ssh root@${BACK_IP} 'ifconfig '${remote_tp1}' up; ifconfig '${remote_tp1}' '${remote_tp1_ip}'; sleep 5;'
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} 'ifconfig '${remote_tp1}' up; ifconfig '${remote_tp1}' '${remote_tp1_ip}'; sleep 5;'
     i=1
     # MESSAGE="PASS"
     while(($i<=10))
@@ -59,7 +59,7 @@ function ge_iperf_auto_negotiation()
     Test_Case_Title="ge_iperf_auto_negotiation"
     echo "Begin to run "${Test_Case_Title}
     ifconfig ${local_tp1} up; ifconfig ${local_tp1} ${local_tp1_ip}
-    ssh root@${BACK_IP} 'ifconfig '${remote_tp1}' up; ifconfig '${remote_tp1}' '${remote_tp1_ip}'; sleep 5;iperf -s >/dev/null 2>&1 &'
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} 'ifconfig '${remote_tp1}' up; ifconfig '${remote_tp1}' '${remote_tp1_ip}'; sleep 5;iperf -s >/dev/null 2>&1 &'
     iperf -c ${remote_tp1_ip} -t 3600 -i 2 -P 3 > ${HNS_TOP_DIR}/data/log/ge_iperf_auto_negotiation.txt &
     for ((i=1;i<=10;i++));
     do
@@ -77,12 +77,12 @@ function ge_iperf_auto_negotiation()
     fi
     if [ $enableok -eq 1 ];then
         killall iperf
-        ssh root@${BACK_IP} "killall iperf"
+        ssh -o StrictHostKeyChecking=no root@${BACK_IP} "killall iperf"
         MESSAGE="PASS"
 	    echo ${MESSAGE}
     else
         killall iperf
-        ssh root@${BACK_IP} "killall iperf"
+        ssh -o StrictHostKeyChecking=no root@${BACK_IP} "killall iperf"
         MESSAGE="FAIL\t iperf auto negotiation fail"
 	    echo ${MESSAGE}
         return 1
@@ -96,7 +96,7 @@ function xge_restarts_auto_negotiation()
     Test_Case_Title="xge_restarts_auto_negotiation"
     echo "Begin to run "${Test_Case_Title}
     ifconfig ${local_fibre1} up; ifconfig ${local_fibre1} ${local_fibre1_ip}
-    ssh root@${BACK_IP} "ifconfig "${remote_tp1}" up; ifconfig "${remote_fibre1}" "${remote_fibre1_ip}"; sleep 5"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig "${remote_tp1}" up; ifconfig "${remote_fibre1}" "${remote_fibre1_ip}"; sleep 5"
     # MESSAGE="PASS"
 
     i=1
@@ -139,7 +139,7 @@ function xge_iperf_auto_negotiation()
     Test_Case_Title="xge_iperf_auto_negotiation"
     echo ${Test_Case_Title}
     ifconfig ${local_fibre1} up; ifconfig ${local_fibre1} ${local_fibre1_ip}
-    ssh root@${BACK_IP} 'ifconfig '${remote_tp1}' up; ifconfig '${remote_fibre1}' '${remote_fibre1_ip}'; sleep 5;iperf -s >/dev/null 2>&1 &'
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} 'ifconfig '${remote_tp1}' up; ifconfig '${remote_fibre1}' '${remote_fibre1_ip}'; sleep 5;iperf -s >/dev/null 2>&1 &'
     iperf -c ${remote_fibre1_ip} -t 3600 -i 2 -P 3 > ${HNS_TOP_DIR}/data/log/xge_iperf_auto_negotiation.txt &
     for ((i=1;i<=10;i++));
     do
@@ -156,12 +156,12 @@ function xge_iperf_auto_negotiation()
     fi
     if [ $enableok -eq 1 ];then
         killall iperf
-        ssh root@${BACK_IP} "killall iperf"
+        ssh -o StrictHostKeyChecking=no root@${BACK_IP} "killall iperf"
         MESSAGE="PASS"
 	echo ${MESSAGE}
     else
         killall iperf
-        ssh root@${BACK_IP} "killall iperf"
+        ssh -o StrictHostKeyChecking=no root@${BACK_IP} "killall iperf"
         MESSAGE="FAIL\t iperf auto negotiation fail"
 	echo ${MESSAGE}
     fi

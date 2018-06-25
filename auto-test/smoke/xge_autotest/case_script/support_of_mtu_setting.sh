@@ -60,7 +60,7 @@ function ge_iperf_set_mtu_value()
         return 1
     fi
     MESSAGE="PASS"
-    ssh root@${BACK_IP} "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5;iperf -s >/dev/null 2>&1 &"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5;iperf -s >/dev/null 2>&1 &"
     iperf -c ${remote_tp1_ip} -t 3600 -i 1 -P 3 > ${HNS_TOP_DIR}/data/log/iperf_set_mtu_value.txt &
     valuelist="68 1500 9706"
     for ((i=1;i<=2;i++));
@@ -74,7 +74,7 @@ function ge_iperf_set_mtu_value()
             tmp=`awk -v a=$bandwidth -v b=0 'BEGIN{print(a>b)?"0":"1"}'`
             if [ $value -ne $NewMtuValue ] || [ $tmp -ne 0 ];then
                 killall iperf
-                ssh root@${BACK_IP} "killall iperf"
+                ssh -o StrictHostKeyChecking=no root@${BACK_IP} "killall iperf"
                 MESSAGE="FAIL\t ge Runing iperf, MTU value set fail "
 		echo ${MESSAGE}
             fi
@@ -82,7 +82,7 @@ function ge_iperf_set_mtu_value()
     done
     #killall iperf
     iperf_killer
-    #ssh root@${BACK_IP} "killall iperf"
+    #ssh -o StrictHostKeyChecking=no root@${BACK_IP} "killall iperf"
     #MESSAGE="PASS"
     echo ${MESSAGE}
 }
@@ -139,7 +139,7 @@ function xge_iperf_set_mtu_value()
         MESSAGE="FAIL\t Iperf tools are not installed "
         return 1
     fi
-    ssh root@${BACK_IP} "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5;iperf -s >/dev/null 2>&1 &"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5;iperf -s >/dev/null 2>&1 &"
     iperf -c ${remote_fibre1_ip} -t 3600 -i 1 -P 3 > ${HNS_TOP_DIR}/data/log/iperf_set_mtu_value.txt &
     valuelist="68 1500 9706"
     for ((i=1;i<=20;i++));
@@ -156,14 +156,14 @@ function xge_iperf_set_mtu_value()
 
             if [ $value -ne $NewMtuValue ] || [ $tmp -ne 0 ];then
                 killall iperf
-                ssh root@${BACK_IP} "killall iperf"
+                ssh -o StrictHostKeyChecking=no root@${BACK_IP} "killall iperf"
                 MESSAGE="FAIL\t xge Runing iperf, MTU value set fail "
             fi
         done
     done
    # killall iperf
     iperf_killer
-    #ssh root@${BACK_IP} "killall iperf"
+    #ssh -o StrictHostKeyChecking=no root@${BACK_IP} "killall iperf"
     #MESSAGE="PASS"
 }
 

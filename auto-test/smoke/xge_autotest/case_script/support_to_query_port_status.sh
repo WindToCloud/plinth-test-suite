@@ -9,20 +9,20 @@ function ge_query_link_state()
     Test_Case_Title="ge_query_link_state"
     echo "Begin to run "${Test_Case_Title}
     ifconfig ${local_tp1} up; ifconfig ${local_tp1} ${local_tp1_ip}
-    ssh root@${BACK_IP} "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5;"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5;"
 
     ifconfig ${local_tp1} down
     for ((i=1;i<=10;i++));
     do
         enableok=0
         disableok=0
-        ssh root@${BACK_IP} "ifconfig ${remote_tp1} down"
+        ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_tp1} down"
         LinkState=$(ethtool ${local_tp1} | grep "Link detected:" | awk -F":" '{print $NF}' | tr -d ' ')
         if [ "$LinkState" = "no" ];then
             enableok=1
         fi
 
-        ssh root@${BACK_IP} "ifconfig ${remote_tp1} up"
+        ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_tp1} up"
         LinkState=$(ethtool ${local_tp1} | grep "Link detected:" | awk -F":" '{print $NF}' | tr -d ' ')
         if [ "$LinkState" = "no" ];then
             disableok=1
@@ -56,7 +56,7 @@ function ge_query_link_state()
 	echo $i
         enableok=0
         disableok=0
-        ssh root@${BACK_IP} "ifconfig ${remote_tp1} down"
+        ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_tp1} down"
 	if [ $i -gt 1  ];then
 		sleep 5
 	fi
@@ -65,7 +65,7 @@ function ge_query_link_state()
             enableok=1
         fi
 
-        ssh root@${BACK_IP} "ifconfig ${remote_tp1} up"
+        ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_tp1} up"
 	sleep 5
         LinkState=$(ethtool ${local_tp1} | grep "Link detected:" | awk -F":" '{print $NF}' | tr -d ' ')
         if [ "$LinkState" = "yes" ];then
@@ -109,20 +109,20 @@ function xge_query_link_state()
 {
     Test_Case_Title="xge_query_link_state"
     ifconfig ${local_fibre1} up; ifconfig ${local_fibre1} ${local_fibre1_ip}
-    ssh root@${BACK_IP} "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5;"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5;"
 
     ifconfig ${local_fibre1} down
     for ((i=1;i<=10;i++));
     do
         enableok=0
         disableok=0
-        ssh root@${BACK_IP} "ifconfig ${remote_fibre1} down"
+        ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_fibre1} down"
         LinkState=$(ethtool ${local_fibre1} | grep "Link detected:" | awk -F":" '{print $NF}' | tr -d ' ')
         if [ "$LinkState" = "no" ];then
             enableok=1
         fi
 
-        ssh root@${BACK_IP} "ifconfig ${remote_fibre1} up"
+        ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_fibre1} up"
         LinkState=$(ethtool ${local_fibre1} | grep "Link detected:" | awk -F":" '{print $NF}' |  tr -d ' ')
         if [ "$LinkState" = "no" ];then
             disableok=1
@@ -154,13 +154,13 @@ function xge_query_link_state()
 
         enableok=0
         disableok=0
-        ssh root@${BACK_IP} "ifconfig ${remote_fibre1} down"
+        ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_fibre1} down"
         LinkState=$(ethtool ${local_fibre1} | grep "Link detected:" | awk -F":" '{print $NF}' | tr -d ' ')
         if [ "$LinkState" = "no" ];then
             enableok=1
         fi
 
-        ssh root@${BACK_IP} "ifconfig ${remote_fibre1} up"
+        ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_fibre1} up"
         LinkState=$(ethtool ${local_fibre1} | grep "Link detected:" | awk -F":" '{print $NF}' | tr -d ' ')
         if [ "$LinkState" = "yes" ];then
             disableok=1
