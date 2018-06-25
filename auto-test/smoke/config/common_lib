@@ -59,6 +59,56 @@ function lava_report()
      return 0
  }
 
+## -----------------> -start chenjing <------------------------
+#  Output success test case log information
+#  IN :
+#       $1:    The title of testcase
+#       $2:    The result of current testcase
+#       $3:    The description of result
+#       $4:    The Developer
+#       $5:    The Tester
+#       $6:    The time of now
+#           pass:  the test is ok
+#           fail:  the test is fail
+#  OUT: the test result /home/TestLog
+function test_report(){
+    length=(30 10 40 20 20 25)
+    mkdir /home/TestLog
+    #add blank
+    index=0
+    declare -a re
+    for i in "$1" "$2" "$3" "$4" "$5" "$6"
+    do
+        dif=`expr ${length[${index}]} - ${#i}`
+        q=$i
+        for b in `seq 1 ${dif}`
+        do
+            echo $b
+            q+="-"
+            echo $q
+        done
+        let index++
+        re+=($q)
+    done
+    res="${re[0]} | ${re[1]} | ${re[2]} | ${re[3]} | ${re[4]} | ${re[5]}"
+    if [ -f ${LogPath}/${Module_Name}_test_report.log ]
+    then
+        echo "exsis"
+        echo ${res} >> ${LogPath}/${Module}_test_report.log
+    else
+        echo " not esrtadf"
+        echo ${res} >> ${LogPath}/${Module}_test_report.log
+    fi
+}
+
+function LogHeader()
+{
+    echo "Test tile, Result of test, The description of message, Developer, Tester, Datetime" > ${LogPath}/${Module}_test_report.log
+    return 0
+}
+
+## -----------------> end chenjing <------------------------
+
 
 #  Output success test case log information
 #  IN :

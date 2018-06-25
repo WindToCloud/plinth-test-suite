@@ -6,6 +6,10 @@
 #Get the current board type.
 BOARD_TYPE=`dmidecode | grep "Product Name:" | sed -n "1p" | awk -F ' ' '{print $NF}'`
 
+# set the developer
+DEVELOPER=""
+# test module name
+Module="sas"
 #Automated data files exported in test cases.
 TEST_CASE_DB_FILE="data/sas_test_case.table"
 #Test case execution result save file.
