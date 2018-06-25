@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ -f /home/plinth/ENV_OK ];then
+	exit 0
+fi
+
 
 SAS_TOP_DIR=$(cd "`dirname $0`" ; pwd)
 
