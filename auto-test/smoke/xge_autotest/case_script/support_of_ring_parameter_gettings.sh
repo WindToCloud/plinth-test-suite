@@ -42,8 +42,8 @@ function ge_query_ring_parameter_gettings()
 function query_ring_parameter_fault_tolerant()
 {
     Test_Case_Title="query_ring_parameter_fault_tolerant"
-    #ethtool -i eth10 > ${HNS_TOP_DIR}/data/log/query_ring_parameter_fault_tolerant.txt 2>&1
-    #cat ${HNS_TOP_DIR}/data/log/query_ring_parameter_fault_tolerant.txt | grep "No such device"
+    #ethtool -i eth10 > ${BaseDir}/log/query_ring_parameter_fault_tolerant.txt 2>&1
+    #cat ${BaseDir}/log/query_ring_parameter_fault_tolerant.txt | grep "No such device"
     ethtool -i eth10 2>/dev/null 
     if [ $? -ne 0 ];then
         MESSAGE="PASS"

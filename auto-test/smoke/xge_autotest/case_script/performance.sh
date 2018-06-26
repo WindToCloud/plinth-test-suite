@@ -1,5 +1,5 @@
 #!/bin/bash
-LOG_DIR="perf_log"
+LOG_DIR=${BaseDir}/perf_log
 IPERFDIR="iperf_log"
 NETPERFDIR="netperf_log"
 QPERFDIR="qperf_log"

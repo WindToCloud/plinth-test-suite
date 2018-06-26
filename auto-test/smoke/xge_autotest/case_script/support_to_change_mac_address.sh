@@ -69,7 +69,6 @@ function ge_set_standard_mac_address()
     MESSAGE="PASS"
 
     oldMacAddress=$(ifconfig ${local_tp1} | grep "HWaddr" | awk '{print $NF}')
-<<<<<<< HEAD
     Random_Mac=$((RANDOM%99))
     Random_Mac1=$((RANDOM%99))
     # if [ ${oldMacAddress:15:2} = "44" ];then
@@ -90,12 +89,6 @@ function ge_set_standard_mac_address()
     if [ "${newMacAddress}"x == "${remoteMacAddress}"x ]
     then
         newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"${Random_Mac1}"/g)
-=======
-    if [ ${oldMacAddress:15:2} = "44" ];then
-        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"22"/g)
-    else
-        newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"43"/g)
->>>>>>> luojiaxing/master
     fi
     ifconfig ${local_tp1} hw ether ${newMacAddress}
     sleep $ARP_MAC_UPDATE_TIME

@@ -61,7 +61,7 @@ function ge_iperf_set_mtu_value()
     fi
     MESSAGE="PASS"
     ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5;iperf -s >/dev/null 2>&1 &"
-    iperf -c ${remote_tp1_ip} -t 3600 -i 1 -P 3 > ${HNS_TOP_DIR}/data/log/iperf_set_mtu_value.txt &
+    iperf -c ${remote_tp1_ip} -t 3600 -i 1 -P 3 > ${BaseDIr}/log/iperf_set_mtu_value.txt &
     valuelist="68 1500 9706"
     for ((i=1;i<=2;i++));
     do
@@ -70,7 +70,7 @@ function ge_iperf_set_mtu_value()
         do
             ifconfig ${local_tp1} mtu $value;sleep 10
             NewMtuValue=$(ifconfig ${local_tp1} | grep "MTU" | awk '{print $(NF-1)}' | awk -F':' '{print $NF}')
-            bandwidth=$(cat ${HNS_TOP_DIR}/data/log/iperf_set_mtu_value.txt | tail -1 | awk '{print $(NF-1)}')
+            bandwidth=$(cat ${BaseDIr}/log/iperf_set_mtu_value.txt | tail -1 | awk '{print $(NF-1)}')
             tmp=`awk -v a=$bandwidth -v b=0 'BEGIN{print(a>b)?"0":"1"}'`
             if [ $value -ne $NewMtuValue ] || [ $tmp -ne 0 ];then
                 killall iperf
@@ -140,7 +140,7 @@ function xge_iperf_set_mtu_value()
         return 1
     fi
     ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5;iperf -s >/dev/null 2>&1 &"
-    iperf -c ${remote_fibre1_ip} -t 3600 -i 1 -P 3 > ${HNS_TOP_DIR}/data/log/iperf_set_mtu_value.txt &
+    iperf -c ${remote_fibre1_ip} -t 3600 -i 1 -P 3 > ${BaseDIr}/log/iperf_set_mtu_value.txt &
     valuelist="68 1500 9706"
     for ((i=1;i<=20;i++));
     do
@@ -151,7 +151,7 @@ function xge_iperf_set_mtu_value()
             echo $value
             ifconfig ${local_fibre1} mtu $value;sleep 10
             NewMtuValue=$(ifconfig ${local_fibre1} | grep "MTU" | awk '{print $(NF-1)}' | awk -F':' '{print $NF}')
-            bandwidth=$(cat ${HNS_TOP_DIR}/data/log/iperf_set_mtu_value.txt | tail -1 | awk '{print $(NF-1)}')
+            bandwidth=$(cat ${BaseDIr}/log/iperf_set_mtu_value.txt | tail -1 | awk '{print $(NF-1)}')
             tmp=`awk -v a=$bandwidth -v b=0 'BEGIN{print(a>b)?"0":"1"}'`
 
             if [ $value -ne $NewMtuValue ] || [ $tmp -ne 0 ];then

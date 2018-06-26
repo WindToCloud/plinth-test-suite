@@ -28,7 +28,7 @@ function check_environment() {
         echo "remote mac is " ${remote_mac}
         local_mac=$( ifconfig ${eth_map[${i}]} | grep "HWaddr" | awk '{print $NF}' )
         echo "local mac is " ${local_mac}
-        if ["${remote_mac}" -eq "${local_mac}"]
+        if [ "${remote_mac}"x == "${local_mac}"x ]
         then
             lava_report "check envir" "check the mac is fail"
             exit 1
@@ -55,7 +55,7 @@ function main()
         exec_script=`echo "${line}" | awk -F '\t' '{print $6}'`
         TEST_CASE_FUNCTION_NAME=`echo "${line}" | awk -F '\t' '{print $7}'`
         TEST_CASE_FUNCTION_SWITCH=`echo "${line}" | awk -F '\t' '{print $8}'`
-        TEST_CASE_TITLE=`echo "${line}" | awk -F '\t' '{print $1}'`
+        TEST_CASE_TITLE=`echo "${line}" | awk -F '\t' '{print $2}'`
         TEST_CASE_NUM=`echo "${line}" | awk -F '\t' '{print $3}'`
         Tester=`echo "${line}" | awk -F '\t' '{print $5}'`
         DateTime=`date "+%G-%m-%d %H:%M:%S"`
@@ -87,10 +87,12 @@ function main()
 		fi
             fi
         fi
-        echo -e "${line}${MESSAGE}" >> ${HNS_TOP_DIR}/${OUTPUT_TEST_DB_FILE}
+        # echo -e "${line}${MESSAGE}" >> ${HNS_TOP_DIR}/${OUTPUT_TEST_DB_FILE}
         #MESSAGE=""
     done
+    echo "<<----------------------------------------->>"
     echo "Finish to run XGE test!"
+    echo -e "\033[32mThe test report path is \033[0m\033[35m${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}/${Module}_test_report.log\033[0m"
 }
 
 
@@ -102,7 +104,13 @@ then
 fi
 
 #Output log file header
-writeLogHeader
+#writeLogHeader
+
+#mkdir the log path
+InitDirectoryName
+
+#mkdir test path
+MkdirPath
 
 #Output CI log header
 LogHeader
