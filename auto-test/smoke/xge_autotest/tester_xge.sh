@@ -18,15 +18,6 @@ T_CTRL_NIC=''
 
 Usage()
 {
-echo -e "\033[5;35m Welcom to Use Plinth Test Suite! \033[0m"    
-cat << EOF
-------------/\-------------
------------/  \-------------
-          /    \\
-EOF
-
-echo -e "\033[33m Luojiaxing \033[0m  \033[32m Chenjing \033[0m "
-
 cat << EOF        
 
 
@@ -85,6 +76,15 @@ if [ x"$T_TESTER" = x"" ];then
 	echo "Tester name is not input!Please input it use -t..."
 	exit 1
 fi
+
+echo -e "\033[5;35m Welcom to Use Plinth Test Suite! \033[0m"    
+cat << EOF
+------------/\-------------
+-----------/  \-------------
+          /    \\
+EOF
+
+echo -e "\033[33m Luojiaxing \033[0m  \033[32m Chenjing \033[0m "
 
 . ${TESTER_HNS_TOP_DIR}/../config/common_config
 . ${TESTER_HNS_TOP_DIR}/../config/common_lib
