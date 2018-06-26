@@ -18,7 +18,7 @@ T_CTRL_NIC=''
 
 Usage()
 {
-echo -e "\033[5;35m Welcom to Use Plinth Test Suite! \033[0m"    
+echo -e "\033[5;35m Welcom to Use Plinth Test Suite! \033[0m"
 cat << EOF
 ------------/\-------------
 -----------/  \-------------
@@ -27,7 +27,7 @@ EOF
 
 echo -e "\033[33m Luojiaxing \033[0m  \033[32m Chenjing \033[0m "
 
-cat << EOF        
+cat << EOF
 
 
 Usage: ./xge_autotest/tester_hns.sh [options]
@@ -41,7 +41,7 @@ Options:
 		    this para is forced to be set.
 Example:
 	bash tester_hns.sh -t luojiaxing  -s "192.168.3.152" -c "192.168.3.153" -n "eth3"
-	
+
 	bash tester_hns.sh -t luojiaxing # if no other para,scripts will use the latest user cfg
 
 EOF
@@ -127,19 +127,19 @@ g_client_ip=$T_CLIENT_IP
 ##################################################################################
 #Update the cfg
 ###################################################################################
-echo "HNS cfg save by ${T_TESTER}" > ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg 
+echo "HNS cfg save by ${T_TESTER}" > ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg
 
 
 if [ x"$T_SERVER_IP" != x"" ];then
-    echo "T_SERVER_IP:${T_SERVER_IP}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg 
+    echo "T_SERVER_IP:${T_SERVER_IP}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg
 fi
 
 if [ x"$T_CLIENT_IP" != x"" ];then
-    echo "T_CLIENT_IP:${T_CLIENT_IP}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg 
+    echo "T_CLIENT_IP:${T_CLIENT_IP}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg
 fi
 
 if [ x"${T_CTRL_NIC}" != x"" ];then
-    echo "T_CTRL_NIC:${T_CTRL_NIC}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg 
+    echo "T_CTRL_NIC:${T_CTRL_NIC}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg
 fi
 
 if [ x"${T_SERVER_IP}" = x"" ] || [ x"${T_CTRL_NIC}" = x"" ] || [ x"${T_CLIENT_IP}" = x"" ];then
@@ -150,7 +150,7 @@ else
 fi
 
 COM="true"
-#source ${TESTER_HNS_TOP_DIR}/xge_main.sh
+source ${TESTER_HNS_TOP_DIR}/xge_main.sh
 
 #COM="true"
 

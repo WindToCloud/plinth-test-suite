@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 ## Utility function
-. ${HNS_TOP_DIR}/../config/common_lib
+# . ${HNS_TOP_DIR}/../config/common_lib
 common_tool="${HNS_TOP_DIR}/../common_tool"
 
 declare -A eth_map
