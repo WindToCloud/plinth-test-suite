@@ -53,6 +53,7 @@ function lava_report()
            # info=$(echo $4 | sed -i  's/\t/ /g')
 	    echo -e "$1#$4" >> /home/plinth/result.txt
 	    sed -i 's/\t/ /g' /home/plinth/result.txt
+	    sed -i 's/\./_/g' /home/plinth/result.txt
             cat /home/plinth/result.txt
         fi
      fi

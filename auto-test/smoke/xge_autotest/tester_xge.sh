@@ -88,7 +88,6 @@ fi
 
 . ${TESTER_HNS_TOP_DIR}/../config/common_config
 . ${TESTER_HNS_TOP_DIR}/../config/common_lib
-
 ##################################################################################
 #Get latest cfg pass to empty patameter
 ###################################################################################
