@@ -23,7 +23,7 @@ function ge_vlan_multi_port()
 
     for i in "192.168.13.20" "192.168.12.20"
     do
-        ping $i -c 5 | tee -a ${HNS_TOP_DIR}/data/log/ge_vlan_multi_port.log | grep "received, 0% packet loss"
+        ping $i -c 5 | tee -a ${BaseDir}/log/ge_vlan_multi_port.log | grep "received, 0% packet loss"
         if [ $? -eq 0 ];then
             MESSAGE="PASS"
         else
@@ -42,7 +42,7 @@ function ge_vlan_multi_port()
 function vlan_fault_tolerant()
 {
     Test_Case_Title="vlan_fault_tolerant"
-    #ip link add link eth10 name eth10.401 type vlan id 401 | tee -a ${HNS_TOP_DIR}/data/log/vlan_fault_tolerant.log
+    #ip link add link eth10 name eth10.401 type vlan id 401 | tee -a ${BaseDir}/log/vlan_fault_tolerant.log
     #sleep 5
     ip link add link eth10 name eth10.401 type vlan id 401 2>/dev/null 
     if [ $? -eq 1 ];then
@@ -67,7 +67,7 @@ function ge_set_vlan()
     ip link add link ${remote_tp1} name ${remote_tp1}.401 type vlan id 401;\
     ifconfig ${remote_tp1}.401 192.168.11.20;\
     sleep 10"
-    ping 192.168.11.20 -c 5 | tee -a ${HNS_TOP_DIR}/data/log/ge_set_vlan.log | grep "received, 0% packet loss"
+    ping 192.168.11.20 -c 5 | tee -a ${BaseDir}/log/ge_set_vlan.log | grep "received, 0% packet loss"
     if [ $? -eq 0 ];then
         MESSAGE="PASS"
     else
@@ -120,7 +120,7 @@ function xge_vlan_multi_port()
 
     for i in "192.168.21.20" "192.168.22.20"
     do
-        ping $i -c 5 | tee -a ${HNS_TOP_DIR}/data/log/xge_vlan_multi_port.log | grep "received, 0% packet loss"
+        ping $i -c 5 | tee -a ${BaseDir}/log/xge_vlan_multi_port.log | grep "received, 0% packet loss"
         if [ $? -eq 0 ];then
             MESSAGE="PASS"
         else
@@ -149,7 +149,7 @@ function xge_set_vlan()
     ip link add link ${remote_fibre1} name ${remote_fibre1}.401 type vlan id 401;\
     ifconfig ${remote_fibre1}.401 192.168.21.20;\
     sleep 10"
-    ping 192.168.21.20 -c 5 | tee -a ${HNS_TOP_DIR}/data/log/xge_set_vlan.log | grep "received, 0% packet loss"
+    ping 192.168.21.20 -c 5 | tee -a ${BaseDir}/log/xge_set_vlan.log | grep "received, 0% packet loss"
     if [ $? -eq 0 ];then
         MESSAGE="PASS"
     else

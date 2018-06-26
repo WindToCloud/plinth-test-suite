@@ -159,5 +159,13 @@ COM=''
 ####################################################################################
 #add by chenjing
 ##################
-LogPath="/home/TestLog"
+PLINTH_TEST_WORKSPACE="/home/plinth-test-workspace"
+Date=`date "+%G%m%d"`
+NowTime=`date "+%H:%M:%S"`
+hours=`echo ${NowTime} | awk -F "\:" '{print $1}'`
+minute=`echo ${NowTime} | awk -F "\:" '{print $2}'`
+second=`echo ${NowTime} | awk -F "\:" '{print $3}'`
+NowTime="${hours}"h"${minute}"m"${second}"s
+Module=$(basename $0 | awk -F "_" '{print $1}')
+BaseDir=${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}
 

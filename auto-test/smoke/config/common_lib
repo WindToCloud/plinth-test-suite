@@ -73,7 +73,6 @@ function lava_report()
 #  OUT: the test result /home/TestLog
 function test_report(){
     length=(30 10 40 20 20 25)
-    mkdir /home/TestLog
     #add blank
     index=0
     declare -a re
@@ -83,30 +82,56 @@ function test_report(){
         q=$i
         for b in `seq 1 ${dif}`
         do
-            echo $b
             q+="-"
-            echo $q
         done
         let index++
         re+=($q)
     done
     res="${re[0]} | ${re[1]} | ${re[2]} | ${re[3]} | ${re[4]} | ${re[5]}"
-    if [ -f ${LogPath}/${Module_Name}_test_report.log ]
-    then
-        echo "exsis"
-        echo ${res} >> ${LogPath}/${Module}_test_report.log
-    else
-        echo " not esrtadf"
-        echo ${res} >> ${LogPath}/${Module}_test_report.log
-    fi
+    echo ${res} >> ${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}/${Module}_test_report.log
+    echo -e "\033[1;47;31mThe test report path is ${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}/${Module}_test_report.log\033[0m"
 }
 
 function LogHeader()
 {
-    echo "Test tile, Result of test, The description of message, Developer, Tester, Datetime" > ${LogPath}/${Module}_test_report.log
+    echo "Test tile, Result of test, The description of message, Developer, Tester, Datetime" > ${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}/${Module}_test_report.log
     return 0
 }
 
+function InitDirectoryName(){
+    Date=`date "+%G-%m-%d"`
+    NowTime=`date "+%H:%M:%S"`
+    hours=`echo ${NowTime} | awk -F "\:" '{print $1}'`
+    minute=`echo ${NowTime} | awk -F "\:" '{print $2}'`
+    second=`echo ${NowTime} | awk -F "\:" '{print $3}'`
+    NowTime="${hours}"h"${minute}"m"${second}"s
+    Module=$(basename $0 | awk -F "_" '{print $1}')
+    }
+
+function MkdirPath(){
+    mkdir -p ${BaseDir}/log
+    tmp=$(ls ${PLINTH_TEST_WORKSPACE}/${Module})
+    flag=1
+    # keep the date
+    while test ${#tmp} -gt 5
+    do
+        for i in ${tmp}
+        do
+            if [ ${flag} -eq 1 ]; then
+                flag=0
+                min=$i
+            else
+                if [ ${min} > ${i} ]
+                then
+                    min=$i
+                fi
+            fi
+            flag=1
+            rm -rf ${PLINTH_TEST_WORKSPACE}/${Module}/${min}
+        done
+    done
+    return 0
+    }
 ## -----------------> end chenjing <------------------------
 
 

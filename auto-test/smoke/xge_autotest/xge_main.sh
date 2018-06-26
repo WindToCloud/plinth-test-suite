@@ -105,6 +105,12 @@ fi
 #Output log file header
 writeLogHeader
 
+#mkdir the log path
+InitDirectoryName
+
+#mkdir test path
+MkdirPath
+
 #Output CI log header
 LogHeader
 
