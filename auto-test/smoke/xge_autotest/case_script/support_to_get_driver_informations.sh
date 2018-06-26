@@ -9,7 +9,7 @@ function ge_query_driven_version_information()
 {
     Test_Case_Title="ge_query_driven_version_information"
     ifconfig ${local_tp1} up; ifconfig ${local_tp1} ${local_tp1_ip}
-    ssh root@${BACK_IP} "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5;"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5;"
     
     enableok=0
     disableok=0 
@@ -46,7 +46,7 @@ function xge_query_driven_version_information()
 {
     Test_Case_Title="xge_query_driven_version_information"
     ifconfig ${local_fibre1} up; ifconfig ${local_fibre1} ${local_fibre1_ip}
-    ssh root@${BACK_IP} "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5;"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5;"
  
     enableok=0
     disableok=0 

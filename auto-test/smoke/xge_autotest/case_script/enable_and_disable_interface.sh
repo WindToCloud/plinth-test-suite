@@ -14,7 +14,7 @@ function ge_enable_and_disable_interface()
 
     Test_Case_Title="ge_enable_and_disable_interface"
     ifconfig ${local_tp1} up; ifconfig ${local_tp1} ${local_tp1_ip}
-    ssh root@${BACK_IP} "ifconfig ${remote_tp1} up;ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_tp1} up;ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5"
     ping ${remote_tp1_ip} -c 5 > ${BaseDir}/log/enable_and_disable_interface.txt &
     sleep 10
     enableok=0
@@ -24,7 +24,7 @@ function ge_enable_and_disable_interface()
        enableok=1
     fi
     echo "enableok "${enableok}
-    ssh root@$BACK_IP "ifconfig ${remote_tp1} down"
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_tp1} down"
     ping ${remote_tp1_ip} -c 5 > ${BaseDir}/log/enable_and_disable_interface.txt &
     sleep 10
     cat ${BaseDir}/log/enable_and_disable_interface.txt | grep "received, 0% packet loss" >/dev/null
@@ -51,7 +51,7 @@ function ge_continued_enable_and_disable_interface()
     do
         echo "begin cycle "$i
         ifconfig ${local_tp1} up; ifconfig ${local_tp1} ${local_tp1_ip}
-        ssh root@$BACK_IP "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5"
         ping ${remote_tp1_ip} -c 5 > ${BaseDir}/log/continued_enable_and_disable_interface.txt &
         sleep 10
         cat ${BaseDir}/log/continued_enable_and_disable_interface.txt | grep "received, 0% packet loss" >/dev/null
@@ -60,7 +60,7 @@ function ge_continued_enable_and_disable_interface()
         else
            enableok=0
         fi
-        ssh root@$BACK_IP "ifconfig ${remote_tp1} down"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_tp1} down"
         ping ${remote_tp1_ip} -c 5 > ${BaseDir}/log/continued_enable_and_disable_interface.txt &
         sleep 10
         cat ${BaseDir}/log/continued_enable_and_disable_interface.txt | grep "received, 0% packet loss" >/dev/null
@@ -85,7 +85,7 @@ function ge_flow_enable_and_disable_interface()
     enableok=0
     disableok=0
     ifconfig ${local_tp1} up; ifconfig ${local_tp1} ${local_tp1_ip}
-    ssh root@$BACK_IP "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5"
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5"
     ping ${remote_tp1_ip} > ${BaseDir}/log/flow_enable_and_disable_interface.txt &
     PacketStatistics1=`ifconfig ${remote_tp1} | grep "RX packets:" | awk -F":" '{print $2}' | awk '{print $1}'`
     sleep 10
@@ -94,7 +94,7 @@ function ge_flow_enable_and_disable_interface()
         enableok=1
     fi
 
-    ssh root@$BACK_IP "ifconfig ${remote_tp1} down"
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_tp1} down"
     PacketStatistics1=`ifconfig ${remote_tp1} | grep "RX packets:" | awk -F":" '{print $2}' | awk '{print $1}'`
     sleep 10
     PacketStatistics2=`ifconfig ${remote_tp1} | grep "RX packets:" | awk -F":" '{print $2}' | awk '{print $1}'`
@@ -114,14 +114,14 @@ function ge_flow_continued_enable_and_disable_interface()
 {
     Test_Case_Title="ge_flow_continued_enable_and_disable_interface"
     ifconfig ${local_tp1} up; ifconfig ${local_tp1} ${local_tp1_ip}
-    ssh root@$BACK_IP "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5;"
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5;"
     ping ${remote_tp1_ip} > ${BaseDir}/log/flow_continued_enable_and_disable_interface.txt &
     i=1
     enableok=0
     disableok=0
     while(($i<=10))
     do
-        ssh root@$BACK_IP "ifconfig ${remote_tp1} up;sleep 2"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_tp1} up;sleep 2"
         PacketStatistics1=`ifconfig ${remote_tp1} | grep "RX packets:" | awk -F":" '{print $2}' | awk '{print $1}'`
         sleep 10
         PacketStatistics2=`ifconfig ${remote_tp1} | grep "RX packets:" | awk -F":" '{print $2}' | awk '{print $1}'`
@@ -129,7 +129,7 @@ function ge_flow_continued_enable_and_disable_interface()
             enableok=1
         fi
 
-        ssh root@$BACK_IP "ifconfig ${remote_tp1} down;sleep 2"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_tp1} down;sleep 2"
         PacketStatistics1=`ifconfig ${remote_tp1} | grep "RX packets:" | awk -F":" '{print $2}' | awk '{print $1}'`
         sleep 10
         PacketStatistics2=`ifconfig ${remote_tp1} | grep "RX packets:" | awk -F":" '{print $2}' | awk '{print $1}'`
@@ -153,7 +153,7 @@ function xge_enable_and_disable_interface()
 {
     Test_Case_Title="xge_enable_and_disable_interface"
     ifconfig ${local_fibre1} up; ifconfig ${local_fibre1} ${local_fibre1_ip}
-    ssh root@${BACK_IP} "ifconfig ${remote_fibre1} up;ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_fibre1} up;ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5"
     ping ${remote_fibre1_ip} -c 5 > ${BaseDir}/log/enable_and_disable_interface.txt &
     sleep 10
     enableok=0
@@ -163,7 +163,7 @@ function xge_enable_and_disable_interface()
     if [ $? -eq 0 ];then
        enableok=1
     fi
-    ssh root@$BACK_IP "ifconfig ${remote_fibre1} down"
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_fibre1} down"
     ping ${remote_fibre1_ip} -c 5 > ${BaseDir}/log/enable_and_disable_interface.txt &
     sleep 10
     cat ${BaseDir}/log/enable_and_disable_interface.txt | grep "received, 0% packet loss" >/dev/null
@@ -188,14 +188,14 @@ function xge_continued_enable_and_disable_interface()
     while(($i<=10))
     do
         ifconfig ${local_fibre1} up; ifconfig ${local_fibre1} ${local_fibre1_ip}
-        ssh root@$BACK_IP "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5"
         ping ${remote_fibre1_ip} -c 5 > ${BaseDir}/log/continued_enable_and_disable_interface.txt &
         sleep 10
         cat ${BaseDir}/log/continued_enable_and_disable_interface.txt | grep "received, 0% packet loss" >/dev/null
         if [ $? -eq 0 ];then
            enableok=1
         fi
-        ssh root@$BACK_IP "ifconfig ${remote_fibre1} down"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_fibre1} down"
         ping ${remote_fibre1_ip} -c 5 > ${BaseDir}/log/continued_enable_and_disable_interface.txt &
         sleep 10
         cat ${BaseDir}/log/continued_enable_and_disable_interface.txt | grep "received, 0% packet loss" >/dev/null
@@ -218,7 +218,7 @@ function xge_flow_enable_and_disable_interface()
     disableok=0
 
     ifconfig ${local_fibre1} up; ifconfig ${local_fibre1} ${local_fibre1_ip}
-    ssh root@$BACK_IP "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5"
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5"
     ping ${remote_fibre1_ip} > ${BaseDir}/log/flow_enable_and_disable_interface.txt &
     PacketStatistics1=`ifconfig ${remote_fibre1} | grep "RX packets:" | awk -F":" '{print $2}' | awk '{print $1}'`
     sleep 10
@@ -227,7 +227,7 @@ function xge_flow_enable_and_disable_interface()
         enableok=1
     fi
 
-    ssh root@$BACK_IP "ifconfig ${remote_fibre1} down"
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_fibre1} down"
     PacketStatistics1=`ifconfig ${remote_fibre1} | grep "RX packets:" | awk -F":" '{print $2}' | awk '{print $1}'`
     sleep 10
     PacketStatistics2=`ifconfig ${remote_fibre1} | grep "RX packets:" | awk -F":" '{print $2}' | awk '{print $1}'`
@@ -250,12 +250,12 @@ function xge_flow_continued_enable_and_disable_interface()
     disableok=0
 
     ifconfig ${local_fibre1} up; ifconfig ${local_fibre1} ${local_fibre1_ip}
-    ssh root@$BACK_IP "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5;"
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5;"
     ping ${remote_fibre1_ip} > ${BaseDir}/log/flow_continued_enable_and_disable_interface.txt &
     i=1
     while(($i<=10))
     do
-        ssh root@$BACK_IP "ifconfig ${remote_fibre1} up;sleep 2"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_fibre1} up;sleep 2"
         PacketStatistics1=`ifconfig ${remote_fibre1} | grep "RX packets:" | awk -F":" '{print $2}' | awk '{print $1}'`
         sleep 10
         PacketStatistics2=`ifconfig ${remote_fibre1} | grep "RX packets:" | awk -F":" '{print $2}' | awk '{print $1}'`
@@ -263,7 +263,7 @@ function xge_flow_continued_enable_and_disable_interface()
             enableok=1
         fi
 
-        ssh root@$BACK_IP "ifconfig ${remote_fibre1} down;sleep 2"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_fibre1} down;sleep 2"
         PacketStatistics1=`ifconfig ${remote_fibre1} | grep "RX packets:" | awk -F":" '{print $2}' | awk '{print $1}'`
         sleep 10
         PacketStatistics2=`ifconfig ${remote_fibre1} | grep "RX packets:" | awk -F":" '{print $2}' | awk '{print $1}'`

@@ -14,7 +14,7 @@ function ge_vlan_multi_port()
     ifconfig ${local_tp1}.401 192.168.13.10;ifconfig ${local_tp1}.400 192.168.12.10
     sleep 5
 
-    ssh root@$BACK_IP "
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "
     ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip};\
     ip link add link ${remote_tp1} name ${remote_tp1}.401 type vlan id 401;\
     ip link add link ${remote_tp1} name ${remote_tp1}.400 type vlan id 400;\
@@ -32,10 +32,10 @@ function ge_vlan_multi_port()
     done
     
     vconfig rem ${local_tp1}.400
-    ssh root@${BACK_IP} "vconfig rem ${remote_tp1}.400"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "vconfig rem ${remote_tp1}.400"
 
     vconfig rem ${local_tp1}.401
-    ssh root@${BACK_IP} "vconfig rem ${remote_tp1}.401"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "vconfig rem ${remote_tp1}.401"
 
 }
 
@@ -51,7 +51,7 @@ function vlan_fault_tolerant()
         MESSAGE="FAIL\t vlan fault tolerant failure"
     fi
     #vconfig rem ${local_tp1}.401
-    #ssh root@${BACK_IP} "vconfig rem ${remote_tp1}.401"
+    #ssh -o StrictHostKeyChecking=no root@${BACK_IP} "vconfig rem ${remote_tp1}.401"
 
 }
 
@@ -63,7 +63,7 @@ function ge_set_vlan()
     ifconfig ${local_tp1}.401 192.168.11.10
     sleep 5
     echo ${local_tp1}
-    ssh root@$BACK_IP "ifconfig ${remote_tp1} up;\
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_tp1} up;\
     ip link add link ${remote_tp1} name ${remote_tp1}.401 type vlan id 401;\
     ifconfig ${remote_tp1}.401 192.168.11.20;\
     sleep 10"
@@ -75,7 +75,7 @@ function ge_set_vlan()
     fi
 
     vconfig rem ${local_tp1}.401
-    ssh root@${BACK_IP} "vconfig rem ${remote_tp1}.401"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "vconfig rem ${remote_tp1}.401"
 }
 
 function ge_vlan_up_down
@@ -95,7 +95,7 @@ function ge_vlan_up_down
     fi
 
     vconfig rem ${local_tp1}.401
-    #ssh root@${BACK_IP} "vconfig rem ${remote_tp1}.401"
+    #ssh -o StrictHostKeyChecking=no root@${BACK_IP} "vconfig rem ${remote_tp1}.401"
 
 
 }
@@ -111,7 +111,7 @@ function xge_vlan_multi_port()
     ifconfig ${local_fibre1}.401 192.168.21.10;ifconfig ${local_fibre1}.400 192.168.22.10
     sleep 5
 
-    ssh root@$BACK_IP "
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "
     ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip};\
     ip link add link ${remote_fibre1} name ${remote_fibre1}.401 type vlan id 401;\
     ip link add link ${remote_fibre1} name ${remote_fibre1}.400 type vlan id 400;\
@@ -129,10 +129,10 @@ function xge_vlan_multi_port()
     done
 
     vconfig rem ${local_fibre1}.400
-    ssh root@${BACK_IP} "vconfig rem ${remote_fibre1}.400"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "vconfig rem ${remote_fibre1}.400"
 
     vconfig rem ${local_fibre1}.401
-    ssh root@${BACK_IP} "vconfig rem ${remote_fibre1}.401"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "vconfig rem ${remote_fibre1}.401"
 
 
 
@@ -145,7 +145,7 @@ function xge_set_vlan()
     ip link add link ${local_fibre1} name ${local_fibre1}.401 type vlan id 401
     ifconfig ${local_fibre1}.401 192.168.21.10
     sleep 5
-    ssh root@$BACK_IP "ifconfig ${remote_fibre1} up;\
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_fibre1} up;\
     ip link add link ${remote_fibre1} name ${remote_fibre1}.401 type vlan id 401;\
     ifconfig ${remote_fibre1}.401 192.168.21.20;\
     sleep 10"
@@ -157,7 +157,7 @@ function xge_set_vlan()
     fi
 
     vconfig rem ${local_fibre1}.401
-    ssh root@${BACK_IP} "vconfig rem ${remote_fibre1}.401"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "vconfig rem ${remote_fibre1}.401"
 
 
 }
@@ -179,7 +179,7 @@ function xge_vlan_up_down
     fi
 
     vconfig rem ${local_fibre1}.401
-    #ssh root@${BACK_IP} "vconfig rem ${remote_fibre1}.400"
+    #ssh -o StrictHostKeyChecking=no root@${BACK_IP} "vconfig rem ${remote_fibre1}.400"
 
 
 }

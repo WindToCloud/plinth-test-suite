@@ -37,10 +37,10 @@ PROTOCOL_TYPE=""
 
 function remote_iperf_s()
 {
-  ssh root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
+  ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
   sleep 5
 
-  show=`ssh root@$BACK_IP "ps -ef | grep iperf "`
+  show=`ssh -o StrictHostKeyChecking=no root@$BACK_IP "ps -ef | grep iperf "`
   echo ${show}
 
 }
@@ -145,7 +145,7 @@ function check_remote_single_process()
         echo "Time cnt is "$timeoutcnt
         ((timeoutcnt++))
         sleep 1
-        result=`ssh root@${BACK_IP} "pidof $process"`
+        result=`ssh -o StrictHostKeyChecking=no root@${BACK_IP} "pidof $process"`
         if [ -z "$result" ];then
             echo "$process process is finished"
             flag=0
@@ -228,8 +228,8 @@ function ipv6_iperf_single()
     fi
     MESSAGE="PASS"
 
-    REMOTE1_IPV6_IP=$(ssh root@$BACK_IP "ifconfig ${NETPORT1} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
-    REMOTE2_IPV6_IP=$(ssh root@$BACK_IP "ifconfig ${NETPORT2} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
+    REMOTE1_IPV6_IP=$(ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${NETPORT1} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
+    REMOTE2_IPV6_IP=$(ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${NETPORT2} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
     process="iperf"
 
     echo "#############################"
@@ -292,7 +292,7 @@ function ipv6_iperf_single()
     #ssh root@$BACK_IP "killall iperf;sleep 10;iperf -s -V >/dev/null 2>&1 &"
     iperf_killer
 
-    ssh root@$BACK_IP "ps -ef | grep iperf "
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "ps -ef | grep iperf "
     echo "#############################"
     echo "Run iperf Single port two-way..."
     echo "#############################"
@@ -300,7 +300,7 @@ function ipv6_iperf_single()
     for twNum in $THREAD
     do
         remote_iperf_s
-        ssh root@$BACK_IP "ps -ef | grep iperf "
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "ps -ef | grep iperf "
 
         echo "Run single port two-way ${twNum}thread......"
         iperf -c ${REMOTE1_IPV6_IP}%${LOCALPORT1} -V -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Ipv6_Single_two-way_${NETPORT1}_${twNum}thread.log &
@@ -326,12 +326,12 @@ function ipv6_iperf_dual()
 
     LOCAL1_IPV6_IP=$(ifconfig ${LOCALPORT1} | grep 'inet6 addr:' | awk '{print $3}' | awk -F'/' '{print $1}' | head -n 1)
     LOCAL2_IPV6_IP=$(ifconfig ${LOCALPORT2} | grep 'inet6 addr:' | awk '{print $3}' | awk -F'/' '{print $1}' | head -n 1)
-    REMOTE1_IPV6_IP=$(ssh root@$BACK_IP "ifconfig ${NETPORT1} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
-    REMOTE2_IPV6_IP=$(ssh root@$BACK_IP "ifconfig ${NETPORT2} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
+    REMOTE1_IPV6_IP=$(ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${NETPORT1} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
+    REMOTE2_IPV6_IP=$(ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${NETPORT2} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
     process="iperf"
     iperf_killer
     iperf -s -V >/dev/null 2>&1 &
-    ssh root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
     sleep 5
     echo "#############################"
     echo "Run iperf Dual port one-way..."
@@ -343,12 +343,12 @@ function ipv6_iperf_dual()
             for owNum in $THREAD
             do
                iperf -s -V >/dev/null 2>&1 &
-               ssh root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
+               ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
                sleep 5
 
                 echo "Run dual port ${netport} ${owNum}thread......"
                 iperf -c ${REMOTE1_IPV6_IP}%${LOCALPORT1} -V -t $IPERFDURATION -i 2 -P ${owNum} > $LOG_DIR/$IPERFDIR/Ipv6_dual_one-way_local_${netport}_${owNum}thread.log &
-                ssh root@$BACK_IP "iperf -c ${LOCAL1_IPV6_IP}%${NETPORT1} -V -t $IPERFDURATION -i 2 -P ${owNum} > $LOG_DIR/$IPERFDIR/Ipv6_dual_one-way_remote_${netport}_${owNum}thread.log &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -c ${LOCAL1_IPV6_IP}%${NETPORT1} -V -t $IPERFDURATION -i 2 -P ${owNum} > $LOG_DIR/$IPERFDIR/Ipv6_dual_one-way_remote_${netport}_${owNum}thread.log &"
                 sleep $IPERFDURATION
                 check_dual_process
                 ipv6_data_integration
@@ -359,12 +359,12 @@ function ipv6_iperf_dual()
             for owNum in $THREAD
             do
                 iperf -s -V >/dev/null 2>&1 &
-                ssh root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
                 sleep 5
 
                 echo "Run dual port $netport ${owNum}thread......"
                 iperf -c ${REMOTE2_IPV6_IP}%${LOCALPORT2} -V -t $IPERFDURATION -i 2 -P $owNum > $LOG_DIR/$IPERFDIR/Ipv6_dual_one-way_local_${netport}_${owNum}thread.log &
-                ssh root@$BACK_IP "iperf -c ${LOCAL2_IPV6_IP}%${NETPORT2} -V -t $IPERFDURATION -i 2 -P $owNum > $LOG_DIR/$IPERFDIR/Ipv6_dual_one-way_remote_${netport}_${owNum}thread.log &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -c ${LOCAL2_IPV6_IP}%${NETPORT2} -V -t $IPERFDURATION -i 2 -P $owNum > $LOG_DIR/$IPERFDIR/Ipv6_dual_one-way_remote_${netport}_${owNum}thread.log &"
                 sleep $IPERFDURATION
                 check_dual_process
                 ipv6_data_integration
@@ -386,14 +386,14 @@ function ipv6_iperf_dual()
     for twNum in $THREAD
     do
        iperf -s -V >/dev/null 2>&1 &
-       ssh root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
+       ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
        sleep 5
 
         echo "Run Two-way ${twNum}thread......"
         iperf -c ${REMOTE1_IPV6_IP}%${LOCALPORT1} -V -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Ipv6_dual_twoway_local_${NETPORT1}_${twNum}thread.log &
         iperf -c ${REMOTE2_IPV6_IP}%${LOCALPORT2} -V -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Ipv6_dual_twoway_local_${NETPORT2}_${twNum}thread.log &
-        ssh root@$BACK_IP "iperf -c ${LOCAL1_IPV6_IP}%${NETPORT1} -V -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Ipv6_dual_two-way_remote_${NETPORT1}_${twNum}thread.log &"
-        ssh root@$BACK_IP "iperf -c ${LOCAL2_IPV6_IP}%${NETPORT2} -V -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Ipv6_dual_two-way_remote_${NETPORT2}_${twNum}thread.log &"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -c ${LOCAL1_IPV6_IP}%${NETPORT1} -V -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Ipv6_dual_two-way_remote_${NETPORT1}_${twNum}thread.log &"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -c ${LOCAL2_IPV6_IP}%${NETPORT2} -V -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Ipv6_dual_two-way_remote_${NETPORT2}_${twNum}thread.log &"
         sleep $IPERFDURATION
         check_dual_process
         ipv6_data_integration
@@ -427,7 +427,7 @@ function iperf_single()
         if [ ${netport} == ${NETPORT1} ];then
             for owNum in $THREAD
             do
-               ssh root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
+               ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
                sleep 5
 
                 echo "Run single port $netport ${owNum}thread......"
@@ -440,7 +440,7 @@ function iperf_single()
         else
             for owNum in $THREAD
             do
-                ssh root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
                 sleep 5
 
                 echo "Run single port $netport ${owNum}thread......"
@@ -454,7 +454,7 @@ function iperf_single()
     done
     sleep 5
     #two-way perfornamce
-      #ssh root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
+      #ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
       sleep 5
       iperf_killer
       echo "#############################"
@@ -463,7 +463,7 @@ function iperf_single()
       SendPyte="SingleTwo"
       for twNum in $THREAD
       do
-         ssh root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
+         ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
          sleep 5
 
         echo "Run single port two-way ${twNum}thread......"
@@ -490,7 +490,7 @@ function iperf_dual()
     process="iperf"
     #killall iperf
     #iperf -s >/dev/null 2>&1 &
-    #ssh root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
+    #ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
     iperf_killer
     sleep 5
     echo "#############################"
@@ -503,12 +503,12 @@ function iperf_dual()
             for owNum in $THREAD
             do
                 iperf -s >/dev/null 2>&1 &
-                ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
                 sleep 5
 
                 echo "Run dual port ${netport} ${owNum}thread......"
                 iperf -c ${NETIP1} -t $IPERFDURATION -i 2 -P ${owNum} > $LOG_DIR/$IPERFDIR/dual_one-way_local_${netport}_${owNum}thread.log &
-                ssh root@$BACK_IP "iperf -c ${LOCALIP1} -t $IPERFDURATION -i 2 -P ${owNum} > $LOG_DIR/$IPERFDIR/dual_one-way_remote_${netport}_${owNum}thread.log &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -c ${LOCALIP1} -t $IPERFDURATION -i 2 -P ${owNum} > $LOG_DIR/$IPERFDIR/dual_one-way_remote_${netport}_${owNum}thread.log &"
                 sleep $IPERFDURATION
                 check_dual_process
                 data_integration
@@ -519,13 +519,13 @@ function iperf_dual()
             for owNum in $THREAD
             do
                 iperf -s >/dev/null 2>&1 &
-                ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
                 sleep 5
 
 
                 echo "Run dual port $netport ${owNum}thread......"
                 iperf -c ${NETIP2} -t $IPERFDURATION -i 2 -P $owNum > $LOG_DIR/$IPERFDIR/dual_one-way_local_${netport}_${owNum}thread.log &
-                ssh root@$BACK_IP "iperf -c ${LOCALIP2} -t $IPERFDURATION -i 2 -P $owNum > $LOG_DIR/$IPERFDIR/dual_one-way_remote_${netport}_${owNum}thread.log &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -c ${LOCALIP2} -t $IPERFDURATION -i 2 -P $owNum > $LOG_DIR/$IPERFDIR/dual_one-way_remote_${netport}_${owNum}thread.log &"
                 sleep $IPERFDURATION
                 check_dual_process
                 data_integration
@@ -542,20 +542,20 @@ function iperf_dual()
     SendPyte="DualTwo"
     #killall iperf
     #iperf -s >/dev/null 2>&1 &
-    #ssh root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
+    #ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
     #sleep 5
     iperf_killer
     for twNum in $THREAD
     do
         iperf -s >/dev/null 2>&1 &
-        ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
         sleep 5
 
         echo "Run Two-way ${twNum}thread......"
         iperf -c ${NETIP1} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/dual_twoway_local_${NETPORT1}_${twNum}thread.log &
         iperf -c ${NETIP2} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/dual_twoway_local_${NETPORT2}_${twNum}thread.log &
-        ssh root@$BACK_IP "iperf -c ${LOCALIP1} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/dual_twoway_remote_${NETPORT1}_${twNum}thread.log &"
-        ssh root@$BACK_IP "iperf -c ${LOCALIP2} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/dual_twoway_remote_${NETPORT2}_${twNum}thread.log &"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -c ${LOCALIP1} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/dual_twoway_remote_${NETPORT1}_${twNum}thread.log &"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -c ${LOCALIP2} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/dual_twoway_remote_${NETPORT2}_${twNum}thread.log &"
         sleep $IPERFDURATION
         check_dual_process
         data_integration
@@ -580,18 +580,18 @@ function Vlan_iperf_single()
     ifconfig $LOCALPORT1.401 ${vlan_local1_ip};ifconfig $LOCALPORT2.400 ${vlan_local2_ip}
     sleep 5
 
-    ssh root@$BACK_IP "
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "
     ip link add link $NETPORT1 name $NETPORT1.401 type vlan id 401;\
     ip link add link $NETPORT2 name $NETPORT2.400 type vlan id 400;\
     ifconfig $NETPORT1.401 ${vlan_remote1_ip};ifconfig $NETPORT2.400 ${vlan_remote2_ip};\
     sleep 5"
 
     process="iperf"
-    #ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+    #ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
     #killall iperf
     #iperf -s >/dev/null 2>&1 &
     iperf_killer
-   # ssh root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
+   # ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
    # sleep 5
     echo "#############################"
     echo "Run iperf Single port One-way..."
@@ -603,7 +603,7 @@ function Vlan_iperf_single()
         if [ ${netport} == ${NETPORT1} ];then
             for owNum in $THREAD
             do
-                ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
                 sleep 5
 
                 echo "Run single port $netport ${owNum}thread......"
@@ -619,11 +619,11 @@ function Vlan_iperf_single()
         else
             for owNum in $THREAD
             do
-                ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
                 sleep 5
 
 
-                ssh root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
                 sleep 5
                 echo "Run single port $netport ${owNum}thread......"
                 iperf -c ${vlan_remote2_ip} -t $IPERFDURATION -i 1 -P $owNum > $LOG_DIR/$IPERFDIR/Vlan_single_one-way_${netport}_${owNum}thread.log &
@@ -639,14 +639,14 @@ function Vlan_iperf_single()
 
     #two-way perfornamce
     iperf_killer
-    #ssh root@$BACK_IP "killall iperf;iperf -s -V >/dev/null 2>&1 &"
+    #ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf;iperf -s -V >/dev/null 2>&1 &"
     echo "#############################"
     echo "Run iperf Single port two-way..."
     echo "#############################"
     SendPyte="SingleTwo"
     for twNum in $THREAD
     do
-        ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
         sleep 5
 
 
@@ -662,7 +662,7 @@ function Vlan_iperf_single()
 
     vconfig rem $NETPORT1.401
     vconfig rem $NETPORT2.400
-    ssh root@${BACK_IP} "vconfig rem $NETPORT1.401;vconfig rem $NETPORT2.400"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "vconfig rem $NETPORT1.401;vconfig rem $NETPORT2.400"
 
     VlanSingle=1
 
@@ -681,7 +681,7 @@ function Vlan_iperf_dual()
     ifconfig $LOCALPORT1.401 ${vlan_local1_ip};ifconfig $LOCALPORT2.400 ${vlan_local2_ip}
     sleep 5
 
-    ssh root@$BACK_IP "
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "
     ip link add link $NETPORT1 name $NETPORT1.401 type vlan id 401;\
     ip link add link $NETPORT2 name $NETPORT2.400 type vlan id 400;\
     ifconfig $NETPORT1.401 ${vlan_remote1_ip};ifconfig $NETPORT2.400 ${vlan_remote2_ip};\
@@ -691,7 +691,7 @@ function Vlan_iperf_dual()
     #killall iperf
     iperf_killer
     #iperf -s >/dev/null 2>&1 &
-    #ssh root@$BACK_IP "killall iperf;iperf -s -V >/dev/null 2>&1 &"
+    #ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf;iperf -s -V >/dev/null 2>&1 &"
     #sleep 5
     echo "#############################"
     echo "Run iperf Dual port one-way..."
@@ -703,12 +703,12 @@ function Vlan_iperf_dual()
             for owNum in $THREAD
             do
                 iperf -s >/dev/null 2>&1 &
-                ssh root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
                 sleep 5
 
                 echo "Run dual port ${netport} ${owNum}thread......"
                 iperf -c ${vlan_remote1_ip} -t $IPERFDURATION -i 2 -P ${owNum} > $LOG_DIR/$IPERFDIR/Vlan_dual_one-way_local_${netport}_${owNum}thread.log &
-                ssh root@$BACK_IP "mkdir -p $LOG_DIR/$IPERFDIR;iperf -c ${vlan_local1_ip} -t $IPERFDURATION -i 2 -P ${owNum} > /$LOG_DIR/$IPERFDIR/Vlan_dual_one-way_remote_${netport}_${owNum}thread.log &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "mkdir -p $LOG_DIR/$IPERFDIR;iperf -c ${vlan_local1_ip} -t $IPERFDURATION -i 2 -P ${owNum} > /$LOG_DIR/$IPERFDIR/Vlan_dual_one-way_remote_${netport}_${owNum}thread.log &"
                 sleep $IPERFDURATION
                 check_dual_process
                 iperf_killer
@@ -718,13 +718,13 @@ function Vlan_iperf_dual()
             for owNum in $THREAD
             do
                 iperf -s >/dev/null 2>&1 &
-                ssh root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
                 sleep 5
 
 
                 echo "Run dual port $netport ${owNum}thread......"
                 iperf -c ${vlan_remote2_ip} -t $IPERFDURATION -i 2 -P $owNum > $LOG_DIR/$IPERFDIR/Vlan_dual_one-way_local_${netport}_${owNum}thread.log &
-                ssh root@$BACK_IP "iperf -c ${vlan_local2_ip} -t $IPERFDURATION -i 2 -P $owNum > /$LOG_DIR/$IPERFDIR/Vlan_dual_one-way_remote_${netport}_${owNum}thread.log &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -c ${vlan_local2_ip} -t $IPERFDURATION -i 2 -P $owNum > /$LOG_DIR/$IPERFDIR/Vlan_dual_one-way_remote_${netport}_${owNum}thread.log &"
                 sleep $IPERFDURATION
                 check_dual_process
                 iperf_killer
@@ -740,19 +740,19 @@ function Vlan_iperf_dual()
     SendPyte="DualTwo"
     #killall iperf
     #iperf -s >/dev/null 2>&1 &
-    #ssh root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
+    #ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
     for twNum in $THREAD
     do
                 iperf -s >/dev/null 2>&1 &
-                ssh root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s -V >/dev/null 2>&1 &"
                 sleep 5
 
 
         echo "Run Two-way ${twNum}thread......"
         iperf -c ${vlan_remote1_ip} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Vlan_dual_twoway_local_${NETPORT1}_${twNum}thread.log &
         iperf -c ${vlan_remote2_ip} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/Vlan_dual_twoway_local_${NETPORT2}_${twNum}thread.log &
-        ssh root@$BACK_IP "iperf -c ${vlan_local1_ip} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/Vlan_dual_two-way_remote_${NETPORT1}_${twNum}thread.log &"
-        ssh root@$BACK_IP "iperf -c ${vlan_local2_ip} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/Vlan_dual_two-way_remote_${NETPORT2}_${twNum}thread.log &"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -c ${vlan_local1_ip} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/Vlan_dual_two-way_remote_${NETPORT1}_${twNum}thread.log &"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -c ${vlan_local2_ip} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/Vlan_dual_two-way_remote_${NETPORT2}_${twNum}thread.log &"
         sleep $IPERFDURATION
         check_dual_process
         iperf_killer
@@ -760,7 +760,7 @@ function Vlan_iperf_dual()
 
     vconfig rem $NETPORT1.401
     vconfig rem $NETPORT2.400
-    ssh root@${BACK_IP} "vconfig rem $NETPORT1.401;vconfig rem $NETPORT2.400"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "vconfig rem $NETPORT1.401;vconfig rem $NETPORT2.400"
     VlanDual=1
 }
 
@@ -777,7 +777,7 @@ function netperf_single()
     echo "Run netperf Single port TCP/UDP STREAM..."
     echo "#############################"
     process="netperf"
-    ssh root@$BACK_IP "killall netserver;netserver >/dev/null 2>&1 &"
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall netserver;netserver >/dev/null 2>&1 &"
     for netport in ${NETPORTLIST}
     do
        if [ ${netport} == ${NETPORT1} ];then
@@ -862,7 +862,7 @@ function netperf_dual
     echo "Run netperf dual port TCP/UDP Message..."
     echo "#############################"
     process="netperf"
-    ssh root@$BACK_IP "killall netserver;netserver >/dev/null 2>&1 &"
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall netserver;netserver >/dev/null 2>&1 &"
 
     for tcpnum in ${TCP_MSS}
     do
@@ -922,7 +922,7 @@ function qperf_test()
     echo "Run qperf test..."
     echo "#############################"
     process="qperf"
-    ssh root@$BACK_IP "killall qperf;qperf >/dev/null 2>&1 &"
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall qperf;qperf >/dev/null 2>&1 &"
     for netport in ${NETPORTLIST}
     do
         if [ ${netport} == ${NETPORT1} ];then
@@ -961,18 +961,18 @@ function Vlan_iperf_single()
     ifconfig $LOCALPORT1.401 ${vlan_local1_ip};ifconfig $LOCALPORT2.400 ${vlan_local2_ip}
     sleep 5
 
-    ssh root@$BACK_IP "
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP "
     ip link add link $NETPORT1 name $NETPORT1.401 type vlan id 401;\
     ip link add link $NETPORT2 name $NETPORT2.400 type vlan id 400;\
     ifconfig $NETPORT1.401 ${vlan_remote1_ip};ifconfig $NETPORT2.400 ${vlan_remote2_ip};\
     sleep 5"
 
     process="iperf"
-    #ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+    #ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
     #killall iperf
     #iperf -s >/dev/null 2>&1 &
     iperf_killer
-   # ssh root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
+   # ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
    # sleep 5
     echo "#############################"
     echo "Run iperf Single port One-way..."
@@ -984,7 +984,7 @@ function Vlan_iperf_single()
         if [ ${netport} == ${NETPORT1} ];then
             for owNum in $THREAD
             do
-                ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
                 sleep 5
 
                 echo "Run single port $netport ${owNum}thread......"
@@ -1000,11 +1000,11 @@ function Vlan_iperf_single()
         else
             for owNum in $THREAD
             do
-                ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
                 sleep 5
 
 
-                ssh root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf;iperf -s >/dev/null 2>&1 &"
                 sleep 5
                 echo "Run single port $netport ${owNum}thread......"
                 iperf -c ${vlan_remote2_ip} -t $IPERFDURATION -i 1 -P $owNum > $LOG_DIR/$IPERFDIR/Vlan_single_one-way_${netport}_${owNum}thread.log &
@@ -1020,14 +1020,14 @@ function Vlan_iperf_single()
 
     #two-way perfornamce
     iperf_killer
-    #ssh root@$BACK_IP "killall iperf;iperf -s -V >/dev/null 2>&1 &"
+    #ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf;iperf -s -V >/dev/null 2>&1 &"
     echo "#############################"
     echo "Run iperf Single port two-way..."
     echo "#############################"
     SendPyte="SingleTwo"
     for twNum in $THREAD
     do
-        ssh root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s >/dev/null 2>&1 &"
         sleep 5
 
 
@@ -1043,7 +1043,7 @@ function Vlan_iperf_single()
 
     vconfig rem $NETPORT1.401
     vconfig rem $NETPORT2.400
-    ssh root@${BACK_IP} "vconfig rem $NETPORT1.401;vconfig rem $NETPORT2.400"
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "vconfig rem $NETPORT1.401;vconfig rem $NETPORT2.400"
 
     VlanSingle=1
 
@@ -1087,7 +1087,7 @@ function iperf_env_prepare()
                 		ifconfig $local_net_1 ${local_ip_1};ifconfig $local_net_2 ${local_ip_2}
 				sleep 5
 
-				ssh root@$BACK_IP "
+				ssh -o StrictHostKeyChecking=no root@$BACK_IP "
 				ip link add link $remote_tp1 name $remote_net_1 type vlan id 401;\
 				ip link add link $remote_fibre1 name $remote_net_2 type vlan id 400;\
 				ifconfig $remote_net_1 ${remote_ip_1};ifconfig $remote_net_2 ${remote_ip_2};\
@@ -1108,7 +1108,7 @@ function iperf_env_prepare()
                         	ifconfig $local_net_1 ${local_ip_1};ifconfig $local_net_2 ${local_ip_2}
 				sleep 5
 
-				ssh root@$BACK_IP "
+				ssh -o StrictHostKeyChecking=no root@$BACK_IP "
 				ip link add link $remote_fibre1 name $remote_net_1 type vlan id 400;\
 				ip link add link $remote_tp1 name $remote_net_2 type vlan id 401;\
 				ifconfig $remote_net_1 ${remote_ip_1};ifconfig $remote_net_2 ${remote_ip_2};\
@@ -1128,9 +1128,9 @@ function iperf_env_prepare()
 				local_ip_1="${local_ip_1}%${remote_net_1}"
 				local_ip_2=$(ifconfig ${local_net_2} | grep 'inet6 addr:' | awk '{print $3}' | awk -F'/' '{print $1}' | head -n 1)
 				local_ip_2="${local_ip_2}%${remote_net_2}"
-				remote_ip_1=$(ssh root@$BACK_IP "ifconfig ${remote_net_1} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
+				remote_ip_1=$(ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_net_1} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
 				remote_ip_1="${remote_ip_1}%${local_net_1}"
-				remote_ip_2=$(ssh root@$BACK_IP "ifconfig ${remote_net_2} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
+				remote_ip_2=$(ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_net_2} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
 				remote_ip_2="${remote_ip_2}%${local_net_2}"
 
 			else
@@ -1143,9 +1143,9 @@ function iperf_env_prepare()
 				local_ip_1="${local_ip_1}%${remote_net_1}"
 				local_ip_2=$(ifconfig ${local_net_2} | grep 'inet6 addr:' | awk '{print $3}' | awk -F'/' '{print $1}' | head -n 1)
 				local_ip_2="${local_ip_2}%${remote_net_2}"
-				remote_ip_1=$(ssh root@$BACK_IP "ifconfig ${remote_net_1} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
+				remote_ip_1=$(ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_net_1} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
 				remote_ip_1="${remote_ip_1}%${local_net_1}"
-				remote_ip_2=$(ssh root@$BACK_IP "ifconfig ${remote_net_2} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
+				remote_ip_2=$(ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig ${remote_net_2} | grep 'inet6 addr:' | awk '{print \$3}' | awk -F'/' '{print \$1}' | head -n 1")
 				remote_ip_2="${remote_ip_2}%${local_net_2}"
 
 			fi
@@ -1194,7 +1194,7 @@ function iperf_env_terminate()
 		VLAN)
 			vconfig rem $local_net_1
 			vconfig rem $local_net_2
-			ssh root@${BACK_IP} "vconfig rem $remote_net_1;vconfig rem $remote_net_2"
+			ssh -o StrictHostKeyChecking=no root@${BACK_IP} "vconfig rem $remote_net_1;vconfig rem $remote_net_2"
 		;;
 		*)
 		;;
@@ -1219,7 +1219,7 @@ function iperf_single1()
 
     for owNum in $THREAD
 	do
-                ssh root@$BACK_IP "iperf -s ${IPV6_MASK}  >/dev/null 2>&1 &"
+                ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s ${IPV6_MASK}  >/dev/null 2>&1 &"
                 sleep 5
 
                 echo "Run ${PROTOCOL_TYPE} as customer single port $local_net_1 ${owNum}thread......"
@@ -1264,10 +1264,10 @@ function iperf_single2()
 		echo "The process is "$iperf_proc
                 echo "Run ${PROTOCOL_TYPE} as server single port $local_net_1 ${owNum}thread......"
 
-                ssh root@${BACK_IP} "mkdir -p /$LOG_DIR/$IPERFDIR;iperf -c ${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $owNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_single2_one-way_${local_net_1}_${owNum}thread.log &"
+                ssh -o StrictHostKeyChecking=no root@${BACK_IP} "mkdir -p /$LOG_DIR/$IPERFDIR;iperf -c ${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $owNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_single2_one-way_${local_net_1}_${owNum}thread.log &"
 
 		sleep 10
-		iperf_proc=`ssh root@${BACK_IP} "ps -ef | grep 'iperf -c'"`
+		iperf_proc=`ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ps -ef | grep 'iperf -c'"`
 		echo "The process is "$iperf_proc
 
                 sleep 25
@@ -1297,7 +1297,7 @@ function iperf_single3()
 
     #two-way perfornamce
     iperf_killer
-    #ssh root@$BACK_IP "killall iperf;iperf -s -V >/dev/null 2>&1 &"
+    #ssh -o StrictHostKeyChecking=no root@$BACK_IP "killall iperf;iperf -s -V >/dev/null 2>&1 &"
     echo "#############################"
     echo "Run iperf Single port two-way..."
     echo "#############################"
@@ -1305,12 +1305,12 @@ function iperf_single3()
     for twNum in $THREAD
     do
 	iperf -s ${IPV6_MASK} >/dev/null 2>&1 &
-        ssh root@$BACK_IP "iperf -s ${IPV6_MASK} >/dev/null 2>&1 &"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s ${IPV6_MASK} >/dev/null 2>&1 &"
         sleep 5
 
         echo "Run ${PROTOCOL_TYPE} as server and custom single port ${local_net_1} two-way ${twNum}thread......"
         iperf -c ${remote_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &
-	ssh root@${BACK_IP} "mkdir -p /$LOG_DIR/$IPERFDIR;iperf -c ${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $owNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_single_one-way_${local_net_1}_${owNum}thread.log &"
+	ssh -o StrictHostKeyChecking=no root@${BACK_IP} "mkdir -p /$LOG_DIR/$IPERFDIR;iperf -c ${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $owNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_single_one-way_${local_net_1}_${owNum}thread.log &"
         sleep 25
         check_dual_process
         iperf_killer
@@ -1337,7 +1337,7 @@ function iperf_dual4()
     SendPyte="SingleTwo"
     for twNum in $THREAD
     do
-        ssh root@$BACK_IP "iperf -s ${IPV6_MASK} >/dev/null 2>&1 &"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s ${IPV6_MASK} >/dev/null 2>&1 &"
         sleep 5
 
         echo "Run ${PROTOCOL_TYPE} as customer  dual port ${local_net_1} two-way ${twNum}thread......"
@@ -1376,8 +1376,8 @@ function iperf_dual5()
         sleep 5
 
         echo "Run ${PROTOCOL_TYPE} as server  dual port two-way ${twNum}thread......"
-        ssh root@$BACK_IP "iperf -c /${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
-        ssh root@$BACK_IP "iperf -c /${local_ip_2} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -c /${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -c /${local_ip_2} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
         sleep 25
         check_remote_single_process
         iperf_killer
@@ -1406,12 +1406,12 @@ function iperf_dual6()
     for twNum in $THREAD
     do
         iperf -s >/dev/null 2>&1 &
-		ssh root@$BACK_IP "iperf -s ${IPV6_MASK} >/dev/null 2>&1 &"
+		ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -s ${IPV6_MASK} >/dev/null 2>&1 &"
         sleep 5
 
         echo "Run ${PROTOCOL_TYPE} as server and customer dual port two-way ${twNum}thread......"
-        ssh root@$BACK_IP "iperf -c /${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
-        ssh root@$BACK_IP "iperf -c /${local_ip_2} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -c /${local_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
+        ssh -o StrictHostKeyChecking=no root@$BACK_IP "iperf -c /${local_ip_2} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > /$LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &"
 	iperf -c ${remote_ip_1} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &
         iperf -c ${remote_ip_2} ${IPV6_MASK} -t $IPERFDURATION -i 2 -P $twNum > $LOG_DIR/$IPERFDIR/${PROTOCOL_TYPE}_Single_two-way_${local_net_1}_${twNum}thread.log &
 
@@ -1442,7 +1442,7 @@ prepare_log_dir
 #ifconfig IP
 ifconfig $LOCALPORT1 ${LOCALIP1}
 ifconfig $LOCALPORT2 ${LOCALIP2}
-ssh root@$BACK_IP "ifconfig $NETPORT1 ${NETIP1};ifconfig $NETPORT2 ${NETIP2};"
+ssh -o StrictHostKeyChecking=no root@$BACK_IP "ifconfig $NETPORT1 ${NETIP1};ifconfig $NETPORT2 ${NETIP2};"
 
 main
 
