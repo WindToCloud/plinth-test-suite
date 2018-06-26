@@ -9,9 +9,8 @@ HNS_TOP_DIR=$(cd "`dirname $0`" ; pwd)
 # Load the public configuration library
 if [ x"$COM" = x"" ];then
     . ${HNS_TOP_DIR}/../config/common_config
+    . ${HNS_TOP_DIR}/../config/common_lib
 fi
-. ${HNS_TOP_DIR}/../config/common_lib
-
 
 # Main operation function
 # IN : N/A
