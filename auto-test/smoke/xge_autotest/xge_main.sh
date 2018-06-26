@@ -92,7 +92,7 @@ function main()
     done
     echo "<<----------------------------------------->>"
     echo "Finish to run XGE test!"
-    echo -e "\033[32mThe test report path is \033[0m\033[35m${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}/${Module}_test_report.log\033[0m"
+    echo -e "\033[32mThe test report path locate at \033[0m\033[35m${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}/ \033[0m"
 }
 
 

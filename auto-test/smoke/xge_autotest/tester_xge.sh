@@ -18,6 +18,7 @@ T_CTRL_NIC=''
 
 Usage()
 {
+cat <<EOF    
 Usage: ./xge_autotest/tester_hns.sh [options]
 Options:
 	-h, --help: Display this information
@@ -38,6 +39,21 @@ EOF
 ##################################################################################
 #Get all args
 ###################################################################################
+echo -e "\033[5;35m Welcom to Use Plinth Test Suite! \033[0m"    
+cat << EOF
+------------/\-------------
+-----------/  \-------------
+          /    \\
+EOF
+
+echo -e "\033[33m Luojiaxing \033[0m  \033[32m Chenjing \033[0m "
+
+echo "  "
+echo ">---------------------------------------------------------<"
+echo "Thank you to ALL tester for providing high quality scripts!"
+echo -e "Tester: \033[34m hehui\033[0m \033[35m  wanghaifeng\033[0m "
+echo ">---------------------------------------------------------< "  
+echo "  "
 
 if [ ! -n "$1" ];then
 	Usage
@@ -73,15 +89,6 @@ if [ x"$T_TESTER" = x"" ];then
 	echo "Tester name is not input!Please input it use -t..."
 	exit 1
 fi
-
-echo -e "\033[5;35m Welcom to Use Plinth Test Suite! \033[0m"    
-cat << EOF
-------------/\-------------
------------/  \-------------
-          /    \\
-EOF
-
-echo -e "\033[33m Luojiaxing \033[0m  \033[32m Chenjing \033[0m "
 
 . ${TESTER_HNS_TOP_DIR}/../config/common_config
 . ${TESTER_HNS_TOP_DIR}/../config/common_lib
@@ -139,10 +146,16 @@ if [ x"${T_CTRL_NIC}" != x"" ];then
 fi
 
 if [ x"${T_SERVER_IP}" = x"" ] || [ x"${T_CTRL_NIC}" = x"" ] || [ x"${T_CLIENT_IP}" = x"" ];then
-	echo "Lose some cfg .Please input full parameter to recover the latest cfg!"
+	echo ">--------------------------------------------------------------------------------<"
+    echo -e "\033[31m Lose some cfg .Please input full parameter to recover the latest cfg! \033[0m"
+    echo ">--------------------------------------------------------------------------------<"
+
 	exit 1
 else
-    echo "This time Run the test with the cfg as: SIP=${T_SERVER_IP} CIP=${T_CLIENT_IP} NIC=${T_CTRL_NIC}"
+
+	echo ">--------------------------------------------------------------------------------<"
+    echo -e "\033[32m This time Run the test with the cfg as: SIP=${T_SERVER_IP} CIP=${T_CLIENT_IP} NIC=${T_CTRL_NIC} \033[0m"
+	echo ">--------------------------------------------------------------------------------<"
 fi
 
 COM="true"

@@ -90,12 +90,15 @@ function test_report(){
     done
     res="${re[0]} | ${re[1]} | ${re[2]} | ${re[3]} | ${re[4]} | ${re[5]}"
     echo ${res} >> ${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}/${Module}_test_report.log
-    echo -e "\033[1;47;31mThe test report path is ${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}/${Module}_test_report.log\033[0m"
+    sed -i 's/\-/ /g' ${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}/${Module}_test_report.log
+
+
+    #echo -e "\033[1;47;31mThe test report path loacate at ${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}/\033[0m"
 }
 
 function LogHeader()
 {
-    echo "Test tile, Result of test, The description of message, Developer, Tester, Datetime" > ${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}/${Module}_test_report.log
+    echo "  Test tile                     Result      The description of message                     Developer              Tester               Datetime" > ${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}/${Module}_test_report.log
     return 0
 }
 
