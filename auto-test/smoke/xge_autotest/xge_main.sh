@@ -51,17 +51,17 @@ function main()
     while [ ${RowNum} -lt ${MaxRow} ]
     do
         let RowNum+=1
-        local line=$(sed -n "${RowNum}p" "${HNS_TOP_DIR}/${TEST_CASE_DB_FILE}")
-        exec_script=`echo "${line}" | awk -F '\t' '{print $6}'`
-        TEST_CASE_FUNCTION_NAME=`echo "${line}" | awk -F '\t' '{print $7}'`
-        TEST_CASE_FUNCTION_SWITCH=`echo "${line}" | awk -F '\t' '{print $8}'`
-        TEST_CASE_TITLE=`echo "${line}" | awk -F '\t' '{print $2}'`
-        TEST_CASE_NUM=`echo "${line}" | awk -F '\t' '{print $3}'`
-        Tester=`echo "${line}" | awk -F '\t' '{print $5}'`
+        local line=$(sed -n "${RowNum}"p "${HNS_TOP_DIR}/${TEST_CASE_DB_FILE}")
+        exec_script=`echo "${line}" | awk -F '|' '{print $6}'`
+        TEST_CASE_FUNCTION_NAME=`echo "${line}" | awk -F '|' '{print $7}'`
+        TEST_CASE_FUNCTION_SWITCH=`echo "${line}" | awk -F '|' '{print $8}'`
+        TEST_CASE_TITLE=`echo "${line}" | awk -F '|' '{print $2}'`
+        TEST_CASE_NUM=`echo "${line}" | awk -F '|' '{print $3}'`
+        Tester=`echo "${line}" | awk -F '|' '{print $5}'`
         DateTime=`date "+%G-%m-%d %H:%M:%S"`
         if [ x"${DEVELOPER}" == x"" ]
         then
-            Developer=`echo "${line}" | awk -F '\t' '{print $4}'`
+            Developer=`echo "${line}" | awk -F '|' '{print $4}'`
         else
             Developer=${DEVELOPER}
         fi
