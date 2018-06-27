@@ -14,6 +14,23 @@ T_CLIENT_IP=''
 T_CTRL_NIC=''
 
 
+checklist()
+{
+  TABLE_LIST=$( whiptail --title "Test Case List" --checklist
+  "Choose test case you want to run this time:" 15 60 4
+  "case 1" ON
+  "case 2" ON
+  "case 3" OFF
+  "case 4" OFF
+  "case 5" ON 3>&1 1>&2 2>&3)
+
+  if [ $? -eq 0 ];then
+	  echo "The choosen list is $TABLE_LIST"
+  else
+	echo "choose cancel"
+  fi
+}
+
 ###################################################################################
 #Usage
 ###################################################################################
@@ -56,6 +73,8 @@ echo "Thank you to ALL tester for providing high quality scripts!"
 echo -e "Tester: \033[34m hehui\033[0m \033[35m  wanghaifeng\033[0m "
 echo ">---------------------------------------------------------< "  
 echo "  "
+
+checklist
 
 if [ ! -n "$1" ];then
 	Usage
