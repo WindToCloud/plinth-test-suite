@@ -159,7 +159,7 @@ else
 fi
 
 COM="true"
-source ${TESTER_SAS_TOP_DIR}/xge_main.sh
+source ${TESTER_SAS_TOP_DIR}/sas_main.sh
 
 #COM="true"
 

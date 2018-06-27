@@ -1,7 +1,7 @@
 ST.FUNC.001	dd_write_SATA_SAS	sas_smoke	chenxiang	chenliangfei	driver_must_support.sh	driver_supports	on
 ST.FUNC.003	SetMaxMinDiskRate_SATA_SAS	sas_smoke	chenxiang	chenliangfei	driver_must_support.sh	driver_supports	off
 ST.FUNC.018	FIO_ReadWrite_SATA_SAS	sas_smoke	chenxiang	chenliangfei	support_available_sas_cores.sh	FIO_IO_read_write	off
-ST.FUNC.096	CycleOpenClosePhy_SATA_SAS	sas_smoke	chenxiang	chenliangfei	support_full_sas_function_all_available_phys.sh	cycle_enable_phy	off
+ST.FUNC.096	CycleOpenClosePhy_SATA_SAS	sas_smoke	chenxiang	chenliangfei	support_full_sas_function_all_available_phys.sh	cycle_enable_phy	on
 ST.FUNC.102	CycleHardResetDisk_SATA_SAS	sas_smoke	chenxiang	chenliangfei	support_full_sas_function_all_available_phys.sh	cycle_hard_reset_phy	off
 ST.FUNC.104	CycleLinkResetDisk_SATA_SAS	sas_smoke	chenxiang	chenliangfei	support_full_sas_function_all_available_phys.sh	cycle_link_reset_phy	off
 

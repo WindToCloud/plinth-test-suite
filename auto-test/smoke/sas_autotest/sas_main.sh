@@ -80,40 +80,7 @@ MkdirPath
 #Output CI log header
 LogHeader
 
-if [ x"$g_server_ip" == x"" ];then
-	g_get_default_sip
-    if [ $? -eq 0 ];then
-        echo "Get the default server ip!"
-    else
-        echo "MAC is not including in pre-cfg list, not get the default server ip!" 
-        exit 1
-    fi
-fi
-
-echo "Get the server ip as $g_server_ip"
-
-LOCAL_IP=$g_server_ip
-#LOCAL_IP="192.168.50.152"
-echo ${LOCAL_IP}
-
-#init_client_ip
-if [ x"$g_client_ip" = x"" ];then
-	BACK_IP=${sip_cip[$g_server_ip]}
-else
-        BACK_IP=$g_client_ip
-fi
-
-#BACK_IP="192.168.50.153"
-echo "The client ip is "${BACK_IP}
-
-#check connect between server and client
-ping $BACK_IP -c 5
-
-if [ $? -eq 0 ];then
-	echo "Connect between server and client is OK!"
-else
-	echo "Client is not good!"
-fi
+get_all_disk_part
 
 main
 
