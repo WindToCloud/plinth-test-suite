@@ -19,11 +19,19 @@ function main()
     echo "Begin to Run SAS Test!"
     cat ${SAS_TOP_DIR}/${TEST_CASE_DB_FILE} | while read line
     do
-        exec_script=`echo "${line}" | awk -F '\t' '{print $6}'`
-        TEST_CASE_FUNCTION_NAME=`echo "${line}" | awk -F '\t' '{print $7}'`
-        TEST_CASE_FUNCTION_SWITCH=`echo "${line}" | awk -F '\t' '{print $8}'`
+        exec_script=`echo "${line}" | awk -F '|' '{print $6}'`
+        TEST_CASE_FUNCTION_NAME=`echo "${line}" | awk -F '|' '{print $7}'`
+        TEST_CASE_FUNCTION_SWITCH=`echo "${line}" | awk -F '|' '{print $8}'`
         #Get the test title from testcase.table
-        TEST_CASE_TITLE=`echo "${line}" | awk -F '\t' '{print $3}'`
+        TEST_CASE_TITLE=`echo "${line}" | awk -F '|' '{print $2}'`
+        Tester=`echo "${line}" | awk -F '|' '{print $5}'`
+        DateTime=`date "+%G-%m-%d %H:%M:%S"`
+        if [ x"${DEVELOPER}" == x"" ]
+        then
+            Developer=`echo "${line}" | awk -F '|' '{print $4}'`
+        else
+            Developer=${DEVELOPER}
+        fi
         echo "script is "${exec_script}
         echo "CaseInfo "${TEST_CASE_TITLE}" "${exec_script}" "${TEST_CASE_FUNCTION_NAME}" "${TEST_CASE_FUNCTION_SWITCH}
 
@@ -44,10 +52,12 @@ function main()
 		        fi
             fi
         fi
-        echo -e "${line}\t${MESSAGE}" >> ${SAS_TOP_DIR}/${OUTPUT_TEST_DB_FILE}
+        # echo -e "${line}\t${MESSAGE}" >> ${SAS_TOP_DIR}/${OUTPUT_TEST_DB_FILE}
         MESSAGE=""
     done
+    echo "<<----------------------------------------->>"
     echo "Finish to Run SAS Test"
+    echo -e "\033[32mThe test report path locate at \033[0m\033[35m${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}/ \033[0m"
 }
 
 # close /dev/sda
@@ -59,7 +69,18 @@ then
     . ${SAS_TOP_DIR}/../pre_autotest/pre_main.sh
 fi
 #Output log file header
-writeLogHeader
+# writeLogHeader
+
+#mkdir the log path
+InitDirectoryName
+
+#mkdir test path
+MkdirPath
+
+#Output CI log header
+LogHeader
+
+get_all_disk_part
 
 main
 
