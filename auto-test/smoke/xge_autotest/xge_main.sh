@@ -56,7 +56,7 @@ function main()
         TEST_CASE_FUNCTION_NAME=`echo "${line}" | awk -F '\t' '{print $7}'`
         TEST_CASE_FUNCTION_SWITCH=`echo "${line}" | awk -F '\t' '{print $8}'`
         TEST_CASE_TITLE=`echo "${line}" | awk -F '\t' '{print $2}'`
-        TEST_CASE_NUM=`echo "${line}" | awk -F '\t' '{print $3}'`
+        TEST_CASE_NUM=`echo "${line}" | awk -F '\t' '{print $1}'`
         Tester=`echo "${line}" | awk -F '\t' '{print $5}'`
         DateTime=`date "+%G-%m-%d %H:%M:%S"`
         if [ x"${DEVELOPER}" == x"" ]
