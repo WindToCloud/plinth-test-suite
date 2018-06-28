@@ -371,12 +371,14 @@ function test_case_function_run()
 	then
 		${TEST_CASE_FUNCTION_NAME}
 		if [ x"${MESSAGE}" == x"PASS"  ];then
-          		lava_report "${TEST_CASE_TITLE}" pass "Liuyixian" "${MESSAGE}"
+          		lava_report "${TEST_CASE_TITLE}" pass "${Developer}" "${MESSAGE}"
+                test_report "${TEST_CASE_TITLE}" pass "${MESSAGE}" "${Developer}" "${Tester}" "${DateTime}"
 		else
 			if [ x"${MESSAGE}" = x"" ];then
 				MESSAGE="Roce fail for unknow error!"
 			fi
-			lava_report "${TEST_CASE_TITLE}" fail "Liuyixian" "${MESSAGE}"
+			lava_report "${TEST_CASE_TITLE}" fail "${Developer}" "${MESSAGE}"
+            test_report "${TEST_CASE_TITLE}" fail "${MESSAGE}" "${Developer}" "${Tester}" "${DateTime}"
 		fi
 	else
 		MESSAGE="BLOCK\tno automated use cases were implemented."

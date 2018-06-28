@@ -10,9 +10,8 @@ ROCE_CASE_DIR=${ROCE_TOP_DIR}/case_script
 # Load module configuration library
 if [ x"$COM" = x"" ];then
     . ${ROCE_TOP_DIR}/../config/common_config
-    # . ${ROCE_TOP_DIR}/../config/common_lib
+    . ${ROCE_TOP_DIR}/../config/common_lib
 fi
-. ${ROCE_TOP_DIR}/../config/common_lib
 
 # Main operation function
 # IN : N/A
@@ -93,6 +92,9 @@ roce_init
 
 # LOCAL_ETHX=`cat /sys/class/infiniband/hns_0/ports/${ROCE_PORT}/gid_attrs/ndevs/0`
 
+#mkdir the log path
+InitDirectoryName
+
 ##check the env_ok is ok
 check_ENV_OK_exists
 if [ $? -eq 1 ]
@@ -113,8 +115,6 @@ fi
 /${ROCE_TOP_DIR}/case_script/roce-test -m 2 -c 0xff -r
 sleep 5
 
-#mkdir the log path
-InitDirectoryName
 
 #mkdir test path
 MkdirPath

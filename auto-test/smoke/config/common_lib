@@ -112,6 +112,10 @@ function InitDirectoryName(){
     NowTime="${hours}"h"${minute}"m"${second}"s
     Module=$( cd "`dirname $0`" ; pwd )
     Module=$(ls ${Module} | grep "main" | awk -F "_" '{print $1}')
+    if [ -z ${Module} ]
+    then
+        ${Module}="unkown"
+    fi
     BaseDir=${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}
     }
 
