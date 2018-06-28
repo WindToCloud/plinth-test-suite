@@ -80,13 +80,18 @@ Options:
 	-t, --test: the tester name .if other cfg is not set,
 		    tester name can help to get latest cfg you used
 		    this para is forced to be set.
-    -p, --pickcase: true :pick the case using UI 
+    -p, --pickcase: true :pick the test case you want to run this time 
+                          and save as your  default cfg 
                     flase: do nothing
 Example:
-	bash tester_hns.sh -t luojiaxing  -s "192.168.3.152" -c "192.168.3.153" -n "eth3"
+    #***First time to use this suite or use this suite at new board***
+	bash tester_xge.sh -t luojiaxing  -s "192.168.3.152" -c "192.168.3.153" -n "eth3" -p true
 
-	bash tester_hns.sh -t luojiaxing # if no other para,scripts will use the latest user cfg
+    #***use user's default cfg with any cfg change****
+	bash tester_xge.sh -t luojiaxing 
 
+    #***Reselect the test suite and keep other case no change
+    bash tester_xge.sh -t luojiaxing -p true
 EOF
 }
 
