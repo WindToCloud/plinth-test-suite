@@ -4,8 +4,10 @@
 SAS_TOP_DIR=$(cd "`dirname $0`" ; pwd)
 
 # Load the public configuration library
-. ${SAS_TOP_DIR}/../config/common_config
-. ${SAS_TOP_DIR}/../config/common_lib
+if [ x"$COM" = x"" ];then
+    . ${HNS_TOP_DIR}/../config/common_config
+    . ${HNS_TOP_DIR}/../config/common_lib
+fi
 
 # Load module configuration library
 . ${SAS_TOP_DIR}/config/sas_test_config
