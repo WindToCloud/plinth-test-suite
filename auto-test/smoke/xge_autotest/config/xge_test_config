@@ -56,8 +56,8 @@ main_eth="eth3"   #do not change this eth ip
 local_tp1_ip="192.168.101.10"
 local_fibre1_ip="192.168.111.110"
 local_fibre2_ip="192.168.121.210"
-local_tp1_ipv6_ip="fe80::0db8:0:f101:1/64"
-local_fibre1_ipv6_ip="fe80::0db8:0:f101:2/64"
+local_tp1_ipv6_ip="fe80::0db8:0:f101:1"
+local_fibre1_ipv6_ip="fe80::0db8:0:f101:2"
 
 remote_tp1_ip="192.168.101.20"
 remote_fibre1_ip="192.168.111.210"

@@ -153,7 +153,7 @@ PLINTH_BASE_WORKSPACE="/home/plinth-test-workspace"
 
 g_server_ip=''
 g_client_ip=''
-g_ctrlNIC=''
+g_ctrlNIC='eth3'
 COM=''
 ####################################################################################
 
