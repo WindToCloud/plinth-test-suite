@@ -16,7 +16,7 @@ function ge_two_ends_receiving_and_sending ()
        enableok=1
     fi
 
-    ssh -o StrictHostKeyChecking=no root@$BACK_IP 'ping '${local_tp1_ip}' -c 5' > ${HNS_TOP_DIR}/data/log/ge_two_ends_receiving_and_sending.txt &
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP 'ping '${local_tp1_ip}' -c 5' > ${BaseDir}/log/ge_two_ends_receiving_and_sending.txt &
     sleep 10
     cat ${BaseDir}/log/ge_two_ends_receiving_and_sending.txt | grep "received, 0% packet loss" >/dev/null
     if [ $? -eq 0 ];then
@@ -44,7 +44,7 @@ function xge_two_ends_receiving_and_sending ()
        enableok=1
     fi
 
-    ssh -o StrictHostKeyChecking=no root@$BACK_IP 'ping '${local_fibre2_ip}' -c 5' > ${HNS_TOP_DIR}/data/log/xge_two_ends_receiving_and_sending.txt &
+    ssh -o StrictHostKeyChecking=no root@$BACK_IP 'ping '${local_fibre2_ip}' -c 5' > ${BaseDir}/log/xge_two_ends_receiving_and_sending.txt &
     sleep 10
     cat ${BaseDir}/log/xge_two_ends_receiving_and_sending.txt | grep "received, 0% packet loss" >/dev/null
     if [ $? -eq 0 ];then
