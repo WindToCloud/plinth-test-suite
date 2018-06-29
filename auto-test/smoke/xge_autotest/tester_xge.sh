@@ -34,12 +34,12 @@ checklist()
   TABLE_LIST=$( whiptail --nocancel --title "Test Case List" --checklist \
   "Choose test case you want to run this time:" 15 80 8 $list 3>&1 1>&2 2>&3)
 
+
   if [ $? -eq 0 ];then
 	  echo "The choosen list is $TABLE_LIST"
   else
 	echo "choose cancel"
   fi
-
   touch table
   while read line
   do
@@ -64,6 +64,7 @@ checklist()
 
   }
 
+
 ###################################################################################
 #Usage
 ###################################################################################
@@ -80,13 +81,18 @@ Options:
 	-t, --test: the tester name .if other cfg is not set,
 		    tester name can help to get latest cfg you used
 		    this para is forced to be set.
-    -p, --pickcase: true :pick the case using UI 
+    -p, --pickcase: true :pick the test case you want to run this time 
+                          and save as your  default cfg 
                     flase: do nothing
 Example:
-	bash tester_hns.sh -t luojiaxing  -s "192.168.3.152" -c "192.168.3.153" -n "eth3"
+    #***First time to use this suite or use this suite at new board***
+	bash tester_xge.sh -t luojiaxing  -s "192.168.3.152" -c "192.168.3.153" -n "eth3" -p true
 
-	bash tester_hns.sh -t luojiaxing # if no other para,scripts will use the latest user cfg
+    #***use user's default cfg with any cfg change****
+	bash tester_xge.sh -t luojiaxing 
 
+    #***Reselect the test suite and keep other case no change
+    bash tester_xge.sh -t luojiaxing -p true
 EOF
 }
 
@@ -109,8 +115,6 @@ echo -e "Tester: \033[34m hehui\033[0m \033[35m  wanghaifeng\033[0m "
 echo ">---------------------------------------------------------< "  
 echo "  "
 
-#checklist
-
 if [ ! -n "$1" ];then
 	Usage
 	exit 1
@@ -127,7 +131,7 @@ do
 	case $ac_option in
         	-h | --help) Usage ; exit 0 ;;
 		-s | --sip) T_SERVER_IP=$ac_optarg ;;
-        -p | --pickcase) T_PICK_CASE=$ac_optarg ;;
+	        -p | --pickcase) T_PICK_CASE=$ac_optarg ;;
 		-c | --cip) T_CLIENT_IP=$ac_optarg ;;
         	-n | --ctrlNIC) T_CTRL_NIC=$ac_optarg ;;
 		-t | --tester) T_TESTER=$ac_optarg ;;
