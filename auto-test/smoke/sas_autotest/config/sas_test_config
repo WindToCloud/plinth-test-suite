@@ -15,7 +15,7 @@ TEST_CASE_DB_FILE="data/sas_test_case.table"
 #Test case execution result save file.
 OUTPUT_TEST_DB_FILE="data/report.csv"
 #700k performance data sheet file
-FIO_IOPS_DB_FILE="data/iops700k.csv"
+FIO_IOPS_DB_FILE="iops700k.csv"
 #Test case execution switch.
 TEST_CASE_FUNCTION_SWITCH=""
 #Test case execution function name.

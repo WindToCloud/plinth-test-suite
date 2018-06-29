@@ -20,13 +20,15 @@ function test_case_function_run()
         if [ x"${MESSAGE}" == x"PASS" ]
         then
             echo "The result of testcase "${TEST_CASE_TITLE}" is success"
-            lava_report "${TEST_CASE_TITLE}" pass "Chenxiang" "${MESSAGE}"
+            lava_report "${TEST_CASE_TITLE}" pass "${Developer}" "${MESSAGE}"
+            test_report "${TEST_CASE_TITLE}" pass "${MESSAGE}" "${Developer}" "${Tester}" "${DateTime}"
         else
 		if [ x"${MESSAGE}" = x"" ];then
 			MESSAGE="SAS fail for unknow error!"
 		fi
             echo "The result of testcase "${TEST_CASE_TITLE}" is fail"
-            lava_report "${TEST_CASE_TITLE}" fail "Chenxiang" "${MESSAGE}"
+            lava_report "${TEST_CASE_TITLE}" fail "${Developer}" "${MESSAGE}"
+            test_report "${TEST_CASE_TITLE}" fail "${MESSAGE}" "${Developer}" "${Tester}" "${DateTime}"
         fi
     else
         MESSAGE="BLOCK\tno automated use cases were implemented."
