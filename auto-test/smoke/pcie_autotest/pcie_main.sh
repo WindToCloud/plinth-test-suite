@@ -5,8 +5,8 @@ PCIE_CASE_DIR=${PCIE_TOP_DIR}/case_script
 
 # Load the public configuration library
 if [ x"$COM" = x"" ];then
-    . ${HNS_TOP_DIR}/../config/common_config
-    . ${HNS_TOP_DIR}/../config/common_lib
+    . ${PCIE_TOP_DIR}/../config/common_config
+    . ${PCIE_TOP_DIR}/../config/common_lib
 fi
 
 # Load module configuration library
