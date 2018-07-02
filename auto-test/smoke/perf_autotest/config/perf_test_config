@@ -1,0 +1,49 @@
+#!/bin/bash
+
+#Automated data files exported in test cases.
+TEST_CASE_DB_FILE="data/perf_test_case.table"
+#
+OUTPUT_TEST_DB_FILE="data/report.csv"
+#
+TEST_CASE_FUNCTION_SWITCH=""
+#
+TEST_CASE_FUNCTION_NAME=""
+#
+MESSAGE=""
+
+#do not test the disk list,Default value is NULL.
+
+#  log file
+ERROR_INFO="error_info.log"
+
+#  Common tools directory path
+COMMON_TOOL_PATH="common_tool"
+
+#  Test case code directory path
+TEST_CASE_PATH="perf_autotest/case_script"
+
+# The ddrc perf event
+DDRC_PERF_EVENT=("flux_wr/" "flux_rd/" "flux_wcmd/" "flux_rcmd/" "pre_cmd/" "act_cmd/" "rnk_chg/" "rw_chg/")
+DDRC_EVENT_NUM=8
+
+# The hha perf event
+HHA_PERF_EVENT=("bi_num/" "edir-hit/" "edir-home-migrate/" "edir-lookup/" "mediated_num/" "rd_ddr_128b/" "rd_ddr_64b/" 
+	"rx_ccix/" "rx_ops_num/" "rx_outer/" "rx_sccl/" "rx_snprsp_outer/" "rx_snprspdata/" "rx_wbi/" "rx_wbip/" 
+	"rx_wtistash/" "sdir-hit/" "sdir-home-migrate/" "sdir-lookup/" "spill_num/" "spill_success/" "tx_snp_ccix/" 
+	"tx_snp_num/" "tx_snp_outer/" "wr_ddr_128b/" "wr_dr_64b/" )
+HHA_EVENT_NUM=26
+
+# The l3cache perf event
+L3C_PERF_EVENT=("back_invalid/" "prefetch_drop/" "rd_cpipe/" "rd_hit_cpipe/" "rd_hit_spipe/" "rd_spipe/" "retry_cpu/" 
+	"retry_ring/" "victim_num/" "wr_cpipe/" "wr_hit_cpipe/" "wr_hit_spipe/" "wr_spipe/")
+L3C_EVENT_NUM=13
+
+# 2P CPU NUM
+MASTER_CPU=36
+SLAVE_CPU=66
+
+# numa support cpu num
+NUMA_CPU=38
+
+# cpu custom event
+CPU_CUSTOM_EVENT=("r6000" "r6001" "r6002" "r6003" "r6004" "r6005" "r6006" "r6007" "r6008" "r6009")
