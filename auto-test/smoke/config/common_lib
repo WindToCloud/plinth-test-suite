@@ -91,7 +91,7 @@ function test_report(){
             q+="-"
         done
         let index++
-        re+=($q)
+        re+=("$q")
     done
     res="${re[0]} | ${re[1]} | ${re[2]} | ${re[3]} | ${re[4]} | ${re[5]}"
     echo ${res} >> ${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}/${Module}_test_report.log
