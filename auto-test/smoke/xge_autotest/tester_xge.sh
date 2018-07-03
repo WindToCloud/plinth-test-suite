@@ -40,6 +40,11 @@ checklist()
   else
 	echo "choose cancel"
   fi
+
+  if [ -f table ];then
+	rm table
+  fi
+
   touch table
   while read line
   do

@@ -8,8 +8,10 @@ fi
 SAS_TOP_DIR=$(cd "`dirname $0`" ; pwd)
 
 # Load the public configuration library
-. ${SAS_TOP_DIR}/../config/common_config
-. ${SAS_TOP_DIR}/../config/common_lib
+if [ x"$COM" = x"" ];then
+	. ${SAS_TOP_DIR}/../config/common_config
+	. ${SAS_TOP_DIR}/../config/common_lib
+fi
 
 #check the image commit id
 
@@ -45,6 +47,8 @@ touch /home/plinth/ENV_OK
 
 #lava_report "Prepare_cmd" "pass" ${commit_id}
 lava_report "Prepare_test" "pass" ${commit_id}
+
+COM=true
 
 #new a file to save result for debug
 #if [ -d g ];then

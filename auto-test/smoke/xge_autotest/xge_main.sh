@@ -12,6 +12,8 @@ if [ x"$COM" = x"" ];then
     . ${HNS_TOP_DIR}/../config/common_lib
 fi
 
+COM=true
+
 # Main operation function
 # IN : N/A
 # OUT: N/A

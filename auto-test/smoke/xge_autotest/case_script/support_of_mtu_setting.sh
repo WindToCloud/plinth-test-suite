@@ -62,8 +62,9 @@ function ge_iperf_set_mtu_value()
     MESSAGE="PASS"
     ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_tp1} up; ifconfig ${remote_tp1} ${remote_tp1_ip}; sleep 5;iperf -s >/dev/null 2>&1 &"
     iperf -c ${remote_tp1_ip} -t 3600 -i 1 -P 3 > ${BaseDir}/log/iperf_set_mtu_value.txt &
+    sleep 3
     valuelist="68 1500 9706"
-    for ((i=1;i<=2;i++));
+    for ((i=1;i<=20;i++));
     do
         echo $i
         for value in $valuelist
@@ -76,9 +77,16 @@ function ge_iperf_set_mtu_value()
                 killall iperf
                 ssh -o StrictHostKeyChecking=no root@${BACK_IP} "killall iperf"
                 MESSAGE="FAIL\t ge Runing iperf, MTU value set fail "
-		echo ${MESSAGE}
+                break
+	#	echo ${MESSAGE}
             fi
         done
+        if [ x"$MESSAGE" = x"PASS" ];then
+            echo "continue to run...."
+        else
+            break
+        fi
+
     done
     #killall iperf
     iperf_killer
@@ -141,6 +149,7 @@ function xge_iperf_set_mtu_value()
     fi
     ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5;iperf -s >/dev/null 2>&1 &"
     iperf -c ${remote_fibre1_ip} -t 3600 -i 1 -P 3 > ${BaseDir}/log/iperf_set_mtu_value.txt &
+    sleep 3
     valuelist="68 1500 9706"
     for ((i=1;i<=20;i++));
     do
@@ -158,8 +167,14 @@ function xge_iperf_set_mtu_value()
                 killall iperf
                 ssh -o StrictHostKeyChecking=no root@${BACK_IP} "killall iperf"
                 MESSAGE="FAIL\t xge Runing iperf, MTU value set fail "
+                break
             fi
         done
+        if [ x"$MESSAGE" = x"PASS" ];then
+            echo "continue to run...."
+        else
+            break
+        fi
     done
    # killall iperf
     iperf_killer
