@@ -4,8 +4,10 @@
 SAS_TOP_DIR=$(cd "`dirname $0`" ; pwd)
 
 # Load the public configuration library
-. ${SAS_TOP_DIR}/../config/common_config
-. ${SAS_TOP_DIR}/../config/common_lib
+if [ x"$COM" = x"" ];then
+    . ${SAS_TOP_DIR}/../config/common_config
+    . ${SAS_TOP_DIR}/../config/common_lib
+fi
 
 # Load module configuration library
 . ${SAS_TOP_DIR}/config/sas_test_config
@@ -19,16 +21,16 @@ function main()
     echo "Begin to Run SAS Test!"
     cat ${SAS_TOP_DIR}/${TEST_CASE_DB_FILE} | while read line
     do
-        exec_script=`echo "${line}" | awk -F '\t' '{print $6}'`
-        TEST_CASE_FUNCTION_NAME=`echo "${line}" | awk -F '\t' '{print $7}'`
-        TEST_CASE_FUNCTION_SWITCH=`echo "${line}" | awk -F '\t' '{print $8}'`
+        exec_script=`echo "${line}" | awk -F '|' '{print $6}'`
+        TEST_CASE_FUNCTION_NAME=`echo "${line}" | awk -F '|' '{print $7}'`
+        TEST_CASE_FUNCTION_SWITCH=`echo "${line}" | awk -F '|' '{print $8}'`
         #Get the test title from testcase.table
-        TEST_CASE_TITLE=`echo "${line}" | awk -F '\t' '{print $2}'`
-        Tester=`echo "${line}" | awk -F '\t' '{print $5}'`
+        TEST_CASE_TITLE=`echo "${line}" | awk -F '|' '{print $2}'`
+        Tester=`echo "${line}" | awk -F '|' '{print $5}'`
         DateTime=`date "+%G-%m-%d %H:%M:%S"`
         if [ x"${DEVELOPER}" == x"" ]
         then
-            Developer=`echo "${line}" | awk -F '\t' '{print $4}'`
+            Developer=`echo "${line}" | awk -F '|' '{print $4}'`
         else
             Developer=${DEVELOPER}
         fi

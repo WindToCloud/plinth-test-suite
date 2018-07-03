@@ -5,6 +5,11 @@
 #############################################################################################################
 LIB_TOP_DIR=$(cd "`dirname $0`" ; pwd)
 
+
+#grep docker /etc/group
+
+#groupmod -g 900 docker
+
 #  Get default server ssh ip by mac
 #  IN : N/A
 #  OUT: 1:  no found
@@ -106,12 +111,16 @@ function InitDirectoryName(){
     PLINTH_TEST_WORKSPACE="/home/plinth-test-workspace"
     Date=`date "+%G%m%d"`
     NowTime=`date "+%H:%M:%S"`
-    hours=`echo ${NowTime} | awk -F "\:" '{print $1}'`
-    minute=`echo ${NowTime} | awk -F "\:" '{print $2}'`
-    second=`echo ${NowTime} | awk -F "\:" '{print $3}'`
+    hours=`echo ${NowTime} | awk -F ":" '{print $1}'`
+    minute=`echo ${NowTime} | awk -F ":" '{print $2}'`
+    second=`echo ${NowTime} | awk -F ":" '{print $3}'`
     NowTime="${hours}"h"${minute}"m"${second}"s
     Module=$( cd "`dirname $0`" ; pwd )
     Module=$(ls ${Module} | grep "main" | awk -F "_" '{print $1}')
+    if [ -z ${Module} ]
+    then
+        ${Module}="unkown"
+    fi
     BaseDir=${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}
     }
 
@@ -206,7 +215,18 @@ function setTrustRelation
         "*same passphrase*" { send "\r" }
         }
 
-        spawn scp -r /root/.ssh/id_rsa.pub root@${back_ip}:/root/.ssh/authorized_keys
+#	spawn ssh -o StrictHostKeyChecking=no root@${back_ip} [ -d /root/.ssh/authorized_keys ] && echo ok || mkdir -p /root/.ssh/authorized_keys
+#        expect "password"
+#        send "root\r"
+        expect eof
+        
+        sleep 1
+
+        spawn ssh-copy-id -i root@${back_ip}
+
+
+
+#        spawn scp -r /root/.ssh/id_rsa.pub root@${back_ip}:/root/.ssh/authorized_keys
         expect "Are you sure you want to continue connecting (yes/no)?"
         send "yes\r"
         sleep 10
@@ -249,8 +269,13 @@ function setTrustRelationUsePara
         "*passphrase*passphrase*" { send "\r"; exp_continue }
         "*same passphrase*" { send "\r" }
         }
+        expect eof
+        
+        sleep 1
 
-        spawn scp -r /root/.ssh/id_rsa.pub $user_name@$back_ip:/root/.ssh/authorized_keys
+        spawn ssh-copy-id -i root@${back_ip}
+
+        #spawn scp -r /root/.ssh/id_rsa.pub $user_name@$back_ip:/root/.ssh/authorized_keys
         expect "Are you sure you want to continue connecting (yes/no)?"
         send "yes\r"
         sleep 10
