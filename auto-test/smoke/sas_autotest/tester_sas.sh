@@ -3,8 +3,8 @@
 TESTER_SAS_TOP_DIR=$(cd "`dirname $0`" ; pwd)
 
 # Load common function
-#. ${TESTER_SAS_TOP_DIR}/config/xge_test_config
-#. ${TESTER_SAS_TOP_DIR}/config/xge_test_lib
+#. ${TESTER_SAS_TOP_DIR}/config/sas_test_config
+#. ${TESTER_SAS_TOP_DIR}/config/sas_test_lib
 
 # Load the public configuration library
 #. ${TESTER_SAS_TOP_DIR}/../config/common_config
@@ -22,7 +22,8 @@ checklist()
   while read line
   do
     TMP_TITLE=`echo "$line" | awk -F '|' '{print $2}'`
-    list=$list"${TMP_TITLE} case"
+    TMP_FUNC=`echo "$line" | awk -F '|' '{print $7}'`
+    list=$list"${TMP_TITLE} ${TMP_FUNC}"
     TMP_SW=`echo "$line" | awk -F '|' '{print $8}'`
     if [ x"$TMP_SW" = x"on" ];then
         list=$list" ON "
@@ -70,7 +71,7 @@ checklist()
 Usage()
 {
 cat <<EOF
-Usage: ./xge_autotest/tester_sas.sh [options]
+Usage: ./sas_autotest/tester_sas.sh [options]
 Options:
 	-h, --help: Display this information
 	-n, --ctrlNIC: the network card used to control client

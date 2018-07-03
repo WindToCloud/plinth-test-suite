@@ -1,24 +1,24 @@
 #!/bin/bash
 
-TESTER_HNS_TOP_DIR=$(cd "`dirname $0`" ; pwd)
+TESTER_PERF_TOP_DIR=$(cd "`dirname $0`" ; pwd)
 
 # Load common function
-#. ${TESTER_HNS_TOP_DIR}/config/xge_test_config
-#. ${TESTER_HNS_TOP_DIR}/config/xge_test_lib
+#. ${TESTER_PERF_TOP_DIR}/config/perf_test_config
+#. ${TESTER_PERF_TOP_DIR}/config/perf_test_lib
 
 # Load the public configuration library
-#. ${TESTER_HNS_TOP_DIR}/../config/common_config
+#. ${TESTER_PERF_TOP_DIR}/../config/common_config
 
 T_SERVER_IP=''
 T_CLIENT_IP=''
 T_CTRL_NIC=''
 T_PICK_CASEC=''
 
+
 checklist()
 {
   list=""
-#  file=`cat ${TESTER_HNS_TOP_DIR}/data/hns_test_case.table`
-  # | while read line
+#  file=`cat ${TESTER_PERF_TOP_DIR}/data/perf_test_case.table` # | while read line
   while read line
   do
     TMP_TITLE=`echo "$line" | awk -F '|' '{print $2}'`
@@ -30,20 +30,15 @@ checklist()
     else
         list=$list" OFF "
     fi
-  done < ${TESTER_HNS_TOP_DIR}/data/hns_test_case.table
+  done < ${TESTER_PERF_TOP_DIR}/data/perf_test_case.table
   #echo $list
   TABLE_LIST=$( whiptail --nocancel --title "Test Case List" --checklist \
   "Choose test case you want to run this time:" 15 80 8 $list 3>&1 1>&2 2>&3)
-
 
   if [ $? -eq 0 ];then
 	  echo "The choosen list is $TABLE_LIST"
   else
 	echo "choose cancel"
-  fi
-
-  if [ -f table ];then
-	rm table
   fi
 
   touch table
@@ -63,49 +58,39 @@ checklist()
             tmp=$tmp"|off"
         fi
     fi
-    echo $tmp >> table 
-  done < ${TESTER_HNS_TOP_DIR}/data/hns_test_case.table
+    echo $tmp >> table
+  done < ${TESTER_PERF_TOP_DIR}/data/perf_test_case.table
   sed -i 's/ /|/g'  table
-  mv table ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/
+  mv table ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/perf/
 
   }
-
-
 ###################################################################################
 #Usage
 ###################################################################################
 
 Usage()
 {
-cat <<EOF    
-Usage: ./xge_autotest/tester_hns.sh [options]
+cat <<EOF
+Usage: ./perf_autotest/tester_perf.sh [options]
 Options:
 	-h, --help: Display this information
-	-s, --sip: Server IP: this ip used to ssh with client
-	-c, --cip: Client IP: this ip is client ip connect with server
 	-n, --ctrlNIC: the network card used to control client
 	-t, --test: the tester name .if other cfg is not set,
 		    tester name can help to get latest cfg you used
 		    this para is forced to be set.
-    -p, --pickcase: true :pick the test case you want to run this time 
-                          and save as your  default cfg 
-                    flase: do nothing
+    -p, --pickcase: true :pick the case using UI
 Example:
-    #***First time to use this suite or use this suite at new board***
-	bash tester_xge.sh -t luojiaxing  -s "192.168.3.152" -c "192.168.3.153" -n "eth3" -p true
+	bash tester_perf.sh -t luojiaxing -n "eth3"
 
-    #***use user's default cfg with any cfg change****
-	bash tester_xge.sh -t luojiaxing 
+	bash tester_perf.sh -t luojiaxing # if no other para,scripts will use the latest user cfg
 
-    #***Reselect the test suite and keep other case no change
-    bash tester_xge.sh -t luojiaxing -p true
 EOF
 }
 
 ##################################################################################
 #Get all args
 ###################################################################################
-echo -e "\033[5;35m Welcom to Use Plinth Test Suite! \033[0m"    
+echo -e "\033[5;35m Welcom to Use Plinth Test Suite! \033[0m"
 cat << EOF
 ------------/\-------------
 -----------/  \-------------
@@ -117,8 +102,8 @@ echo -e "\033[33m Luojiaxing \033[0m  \033[32m Chenjing \033[0m "
 echo "  "
 echo ">---------------------------------------------------------<"
 echo "Thank you to ALL tester for providing high quality scripts!"
-echo -e "Tester: \033[34m hehui\033[0m \033[35m  wanghaifeng\033[0m "
-echo ">---------------------------------------------------------< "  
+echo -e "Tester: \033[34m hehui\033[0m \033[35m  huangweijian\033[0m "
+echo ">---------------------------------------------------------< "
 echo "  "
 
 if [ ! -n "$1" ];then
@@ -136,9 +121,7 @@ do
 
 	case $ac_option in
         	-h | --help) Usage ; exit 0 ;;
-		-s | --sip) T_SERVER_IP=$ac_optarg ;;
-	        -p | --pickcase) T_PICK_CASE=$ac_optarg ;;
-		-c | --cip) T_CLIENT_IP=$ac_optarg ;;
+        -p | --pickcase) T_PICK_CASE=$ac_optarg ;;
         	-n | --ctrlNIC) T_CTRL_NIC=$ac_optarg ;;
 		-t | --tester) T_TESTER=$ac_optarg ;;
 		*) Usage ; echo "Unknown option $1"; exit 1 ;;
@@ -157,8 +140,8 @@ if [ x"$T_TESTER" = x"" ];then
 	exit 1
 fi
 
-. ${TESTER_HNS_TOP_DIR}/../config/common_config
-. ${TESTER_HNS_TOP_DIR}/../config/common_lib
+. ${TESTER_PERF_TOP_DIR}/../config/common_config
+. ${TESTER_PERF_TOP_DIR}/../config/common_lib
 ##################################################################################
 #Get latest cfg pass to empty patameter
 ###################################################################################
@@ -166,64 +149,41 @@ if [ x"$T_PICK_CASE" = x"true" ];then
     checklist
 fi
 
-if [ -f ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/table ];then
-    cp ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/table ${TESTER_HNS_TOP_DIR}/data/hns_test_case.table
+if [ -f ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/perf/table ];then
+    cp ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/perf/table ${TESTER_PERF_TOP_DIR}/data/perf_test_case.table
 else
     echo ">--------------------------------------------------------------------------------<"
     echo -e "\033[31m User is not pick his own test case !use the table default.... \033[0m"
     echo ">--------------------------------------------------------------------------------<"
 fi
 
-if [ ! -d ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns ];then
-	mkdir -p ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns
+if [ ! -d ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/perf ];then
+	mkdir -p ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/perf
 fi
 
-if [ ! -f ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg ];then
-	touch ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg
+if [ ! -f ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/perf/cfg ];then
+	touch ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/perf/cfg
 fi
-
-if [ x"${T_SERVER_IP}" = x"" ];then
-	echo "User not input the cfg of Server IP,use user pre-define value!"
-	T_SERVER_IP=`cat ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg | grep "T_SERVER_IP" | awk -F':' '{print $NF}'`
-fi
-
-g_server_ip=$T_SERVER_IP
 
 if [ x"${T_CTRL_NIC}" = x"" ];then
 	echo "User not input the cfg of NIC,use user pre-define value!"
-	T_CTRL_NIC=`cat ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg | grep "T_CTRL_NIC" | awk -F':' '{print $NF}'`
+	T_CTRL_NIC=`cat ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/perf/cfg | grep "T_CTRL_NIC" | awk -F':' '{print $NF}'`
 fi
 
 g_ctrlNIC=$T_CTRL_NIC
-
-if [ x"${T_CLIENT_IP}" = x"" ];then
-	echo "User not input the cfg of Client IP,use user pre-define value!"
-	T_CLIENT_IP=`cat ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg | grep "T_CLIENT_IP" | awk -F':' '{print $NF}'`
-fi
-
-g_client_ip=$T_CLIENT_IP
-
 
 
 ##################################################################################
 #Update the cfg
 ###################################################################################
-echo "HNS cfg save by ${T_TESTER}" > ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg
+echo "PERF cfg save by ${T_TESTER}" > ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/perf/cfg
 
-
-if [ x"$T_SERVER_IP" != x"" ];then
-    echo "T_SERVER_IP:${T_SERVER_IP}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg
-fi
-
-if [ x"$T_CLIENT_IP" != x"" ];then
-    echo "T_CLIENT_IP:${T_CLIENT_IP}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg
-fi
 
 if [ x"${T_CTRL_NIC}" != x"" ];then
-    echo "T_CTRL_NIC:${T_CTRL_NIC}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg
+    echo "T_CTRL_NIC:${T_CTRL_NIC}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/perf/cfg
 fi
 
-if [ x"${T_SERVER_IP}" = x"" ] || [ x"${T_CTRL_NIC}" = x"" ] || [ x"${T_CLIENT_IP}" = x"" ];then
+if [ x"${T_CTRL_NIC}" = x"" ];then
 	echo ">--------------------------------------------------------------------------------<"
     echo -e "\033[31m Lose some cfg .Please input full parameter to recover the latest cfg! \033[0m"
     echo ">--------------------------------------------------------------------------------<"
@@ -232,12 +192,12 @@ if [ x"${T_SERVER_IP}" = x"" ] || [ x"${T_CTRL_NIC}" = x"" ] || [ x"${T_CLIENT_I
 else
 
 	echo ">--------------------------------------------------------------------------------<"
-    echo -e "\033[32m This time Run the test with the cfg as: SIP=${T_SERVER_IP} CIP=${T_CLIENT_IP} NIC=${T_CTRL_NIC} \033[0m"
+    echo -e "\033[32m This time Run the test with the cfg as: NIC=${T_CTRL_NIC} \033[0m"
 	echo ">--------------------------------------------------------------------------------<"
 fi
 
 COM="true"
-source ${TESTER_HNS_TOP_DIR}/xge_main.sh
+source ${TESTER_PERF_TOP_DIR}/perf_main.sh
 
 #COM="true"
 

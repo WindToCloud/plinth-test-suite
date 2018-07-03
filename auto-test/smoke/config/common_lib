@@ -78,7 +78,7 @@ function lava_report()
 #           fail:  the test is fail
 #  OUT: the test result /home/TestLog
 function test_report(){
-    length=(30 10 40 20 20 25)
+    length=(30 10 45 20 20 25)
     #add blank
     index=0
     declare -a re
@@ -91,7 +91,7 @@ function test_report(){
             q+="-"
         done
         let index++
-        re+=($q)
+        re+=("$q")
     done
     res="${re[0]} | ${re[1]} | ${re[2]} | ${re[3]} | ${re[4]} | ${re[5]}"
     echo ${res} >> ${PLINTH_TEST_WORKSPACE}/${Module}/${Date}/${NowTime}/${Module}_test_report.log
