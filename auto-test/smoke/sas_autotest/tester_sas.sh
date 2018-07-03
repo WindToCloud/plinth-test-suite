@@ -3,8 +3,8 @@
 TESTER_SAS_TOP_DIR=$(cd "`dirname $0`" ; pwd)
 
 # Load common function
-#. ${TESTER_SAS_TOP_DIR}/config/xge_test_config
-#. ${TESTER_SAS_TOP_DIR}/config/xge_test_lib
+#. ${TESTER_SAS_TOP_DIR}/config/sas_test_config
+#. ${TESTER_SAS_TOP_DIR}/config/sas_test_lib
 
 # Load the public configuration library
 #. ${TESTER_SAS_TOP_DIR}/../config/common_config
@@ -70,7 +70,7 @@ checklist()
 Usage()
 {
 cat <<EOF
-Usage: ./xge_autotest/tester_sas.sh [options]
+Usage: ./sas_autotest/tester_sas.sh [options]
 Options:
 	-h, --help: Display this information
 	-n, --ctrlNIC: the network card used to control client

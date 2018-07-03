@@ -2,9 +2,9 @@
 
 function modle_event_judge()
 {
-    perf list | grep -i $1 | awk -F'[ \t]+' '{print $2}' > ${PERF_TOP_DIR}/data/log/$1_perf_event.txt
+    perf list | grep -i $1 | awk -F'[ \t]+' '{print $2}' > ${BaseDir}/log/$1_perf_event.txt
     arr=$2
-    mynum=$(cat ${PERF_TOP_DIR}/data/log/$1_perf_event.txt | grep -i $1 | wc -l)
+    mynum=$(cat ${BaseDir}/log/$1_perf_event.txt | grep -i $1 | wc -l)
     let result=$mynum%$3
     if [ $result -eq 0 ];then
         echo  all node event normal
@@ -14,7 +14,7 @@ function modle_event_judge()
     fi
     let EventSum=$mynum/$3
     for j in ${arr[*]}; do
-        num=`cat ${PERF_TOP_DIR}/data/log/$1_perf_event.txt | grep -i "$j" | wc -l`
+        num=`cat ${BaseDir}/log/$1_perf_event.txt | grep -i "$j" | wc -l`
         echo j $j
         if [ $num -eq $EventSum ];then
             echo $j event have $num
@@ -39,7 +39,7 @@ function l3c_perf_list_function()
         if [ $? -eq 0 ];then
             MESSAGE="Fail\t have some l3c event abnormal!"
         else
-            MESSAGE="Pass"
+            MESSAGE="PASS"
             echo ${MESSAGE}
         fi
     fi
@@ -57,7 +57,7 @@ function ddrc_perf_list_function()
         if [ $? -eq 0 ];then
             MESSAGE="Fail\t have some ddrc event abnormal!"
         else
-            MESSAGE="Pass"
+            MESSAGE="PASS"
             echo ${MESSAGE}
         fi
     fi
@@ -76,7 +76,7 @@ function hha_perf_list_function()
         if [ $? -eq 0 ];then
             MESSAGE="Fail\t have some ddrc event abnormal!"
         else
-            MESSAGE="Pass"
+            MESSAGE="PASS"
             echo ${MESSAGE}
         fi
     fi
@@ -91,7 +91,7 @@ function mn_perf_list_function()
     if [[ $msum -le 0 ]];then
         MESSAGE="Fail\t No MN Perf Support Event!"
     else 
-        MESSAGE="Pass"
+        MESSAGE="PASS"
         echo ${MESSAGE}
     fi
 }
