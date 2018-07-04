@@ -85,15 +85,18 @@ function ge_set_standard_mac_address()
         Random_Mac1="0"${Random_Mac}
     fi
     newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"${Random_Mac}"/g)
-    remoteMacAddress=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${local_tp1} | grep "HWaddr" | awk '{print $NF}'")
+    remoteMacAddress=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${local_tp1} | grep "HWaddr"")
+    remoteMacAddress=$(echo ${remoteMacAddress} | awk '{print $NF}')
     if [ "${newMacAddress}"x == "${remoteMacAddress}"x ]
     then
         newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"${Random_Mac1}"/g)
     fi
     ifconfig ${local_tp1} hw ether ${newMacAddress}
     sleep $ARP_MAC_UPDATE_TIME
+
     ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ping ${local_tp1_ip} -c 10 &> /dev/null;sleep 5;"
-    newMacAddress1=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "arp -a | grep -w ${local_tp1_ip} | awk -F'at' '{print $NF}' | awk '{print $1}'")
+    newMacAddress1=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "arp -a | grep -w ${local_tp1_ip}")
+    newMacAddress1=$(echo ${newMacAddress1} | awk -F'at' '{print $NF}' | awk '{print $1}')
     echo $newMacAddress1
     echo $newMacAddress
     if [ "$newMacAddress" != "$newMacAddress1" ];then
@@ -181,11 +184,11 @@ function xge_mac_address_fault_tolerant()
 function xge_set_standard_mac_address()
 {
     Test_Case_Title="xge_set_standard_mac_address"
-    ifconfig ${local_fibre2} up; ifconfig ${local_fibre2} ${local_fibre2_ip}
-    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_fibre2} up; ifconfig ${remote_fibre2} ${remote_fibre2_ip}; sleep 5"
+    ifconfig ${local_fibre1} up; ifconfig ${local_fibre1} ${local_fibre1_ip}
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5"
     MESSAGE="PASS"
 
-    oldMacAddress=$(ifconfig ${local_fibre2} | grep "HWaddr" | awk '{print $NF}')
+    oldMacAddress=$(ifconfig ${local_fibre1} | grep "HWaddr" | awk '{print $NF}')
     # if [ ${oldMacAddress:15:2} = "44" ];then
         # newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"22"/g)
     # else
@@ -202,18 +205,20 @@ function xge_set_standard_mac_address()
         Random_Mac1="0"${Random_Mac}
     fi
     newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"${Random_Mac}"/g)
-    remoteMacAddress=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${local_tp1} | grep "HWaddr" | awk '{print $NF}'")
+    remoteMacAddress=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${local_fibre1} | grep "HWaddr"")
+    remoteMacAddress=$(echo ${remoteMacAddress} | awk '{print $NF}')
     if [ "${newMacAddress}"x == "${remoteMacAddress}"x ]
     then
         newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"${Random_Mac1}"/g)
     fi
-    ifconfig ${local_fibre2} hw ether ${newMacAddress}
+    ifconfig ${local_fibre1} hw ether ${newMacAddress}
     sleep $ARP_MAC_UPDATE_TIME
-    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ping ${local_fibre2_ip} -c 10;sleep 5"
-    newMacAddress1=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "arp -a | grep -w ${local_fibre2_ip} | awk -F'at' '{print $NF}' | awk '{print $1}'")
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ping ${local_fibre1_ip} -c 10;sleep 5"
+    newMacAddress1=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "arp -a | grep -w ${local_fibre1_ip}")
+    newMacAddress1=$(echo ${newMacAddress1} | awk -F'at' '{print $NF}' | awk '{print $1}')
 
     if [ "$newMacAddress" != "$newMacAddress1" ];then
-        ifconfig ${local_fibre2} hw ether ${oldMacAddress}
+        ifconfig ${local_fibre1} hw ether ${oldMacAddress}
         MESSAGE="FAIL\t The wrong MAC address set fail "
         echo ${MESSAGE}
     else
