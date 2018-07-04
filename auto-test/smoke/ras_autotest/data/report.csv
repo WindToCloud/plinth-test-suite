@@ -1,0 +1,2 @@
+JIRA ID	Designed Requirement ID	Test Case ID	Test Item	Test Case Title	Automated scripts	Realize the function	Switch	Result	Reason
+PV-1538	R.RAS.F001.A	RAS_FUNC_TEST_000	RAS	RAS test	test.sh	ras_test	on	

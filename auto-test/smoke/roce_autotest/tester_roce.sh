@@ -22,7 +22,8 @@ checklist()
   while read line
   do
     TMP_TITLE=`echo "$line" | awk -F '|' '{print $2}'`
-    list=$list"${TMP_TITLE} case"
+    TMP_FUNC=`echo "$line" | awk -F '|' '{print $7}'`
+    list=$list"${TMP_TITLE} ${TMP_FUNC}"
     TMP_SW=`echo "$line" | awk -F '|' '{print $8}'`
     if [ x"$TMP_SW" = x"on" ];then
         list=$list" ON "
@@ -105,7 +106,7 @@ echo -e "\033[33m Luojiaxing \033[0m  \033[32m Chenjing \033[0m "
 echo "  "
 echo ">---------------------------------------------------------<"
 echo "Thank you to ALL tester for providing high quality scripts!"
-echo -e "Tester: \033[34m hehui\033[0m \033[35m  wanghaifeng\033[0m "
+echo -e "Tester: \033[34m hehui\033[0m \033[35m  zhangxiping\033[0m "
 echo ">---------------------------------------------------------< "  
 echo "  "
 

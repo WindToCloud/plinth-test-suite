@@ -1,13 +1,13 @@
 #!/bin/bash
 
-TESTER_HNS_TOP_DIR=$(cd "`dirname $0`" ; pwd)
+TESTER_RAS_TOP_DIR=$(cd "`dirname $0`" ; pwd)
 
 # Load common function
-#. ${TESTER_HNS_TOP_DIR}/config/xge_test_config
-#. ${TESTER_HNS_TOP_DIR}/config/xge_test_lib
+#. ${TESTER_RAS_TOP_DIR}/config/ras_test_config
+#. ${TESTER_RAS_TOP_DIR}/config/ras_test_lib
 
 # Load the public configuration library
-#. ${TESTER_HNS_TOP_DIR}/../config/common_config
+#. ${TESTER_RAS_TOP_DIR}/../config/common_config
 
 T_SERVER_IP=''
 T_CLIENT_IP=''
@@ -17,7 +17,7 @@ T_PICK_CASEC=''
 checklist()
 {
   list=""
-#  file=`cat ${TESTER_HNS_TOP_DIR}/data/hns_test_case.table`
+#  file=`cat ${TESTER_RAS_TOP_DIR}/data/ras_test_case.table`
   # | while read line
   while read line
   do
@@ -30,7 +30,7 @@ checklist()
     else
         list=$list" OFF "
     fi
-  done < ${TESTER_HNS_TOP_DIR}/data/hns_test_case.table
+  done < ${TESTER_RAS_TOP_DIR}/data/ras_test_case.table
   #echo $list
   TABLE_LIST=$( whiptail --nocancel --title "Test Case List" --checklist \
   "Choose test case you want to run this time:" 15 80 8 $list 3>&1 1>&2 2>&3)
@@ -64,9 +64,9 @@ checklist()
         fi
     fi
     echo $tmp >> table 
-  done < ${TESTER_HNS_TOP_DIR}/data/hns_test_case.table
+  done < ${TESTER_RAS_TOP_DIR}/data/ras_test_case.table
   sed -i 's/ /|/g'  table
-  mv table ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/
+  mv table ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/ras/
 
   }
 
@@ -78,7 +78,7 @@ checklist()
 Usage()
 {
 cat <<EOF    
-Usage: ./xge_autotest/tester_hns.sh [options]
+Usage: ./ras_autotest/tester_ras.sh [options]
 Options:
 	-h, --help: Display this information
 	-s, --sip: Server IP: this ip used to ssh with client
@@ -92,13 +92,13 @@ Options:
                     flase: do nothing
 Example:
     #***First time to use this suite or use this suite at new board***
-	bash tester_xge.sh -t luojiaxing  -s "192.168.3.152" -c "192.168.3.153" -n "eth3" -p true
+	bash tester_ras.sh -t luojiaxing  -s "192.168.3.152" -c "192.168.3.153" -n "eth3" -p true
 
     #***use user's default cfg with any cfg change****
-	bash tester_xge.sh -t luojiaxing 
+	bash tester_ras.sh -t luojiaxing 
 
     #***Reselect the test suite and keep other case no change
-    bash tester_xge.sh -t luojiaxing -p true
+    bash tester_ras.sh -t luojiaxing -p true
 EOF
 }
 
@@ -157,8 +157,8 @@ if [ x"$T_TESTER" = x"" ];then
 	exit 1
 fi
 
-. ${TESTER_HNS_TOP_DIR}/../config/common_config
-. ${TESTER_HNS_TOP_DIR}/../config/common_lib
+. ${TESTER_RAS_TOP_DIR}/../config/common_config
+. ${TESTER_RAS_TOP_DIR}/../config/common_lib
 ##################################################################################
 #Get latest cfg pass to empty patameter
 ###################################################################################
@@ -166,39 +166,39 @@ if [ x"$T_PICK_CASE" = x"true" ];then
     checklist
 fi
 
-if [ -f ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/table ];then
-    cp ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/table ${TESTER_HNS_TOP_DIR}/data/hns_test_case.table
+if [ -f ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/ras/table ];then
+    cp ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/ras/table ${TESTER_RAS_TOP_DIR}/data/ras_test_case.table
 else
     echo ">--------------------------------------------------------------------------------<"
     echo -e "\033[31m User is not pick his own test case !use the table default.... \033[0m"
     echo ">--------------------------------------------------------------------------------<"
 fi
 
-if [ ! -d ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns ];then
-	mkdir -p ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns
+if [ ! -d ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/ras ];then
+	mkdir -p ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/ras
 fi
 
-if [ ! -f ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg ];then
-	touch ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg
+if [ ! -f ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/ras/cfg ];then
+	touch ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/ras/cfg
 fi
 
 if [ x"${T_SERVER_IP}" = x"" ];then
 	echo "User not input the cfg of Server IP,use user pre-define value!"
-	T_SERVER_IP=`cat ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg | grep "T_SERVER_IP" | awk -F':' '{print $NF}'`
+	T_SERVER_IP=`cat ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/ras/cfg | grep "T_SERVER_IP" | awk -F':' '{print $NF}'`
 fi
 
 g_server_ip=$T_SERVER_IP
 
 if [ x"${T_CTRL_NIC}" = x"" ];then
 	echo "User not input the cfg of NIC,use user pre-define value!"
-	T_CTRL_NIC=`cat ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg | grep "T_CTRL_NIC" | awk -F':' '{print $NF}'`
+	T_CTRL_NIC=`cat ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/ras/cfg | grep "T_CTRL_NIC" | awk -F':' '{print $NF}'`
 fi
 
 g_ctrlNIC=$T_CTRL_NIC
 
 if [ x"${T_CLIENT_IP}" = x"" ];then
 	echo "User not input the cfg of Client IP,use user pre-define value!"
-	T_CLIENT_IP=`cat ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg | grep "T_CLIENT_IP" | awk -F':' '{print $NF}'`
+	T_CLIENT_IP=`cat ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/ras/cfg | grep "T_CLIENT_IP" | awk -F':' '{print $NF}'`
 fi
 
 g_client_ip=$T_CLIENT_IP
@@ -208,19 +208,19 @@ g_client_ip=$T_CLIENT_IP
 ##################################################################################
 #Update the cfg
 ###################################################################################
-echo "HNS cfg save by ${T_TESTER}" > ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg
+echo "RAS cfg save by ${T_TESTER}" > ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/ras/cfg
 
 
 if [ x"$T_SERVER_IP" != x"" ];then
-    echo "T_SERVER_IP:${T_SERVER_IP}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg
+    echo "T_SERVER_IP:${T_SERVER_IP}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/ras/cfg
 fi
 
 if [ x"$T_CLIENT_IP" != x"" ];then
-    echo "T_CLIENT_IP:${T_CLIENT_IP}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg
+    echo "T_CLIENT_IP:${T_CLIENT_IP}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/ras/cfg
 fi
 
 if [ x"${T_CTRL_NIC}" != x"" ];then
-    echo "T_CTRL_NIC:${T_CTRL_NIC}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/hns/cfg
+    echo "T_CTRL_NIC:${T_CTRL_NIC}" >> ${PLINTH_BASE_WORKSPACE}/user/${T_TESTER}/ras/cfg
 fi
 
 if [ x"${T_SERVER_IP}" = x"" ] || [ x"${T_CTRL_NIC}" = x"" ] || [ x"${T_CLIENT_IP}" = x"" ];then
@@ -237,7 +237,7 @@ else
 fi
 
 COM="true"
-source ${TESTER_HNS_TOP_DIR}/xge_main.sh
+source ${TESTER_RAS_TOP_DIR}/ras_main.sh
 
 #COM="true"
 

@@ -74,7 +74,7 @@ function xge_set_ipv6_address()
     ifconfig ${local_fibre1} up; ifconfig ${local_fibre1} ${local_fibre1_ip}
     ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${remote_fibre1} up; ifconfig ${remote_fibre1} ${remote_fibre1_ip}; sleep 5;"
     ifconfig ${local_fibre1} inet6 add ${local_fibre1_ipv6_ip}
-    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ping6 ${local_fibre1_ipv6_ip}%${remote_fibre1} -c 5" > ${BaseDir}/log/set_ipv6_address.txt 
+    ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ping6 ${local_fibre1_ipv6_ip}%${remote_fibre1} -c 5" > ${BaseDir}/log/set_ipv6_address.txt
     cat ${BaseDir}/log/set_ipv6_address.txt  | grep "received, 0% packet loss" >/dev/null
     if [ $? -eq 0 ];then
         ifconfig ${local_fibre1} inet6 del ${local_fibre1_ipv6_ip}

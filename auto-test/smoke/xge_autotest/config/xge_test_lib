@@ -43,7 +43,7 @@ function qperf_install() {
     which qperf
     [ $? -ne 0 ] || echo "begin to install qperf"; cp ${common_tool}/qperf /usr/bin
    # ssh -o StrictHostKeyChecking=no root@${BACK_IP} "which qperf"
-   # [ $? -ne 0 ] || echo "begin to install remote qperf"; 
+   # [ $? -ne 0 ] || echo "begin to install remote qperf";
    scp ${common_tool}/qperf root@${BACK_IP}:/usr/bin
 }
 
@@ -143,8 +143,8 @@ function init_net_export()
          fi
     done
 
-    #get the pcie kard nic into list 
-    
+    #get the pcie kard nic into list
+
     tmplen=${#local_tp_list[@]}
     echo "len of local_tp_list is $tmplen"
 
@@ -270,7 +270,7 @@ function init_net_export()
              continue
          fi
 
-     
+
          tmp=`ssh -o StrictHostKeyChecking=no root@${BACK_IP} 'ethtool '${eth_map_r[${i}]}' | grep "TP"'`
          if [ "${tmp}"x = ""x ];then
             remote_fibre_list=(${remote_fibre_list[*]} ${eth_map_r[${i}]})
@@ -389,7 +389,7 @@ function setTrustRelation()
         "*same passphrase*" { send "\r" }
         }
         expect eof
-        
+
         sleep 1
 
         spawn ssh-copy-id -i root@${back_ip}
