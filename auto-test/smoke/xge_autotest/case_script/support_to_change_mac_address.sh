@@ -79,10 +79,10 @@ function ge_set_standard_mac_address()
     if [ ${Random_Mac} -lt 10 ]
     then
         Random_Mac="0"${Random_Mac}
-        if [ ${Random_Mac1} -lt 10 ]
-        then
-            Random_Mac1="0"${Random_Mac}
-        fi
+    fi
+    if [ ${Random_Mac1} -lt 10 ]
+    then
+        Random_Mac1="0"${Random_Mac}
     fi
     newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"${Random_Mac}"/g)
     remoteMacAddress=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${local_tp1} | grep "HWaddr" | awk '{print $NF}'")
@@ -93,7 +93,7 @@ function ge_set_standard_mac_address()
     ifconfig ${local_tp1} hw ether ${newMacAddress}
     sleep $ARP_MAC_UPDATE_TIME
     ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ping ${local_tp1_ip} -c 10 &> /dev/null;sleep 5;"
-    newMacAddress1=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "arp -a | grep -w ${local_tp1_ip} | awk -F'at' '{print \$NF}' | awk '{print \$1}'")
+    newMacAddress1=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "arp -a | grep -w ${local_tp1_ip} | awk -F'at' '{print $NF}' | awk '{print $1}'")
     echo $newMacAddress1
     echo $newMacAddress
     if [ "$newMacAddress" != "$newMacAddress1" ];then
@@ -196,10 +196,10 @@ function xge_set_standard_mac_address()
     if [ ${Random_Mac} -lt 10 ]
     then
         Random_Mac="0"${Random_Mac}
-        if [ ${Random_Mac1} -lt 10 ]
-        then
-            Random_Mac1="0"${Random_Mac}
-        fi
+    fi
+    if [ ${Random_Mac1} -lt 10 ]
+    then
+        Random_Mac1="0"${Random_Mac}
     fi
     newMacAddress=$(echo $oldMacAddress |sed s/"${oldMacAddress:15:2}"/"${Random_Mac}"/g)
     remoteMacAddress=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ifconfig ${local_tp1} | grep "HWaddr" | awk '{print $NF}'")
@@ -210,7 +210,7 @@ function xge_set_standard_mac_address()
     ifconfig ${local_fibre2} hw ether ${newMacAddress}
     sleep $ARP_MAC_UPDATE_TIME
     ssh -o StrictHostKeyChecking=no root@${BACK_IP} "ping ${local_fibre2_ip} -c 10;sleep 5"
-    newMacAddress1=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "arp -a | grep -w ${local_fibre2_ip} | awk -F'at' '{print \$NF}' | awk '{print \$1}'")
+    newMacAddress1=$(ssh -o StrictHostKeyChecking=no root@${BACK_IP} "arp -a | grep -w ${local_fibre2_ip} | awk -F'at' '{print $NF}' | awk '{print $1}'")
 
     if [ "$newMacAddress" != "$newMacAddress1" ];then
         ifconfig ${local_fibre2} hw ether ${oldMacAddress}
