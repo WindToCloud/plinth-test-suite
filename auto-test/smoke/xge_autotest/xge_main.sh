@@ -105,6 +105,23 @@ then
     . ${HNS_TOP_DIR}/../pre_autotest/pre_main.sh
 fi
 
+#get the parameter of $1 $2
+#$1:  it mean the server ip set by CI env,actually sip is not using in test 
+#$2:  it mean the client ip set by CI env
+if [ x"$1" = x"" ];then
+    echo "No $1 para pass to xge_main.sh!"
+else
+    g_server_ip=$1
+    echo "Set server ip used $1 as $g_server_ip "
+fi
+
+if [ x"$2" = x"" ];then
+    echo "No $2 para pass to xge_main.sh"
+else
+    g_client_ip=$2
+    echo "Set client ip used $2 as $g_client_ip"
+fi
+
 #Output log file header
 #writeLogHeader
 

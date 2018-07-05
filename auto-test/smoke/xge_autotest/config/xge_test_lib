@@ -148,6 +148,8 @@ function init_net_export()
 
     #get the pcie kard nic into list
 
+    #get the pcie kard nic into list
+
     tmplen=${#local_tp_list[@]}
     echo "len of local_tp_list is $tmplen"
 
