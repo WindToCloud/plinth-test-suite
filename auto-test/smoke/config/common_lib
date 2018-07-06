@@ -125,25 +125,19 @@ function InitDirectoryName(){
 
 function MkdirPath(){
     mkdir -p ${BaseDir}/log
-    tmp=$(ls ${PLINTH_TEST_WORKSPACE}/${Module} | wc -l )
+    tmp_num=$(ls ${PLINTH_TEST_WORKSPACE}/${Module} | wc -l )
+    tmp=$(ls ${PLINTH_TEST_WORKSPACE}/${Module})
     flag=1
     # keep the date
-    while test ${tmp} -gt 5
+    while test ${tmp_num} -gt 5
     do
         for i in ${tmp}
         do
-            if [ ${flag} -eq 1 ]; then
-                flag=0
-                min=$i
-            else
-                if [ ${min} > ${i} ]
-                then
-                    min=$i
-                fi
-            fi
-            flag=1
-            rm -rf ${PLINTH_TEST_WORKSPACE}/${Module}/${min}
+            min=$i
+            break
         done
+        rm -rf ${PLINTH_TEST_WORKSPACE}/${Module}/${min}
+        let tmp_num--
     done
     return 0
     }
