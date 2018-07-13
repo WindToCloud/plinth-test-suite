@@ -22,7 +22,8 @@ checklist()
   while read line
   do
     TMP_TITLE=`echo "$line" | awk -F '|' '{print $2}'`
-    list=$list"${TMP_TITLE} case"
+    TMP_FUNC=`echo "$line" | awk -F '|' '{print $7}'`
+    list=$list"${TMP_TITLE} ${TMP_FUNC}"
     TMP_SW=`echo "$line" | awk -F '|' '{print $8}'`
     if [ x"$TMP_SW" = x"on" ];then
         list=$list" ON "
@@ -227,6 +228,7 @@ else
 fi
 
 COM="true"
+PCIE_LOCAL="True"
 source ${TESTER_PCIE_TOP_DIR}/pcie_main.sh
 
 #COM="true"
